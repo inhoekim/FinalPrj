@@ -3,5 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.PostMapper">
-	
+	<insert id="postInsert" parameterType="com.spring.ott.vo.PostVo">
+		insert into board_post values(seq_board_post.nextval,#{user_id},#{category_id},#{title},#{content},0,sysdate,null)
+	</insert>
+	<insert id="FileInsert" parameterType="com.spring.ott.vo.FilesVo">
+		insert into files values(SEQ_FILES.nextval,#{post_id},#{file_type},#{file_size},#{org_name},#{src_name},sysdate)
+	</insert>
 </mapper>
