@@ -18,7 +18,7 @@ DROP TABLE USERS;
 CREATE TABLE USERS --유저
 (
     user_id varchar2(20) PRIMARY KEY, --유저아이디
-    pwd varchar2(20) NOT NULL, --유저비밀번호
+    pwd varchar2(100) NOT NULL, --유저비밀번호
     name varchar2(20) NOT NULL, --이름
     jnum varchar2(20) NOT NULL, --주민번호
     age number(5), --나이
