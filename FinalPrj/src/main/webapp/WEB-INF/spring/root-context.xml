@@ -35,5 +35,20 @@
 	 		<tx:method name="insert*" propagation="REQUIRED"/>
 	 	</tx:attributes>
 	 </tx:advice>
+	 
+	 <!-- 메일 설정 -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.naver.com" />
+	    <property name="port" value="465" />
+	    <property name="username" value="yspt12@naver.com" />
+	    <property name="password" value="dlagyrb123" />
+	    <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.auth">true</prop>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	    </props>
+	    </property>
+	  </bean>
+	 
 		
 </beans>
