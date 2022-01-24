@@ -27,6 +27,8 @@ CREATE TABLE USERS --유저
     regdate date NOT NULL, --등록일
     state number(1) DEFAULT 0 NOT NULL --유저상태(0: 정상, 1: 블랙유저, 2: 탈퇴)
 );
+alter table users modify(pwd varchar2(100));
+도구->환경설정->환경(Environment)->UTF-8 설정
 
 CREATE TABLE BOARD_CATEGORY --게시판 카테고리
 (
