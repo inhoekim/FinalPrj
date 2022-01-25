@@ -41,11 +41,15 @@
 	    <property name="host" value="smtp.naver.com" />
 	    <property name="port" value="465" />
 	    <property name="username" value="yspt12@naver.com" />
-	    <property name="password" value="dlagyrb123" />
+	    <property name="password" value="vkdlsjf1" />
 	    <property name="javaMailProperties">
 	    <props>
 	      <prop key="mail.smtp.auth">true</prop>
 	      <prop key="mail.smtp.starttls.enable">true</prop>
+	      <prop key="mail.smtps.checkserveridentity">true</prop> 
+		  <prop key="mail.smtps.ssl.trust">*</prop>
+		  <prop key="mail.debug">true</prop>
+		  <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 	    </props>
 	    </property>
 	  </bean>
