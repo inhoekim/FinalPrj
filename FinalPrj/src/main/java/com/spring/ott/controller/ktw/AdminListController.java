@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class IndexController {
+public class AdminListController {
 	
-	@RequestMapping(value = "/wp-admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminlist", method = RequestMethod.GET)
 	public String test( ) {
 		
-		return "index.tiles";
+		return "list.tiles";
 	}
 }
