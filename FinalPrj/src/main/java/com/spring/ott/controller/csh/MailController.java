@@ -71,48 +71,31 @@ public class MailController {
         return mv;	
 	}
 	
-	@GetMapping("/join_auth")
-	public String join_auth1() {
-		return "csh/email_auth";
-	}
-	
-	
 	@PostMapping("/join_auth{dice}")
 	public ModelAndView join_auth(String email_auth, @PathVariable String dice, HttpServletRequest request, HttpServletResponse response_equals) throws IOException{
-
         System.out.println("마지막 : email_auth : "+email_auth);
         System.out.println("마지막 : dice : "+dice);
         String email_id=request.getParameter("email_id");
         ModelAndView mv = new ModelAndView();
-        
-        mv.setViewName("csh/userJoin");
-        mv.addObject("email",email_auth);
-        
+        //dice: 메일인증번호
+        //email_auth: 사용자가 입력한 인증번호
+        mv.addObject("dice",dice);  
+        response_equals.setContentType("text/html; charset=UTF-8");
+        PrintWriter out_equals = response_equals.getWriter();
+        //인증번호 일치
         if (email_auth.equals(dice)) {
-            
-            mv.setViewName("csh/userJoin");
-            mv.addObject("email",email_auth);
-            mv.addObject("email_id",email_id);
-            
-            response_equals.setContentType("text/html; charset=UTF-8");
-            PrintWriter out_equals = response_equals.getWriter();
+        	mv.setViewName("csh/userJoin");
+            mv.addObject("email_id",email_id);  
             out_equals.println("<script>alert('인증번호가 일치합니다. 회원가입창으로 이동합니다.');</script>");
             out_equals.flush();
-            return mv;
-    
-        }else if (email_auth != dice) {
-                       
-            ModelAndView mv2 = new ModelAndView(); 
-            mv2.setViewName("redirect:/join_auth");
-            
-            response_equals.setContentType("text/html; charset=UTF-8");
-            PrintWriter out_equals = response_equals.getWriter();
-            out_equals.println("<script>alert('인증번호가 일치하지 않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
-            out_equals.flush();
-            return mv2;
-            
-        }    
+        //인증번호 불일치
+        }else if (email_auth != dice) {    
+        	mv.setViewName("csh/email_auth");
+        	mv.addObject("email_id",email_id);
+            out_equals.println("<script>alert('인증번호가 일치하지 않습니다. 인증번호를 다시 입력해주세요.');</script>");
+            out_equals.flush();       
+        }
         return mv;
 	}
-	
+		
 }
