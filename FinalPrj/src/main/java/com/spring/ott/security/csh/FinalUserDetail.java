@@ -20,7 +20,7 @@ public class FinalUserDetail implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities(){
 		ArrayList<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
 		for(AuthoritiesVo vo:authList) {
-			auths.add(new SimpleGrantedAuthority(vo.getAutority()));
+			auths.add(new SimpleGrantedAuthority(vo.getAuthority()));
 		}
 		return auths;
 	}

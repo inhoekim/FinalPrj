@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class AuthoritiesVo {
 	private int role_id;
 	private String user_id;
-	private String autority;
+	private String authority;
 }
