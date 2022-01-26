@@ -16,6 +16,19 @@
 	<definition name="*.tiles" extends="tilesLayout">
 		<put-attribute name="content" value="/WEB-INF/views/adminview/admin/{1}.jsp" />
 	</definition>
-
+	
+	<!-- 김인회 Start -->
+	<definition name="homeLayout" template="/WEB-INF/views/home/layout.jsp">
+		<put-attribute name="logo" value="/WEB-INF/views/home/logo.jsp" />
+		<put-attribute name="leftside" value="/WEB-INF/views/home/leftside.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="rightside" value="/WEB-INF/views/home/rightside.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/home/footer.jsp" />
+	</definition>
+	
+	<definition name="*.tiles" extends="homeLayout">
+		<put-attribute name="content" value="/WEB-INF/views/home/{1}.jsp" />
+	</definition>
+	<!-- 김인회 End -->
 	
 </tiles-definitions>
