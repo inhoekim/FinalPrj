@@ -18,5 +18,5 @@
 </div>
 
 <div class="footer_right">
-    <img class="item" src="KakaoTalk_20220124_170445827.png">
+    <img class="item" src="${pageContext.request.contextPath}/resources/img/dcc2022.png">
 </div>
