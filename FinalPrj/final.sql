@@ -25,9 +25,8 @@ CREATE TABLE USERS --유저
     area varchar(20), --지역
     email varchar2(20) NOT NULL UNIQUE, --이메일
     regdate date NOT NULL, --등록일
-    black_enabled CHAR(1) DEFAULT '1' NOT NULL, --블랙상태(0: 블랙, 1: 정상)
-    enabled CHAR(1) DEFAULT '1' NOT NULL --유저상태(0: 탈퇴, 1: 정상)
-     
+    black_enabled char(1) DEFAULT 1 NOT NULL, --블랙 상태(0:블랙유저 / 1:정상
+    enabeld char(1) DEFAULT 1 NOT NULL -- 유저 상태(0:탈퇴 / 1:정상) 
 );
 alter table users modify(pwd varchar2(100));
 도구->환경설정->환경(Environment)->UTF-8 설정
