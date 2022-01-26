@@ -97,5 +97,4 @@ public class MailController {
         }
         return mv;
 	}
-		
 }

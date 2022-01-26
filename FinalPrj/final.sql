@@ -11,20 +11,22 @@ DROP TABLE BLACKLIST;
 DROP TABLE BOARD_POST;
 DROP TABLE BOARD_CATEGORY;
 
+
 DROP TABLE USERS;
 
 /* 테이블 생성*/
 CREATE TABLE USERS --유저
 (
     user_id varchar2(20) PRIMARY KEY, --유저아이디
-    pwd varchar2(20) NOT NULL, --유저비밀번호
+    pwd varchar2(100) NOT NULL, --유저비밀번호
     name varchar2(20) NOT NULL, --이름
     jnum varchar2(20) NOT NULL, --주민번호
     age number(5), --나이
     area varchar(20), --지역
     email varchar2(20) NOT NULL UNIQUE, --이메일
     regdate date NOT NULL, --등록일
-    state number(1) DEFAULT 0 NOT NULL --유저상태(0: 정상, 1: 블랙유저, 2: 탈퇴)
+    black_enabled char(1) DEFAULT 1 NOT NULL, --블랙 상태(0:블랙유저 / 1:정상
+    enabeld char(1) DEFAULT 1 NOT NULL -- 유저 상태(0:탈퇴 / 1:정상) 
 );
 alter table users modify(pwd varchar2(100));
 도구->환경설정->환경(Environment)->UTF-8 설정
