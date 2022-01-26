@@ -76,7 +76,7 @@
     
     
 		<!-- 로그아웃 모델 logoutmodel.jsp-->
-	
+	<%@include file="../adminview/logoutmodel.jsp" %>
 	
 	
 	    <!-- Bootstrap core JavaScript-->
