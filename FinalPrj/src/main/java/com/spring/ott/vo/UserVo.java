@@ -18,5 +18,6 @@ public class UserVo {
 	private String area;
 	private String email;
 	private Date regdate;
-	private int state;
+	private String enabled;
+	private String black_enabled;
 }

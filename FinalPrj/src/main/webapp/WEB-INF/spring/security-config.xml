@@ -6,19 +6,19 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="passwordEncoding" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="finalDetailService" class="com.spring.ott.security.csh.FinalUserDetailService"/>
 	
 	
-	<sec:http>
+	<sec:http auto-config="true">
 		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
-		<sec:form-login login-page="/login"/>
+		<sec:form-login login-page="/login" username-parameter="user_id" password-parameter="pwd"/>
 		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
 	</sec:http>
 	
 	<sec:authentication-manager>
-		<sec:authentication-provider>
-			<sec:jdbc-user-service data-source-ref="dataSource"/>
+		<sec:authentication-provider user-service-ref="finalDetailService">
 			<sec:password-encoder ref="passwordEncoding"/>
 		</sec:authentication-provider>
 	</sec:authentication-manager>
