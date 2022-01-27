@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<section id="home">
     <div class="post_section">
         <div class="section_container">
             <div class="container_title">최신 글</div>
@@ -224,4 +223,3 @@
         댓글
         추천수
     </div>
-</section>

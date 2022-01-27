@@ -23,7 +23,9 @@
 	
 	<div id="main">
 		<tiles:insertAttribute name="leftside"/>
-		<tiles:insertAttribute name="content"/>
+		<section id="content">
+			<tiles:insertAttribute name="content"/>
+		</section>
 		<tiles:insertAttribute name="rightside"/>
 	</div>
 	

@@ -290,7 +290,7 @@ p {
   color: var(--color-black);
 }
 /* section Post*/
-#home {
+#content {
   min-width: 60%;
   max-width: 60%;
 }
