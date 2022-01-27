@@ -4,11 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
-
-	@GetMapping(value = "/")
+public class OttHomeController {
+	@GetMapping("/autoMatch")
 	public String home() {
-		return "home/home.tiles";
+		return "automatching/home.tiles";
 	}
-	
 }

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="min-height: 1000px">
 	<header id="header">
 		<tiles:insertAttribute name="logo"/>
 	</header>

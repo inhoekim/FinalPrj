@@ -26,9 +26,19 @@
 		<put-attribute name="footer" value="/WEB-INF/views/home/footer.jsp" />
 	</definition>
 	
-	<definition name="tiles/*" extends="homeLayout">
+	<definition name="home/*.tiles" extends="homeLayout">
 		<put-attribute name="content" value="/WEB-INF/views/home/{1}.jsp" />
 	</definition>
+	
+	<definition name="autoMatchingLayout" template="/WEB-INF/views/automatching/layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/views/automatching/navbar.jsp" />
+		<put-attribute name="main_content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/automatching/footer.jsp" />
+	</definition>
+
+	<definition name="automatching/*.tiles" extends="autoMatchingLayout">
+		<put-attribute name="main_content" value="/WEB-INF/views/automatching/{1}.jsp" />
+	</definition>	
 	<!-- 김인회 End -->
 	
 </tiles-definitions>
