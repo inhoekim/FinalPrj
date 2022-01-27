@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.VisiterMapper">
+
+	<insert id="insert" parameterType="String">
+		insert into visiter values(#{ip_address},sysdate)
+	</insert>
+	
+	<select id="select">
+	<!--
+	[getVisitTodayCount()] -  금일 등록된 방문자를 카운트 한다.
+	SELECT COUNT(*) AS count from 테이블명
+  	WHERE FORMAT(컬럼명, 'YYYY-MM-DD') = FORMAT(now(), 'YYYY-MM-DD')
+출처: https://aljjabaegi.tistory.com/162 [알짜배기 프로그래머]
+	 -->
+	</select>
+	
+</mapper>

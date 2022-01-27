@@ -75,7 +75,7 @@ CREATE TABLE BLACKLIST --블랙리스트
 CREATE TABLE VISITER --사이트방문자
 (
     ip_address varchar2(50), --방문자IP
-    visit_date varchar2(50), -- 방문시간
+    visit_date date, -- 방문시간
     CONSTRAINT PK_VISITER PRIMARY KEY(ip_address, visit_date)
 );
 

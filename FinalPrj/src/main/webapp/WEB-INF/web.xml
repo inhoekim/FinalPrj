@@ -40,6 +40,11 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- 태우 테스트 -->
+	<listener>
+	 	<listener-class> com.spring.ott.listener.SessionListener</listener-class>
+	</listener>
+	<!-- 			-->
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
