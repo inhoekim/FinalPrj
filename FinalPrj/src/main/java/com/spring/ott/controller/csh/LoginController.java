@@ -8,7 +8,7 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String login() {
-		return "csh/login";
+		return "tiles/login";
 	}
 	@GetMapping("/logout")
 	public String logout() {

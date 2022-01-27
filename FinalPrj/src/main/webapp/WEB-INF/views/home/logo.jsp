@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<style>
+   input.submitLink {
+				    background-color: transparent;
+				    border: none;
+				    cursor: pointer;
+				    }
+
+</style>
 <div class="header_container">
     <div class="container_notice">
         <div class="notice_title">공지사항</div>
@@ -13,13 +22,12 @@
 	<sec:authorize access="isAuthenticated()">
 		<div class="container_login">
 	        <div class="login_item" style="border-bottom: 1px solid #efefef;">
-	        	<sec:authentication property="principal.username"/>님 반갑습니다.	
+	        	<form:form method="post" action="${pageContext.request.contextPath }/logout">
+					<input type="submit" value="로그아웃" class="submitLink">
+				</form:form> 	
 	        </div>
 	        <div class="login_item">
-	        	<form method="post" action="${pageContext.request.contextPath }/logout">
-				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-				<input type="submit" value="로그아웃">
-				</form> 
+	        	<a href="${pageContext.request.contextPath }/userUpdate">정보수정</a>
 	        </div>
 		</div>
 	</sec:authorize>
@@ -31,11 +39,6 @@
         <div class="login_item">
         	<a href="${pageContext.request.contextPath }/email">회원가입</a>
         </div>
-        <!--
-        <div class="login_item">
-            <i class="profile fas fa-user-circle"></i>
-        </div>
-        --> 
     </div>
     </sec:authorize>
 </div>

@@ -15,7 +15,7 @@
 	비밀번호<br>
 	<input type="password" name="pwd"><br>
 	<label for="remember-me">로그인 유지</label>
-	<input type="checkbox" id="remember-me" name="remember-me" />
+	<input type="checkbox" id="remember-me" name="remember-me" /><br>	
 	<input type="submit" value="로그인">
 </form:form>
 </body>
