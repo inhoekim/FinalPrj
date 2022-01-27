@@ -14,7 +14,9 @@
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
 		<sec:form-login login-page="/login" username-parameter="user_id" password-parameter="pwd"/>
-		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
+		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"
+					delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE" />
+		<sec:remember-me key="csh" token-validity-seconds="2419200"/>
 	</sec:http>
 	
 	<sec:authentication-manager>
@@ -23,4 +25,5 @@
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 	
+
 </beans>
