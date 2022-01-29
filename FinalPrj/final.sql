@@ -10,8 +10,7 @@ DROP TABLE USER_ROLE;
 DROP TABLE BLACKLIST;
 DROP TABLE BOARD_POST;
 DROP TABLE BOARD_CATEGORY;
-
-
+DROP TABLE PAYMENT
 DROP TABLE USERS;
 
 /* 테이블 생성*/
@@ -155,6 +154,16 @@ CREATE TABLE BOARD_ACCUSATION -- 신고게시글
     CONSTRAINT FK_ACCUSATION_COMMENT FOREIGN KEY(comment_id) REFERENCES COMMENTS(comment_id),
     CONSTRAINT FK_ACCUSATION_USERID FOREIGN KEY(user_id) REFERENCES USERS(user_id),
     CONSTRAINT FK_ACCUSATION_TARGETID FOREIGN KEY(target_id) REFERENCES USERS(user_id)
+);
+
+CREATE TABLE payment --결제테이블
+(
+    payment_id varchar2(20) PRIMARY KEY, -- 주문번호
+    user_id varchar2(20) NOT NULL,      -- 유저아이디
+    price number(10) NOT NULL,          -- 결제금액
+    status varchar2(20),                -- 결제상태
+    payment_date date,                  -- 결제 날짜
+    CONSTRAINT FK_PAY_ID FOREIGN KEY(user_id) REFERENCES USERS(user_id)
 );
 
 /*시퀀스 삭제*/

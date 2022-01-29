@@ -12,7 +12,6 @@ public class VisiterService {
 	@Autowired private VisiterMapper mapper;
 	
 	public int inservisiter(String ip_address) {
-		System.out.println("테스트입니다!");
 		return mapper.insert(ip_address);
 		
 	}
