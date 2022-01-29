@@ -40,3 +40,9 @@
         <a href="#" class="service_button">서비스 시작하기</a>
     </section>
 </div>
+
+<script>
+	$(function(){
+		$($(".navbar_menu_item a")[0]).addClass("active");
+	});
+</script>

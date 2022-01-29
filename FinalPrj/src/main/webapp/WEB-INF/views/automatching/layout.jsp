@@ -5,17 +5,21 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTT+</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainstyle.css">
-    <script src="https://kit.fontawesome.com/ea309b6399.js" crossorigin="anonymous"></script>
-    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
-    
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTT+</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainstyle.css">
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+<script src="https://kit.fontawesome.com/ea309b6399.js" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/matching.js"></script>
+<script type="text/javascript" charset="utf-8">
+	sessionStorage.setItem("cp", "${pageContext.request.contextPath}");
+</script>
 </head>
+
 <body>
 	<nav id="navbar">
 		<tiles:insertAttribute name="navbar"/>
