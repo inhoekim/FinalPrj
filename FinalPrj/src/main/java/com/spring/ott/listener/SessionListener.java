@@ -57,7 +57,7 @@ public class SessionListener implements HttpSessionListener{
 			System.out.println("아이피 : "+ip_address);
 			//HttpSession session =se.getSession();
 			
-				 //service.inservisiter(ip_address);
+				//service.inservisiter(ip_address);
 			((VisiterService)(context.getBean("visiterService"))).inservisiter(ip_address);
 
 			}catch(NullPointerException e) {
