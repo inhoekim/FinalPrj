@@ -10,6 +10,11 @@ DROP TABLE USER_ROLE;
 DROP TABLE BLACKLIST;
 DROP TABLE BOARD_POST;
 DROP TABLE BOARD_CATEGORY;
+
+DROP TABLE SETTLE;
+DROP TABLE MATCHING;
+DROP TABLE PARTY;
+
 DROP TABLE PAYMENT
 DROP TABLE USERS;
 
@@ -22,13 +27,11 @@ CREATE TABLE USERS --유저
     jnum varchar2(20) NOT NULL, --주민번호
     age number(5), --나이
     area varchar(20), --지역
-    email varchar2(20) NOT NULL UNIQUE, --이메일
+    email varchar2(50) NOT NULL UNIQUE, --이메일
     regdate date NOT NULL, --등록일
     black_enabled char(1) DEFAULT 1 NOT NULL, --블랙 상태(0:블랙유저 / 1:정상
     enabeld char(1) DEFAULT 1 NOT NULL -- 유저 상태(0:탈퇴 / 1:정상) 
 );
-alter table users modify(pwd varchar2(100));
-도구->환경설정->환경(Environment)->UTF-8 설정
 
 CREATE TABLE BOARD_CATEGORY --게시판 카테고리
 (
@@ -36,7 +39,6 @@ CREATE TABLE BOARD_CATEGORY --게시판 카테고리
     category_name varchar2(20) NOT NULL, -- 카테고리 이름
     board_address varchar2(50) NOT NULL -- 해당 카테고리 메인 게시판 주소
 );
-
 
 CREATE TABLE BOARD_POST -- 게시글
 (
@@ -156,15 +158,58 @@ CREATE TABLE BOARD_ACCUSATION -- 신고게시글
     CONSTRAINT FK_ACCUSATION_TARGETID FOREIGN KEY(target_id) REFERENCES USERS(user_id)
 );
 
-CREATE TABLE payment --결제테이블
+CREATE TABLE PAYMENT --결제테이블
 (
     payment_id varchar2(20) PRIMARY KEY, -- 주문번호
     user_id varchar2(20) NOT NULL,      -- 유저아이디
     price number(10) NOT NULL,          -- 결제금액
-    status varchar2(20),                -- 결제상태
+    status varchar2(20),                -- 결제상태 (0: 결제완료, 1:결제취소)
     payment_date date,                  -- 결제 날짜
     CONSTRAINT FK_PAY_ID FOREIGN KEY(user_id) REFERENCES USERS(user_id)
 );
+
+CREATE TABLE OTT -- OTT 목록 테이블
+(
+    ott_id number(10) PRIMARY KEY, -- OTT 번호(안정성을 위해 시퀀스 안쓰고 직접 타이핑)
+    ott_name varchar2(30), -- OTT 이름
+    month_price number(10), --월 구독료
+    domain_addr varchar2(100) -- 도메인 주소
+);
+
+CREATE TABLE PARTY -- 파티테이블
+(
+    party_id number(10) PRIMARY KEY, -- 시퀀스
+    ott_id number(10) NOT NULL, -- 파티의 OTT 종류
+    leader varchar2(20) NOT NULL, --파티장 ID (FK)
+    member_num number(1) NOT NULL, -- 현재 파티원 정원
+    invite_code varchar2(50) NOT NULL, --파티 초대 코드(파티장만 이용가능)
+    party_state number(1) NOT NULL, -- 파티상태 (0: 매칭진행중, 1: 매칭완료됨, 2: 파티해체예정, 3: 파티해체)
+    start_day date NOT NULL, --매칭 시작일(한달 단위로 업데이트)
+    cofirm_day date, --매칭 완료일(한달 단위로 업데이트)
+    CONSTRAINT FK_PARTY_OTT FOREIGN KEY(ott_id) REFERENCES OTT(ott_id),
+    CONSTRAINT FK_PARTY_LEADER FOREIGN KEY(leader) REFERENCES USERS(user_id)
+)
+
+CREATE TABLE SETTLE -- 정산테이블
+(
+    settle_id number(10) PRIMARY KEY, --시퀀스
+    party_id number(10) NOT NULL, -- 소속 파티 id
+    target_id varchar2(20) NOT NULL, --정산해줄 파티장의 사용자ID
+    price number(10) NOT NULL, -- 정산해줄 금액
+    settle_state number(1) NOT NULL, -- 정산상태( 0: 정산 대기중, 1: 정산 완료)
+    settle_day date NOT NULL, -- 정산해야 할 날짜
+    CONSTRAINT FK_SETTLE_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
+    CONSTRAINT FK_SETTLE_TARGET FOREIGN KEY(target_id) REFERENCES USERS(user_id)
+)
+
+CREATE TABLE MATCHING -- 매칭테이블
+(
+    matching_id number(10) PRIMARY KEY, --시퀀스
+    party_id number(10) NOT NULL, --파티 ID(FK)
+    user_id varchar2(20) NOT NULL, --멤버유저 ID(FK)
+    payment_id number(10) NOT NULL, --결제번호(FK)
+
+)
 
 /*시퀀스 삭제*/
 DROP SEQUENCE SEQ_ROLE;
@@ -175,6 +220,9 @@ DROP SEQUENCE SEQ_NOTIFICATION;
 DROP SEQUENCE SEQ_BOARD_CATEGORY;
 DROP SEQUENCE SEQ_BOARD_POST;
 DROP SEQUENCE SEQ_BOARD_ACCUSATION;
+DROP SEQUENCE SEQ_SETTLE;
+DROP SEQUENCE SEQ_PARTY;
+DROP SEQUENCE SEQ_MATCHING;
 
 /* 시퀀스 생성*/
 CREATE SEQUENCE SEQ_ROLE; -- USER_ROLE 테이블 시퀀스
@@ -185,3 +233,6 @@ CREATE SEQUENCE SEQ_NOTIFICATION; -- NOTIFICATION 테이블 시퀀스
 CREATE SEQUENCE SEQ_BOARD_CATEGORY; -- CATEGORY 테이블 시퀀스
 CREATE SEQUENCE SEQ_BOARD_POST; -- POST 테이블 시퀀스
 CREATE SEQUENCE SEQ_BOARD_ACCUSATION; -- ACCUSATION 테이블 시퀀스
+CREATE SEQUENCE SEQ_SETTLE; -- SETTLE 테이블 시퀀스
+CREATE SEQUENCE SEQ_PARTY; -- PARTY 테이블 시퀀스
+CREATE SEQUENCE SEQ_MATCHING; -- MATCHING 테이블 시퀀스
