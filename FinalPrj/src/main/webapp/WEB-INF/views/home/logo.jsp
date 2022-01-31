@@ -34,11 +34,15 @@
 	<sec:authorize access="isAnonymous()">
     <div class="container_login">
         <div class="login_item" style="border-bottom: 1px solid #efefef;">
-        	<a href="${pageContext.request.contextPath }/login">로그인</a>
+        	<a id="login">로그인</a>
         </div>
         <div class="login_item">
         	<a href="${pageContext.request.contextPath }/email">회원가입</a>
         </div>
     </div>
     </sec:authorize>
+    
+    <div class="loginForm hidden">
+    
+    </div>
 </div>
