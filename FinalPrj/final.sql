@@ -160,11 +160,11 @@ CREATE TABLE BOARD_ACCUSATION -- 신고게시글
 
 CREATE TABLE PAYMENT --결제테이블
 (
-    payment_id varchar2(20) PRIMARY KEY, -- 주문번호
-    user_id varchar2(20) NOT NULL,      -- 유저아이디
-    price number(10) NOT NULL,          -- 결제금액
-    status varchar2(20),                -- 결제상태 (0: 결제완료, 1:결제취소)
-    payment_date date,                  -- 결제 날짜
+    payment_id varchar2(50) PRIMARY KEY, -- 주문번호(카카오톡 TID 결제번호)
+    user_id varchar2(20) NOT NULL,       -- 유저아이디
+    price number(10) NOT NULL,           -- 결제금액
+    status number(1),         -- 결제상태 (0: 결제완료(취소가능), 1:결제완료(취소불가), 2: 결제취소)
+    payment_date date,           -- 결제 날짜
     CONSTRAINT FK_PAY_ID FOREIGN KEY(user_id) REFERENCES USERS(user_id)
 );
 
