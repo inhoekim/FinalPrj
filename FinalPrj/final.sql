@@ -13,9 +13,11 @@ DROP TABLE BOARD_CATEGORY;
 
 DROP TABLE SETTLE;
 DROP TABLE MATCHING;
+DROP TABLE WATINGROOM;
 DROP TABLE PARTY;
+DROP TABLE OTT;
 
-DROP TABLE PAYMENT
+DROP TABLE PAYMENT;
 DROP TABLE USERS;
 
 /* 테이블 생성*/
@@ -184,32 +186,46 @@ CREATE TABLE PARTY -- 파티테이블
     member_num number(1) NOT NULL, -- 현재 파티원 정원
     invite_code varchar2(50) NOT NULL, --파티 초대 코드(파티장만 이용가능)
     party_state number(1) NOT NULL, -- 파티상태 (0: 매칭진행중, 1: 매칭완료됨, 2: 파티해체예정, 3: 파티해체)
-    start_day date NOT NULL, --매칭 시작일(한달 단위로 업데이트)
-    cofirm_day date, --매칭 완료일(한달 단위로 업데이트)
+    share_id varchar2(50) NOT NULL, -- 공유 아이디
+    share_pwd varchar2(50) NOT NULL, --공유 비밀번호
+    expiration_date date NOT NULL, -- 계정만료일
+    start_day date NOT NULL, --매칭 시작일(매칭이 재시작 될때마다 업데이트)
     CONSTRAINT FK_PARTY_OTT FOREIGN KEY(ott_id) REFERENCES OTT(ott_id),
     CONSTRAINT FK_PARTY_LEADER FOREIGN KEY(leader) REFERENCES USERS(user_id)
-)
+);
 
 CREATE TABLE SETTLE -- 정산테이블
 (
-    settle_id number(10) PRIMARY KEY, --시퀀스
+    settle_id number(10) PRIMARY KEY, -- 시퀀스
     party_id number(10) NOT NULL, -- 소속 파티 id
-    target_id varchar2(20) NOT NULL, --정산해줄 파티장의 사용자ID
+    target_id varchar2(20) NOT NULL, -- 정산해줄 파티장의 사용자ID
     price number(10) NOT NULL, -- 정산해줄 금액
     settle_state number(1) NOT NULL, -- 정산상태( 0: 정산 대기중, 1: 정산 완료)
     settle_day date NOT NULL, -- 정산해야 할 날짜
     CONSTRAINT FK_SETTLE_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
     CONSTRAINT FK_SETTLE_TARGET FOREIGN KEY(target_id) REFERENCES USERS(user_id)
-)
+);
 
 CREATE TABLE MATCHING -- 매칭테이블
 (
-    matching_id number(10) PRIMARY KEY, --시퀀스
-    party_id number(10) NOT NULL, --파티 ID(FK)
-    user_id varchar2(20) NOT NULL, --멤버유저 ID(FK)
-    payment_id number(10) NOT NULL, --결제번호(FK)
+    party_id number(10) PRIMARY KEY, -- 파티 ID (PK and FK)
+    user_id varchar2(20) NOT NULL, -- 멤버유저 ID (FK)
+    payment_id varchar2(50) NOT NULL, -- 결제번호 (FK)
+    next_payment_id varchar2(50) NOT NULL, -- 다음달 결제번호 (FK)
+    matching_date date NOT NULL, -- 매칭된 날짜
+    CONSTRAINT FK_MATCHING_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
+    CONSTRAINT FK_MATCHING_PAYMENT FOREIGN KEY(payment_id) REFERENCES PAYMENT(payment_id),
+    CONSTRAINT FK_MATCHING_NEXTPAYMENT FOREIGN KEY(next_payment_id) REFERENCES PAYMENT(payment_id)
+);
 
-)
+CREATE TABLE WATINGROOM -- 매칭신청 대기인원 테이블
+(
+    wating_id number(10) PRIMARY KEY, -- 시퀀스
+    user_id varchar2(20) NOT NULL, -- 유저아이디 (FK)
+    ott_id number(10) NOT NULL,  -- OTT번호 (FK)
+    start_day date NOT NULL 
+);
+
 
 /*시퀀스 삭제*/
 DROP SEQUENCE SEQ_ROLE;
@@ -223,6 +239,7 @@ DROP SEQUENCE SEQ_BOARD_ACCUSATION;
 DROP SEQUENCE SEQ_SETTLE;
 DROP SEQUENCE SEQ_PARTY;
 DROP SEQUENCE SEQ_MATCHING;
+DROP SEQUENCE SEQ_WATINGROOM;
 
 /* 시퀀스 생성*/
 CREATE SEQUENCE SEQ_ROLE; -- USER_ROLE 테이블 시퀀스
@@ -236,3 +253,12 @@ CREATE SEQUENCE SEQ_BOARD_ACCUSATION; -- ACCUSATION 테이블 시퀀스
 CREATE SEQUENCE SEQ_SETTLE; -- SETTLE 테이블 시퀀스
 CREATE SEQUENCE SEQ_PARTY; -- PARTY 테이블 시퀀스
 CREATE SEQUENCE SEQ_MATCHING; -- MATCHING 테이블 시퀀스
+CREATE SEQUENCE SEQ_WATINGROOM; -- WATINGROOM 테이블 시퀀스
+
+/* 초기데이터 */
+
+insert into ott values (0,'넷플릭스', 17000, 'https://www.netflix.com/kr/'); 
+insert into ott values (1,'왓챠', 12900, 'https://watcha.com/');
+insert into ott values (2,'디즈니', 9900, 'https://www.disneyplus.com/ko-kr');
+
+commit;

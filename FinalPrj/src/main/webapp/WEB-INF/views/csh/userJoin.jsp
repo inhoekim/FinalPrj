@@ -25,7 +25,7 @@
 	지역 <br>
 	<input type="text" name="area"><br>
 	이메일 <br>
-	<input type="text" name="email" value="${email_id }" readonly="readonly"><br>
+	<input type="text" name="email" value="${email_id }"><br>
 	<input type="submit" value="가입">
 </form:form>
 </body>
