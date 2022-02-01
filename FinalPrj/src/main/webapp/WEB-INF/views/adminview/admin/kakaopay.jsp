@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal.username" val="userId"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,11 +25,10 @@
 	
 	<div id="check_module" >카카오로 계속하기</div>
 			<form:form method="post" name='kakaopayf' action="${pageContext.request.contextPath}/kakaopayform">
-				<input type="hidden" name="payment_id" value="<%= %>" >
-				<input type="hidden" name="user_id" value="test" ><!-- 로긴한 아이디 -->
-				<input type="hidden" name="price" value="test3" >
-				<input type="hidden" name="status" value="test4" >
-				<input type="hidden" name="payment_date" value="test5" >
+				<input type="hidden" name="payment_id" value="" >
+				<input type="hidden" name="user_id" value="${userId}" ><!-- 로긴한 아이디 -->
+				<input type="hidden" name="price" value="" >
+				<input type="hidden" name="status" value="${0}" >
 			</form:form>
 	<script>
 	$("#check_module").click(function () {
@@ -43,13 +44,15 @@
 			buyer_postcode: '123-456',
 			}, function (rsp) {
 				if(rsp.success){
-					//전역변수 만들자
-				var uid = imp_uid;
 					//결제 성공시
 				var msg = '결제에 성공하였습니다.';
-				msg += '\n결제번호 : ' + uid //결제 번호
+				msg += '\n결제번호 : ' + rsp.imp_uid; //결제 번호
 				msg += '\n주문자명 : ' + "ㅁㄴㅇ"; // name
 				msg += '\n결제금액 : ' + rsp.paid_amount; //결제금액
+				
+				//제이쿼리 
+				$("input[name='payment_id']").val(rsp.imp_uid);
+				$("input[name='price']").val(rsp.paid_amount
 				document.kakaopayf.submit();
 				alert(msg);
 
