@@ -210,9 +210,9 @@ CREATE TABLE MATCHING -- 매칭테이블
 (
     party_id number(10) PRIMARY KEY, -- 파티 ID (PK and FK)
     user_id varchar2(20) NOT NULL, -- 멤버유저 ID (FK)
-    payment_id number(10) NOT NULL, -- 결제번호 (FK)
+    payment_id varchar2(50) NOT NULL, -- 결제번호 (FK)
+    next_payment_id varchar2(50) NOT NULL, -- 다음달 결제번호 (FK)
     matching_date date NOT NULL, -- 매칭된 날짜
-    next_payment_id number(10) NOT NULL, -- 다음달 결제번호 (FK)
     CONSTRAINT FK_MATCHING_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
     CONSTRAINT FK_MATCHING_PAYMENT FOREIGN KEY(payment_id) REFERENCES PAYMENT(payment_id),
     CONSTRAINT FK_MATCHING_NEXTPAYMENT FOREIGN KEY(next_payment_id) REFERENCES PAYMENT(payment_id)
@@ -223,7 +223,7 @@ CREATE TABLE WATINGROOM -- 매칭신청 대기인원 테이블
     wating_id number(10) PRIMARY KEY, -- 시퀀스
     user_id varchar2(20) NOT NULL, -- 유저아이디 (FK)
     ott_id number(10) NOT NULL,  -- OTT번호 (FK)
-
+    start_day date NOT NULL 
 );
 
 
