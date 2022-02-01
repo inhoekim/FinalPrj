@@ -52,7 +52,7 @@
 				
 				//제이쿼리 
 				$("input[name='payment_id']").val(rsp.imp_uid);
-				$("input[name='price']").val(rsp.paid_amount
+				$("input[name='price']").val(rsp.paid_amount);
 				document.kakaopayf.submit();
 				alert(msg);
 
