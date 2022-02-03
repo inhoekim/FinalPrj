@@ -25,4 +25,8 @@ public class WatingRoomService {
 	public int enroll(HashMap<String, Object> map) {
 		return mapper.enroll(map);
 	}
+	
+	public WatingRoomVo isPresence(String user_id) {
+		return mapper.isPresence(user_id);
+	}
 }

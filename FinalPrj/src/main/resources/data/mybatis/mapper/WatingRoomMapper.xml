@@ -7,11 +7,15 @@
 		select * from WatingRoom where ott_id = #{ott_id}
 	</select>
 	
+	<select id="isPresence" parameterType="string" resultType="com.spring.ott.vo.WatingRoomVo">
+		select * from WatingRoom where user_id = #{user_id}
+	</select>
+	
 	<delete id="deleteRow" parameterType="int">
 		delete from WatingRoom where wating_id = #{wating_id}
 	</delete>
 	
-	<insert id="enroll" parameterType="string">
+	<insert id="enroll" parameterType="hashmap">
 		insert into WatingRoom values (SEQ_WATINGROOM.nextval, #{user_id}, #{ott_id} ,sysdate)
 	</insert>
 </mapper>

@@ -184,7 +184,7 @@ CREATE TABLE PARTY -- 파티테이블
     ott_id number(10) NOT NULL, -- 파티의 OTT 종류
     leader varchar2(20) NOT NULL, --파티장 ID (FK)
     member_num number(1) NOT NULL, -- 현재 파티원 정원
-    invite_code varchar2(50) NOT NULL, --파티 초대 코드(파티장만 이용가능)
+    invite_code varchar2(50) UNIQUE, --파티 초대 코드(파티장만 이용가능)
     party_state number(1) NOT NULL, -- 파티상태 (0: 매칭진행중, 1: 매칭완료됨, 2: 파티해체예정, 3: 파티해체)
     share_id varchar2(50) NOT NULL, -- 공유 아이디
     share_pwd varchar2(50) NOT NULL, --공유 비밀번호

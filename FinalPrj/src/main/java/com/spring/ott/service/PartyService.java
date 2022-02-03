@@ -11,11 +11,15 @@ import data.mybatis.mapper.PartyMapper;
 public class PartyService {
 	@Autowired PartyMapper mapper;
 	
-	public int createParty() {
-		return mapper.createParty();
+	public int createParty(PartyVo vo) {
+		return mapper.createParty(vo);
 	}
 	
 	public PartyVo getMyParty(int ott_id) {
 		return mapper.getMyParty(ott_id);
+	}
+	
+	public PartyVo checkParty(String invite_code) {
+		return mapper.checkParty(invite_code);
 	}
 }

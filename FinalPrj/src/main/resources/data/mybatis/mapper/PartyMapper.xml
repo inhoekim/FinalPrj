@@ -5,13 +5,17 @@
 <mapper namespace="data.mybatis.mapper.PartyMapper">
 	<insert id="createParty" parameterType="com.spring.ott.vo.PartyVo">
 		insert into party values
-		(SEQ_PARTY.nextval,#{ott_id},#{leader},#{member_num},
+		(SEQ_PARTY.nextval,#{ott_id},#{leader},0,
 		#{invite_code},0,#{share_id},#{share_pwd},sysdate+30,sysdate)
 	</insert>
 	
 	<select id="getMyParty" parameterType="int" resultType="com.spring.ott.vo.PartyVo">
 		select * from party 
 		where ott_id = #{ott_id} and party_state = 0 and rownum = 1
-		order by start_date
+		order by start_day
+	</select>
+	
+	<select id="checkParty" parameterType="string" resultType="com.spring.ott.vo.PartyVo">
+		select * from party where invite_code = #{invite_code} 
 	</select>
 </mapper>
