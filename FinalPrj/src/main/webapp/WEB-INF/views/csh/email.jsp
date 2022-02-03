@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 	#submitBtn{
         width:100px;
@@ -16,7 +17,7 @@
 </head>
 <body>
 <table border="1" width="300" height="300" align= "center">
-			<div style="text-align:center;">이메일 인증 (이메일을 인증 받아야 다음 단계로 넘어갈 수 있습니다.)</div>       
+			<div style="text-align:center;">이메일 인증</div>       
 			<br><br> 
             <tr> 
                 <td>
