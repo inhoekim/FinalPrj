@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,19 +139,24 @@ function check_pw(){
 
 </head>
 <body>
-<form:form method="post" action="${pageContext.request.contextPath }/join" name="uj" onsubmit="return check();">
+
+<c:set var="jnum" value="${vo.jnum }"/>
+<c:set var="jnumArray" value="${fn:split(jnum,'-') }"/>
+
+
+<form:form method="post" action="${pageContext.request.contextPath }/updateUser" name="uj" onsubmit="return check();">
 	아이디 <br>
-	<input type="text" name="user_id" id="user_id" maxlength="13"><br>
+	<input type="text" name="user_id" id="user_id" maxlength="13" value="${vo.user_id }" readonly="readonly"><br>
 	비밀번호 <br>
 	<input type="password" name="pwd" id="pwd" onchange="check_pw()"><span style="font-size:0.5em; color:grey;">&nbsp;&nbsp;&nbsp; 6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </span><br>
 	비밀번호 확인<br>
 	<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
 	이름 <br>
-	<input type="text" name="name" id="name" minlength="2" maxlength="6"><br>
+	<input type="text" name="name" id="name" minlength="2" maxlength="6" value="${vo.name }"><br>
 	주민번호 <br>
-	<input type="text" name="jnum1" id="jnum1" maxlength="6"> - <input type="password" name="jnum2" id="jnum2" maxlength="7"><br>
+	<input type="text" name="jnum1" id="jnum1" maxlength="6" value="${jnumArray[0] }" readonly="readonly"> - <input type="password" name="jnum2" id="jnum2" maxlength="7" value="${jnumArray[1] }" readonly="readonly"><br>
 	나이 <br>
-	<input type="text" name="age" id="age" maxlength="2"><br>
+	<input type="text" name="age" id="age" maxlength="2" value="${vo.age }"><br>
 	지역 <br>
 	<select name="area" id="area">
 		<option value="서울">서울</option>
@@ -172,7 +179,7 @@ function check_pw(){
 	</select>
 	<br>
 	이메일 <br>
-	<input type="text" name="email" value="${email_id }" readonly="readonly"><br>
+	<input type="text" name="email" value="${vo.email }" readonly="readonly"><br>
 	<input type="submit" value="가입">
 </form:form>
 </body>

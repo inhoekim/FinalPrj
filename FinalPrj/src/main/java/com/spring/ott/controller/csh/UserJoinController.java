@@ -1,5 +1,8 @@
 package com.spring.ott.controller.csh;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,11 @@ public class UserJoinController {
 		return "csh/userJoin";
 	}
 	@PostMapping("/join")
-	public String join(UserVo uVo, AuthoritiesVo aVo, Model model) {
+	public String join(@Valid UserVo uVo, AuthoritiesVo aVo, Model model,HttpServletRequest request) {
+		String jnum1=request.getParameter("jnum1");
+		String jnum2=request.getParameter("jnum2");
+		uVo.setJnum(jnum1+"-"+jnum2);
+		
 		try {
 			service.insert(uVo);
 			service.insertAuth(aVo);
