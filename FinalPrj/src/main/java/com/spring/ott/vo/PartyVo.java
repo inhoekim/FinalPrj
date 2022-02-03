@@ -15,12 +15,11 @@ public class PartyVo {
 	private int party_id;
 	private int ott_id;
 	private String leader;
+	private int member_nun;
 	private String invite_code;
-	private int member;
 	private int party_state;
 	private String share_id;
 	private String share_pwd;
 	private Date expiration_date;
-	private Date start_date;
-	
+	private Date start_day;
 }

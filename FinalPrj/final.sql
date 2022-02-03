@@ -223,7 +223,9 @@ CREATE TABLE WATINGROOM -- 매칭신청 대기인원 테이블
     wating_id number(10) PRIMARY KEY, -- 시퀀스
     user_id varchar2(20) NOT NULL, -- 유저아이디 (FK)
     ott_id number(10) NOT NULL,  -- OTT번호 (FK)
-    start_day date NOT NULL 
+    start_day date NOT NULL, -- 매칭대기 시작일
+    CONSTRAINT FK_WATINGROOM_USERID FOREIGN KEY(user_id) REFERENCES USERS(user_id),
+    CONSTRAINT FK_WATINGROOM_OTTID FOREIGN KEY(ott_id) REFERENCES OTT(ott_id)
 );
 
 

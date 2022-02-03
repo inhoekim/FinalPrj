@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.PayMentMapper">
 	<insert id="PayMentInsert" parameterType="com.spring.ott.vo.PayMentVo">
-		insert into payment values( #{payment_id},#{user_id},#{price},#{status},#{payment_date})
+		insert into payment values( #{payment_id},#{user_id},#{price},#{status},sysdate)
 	</insert>
 
 </mapper>
