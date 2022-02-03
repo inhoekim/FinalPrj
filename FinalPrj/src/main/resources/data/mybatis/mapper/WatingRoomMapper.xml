@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.WatingRoomMapper">
+	<select id="getWatingRow" parameterType="int" resultType="com.spring.ott.vo.WatingRoomVo">
+		select * from WatingRoom where ott_id = #{ott_id}
+	</select>
+	
+	<delete id="deleteRow" parameterType="int">
+		delete from WatingRoom where wating_id = #{wating_id}
+	</delete>
+	
+	<insert id="enroll" parameterType="string">
+		insert into WatingRoom values (SEQ_WATINGROOM.nextval, #{user_id}, #{ott_id} ,sysdate)
+	</insert>
+</mapper>

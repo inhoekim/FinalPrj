@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.MatchingMapper">
+	<delete id="delete" parameterType="Hashmap">
+		delete from matching where party_id = #{party_id} and user_id = #{user_id}
+	</delete>
+	
+	<insert id="insert" parameterType="Hashmap">
+		insert into matching values (#{party_id}, #{user_id}, null , null, sysdate)
+	</insert>
+</mapper>

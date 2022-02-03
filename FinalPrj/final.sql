@@ -208,11 +208,12 @@ CREATE TABLE SETTLE -- 정산테이블
 
 CREATE TABLE MATCHING -- 매칭테이블
 (
-    party_id number(10) PRIMARY KEY, -- 파티 ID (PK and FK)
-    user_id varchar2(20) NOT NULL, -- 멤버유저 ID (FK)
-    payment_id varchar2(50) NOT NULL, -- 결제번호 (FK)
-    next_payment_id varchar2(50) NOT NULL, -- 다음달 결제번호 (FK)
+    party_id number(10), -- 파티 ID (PK and FK)
+    user_id varchar2(20), -- 멤버유저 ID (PK and FK)
+    payment_id varchar2(50), -- 결제번호 (FK)
+    next_payment_id varchar2(50), -- 다음달 결제번호 (FK)
     matching_date date NOT NULL, -- 매칭된 날짜
+    CONSTRAINT PK_MATCHING PRIMARY KEY(party_id, user_id),
     CONSTRAINT FK_MATCHING_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
     CONSTRAINT FK_MATCHING_PAYMENT FOREIGN KEY(payment_id) REFERENCES PAYMENT(payment_id),
     CONSTRAINT FK_MATCHING_NEXTPAYMENT FOREIGN KEY(next_payment_id) REFERENCES PAYMENT(payment_id)
