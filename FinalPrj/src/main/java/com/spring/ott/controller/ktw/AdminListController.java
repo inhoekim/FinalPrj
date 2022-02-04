@@ -1,21 +1,23 @@
 package com.spring.ott.controller.ktw;
 
-import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.ott.service.UserService;
 
 @Controller
 public class AdminListController {
-	@RequestMapping(value = "/adminlist", method = RequestMethod.GET)
-	public String list( Model model) {
-		HashMap<String,Object> map=new HashMap<String, Object>();
-
-	    //List<UserVo> list=service.selectList(map);    
-	    //.addAttribute("list", list);
-		return "list.tiles";
+	@Autowired UserService service;
+	
+	@RequestMapping("/adminlist")
+	public ModelAndView list( Model model) {
+		ModelAndView mv = new ModelAndView("list.tiles");
+		mv.addObject("list", service.AllSelect());
+		return mv;
 	}
 
 }

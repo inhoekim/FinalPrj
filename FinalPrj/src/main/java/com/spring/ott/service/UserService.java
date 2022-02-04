@@ -1,5 +1,8 @@
 package com.spring.ott.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,8 +24,7 @@ public class UserService {
 	public int insert(UserVo vo) {
 		String pwd=vo.getPwd();
 		vo.setPwd(pwdEncoder.encode(pwd));
-		mapper.insertUser(vo);
-		return 1;
+		return mapper.insertUser(vo);
 	}
 	public int insertAuth(AuthoritiesVo vo) {
 		return mapper.insertAuth(vo);
@@ -30,7 +32,20 @@ public class UserService {
 	public int updateUser(UserVo vo) {
 		return mapper.updateUser(vo);
 	}
+	public int deleteUser(String user_id) {
+		return mapper.deleteUser(user_id);
+	}
 	public UserVo selectUser(String user_id) {
 		return mapper.selectUser(user_id);
+	}
+	
+	public List<UserVo> PayList(HashMap<String, Integer> map){
+		return mapper.UserList(map);
+	}
+	public int totalRowCnt() {
+		return mapper.totalRowCnt();
+	}
+	public List<UserVo> AllSelect(){
+		return mapper.AllSelect();
 	}
 }

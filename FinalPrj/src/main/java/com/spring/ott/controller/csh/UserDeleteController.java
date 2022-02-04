@@ -12,20 +12,20 @@ import com.spring.ott.service.UserService;
 import com.spring.ott.vo.UserVo;
 
 @Controller
-public class UserUpdateController {
+public class UserDeleteController {
 	@Autowired UserService service;
 	
-	@GetMapping("/updateUser")
-	public String updateForm(Principal principal,Model model) {
+	@GetMapping("/deleteUser")
+	public String deleteForm(Principal principal, Model model) {
 		UserVo vo=service.selectUser(principal.getName());
-		model.addAttribute("vo",vo);
-		return "csh/userUpdate";
+		model.addAttribute("user_id",vo.getUser_id());
+		return "csh/deleteForm";
 	}
 	
-	@PostMapping("/updateUser")
-	public String update(UserVo vo, Model model) {
+	@PostMapping("/deleteUser")
+	public String delete(String user_id, Model model) {
 		try {
-			service.updateUser(vo);
+			service.deleteUser(user_id);
 			model.addAttribute("code","success");
 		}catch(Exception e) {
 			e.printStackTrace();
