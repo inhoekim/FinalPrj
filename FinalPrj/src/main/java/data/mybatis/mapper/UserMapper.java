@@ -19,3 +19,4 @@ public interface UserMapper {
 	public int totalRowCnt();
 	public List<UserVo> AllSelect();
 }
+ 

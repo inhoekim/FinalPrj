@@ -17,4 +17,4 @@
 	<input type="submit" value="탈퇴">
 </form:form>
 </body>
-</html>
+</html> 

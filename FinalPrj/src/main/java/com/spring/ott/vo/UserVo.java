@@ -51,3 +51,4 @@ public class UserVo {
 	private String enabled;
 	private String black_enabled;
 }
+ 

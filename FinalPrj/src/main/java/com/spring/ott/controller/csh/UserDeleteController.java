@@ -34,3 +34,4 @@ public class UserDeleteController {
 		return "csh/result";
 	}
 }
+ 

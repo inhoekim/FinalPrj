@@ -20,4 +20,4 @@
 </form:form>
 <a href="${pageContext.request.contextPath }/findId">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>
 </body>
-</html>
+</html> 

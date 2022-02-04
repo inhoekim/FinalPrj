@@ -139,7 +139,7 @@ function check_pw(){
 
 </head>
 <body>
-
+ 
 <c:set var="jnum" value="${vo.jnum }"/>
 <c:set var="jnumArray" value="${fn:split(jnum,'-') }"/>
 

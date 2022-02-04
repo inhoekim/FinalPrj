@@ -36,7 +36,7 @@
 				<th id="th6" >블랙/정상</th>
 				<th id="th7" >가입일</th>
 			</tr>
-		</thead>
+		</thead> 
 		<tbody>
 			<c:forEach var="vo" items="${list }">
 				<tr>
