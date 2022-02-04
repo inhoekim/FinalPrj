@@ -9,7 +9,7 @@
 <style type="text/css">
 	#title{ margin-left: 10px; }
 	table,tr{ border: 1px solid; text-align: left; 
-		margin-top: 30px;
+		margin-top: 30px; border-color: #282E47;
 	}
 	th{
 		background-color: #1E1E2F;
@@ -36,8 +36,7 @@
 
 	<h2 id="title">회원목록</h2>
 	<hr>
-<!-- Begin Page Content -->
-<div class="container-fluid" >
+
 
 	               <!-- Topbar Search -->
                     <form
@@ -81,8 +80,6 @@
 
 
 
-</div>
-<!-- /.container-fluid -->
 
 </body>
 </html>

@@ -21,43 +21,49 @@
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-<body>
+<body id="page-top">
 	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		
 		
 		<!-- 왼쪽메뉴 lieftmenu.jsp -->
-		<div id="header"> 
-			<tiles:insertAttribute name="leftmenu"/>
-		</div>
 		
+			<tiles:insertAttribute name="leftmenu"/>
+		
+		<!-- 왼쪽메뉴 테스트 끝 -->
 		
 		        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 	
 	
 	            <!-- Main Content -->
-            <div id="content">
+            <div id="content" style="background-color: #27293D">
 	
 					<!-- 위쪽 메뉴 topmenu.jsp -->
 				<div id="contentmapping">
 					<tiles:insertAttribute name="siteTop"/>
 				</div>
 	
-						<!--진짜 캔탠츠 내용페이지 삽입 알맹이 -->
-			        <div id="content">
-						<tiles:insertAttribute name="content"/>
+	
+	                <!-- Begin Page Content -->
+                	<div class="container-fluid" style="background-color: #27293D">
+	
+							<!--진짜 캔탠츠 내용페이지 삽입 알맹이 -->
+				        <div id="content">
+							<tiles:insertAttribute name="content"/>
+						</div>
+				
 					</div>
-				
-				
+                	<!-- /.container-fluid -->
+					
 	        
 	        </div>
             <!-- End of Main Content -->
 		
 		
 		<!-- 푸터 footer.jsp -->
-		<div id="contentfooter">
+		<div id="contentfooter" style="background-color: #27293D">
 			<tiles:insertAttribute name="siteBottom"/>
 		</div>
 		
@@ -88,6 +94,15 @@
 
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-	
+
+    <!-- Page level plugins -->
+    <script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    
+    <!-- Page level custom scripts -->
+    <script src="${pageContext.request.contextPath}/resources/js/demo/chart-area-demo.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/demo/chart-pie-demo.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 </body>
 </html>
