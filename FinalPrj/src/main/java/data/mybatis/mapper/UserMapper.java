@@ -8,4 +8,7 @@ public interface UserMapper {
 	FinalUserDetail getAuths(String user_id);
 	int insertUser(UserVo vo);
 	int insertAuth(AuthoritiesVo vo);
+	int updateUser(UserVo vo);
+	int deleteUser(String user_id);
+	UserVo selectUser(String user_id);
 }

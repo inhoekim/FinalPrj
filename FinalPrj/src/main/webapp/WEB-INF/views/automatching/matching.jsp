@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div id="content">
     <div class="matching_container">
         <div class="box statistics_box">
@@ -137,13 +138,11 @@
                     <span>총 이용료</span>
                     <span>원</span>
                 </div>
-                <form>
-                    <input id="ott" type="hidden" name="ott" value="">
-                    <input id="role" type="hidden" name="role" value="">
-                    <input id="cost" type="hidden" name="cost" value="">
-                    <button class="confirm_button">파티만들기</button>
-                    <button class="confirm_button kakao"><i class="fas fa-comment"></i> 카카오로 결제하기</button>
-                </form>
+                <form:form method="post">
+                    <input id="ott" type="hidden" name="ott_id" value="">
+                    <button class="confirm_button" formaction="${pageContext.request.contextPath}/autoMatch/matching/createParty">파티만들기</button>
+                    <button class="confirm_button" formaction="${pageContext.request.contextPath}/autoMatch/matching/enroll">매칭시작하기</button>
+                </form:form>
             </div>
         </div>
     </div>
@@ -152,5 +151,8 @@
 <script>
 	$(function(){
 		$($(".navbar_menu_item a")[1]).addClass("active");
+		if("${msg}" != ""){
+			alert("${msg}");
+		}
 	});
 </script>

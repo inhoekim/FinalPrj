@@ -23,6 +23,15 @@
      <insert id="insertAuth" parameterType="com.spring.ott.vo.AuthoritiesVo">
      	insert into user_role values(seq_role.nextval,#{user_id},DEFAULT)
      </insert>
+     <update id="updateUser" parameterType="com.spring.ott.vo.UserVo">
+     	update users set pwd=#{pwd}, name=#{name}, age=#{age}, area=#{area} where user_id=#{user_id}
+     </update>
+     <select id="selectUser" parameterType="String" resultType="com.spring.ott.vo.UserVo">
+     	select * from users where user_id=#{user_id}
+     </select>
+     <delete id="deleteUser" parameterType="String">
+     	update users set enabled=0 where user_id=#{user_id}
+     </delete>
  </mapper>
  
  

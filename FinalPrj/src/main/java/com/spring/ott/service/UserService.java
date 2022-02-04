@@ -27,5 +27,10 @@ public class UserService {
 	public int insertAuth(AuthoritiesVo vo) {
 		return mapper.insertAuth(vo);
 	}
-	
+	public int updateUser(UserVo vo) {
+		return mapper.updateUser(vo);
+	}
+	public UserVo selectUser(String user_id) {
+		return mapper.selectUser(user_id);
+	}
 }

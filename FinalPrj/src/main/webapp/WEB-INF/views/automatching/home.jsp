@@ -44,5 +44,8 @@
 <script>
 	$(function(){
 		$($(".navbar_menu_item a")[0]).addClass("active");
+		if("${msg}" != ""){
+			alert("${msg}");
+		}
 	});
 </script>
