@@ -41,9 +41,9 @@
             <div id="content" style="background-color: #27293D">
 	
 					<!-- 위쪽 메뉴 topmenu.jsp -->
-				<div id="contentmapping">
+				
 					<tiles:insertAttribute name="siteTop"/>
-				</div>
+				
 	
 	
 	                <!-- Begin Page Content -->
