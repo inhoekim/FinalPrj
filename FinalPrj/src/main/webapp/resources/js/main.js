@@ -14,3 +14,9 @@ $(document).ready(function() {
         
     })
 })
+
+//컨텍스트 패스
+function getCp(){
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+}
+

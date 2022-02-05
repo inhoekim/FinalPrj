@@ -138,7 +138,7 @@
                     <span>총 이용료</span>
                     <span>원</span>
                 </div>
-                <form:form method="post">
+                <form:form method="get">
                     <input id="ott" type="hidden" name="ott_id" value="">
                     <button class="confirm_button" formaction="${pageContext.request.contextPath}/autoMatch/matching/createParty">파티만들기</button>
                     <button class="confirm_button" formaction="${pageContext.request.contextPath}/autoMatch/matching/enroll">매칭시작하기</button>
@@ -156,3 +156,5 @@
 		}
 	});
 </script>
+
+<script src="${pageContext.request.contextPath}/resources/js/matching.js"></script>

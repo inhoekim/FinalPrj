@@ -21,7 +21,7 @@ public class EnrollController {
 	@Autowired WatingRoomService watingService;
 	@Autowired MatchingService matchinService;
 	
-	@PostMapping("/autoMatch/matching/enroll")
+	@GetMapping("/autoMatch/matching/enroll")
 	public String enroll(Principal principal, int ott_id, Model model) {
 		PartyVo myParty = partyService.getMyParty(ott_id);
 		//이미 해당 유저의 매칭이 진행중인 경우

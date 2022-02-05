@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal.username" var="userId"/>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -14,7 +16,8 @@
 <script src="https://kit.fontawesome.com/ea309b6399.js" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/matching.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/animate.js"></script>
+
 <script type="text/javascript" charset="utf-8">
 	sessionStorage.setItem("cp", "${pageContext.request.contextPath}");
 </script>
