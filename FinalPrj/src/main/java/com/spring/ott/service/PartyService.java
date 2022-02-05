@@ -11,8 +11,8 @@ import data.mybatis.mapper.PartyMapper;
 public class PartyService {
 	@Autowired PartyMapper mapper;
 	
-	public int createParty(PartyVo vo) {
-		return mapper.createParty(vo);
+	public int insertParty(PartyVo vo) {
+		return mapper.insertParty(vo);
 	}
 	
 	public PartyVo getMyParty(int ott_id) {

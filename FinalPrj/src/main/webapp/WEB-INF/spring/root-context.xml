@@ -30,6 +30,8 @@
 	 	<property name="dataSource" ref="dataSource"/>
 	 </bean>
 	 
+	 <tx:annotation-driven/>
+	 
 	 <tx:advice id="advice" transaction-manager="transactionManager">
 	 	<tx:attributes>
 	 		<tx:method name="join*" propagation="REQUIRED"/>

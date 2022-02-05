@@ -3,10 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.PartyMapper">
-	<insert id="createParty" parameterType="com.spring.ott.vo.PartyVo">
+	<insert id="insertParty" parameterType="com.spring.ott.vo.PartyVo">
+	  	<selectKey keyProperty="party_id" resultType="int" order="BEFORE">
+    		select seq_party.nextval FROM DUAL
+    	</selectKey>
 		insert into party values
-		(SEQ_PARTY.nextval,#{ott_id},#{leader},0,
-		#{invite_code},0,#{share_id},#{share_pwd},sysdate+30,sysdate)
+		(#{party_id},#{ott_id},#{leader},0,NULL,0,#{share_id},#{share_pwd},sysdate+30,sysdate)
 	</insert>
 	
 	<select id="getMyParty" parameterType="int" resultType="com.spring.ott.vo.PartyVo">

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.SettleMapper">	
+	<insert id="insert" parameterType="com.spring.ott.vo.SettleVo">
+		insert into SETTLE values 
+		(SEQ_SETTLE.nextval,#{party_id},#{target_id},#{price},0,sysdate+30,#{bank_id},#{bank_account})
+	</insert>
+</mapper>

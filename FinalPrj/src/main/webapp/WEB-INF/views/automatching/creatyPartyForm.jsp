@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  <div id="content">
-    <form class="createForm" method="post" action="${pageContext.request.contextPath}/autoMatch/matching/createParty">
+    <form:form class="createForm" method="post" action="${pageContext.request.contextPath}/autoMatch/matching/createParty">
         <h2 class="middle_h2"><span class="userid">${userName}</span>님의 <span class="ottName">${ottName}</span> 파티를 만들어 드릴게요
         <img src="${pageContext.request.contextPath}/resources/img/sparkling-32.png"/>
         </h2>    
@@ -121,7 +122,7 @@
         </div>
 
         <input type="hidden" name="ott_id" value="${ottId}">
-    </form>
+    </form:form>
 </div>
 
 <script>

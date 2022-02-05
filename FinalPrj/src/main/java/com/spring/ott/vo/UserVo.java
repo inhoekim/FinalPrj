@@ -37,7 +37,6 @@ public class UserVo {
 	@Pattern(regexp="[0-9]{7}")
 	private String jnum2;
 	
-	@NotEmpty
 	private int age;
 	
 	@NotEmpty
