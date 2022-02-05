@@ -15,5 +15,7 @@ public class SettleVo {
 	private String target_id;
 	private int price;
 	private int settle_state;
-	private int settle_day;	
+	private int settle_day;
+	private int bank_id;
+	private String bank_account;
 }

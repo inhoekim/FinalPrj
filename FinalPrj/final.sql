@@ -202,6 +202,8 @@ CREATE TABLE SETTLE -- 정산테이블
     price number(10) NOT NULL, -- 정산해줄 금액
     settle_state number(1) NOT NULL, -- 정산상태( 0: 정산 대기중, 1: 정산 완료)
     settle_day date NOT NULL, -- 정산해야 할 날짜
+    bank_id number(3) NOT NULL, -- 은행 ID(0: KEB하나, 1: KB국민, 2: 신한, 3: NH농협, 4: 우체국, 5: IBK기업)
+    bank_account varchar2(30) NOT NULL, -- 계좌번호
     CONSTRAINT FK_SETTLE_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
     CONSTRAINT FK_SETTLE_TARGET FOREIGN KEY(target_id) REFERENCES USERS(user_id)
 );
