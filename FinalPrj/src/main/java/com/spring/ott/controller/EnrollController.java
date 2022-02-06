@@ -26,9 +26,9 @@ public class EnrollController {
 	@GetMapping("/autoMatch/matching/enroll")
 	public String enroll(Principal principal, int ott_id, Model model) {
 		//이미 해당 유저의 매칭이 진행중인 경우
-		int matchinCheck = matchingCheckService.matchingCheck(principal.getName());
-		if( matchinCheck != 0) {
-			if(matchinCheck == 3) {
+		HashMap<Integer,Object> matchinCheck = matchingCheckService.matchingCheck(principal.getName());
+		if( !matchinCheck.containsKey(0)) {
+			if(matchinCheck.containsKey(3)) {
 				model.addAttribute("msg", "이미 고객님의 파티매칭이 진행중입니다!");
 			}
 			else {

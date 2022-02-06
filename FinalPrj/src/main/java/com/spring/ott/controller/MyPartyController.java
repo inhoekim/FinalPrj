@@ -1,6 +1,7 @@
 package com.spring.ott.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,16 +19,17 @@ public class MyPartyController {
 	
 	@GetMapping("/autoMatch/myParty")
 	public String myParty(Principal principal, Model model) {
-		int page = matchingCheckService.matchingCheck(principal.getName());
-		if(page == 1) {
-			return "automatching/myPartyLeader.tiles";
-		}else if (page == 2) {
-			return "automatching/myParty.tiles";
-		}else if (page == 3) {
-			return "automatching/wating.tiles";
-		}
+		HashMap<Integer,Object> map = matchingCheckService.matchingCheck(principal.getName());
 		UserVo userVo = userService.selectUser(principal.getName());
 		model.addAttribute("userName", userVo.getName());
+		if(map.containsKey(1)) {
+			return "automatching/myPartyLeader.tiles";
+		}else if (map.containsKey(2)) {
+			return "automatching/myParty.tiles";
+		}else if (map.containsKey(3)) {
+			model.addAttribute("watingRoomVo", map.get(3));
+			return "automatching/wating.tiles";
+		}
 		return "automatching/startMatching.tiles";
 	}
 }

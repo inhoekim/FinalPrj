@@ -24,5 +24,6 @@
 <script>
 	$(function(){
 		$($(".navbar_menu_item a")[2]).addClass("active");
+
 	});
 </script>
