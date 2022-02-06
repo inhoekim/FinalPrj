@@ -12,12 +12,15 @@
 
      <div>
          <ul class="navbar_menu">
-             <li class="navbar_menu_item"><a href="${pageContext.request.contextPath}/autoMatch/">홈</a></li>
+             <li class="navbar_menu_item">
+             	<a href="${pageContext.request.contextPath}/autoMatch/">홈</a>
+             </li>
              <li class="navbar_menu_item">
              	<a href="${pageContext.request.contextPath}/autoMatch/matching">파티매칭</a>
              </li>
-             <li class="navbar_menu_item">MY파티</li>
-             <li class="navbar_menu_item">가이드</li>
+             <li class="navbar_menu_item">
+             	<a href="${pageContext.request.contextPath}/autoMatch/myParty">MY파티</a>
+             </li>
          </ul>
      </div>
 
