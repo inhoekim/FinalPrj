@@ -1,5 +1,7 @@
 package com.spring.ott.controller.csh;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -28,6 +30,13 @@ public class UserJoinController {
 		String jnum1=request.getParameter("jnum1");
 		String jnum2=request.getParameter("jnum2");
 		uVo.setJnum(jnum1+"-"+jnum2);
+		
+		/* 김인회 수정 Start */
+		Random random = new Random();
+		int rvalue = random.nextInt(4) + 1;
+		if(jnum2.charAt(0) == '2') { rvalue += 4;} //여성인 경우
+		uVo.setProfile_id(rvalue);
+		/* 김인회 수정 End */
 		
 		try {
 			service.insert(uVo);

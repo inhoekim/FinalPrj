@@ -5,6 +5,8 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.ott.vo.MatchingVo;
+
 import data.mybatis.mapper.MatchingMapper;
 
 @Service
@@ -17,5 +19,9 @@ public class MatchingService {
 	
 	public int delete(HashMap<String, Object> map) {
 		return mapper.delete(map);
+	}
+	
+	MatchingVo matchingCheck(String user_id) {
+		return mapper.matchingCheck(user_id);
 	}
 }

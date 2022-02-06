@@ -19,8 +19,16 @@ DROP TABLE OTT;
 
 DROP TABLE PAYMENT;
 DROP TABLE USERS;
+DROP TABLE PROFILEIMG;
 
 /* 테이블 생성*/
+CREATE TABLE PROFILEIMG -- 프로필이미지 테이블
+(
+    profile_id number(10) PRIMARY KEY, -- 시퀀스
+    org_name varchar2(100), -- 원본사진이름
+    src_name varchar2(100) -- 저장된 파일이름
+);
+
 CREATE TABLE USERS --유저
 (
     user_id varchar2(20) PRIMARY KEY, --유저아이디
@@ -31,8 +39,10 @@ CREATE TABLE USERS --유저
     area varchar(20), --지역
     email varchar2(50) NOT NULL UNIQUE, --이메일
     regdate date NOT NULL, --등록일
+    profile_id number(10), --프로필 사진 이미지파일 이름 (FK)
     black_enabled char(1) DEFAULT 1 NOT NULL, --블랙 상태(0:블랙유저 / 1:정상
-    enabeld char(1) DEFAULT 1 NOT NULL -- 유저 상태(0:탈퇴 / 1:정상) 
+    enabeld char(1) DEFAULT 1 NOT NULL, -- 유저 상태(0:탈퇴 / 1:정상) 
+    CONSTRAINT FK_USERS_PROFILE FOREIGN KEY(profile_id) REFERENCES PROFILEIMG(profile_id) 
 );
 
 CREATE TABLE BOARD_CATEGORY --게시판 카테고리
@@ -245,6 +255,7 @@ DROP SEQUENCE SEQ_SETTLE;
 DROP SEQUENCE SEQ_PARTY;
 DROP SEQUENCE SEQ_MATCHING;
 DROP SEQUENCE SEQ_WATINGROOM;
+DROP SEQUENCE SEQ_PROFILE;
 
 /* 시퀀스 생성*/
 CREATE SEQUENCE SEQ_ROLE; -- USER_ROLE 테이블 시퀀스
@@ -259,11 +270,21 @@ CREATE SEQUENCE SEQ_SETTLE; -- SETTLE 테이블 시퀀스
 CREATE SEQUENCE SEQ_PARTY; -- PARTY 테이블 시퀀스
 CREATE SEQUENCE SEQ_MATCHING; -- MATCHING 테이블 시퀀스
 CREATE SEQUENCE SEQ_WATINGROOM; -- WATINGROOM 테이블 시퀀스
+CREATE SEQUENCE SEQ_PROFILE START WITH 9; -- PROFILEIMG 테이블 시퀀스
 
 /* 초기데이터 */
 
 insert into ott values (0,'넷플릭스', 17000, 'https://www.netflix.com/kr/'); 
 insert into ott values (1,'왓챠', 12900, 'https://watcha.com/');
 insert into ott values (2,'디즈니', 9900, 'https://www.disneyplus.com/ko-kr');
+
+insert into PROFILEIMG values (1,'man1-64.png', 'man1-64.png'); 
+insert into PROFILEIMG values (2,'man2-64.png', 'man2-64.png'); 
+insert into PROFILEIMG values (3,'man3-64.png', 'man3-64.png'); 
+insert into PROFILEIMG values (4,'man4-64.png', 'man4-64.png'); 
+insert into PROFILEIMG values (5,'woman1-64.png', 'woman1-64.png'); 
+insert into PROFILEIMG values (6,'woman2-64.png', 'woman2-64.png'); 
+insert into PROFILEIMG values (7,'woman3-64.png', 'woman3-64.png'); 
+insert into PROFILEIMG values (8,'woman4-64.png', 'woman4-64.png'); 
 
 commit;

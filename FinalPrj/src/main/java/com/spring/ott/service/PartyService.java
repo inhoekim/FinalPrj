@@ -19,7 +19,11 @@ public class PartyService {
 		return mapper.getMyParty(ott_id);
 	}
 	
-	public PartyVo checkParty(String invite_code) {
-		return mapper.checkParty(invite_code);
+	public PartyVo checkInvite(String invite_code) {
+		return mapper.checkInvite(invite_code);
+	}
+	
+	public PartyVo matchingCheck(String user_id) {
+		return mapper.matchingCheck(user_id);
 	}
 }

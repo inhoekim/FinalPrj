@@ -10,4 +10,8 @@
 	<insert id="insert" parameterType="Hashmap">
 		insert into matching values (#{party_id}, #{user_id}, null , null, sysdate)
 	</insert>
+	
+	<select id="matchingCheck" parameterType="string" resultType="com.spring.ott.vo.MatchingVo">
+		select * from matching where user_id = #{user_id}
+	</select>
 </mapper>

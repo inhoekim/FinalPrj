@@ -47,7 +47,9 @@ public class UserVo {
 	private String email;
 	
 	private Date regdate;
+	private int profile_id; //김인회수정
 	private String enabled;
 	private String black_enabled;
+	
 }
  

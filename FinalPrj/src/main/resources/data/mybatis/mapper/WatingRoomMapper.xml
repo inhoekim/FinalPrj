@@ -7,7 +7,7 @@
 		select * from WatingRoom where ott_id = #{ott_id}
 	</select>
 	
-	<select id="isPresence" parameterType="string" resultType="com.spring.ott.vo.WatingRoomVo">
+	<select id="matchingCheck" parameterType="string" resultType="com.spring.ott.vo.WatingRoomVo">
 		select * from WatingRoom where user_id = #{user_id}
 	</select>
 	

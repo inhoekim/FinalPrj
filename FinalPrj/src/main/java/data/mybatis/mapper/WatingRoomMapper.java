@@ -9,5 +9,5 @@ public interface WatingRoomMapper {
 	List<WatingRoomVo> getWatingRow(int ott_id);
 	int deleteRow(int wating_id);
 	int enroll(HashMap<String, Object> map);
-	WatingRoomVo isPresence(String user_id);
+	WatingRoomVo matchingCheck(String user_id);
 }

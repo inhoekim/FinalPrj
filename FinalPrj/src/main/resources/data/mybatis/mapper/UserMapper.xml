@@ -18,7 +18,7 @@
      	where u.user_id=r.user_id and u.user_id=#{user_id}
      </select>
      <insert id="insertUser" parameterType="com.spring.ott.vo.UserVo">
-     	insert into users values(#{user_id},#{pwd},#{name},#{jnum},#{age},#{area},#{email},sysdate,1,1)
+     	insert into users values(#{user_id},#{pwd},#{name},#{jnum},#{age},#{area},#{email},sysdate,#{profile_id},1,1)
      </insert>
      <insert id="insertAuth" parameterType="com.spring.ott.vo.AuthoritiesVo">
      	insert into user_role values(seq_role.nextval,#{user_id},DEFAULT)
