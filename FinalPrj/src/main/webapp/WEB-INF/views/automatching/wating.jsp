@@ -34,7 +34,7 @@
             <img class="animation" src="${pageContext.request.contextPath}/resources/img/search-200.png">
         </div>
         <div class="confirm_button" style="width:60%; margin: auto; padding: 10px; font-size: 20px; text-align: center; margin-bottom: 20px;">
-            <a style="font-size: 20px; color: white;" href="${pageContext.request.contextPath}/autoMatch/cancelMatching">그냥 취소할래요..</a>
+            <a style="font-size: 20px; color: white;display:inline-block;width:100%" href="${pageContext.request.contextPath}/autoMatch/cancelMatching">그냥 취소할래요..</a>
         </div>    
     </div>
 </div>
