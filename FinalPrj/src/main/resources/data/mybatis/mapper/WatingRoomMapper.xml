@@ -11,8 +11,8 @@
 		select * from WatingRoom where user_id = #{user_id}
 	</select>
 	
-	<delete id="deleteRow" parameterType="int">
-		delete from WatingRoom where wating_id = #{wating_id}
+	<delete id="deleteRow" parameterType="string">
+		delete from WatingRoom where user_id = #{user_id}
 	</delete>
 	
 	<insert id="enroll" parameterType="hashmap">

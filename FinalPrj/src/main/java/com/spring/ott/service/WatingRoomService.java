@@ -18,8 +18,8 @@ public class WatingRoomService {
 		return mapper.getWatingRow(ott_id);
 	}
 	
-	public int deleteRow(int wating_id) {
-		return mapper.deleteRow(wating_id);
+	public int deleteRow(String user_id) {
+		return mapper.deleteRow(user_id);
 	}
 	
 	public int enroll(HashMap<String, Object> map) {
