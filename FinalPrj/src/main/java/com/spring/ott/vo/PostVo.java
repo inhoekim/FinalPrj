@@ -19,5 +19,7 @@ public class PostVo {
 	private int hit;
 	private Date created_day;
 	private Date updated_day;
-	
+	private int comCnt;
+	private int voCnt;
+	private String cname;
 }

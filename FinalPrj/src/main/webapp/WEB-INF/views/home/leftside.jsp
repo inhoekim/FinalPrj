@@ -14,7 +14,7 @@
                      <i class="fas fa-angle-up toggle" style="color:black"></i>
                  </div>
                  <div class="folder_items active">
-                     <div class="folder_item">넷플릭스</div>
+                      <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list">넷플릭스</a></div>
                      <div class="folder_item">왓챠</div>
                      <div class="folder_item">디즈니</div>
                  </div>

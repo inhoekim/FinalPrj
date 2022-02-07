@@ -3,10 +3,65 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.PostMapper">
+	<sql id="search">
+ 		<if test="field=='ticon'">
+ 		where title like '%' || #{keyword} || '%' or content like '%' || #{keyword} || '%'	
+ 		</if>
+		<if test="field=='title' or field=='content' or field=='user_id'">
+		where ${field} like '%' || #{keyword} || '%'
+		 </if>
+	</sql>
 	<insert id="postInsert" parameterType="com.spring.ott.vo.PostVo">
 		insert into board_post values(seq_board_post.nextval,#{user_id},#{category_id},#{title},#{content},0,sysdate,null)
 	</insert>
-	<insert id="FileInsert" parameterType="com.spring.ott.vo.FilesVo">
+	<insert id="fileInsert" parameterType="com.spring.ott.vo.FilesVo">
 		insert into files values(SEQ_FILES.nextval,#{post_id},#{file_type},#{file_size},#{org_name},#{src_name},sysdate)
 	</insert>
+	<select id="postList" resultType="com.spring.ott.vo.PostVo" parameterType="hashmap">
+	select * from(select board.post_id,board.title,board.hit,board.user_id,board.created_day,board.content,rownum rnum,
+		(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comCnt,
+		(select NVL(count(*),0) from vote vo where vo.post_id=board.post_id)voCnt
+		from board_post board
+		<include refid="search"/> 
+		order by board.created_day desc)a <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
+	<select id="postDetail" resultType="com.spring.ott.vo.PostVo" parameterType="int">
+		select board.post_id,board.category_id,board.title,board.content,hit,board.user_id,board.created_day,board.updated_day,
+		(select count(*) from comments com where com.post_id=board.post_id)comcnt,
+		(select count(*) from vote vo where vo.post_id=board.post_id)vocnt
+		from board_post board where board.post_id=#{post_id}
+	</select>
+	<update id="addHit" parameterType="int">
+		update board_post set hit=hit+1 where post_id=#{post_id}
+	</update>
+	<select id="count" resultType="int" parameterType="hashmap">
+		select NVL(count(*),0) cnt from board_post <include refid="search"/>
+	</select>
+	<select id="recentPost" resultType="com.spring.ott.vo.PostVo">
+		 <![CDATA[
+		 		select board.category_id,board.title,board.created_day,
+                (select category_name from board_category cate where cate.category_id=board.category_id)cname,
+				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
+				(select NVL(count(*),0) from vote vo where vo.post_id=board.post_id)vocnt
+				from board_post board where rownum<=10 order by board.created_day desc]]>
+	</select>
+	<select id="bestPost" resultType="com.spring.ott.vo.PostVo">
+		 <![CDATA[
+		 		select board.category_id,board.title,board.created_day,
+				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
+				(select NVL(count(*),0) from vote vo where vo.post_id=board.post_id)vocnt
+				from board_post board where rownum<=10 order by vocnt desc]]>
+	</select>
+	<delete id="delete" parameterType="int">
+		delete from board_post where post_id=#{post_id}
+	</delete>
+	<update id="update" parameterType="com.spring.ott.vo.PostVo">
+		update board_post set category_id=#{category_id},title=#{title},content=#{content},updated_day=sysdate where post_id=#{post_id}
+	</update>
+	<select id="category" resultType="com.spring.ott.vo.CategoryVo">
+		select * from board_category
+	</select>
+	<select id="one" resultType="com.spring.ott.vo.PostVo" parameterType="int">
+		select * from board_post where post_id=#{post_id}
+	</select>
 </mapper>
