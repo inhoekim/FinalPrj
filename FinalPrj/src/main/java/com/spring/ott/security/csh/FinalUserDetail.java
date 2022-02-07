@@ -13,7 +13,8 @@ import com.spring.ott.vo.AuthoritiesVo;
 public class FinalUserDetail implements UserDetails{
 	private String user_id;
 	private String pwd;
-	private String enabled;
+	private boolean enabled;
+	private boolean black_enabled;
 	private List<AuthoritiesVo> authList;
 	
 	@Override
@@ -32,15 +33,15 @@ public class FinalUserDetail implements UserDetails{
 	public String getUsername() {return user_id;}
 
 	@Override
-	public boolean isAccountNonExpired() {return true;}
+	public boolean isAccountNonExpired() {return true;} //블랙리스트 DB 기간에 속해있는지 판단후 t/f 주는식으로
 
 	@Override
-	public boolean isAccountNonLocked() {return true;}
+	public boolean isAccountNonLocked() {return black_enabled;}
 
 	@Override
 	public boolean isCredentialsNonExpired() {return true;}
 
 	@Override
-	public boolean isEnabled() {return true;}
+	public boolean isEnabled() {return enabled;}
 	
 }
