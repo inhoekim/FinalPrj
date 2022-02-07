@@ -3,6 +3,7 @@ package com.spring.ott.controller.pse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,18 +12,35 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
+
 import com.spring.ott.service.PostService;
+import com.spring.ott.vo.CategoryVo;
+import com.spring.ott.vo.PostVo;
 
 @Controller
 public class InsertController {
 	@Autowired PostService service;
-	
+	@GetMapping("/board/insert")
+	public String insertForm(Model m) {
+		List<CategoryVo> list=service.category();
+		m.addAttribute("list", list);
+		return "board/insert";
+	}
+	@PostMapping("/board/insert")
+	public String insert(PostVo vo ,Model m) {
+		service.postInsert(vo);
+		
+		return "redirect:/";
+	}
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {

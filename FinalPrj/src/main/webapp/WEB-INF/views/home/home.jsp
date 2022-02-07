@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="post_section">
         <div class="section_container">
             <div class="container_title">최신 글</div>
@@ -7,73 +8,33 @@
 
                 <div class="post">
                     <div class="post_num first">1</div>
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">가 나다라 마바사아 자차카타파하가가가가가가나나</a>
-                    <span class="comment_cnt">123</span>
+                    <a class="board_category" href="#">${rList[0].cname}</a>
+                    <a href="#" class="post_title">${rList[0].title}</a>
+                    <span class="comment_cnt">${rList[0].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num second">2</div>
-                    <a class="board_category" href="#">넷플릭스</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구 블라블라</a>
-                    <span class="comment_cnt">10</span>
+                    <a class="board_category" href="#">${rList[1].cname}</a>
+                    <a href="#" class="post_title">${rList[1].title}</a>
+                    <span class="comment_cnt">${rList[1].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num third">3</div>
-                    <a class="board_category" href="#">넷플릭스</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
+                    <a class="board_category" href="#">${rList[2].cname}</a>
+                    <a href="#" class="post_title">${rList[2].title}</a>
+                    <span class="comment_cnt">${rList[2].comCnt}</span>
                 </div>
-                             
-                <div class="post">
-                    <div class="post_num">4</div>
-                    <a class="board_category" href="#">디즈니</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
+                 <c:forEach var="cnt" begin="3" end="9">
+				 <div class="post">
+                    <div class="post_num">${cnt+1}</div>
+                    <a class="board_category" href="#">${rList[cnt].cname}</a>
+                    <a href="#" class="post_title">${rList[cnt].title}</a>
+                    <span class="comment_cnt">${rList[cnt].comCnt}</span>
                 </div>
-  
-                <div class="post">
-                    <div class="post_num">5</div>
-                    <a class="board_category" href="#">넷플릭스</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">6</div>
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">7</div>
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">8</div>
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">9</div>
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">10</div>
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
+				
+				 </c:forEach> 
             </div>
         </div>
     
@@ -81,76 +42,35 @@
             <div class="container_title">인기 글</div>
             <div class="container_items">
 
-                <div class="post">
+            <div class="post">
                     <div class="post_num first">1</div>
-                    <i class="fas fa-heart like"><span class="like_cnt">188</span></i>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
+                    <i class="fas fa-heart like"><span class="like_cnt">${bList[0].voCnt}</span></i>
+                    <a href="#" class="post_title">${bList[0].title}</a>
+                    <span class="comment_cnt">${bList[0].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num second">2</div>
-                    <i class="fas fa-heart like"><span class="like_cnt">35</span></i>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
+                    <i class="fas fa-heart like"><span class="like_cnt">${bList[1].voCnt}</span></i>
+                    <a href="#" class="post_title">${bList[1].title}</a>
+                    <span class="comment_cnt">${bList[1].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num third">3</div>
-                    <i class="fas fa-heart like"><span class="like_cnt">6</span></i>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
+                    <i class="fas fa-heart like"><span class="like_cnt">${bList[2].voCnt}</span></i>
+                    <a href="#" class="post_title">${bList[2].title}</a>
+                    <span class="comment_cnt">${bList[2].comCnt}</span>
                 </div>
 
-                                                    
+                <c:forEach var="cnt" begin="3" end="9">               	                     
                 <div class="post">
-                    <div class="post_num">4</div>
-                    <i class="fas fa-heart like"><span class="like_cnt">2</span></i>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
+                    <div class="post_num">${cnt+1}</div>
+                    <i class="fas fa-heart like"><span class="like_cnt">${bList[cnt].voCnt}</span></i>
+                    <a href="#" class="post_title">${bList[cnt].title}</a>
+                    <span class="comment_cnt">${bList[cnt].comCnt}</span>
                 </div>
-  
-                <div class="post">
-                    <div class="post_num">5</div>
-                    <i class="fas fa-heart like"><span class="like_cnt">1</span></i>
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">6</div>
-            
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">7</div>
-            
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">8</div>
-            
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">9</div>
-            
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
-
-                <div class="post">
-                    <div class="post_num">10</div>
-            
-                    <a href="#" class="post_title">글제목 어쩌구 저쩌구</a>
-                    <span class="comment_cnt">1</span>
-                </div>
+  			</c:forEach>
             </div>
         </div>
     

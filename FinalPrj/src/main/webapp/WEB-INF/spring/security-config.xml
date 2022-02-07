@@ -7,21 +7,21 @@
 
 	<bean id="passwordEncoding" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<bean id="finalDetailService" class="com.spring.ott.security.csh.FinalUserDetailService"/>
-	<!-- <bean id="loginFailureHandler" class="com.spring.ott.loginHandler.loginFailHandler">
+	<bean id="loginFailureHandler" class="com.spring.ott.loginHandler.loginFailHandler">
 	    <property name="user_id" value="user_id"/>
 	    <property name="pwd" value="pwd"/>
 	    <property name="errormsgname" value="ERRORMSG"/>
 	    <property name="defaultFailureUrl" value="/loginFail"/>
 	</bean>
- -->
+
 	
 	
 	<sec:http auto-config="true">
 		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
-		<sec:form-login login-page="/login" username-parameter="user_id" password-parameter="pwd"/>
-		 				<!-- authentication-failure-handler-ref="loginFailureHandler" -->
+		<sec:form-login login-page="/login" username-parameter="user_id" password-parameter="pwd"
+		 				authentication-failure-handler-ref="loginFailureHandler" />
 		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"
 					delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE" />
 		<sec:remember-me key="csh" token-validity-seconds="2419200"/>

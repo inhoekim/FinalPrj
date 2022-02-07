@@ -8,6 +8,7 @@
 <meta name="_csrf" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -93,16 +94,16 @@ $(document).ready(function() {
 <h2 style="text-align: center;">글 작성</h2><br><br><br>
 
 <div style="width: 60%; margin: auto;">
-	<form:form method="post" action="${pageContext.request.contextPath}/board/insert">
+	<form:form method="post" action="${pageContext.request.contextPath}/post/update">
 		<select name="category_id">
 			<c:forEach var="category" items="${list}">
 				<option value="${category.category_id}">${category.category_name}</option>
 			</c:forEach>
 		</select>
-		<input type="text" name="user_id" style="width: 20%;" placeholder="작성자"/><br>
-		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+		<input type="text" name="title" style="width: 40%;" value="${title}"/>
 		<br><br> 
-		<textarea id="summernote" name="content"></textarea>
+		<textarea id="summernote" name="content">${content}</textarea>
+		<input type="hidden" value="${post_id}" name="post_id">
 		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
 	</form:form>
 </div>
@@ -110,17 +111,14 @@ $(document).ready(function() {
 
 function goWrite(frm) {
 	var title = frm.title.value;
-	var user_id = frm.user_id.value;
 	var content = frm.content.value;
 	var category = frm.category_id.value;
+	var post_id = frm.post_id.value;
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
 		return false;
 	}
-	if (user_id.trim() == ''){
-		alert("작성자를 입력해주세요");
-		return false;
-	}
+	
 	if (content.trim() == ''){
 		alert("내용을 입력해주세요");
 		return false;
