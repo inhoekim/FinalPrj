@@ -1,6 +1,7 @@
 package com.spring.ott.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,11 @@ public class MatchingService {
 		return mapper.delete(map);
 	}
 	
-	MatchingVo matchingCheck(String user_id) {
+	public MatchingVo matchingCheck(String user_id) {
 		return mapper.matchingCheck(user_id);
+	}
+	
+	public List<MatchingVo> memberList(int party_id) {
+		return mapper.memberList(party_id);
 	}
 }

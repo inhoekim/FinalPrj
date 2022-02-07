@@ -24,4 +24,9 @@
 	<select id="matchingCheck" parameterType="string" resultType="com.spring.ott.vo.PartyVo">
 		select * from party where leader = #{user_id} 
 	</select>
+	
+	<select id="selectParty" parameterType="int" resultType="com.spring.ott.vo.PartyVo">
+		select * from party where party_id = #{party_id} 
+	</select>
+	
 </mapper>

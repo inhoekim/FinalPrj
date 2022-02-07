@@ -26,4 +26,8 @@ public class PartyService {
 	public PartyVo matchingCheck(String user_id) {
 		return mapper.matchingCheck(user_id);
 	}
+	
+	public PartyVo selectParty(int party_id) {
+		return mapper.selectParty(party_id);
+	}
 }

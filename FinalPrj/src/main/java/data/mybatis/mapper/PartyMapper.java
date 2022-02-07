@@ -7,4 +7,5 @@ public interface PartyMapper {
 	PartyVo getMyParty(int ott_id);
 	PartyVo checkInvite(String invite_code);
 	PartyVo matchingCheck(String user_id);
+	PartyVo selectParty(int party_id);
 }

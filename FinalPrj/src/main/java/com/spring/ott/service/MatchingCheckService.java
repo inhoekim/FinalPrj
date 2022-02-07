@@ -20,7 +20,7 @@ public class MatchingCheckService {
 	@Autowired WatingRoomMapper watingRoomMapper;
 	
 	public HashMap<Integer,Object> matchingCheck(String user_id) {
-		HashMap<Integer,Object> map = new HashMap();
+		HashMap<Integer,Object> map = new HashMap<Integer, Object>();
 		PartyVo partyVo = partyMapper.matchingCheck(user_id);
 		MatchingVo matchingVo = matchingMapper.matchingCheck(user_id);
 		WatingRoomVo watingRoomVo = watingRoomMapper.matchingCheck(user_id);

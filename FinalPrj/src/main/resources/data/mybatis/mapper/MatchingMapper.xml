@@ -14,4 +14,8 @@
 	<select id="matchingCheck" parameterType="string" resultType="com.spring.ott.vo.MatchingVo">
 		select * from matching where user_id = #{user_id}
 	</select>
+	
+	<select id="memberList" parameterType="int" resultType="com.spring.ott.vo.MatchingVo">
+		select * from matching where party_id = #{party_id}
+	</select>
 </mapper>

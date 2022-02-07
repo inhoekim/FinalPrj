@@ -41,7 +41,7 @@ CREATE TABLE USERS --유저
     regdate date NOT NULL, --등록일
     profile_id number(10), --프로필 사진 이미지파일 이름 (FK)
     black_enabled char(1) DEFAULT 1 NOT NULL, --블랙 상태(0:블랙유저 / 1:정상
-    enabeld char(1) DEFAULT 1 NOT NULL, -- 유저 상태(0:탈퇴 / 1:정상) 
+    enabled char(1) DEFAULT 1 NOT NULL, -- 유저 상태(0:탈퇴 / 1:정상) 
     CONSTRAINT FK_USERS_PROFILE FOREIGN KEY(profile_id) REFERENCES PROFILEIMG(profile_id) 
 );
 

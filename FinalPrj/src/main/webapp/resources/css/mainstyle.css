@@ -792,3 +792,127 @@ input[type='radio']:checked + label {
     background-position: 50% 50%;
   }
 }
+
+/* ==================*/
+/* myParty */
+
+.myParty_container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.myParty_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  height: 200px;
+  width: 100%;
+}
+
+.myParty_box .box_title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.box_title .title_left {
+  display: flex;
+}
+
+.box_title .title_left img {
+  width: 50px;
+  height: 100%;
+  background-color: var(--color-light-white);
+  border-radius: 10px;
+}
+
+.box_title .title_left .two_line {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.two_line .line_top {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-bold);
+}
+
+.two_line .line_bottom {
+  color: var(--color-grey);
+  font-size: var(--font-micro);
+}
+
+.box_title .title_right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 60px;
+  background-color: var(--color-light-white);
+  border-radius: 5px;
+  font-size: 22px;
+  color: var(--color-dark-grey);
+  cursor: pointer;
+}
+
+.box_title .title_right:hover {
+  background-color: var(--color-dark-white);
+}
+
+.myParty_box .box_content {
+  width: 100%;
+  margin-top: 10px;
+  background-color: var(--color-white);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.member_container {
+  padding: 20px;
+  width: 60%;
+}
+
+.leader_box {
+  width: 22%;
+}
+.gap_box {
+  width: 10%;
+}
+.member_box {
+  width: 68%;
+}
+
+.member_container .member_roll {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.member_roll .leader_box,
+.member_roll .member_box {
+  background-color: var(--color-grey);
+  color: var(--color-white);
+  text-align: center;
+  border-radius: 3px;
+}
+.member_container .member_profile {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.member_profile .leader_box {
+  text-align: center;
+}
+
+.member_profile .member_box {
+  display: flex;
+  justify-content: space-around;
+}
+
