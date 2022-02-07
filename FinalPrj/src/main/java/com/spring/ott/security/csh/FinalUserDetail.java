@@ -36,7 +36,7 @@ public class FinalUserDetail implements UserDetails{
 	public boolean isAccountNonExpired() {return true;} //블랙리스트 DB 기간에 속해있는지 판단후 t/f 주는식으로
 
 	@Override
-	public boolean isAccountNonLocked() {return black_enabled;}
+	public boolean isAccountNonLocked() {return true;}
 
 	@Override
 	public boolean isCredentialsNonExpired() {return true;}

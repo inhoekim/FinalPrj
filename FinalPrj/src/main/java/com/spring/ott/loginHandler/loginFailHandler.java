@@ -6,6 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -20,9 +24,19 @@ public class loginFailHandler implements AuthenticationFailureHandler{
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		String username = request.getParameter(user_id);
-        String password = request.getParameter(pwd);
+        String password = request.getParameter(pwd);        
         String errormsg = null;
-        
+	        
+        if(exception instanceof BadCredentialsException) {
+            errormsg = MessageUtils.getMessage("error.BadCredentials");
+        } else if(exception instanceof InternalAuthenticationServiceException) {
+            errormsg = MessageUtils.getMessage("error.BadCredentials");
+        } else if(exception instanceof DisabledException) {
+            errormsg = MessageUtils.getMessage("error.Disabled");
+        } else if(exception instanceof CredentialsExpiredException) {
+            errormsg = MessageUtils.getMessage("error.CredentialsExpired");
+        }
+
         
         request.setAttribute(user_id, username);
         request.setAttribute(pwd, password);
