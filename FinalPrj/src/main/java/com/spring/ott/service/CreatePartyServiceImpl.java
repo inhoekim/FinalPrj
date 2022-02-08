@@ -1,5 +1,6 @@
 package com.spring.ott.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.spring.ott.vo.PartyVo;
 import com.spring.ott.vo.SettleVo;
 import com.spring.ott.vo.WatingRoomVo;
 
+import data.mybatis.mapper.MatchingMapper;
 import data.mybatis.mapper.OttMapper;
 import data.mybatis.mapper.PartyMapper;
 import data.mybatis.mapper.SettleMapper;
@@ -22,6 +24,7 @@ public class CreatePartyServiceImpl implements CreatePartyService{
 	@Autowired SettleMapper settleMapper;
 	@Autowired OttMapper ottMapper; 
 	@Autowired WatingRoomMapper wrMapper;
+	@Autowired MatchingMapper matchingMapper;
 	
 	@Override
 	@Transactional
@@ -35,6 +38,21 @@ public class CreatePartyServiceImpl implements CreatePartyService{
 		settleMapper.insert(settleVo);
 		//watingTable 인원 가져오기
 		List<WatingRoomVo> wr_list = wrMapper.getWatingRow(PartyVo.getOtt_id());
+		wr_list.forEach(wrVo -> {
+			//watingTable에서 MatchingTable로 이동
+			String watingUser = wrVo.getUser_id();
+			HashMap<String,Object> map = new HashMap<>();
+			map.put("party_id", PartyVo.getParty_id());
+			map.put("user_id", watingUser);
+			matchingMapper.insert(map);
+			//watingTable에서 삭제
+			wrMapper.deleteRow(watingUser);
+		});
+		//party의 member_num 칼럼 Update
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("party_id", PartyVo.getParty_id());
+		map.put("input_num", wr_list.size());
+		partyMapper.memberUpdate(map);
 		return true;
 	}
 }

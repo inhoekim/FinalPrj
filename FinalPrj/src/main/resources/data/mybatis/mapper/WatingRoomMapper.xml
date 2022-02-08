@@ -4,7 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.WatingRoomMapper">
 	<select id="getWatingRow" parameterType="int" resultType="com.spring.ott.vo.WatingRoomVo">
-		select * from WatingRoom where ott_id = #{ott_id}
+		select * from
+		(
+			select a.*, rownum rnum
+			from(
+				select * from watingRoom where ott_id = #{ott_id}
+				order by start_day
+			)a	
+		)
+		<![CDATA[ where rnum >= 1 and rnum <= 3]]>
 	</select>
 	
 	<select id="matchingCheck" parameterType="string" resultType="com.spring.ott.vo.WatingRoomVo">

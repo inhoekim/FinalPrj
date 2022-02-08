@@ -1,5 +1,7 @@
 package com.spring.ott.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,9 @@ public class PartyService {
 	
 	public PartyVo selectParty(int party_id) {
 		return mapper.selectParty(party_id);
+	}
+	
+	public int memberUpdate(HashMap<String,Object> map) {
+		return mapper.memberUpdate(map);
 	}
 }

@@ -1,5 +1,7 @@
 package data.mybatis.mapper;
 
+import java.util.HashMap;
+
 import com.spring.ott.vo.PartyVo;
 
 public interface PartyMapper {
@@ -8,4 +10,5 @@ public interface PartyMapper {
 	PartyVo checkInvite(String invite_code);
 	PartyVo matchingCheck(String user_id);
 	PartyVo selectParty(int party_id);
+	int memberUpdate(HashMap<String,Object> map);
 }

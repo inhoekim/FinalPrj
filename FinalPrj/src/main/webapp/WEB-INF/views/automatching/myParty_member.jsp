@@ -67,3 +67,12 @@
 <c:forEach var="vo" items="${matching_list}">
 	<div>테스트: ${vo.user_id}</div>
 </c:forEach>
+
+<script>
+	$(function(){
+		$($(".navbar_menu_item a")[2]).addClass("active");
+		if("${msg}" != ""){
+			alert("${msg}");
+		}
+	});
+</script>

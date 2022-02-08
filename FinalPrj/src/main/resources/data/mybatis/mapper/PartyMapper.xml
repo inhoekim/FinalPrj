@@ -13,7 +13,7 @@
 	
 	<select id="getMyParty" parameterType="int" resultType="com.spring.ott.vo.PartyVo">
 		select * from party 
-		where ott_id = #{ott_id} and party_state = 0 and rownum = 1
+		where ott_id = #{ott_id} and party_state = 0 and rownum = 1 and <![CDATA[member_num < 3]]>
 		order by start_day
 	</select>
 	
@@ -29,4 +29,7 @@
 		select * from party where party_id = #{party_id} 
 	</select>
 	
+	<update id="memberUpdate" parameterType="hashmap">
+		update party set member_num = member_num + #{input_num} where party_id = #{party_id}
+	</update>
 </mapper>
