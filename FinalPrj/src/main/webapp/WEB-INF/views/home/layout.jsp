@@ -39,7 +39,8 @@
 		<tiles:insertAttribute name="footer"/>
 	</footer>
 	
-    <div id="login" class="emphasized_div hidden">
+	<div id="loginWrapper" class="hidden">
+    <div class="emphasized_div">
     	<div class="top_bar">
     		<h3>회원 로그인</h3>
     		<div id="cancle" class="cancle" style="display: inline-block">
@@ -64,15 +65,16 @@
 			<a href="${pageContext.request.contextPath }/findId">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>
 	    </div>
 	    </form:form>
-	    
+	 </div>
     </div>
 </body>
 <script>
  	$(function(){
  		let flag = ${!empty param.login};
- 		console.log(flag);
  		if(flag) {
- 			$("#login").removeClass("hidden");
+ 			$("#loginWrapper").removeClass("hidden");
+ 	        $("html").css("pointer-events" , "none");
+ 	        $("#loginWrapper").css("pointer-events" , "auto");
  		}
  	});
 </script>
