@@ -3,6 +3,8 @@ package data.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.ott.security.csh.FinalUserDetail;
 import com.spring.ott.vo.AuthoritiesVo;
 import com.spring.ott.vo.UserVo;
@@ -13,6 +15,9 @@ public interface UserMapper {
 	int insertAuth(AuthoritiesVo vo);
 	int updateUser(UserVo vo);
 	int deleteUser(String user_id);
+	String findId(@Param("name") String name,@Param("email") String email);
+	String findPwdChk(@Param("user_id") String user_id, @Param("email") String email);
+	int findPwd(UserVo vo);
 	UserVo selectUser(String user_id);
 	
 	public List<UserVo> UserList(HashMap<String, Integer>map);

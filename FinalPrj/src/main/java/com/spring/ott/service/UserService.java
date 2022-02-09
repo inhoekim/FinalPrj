@@ -35,6 +35,15 @@ public class UserService {
 	public int deleteUser(String user_id) {
 		return mapper.deleteUser(user_id);
 	}
+	public String findId(String name, String email) {
+		return mapper.findId(name, email);
+	}
+	public String findPwdChk(String user_id, String email) {
+		return mapper.findPwdChk(user_id, email);
+	}
+	public int findPwd(UserVo vo) {
+		return mapper.findPwd(vo);
+	}
 	public UserVo selectUser(String user_id) {
 		return mapper.selectUser(user_id);
 	}

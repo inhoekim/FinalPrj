@@ -1,4 +1,4 @@
-package com.spring.ott.loginHandler;
+package com.util;
 
 import java.util.Locale;
 

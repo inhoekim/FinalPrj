@@ -22,7 +22,7 @@
 	<constructor-arg ref="messageSource"/>
 </bean>
 
-<bean id="message" class="com.spring.ott.loginHandler.MessageUtils">
+<bean id="message" class="com.util.MessageUtils">
 	<property name="messageSourceAccessor" ref="messageSourceAccessor"/>
 </bean>
 

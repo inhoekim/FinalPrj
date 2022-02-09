@@ -50,6 +50,16 @@
 	<select id="AllSelect" resultType="com.spring.ott.vo.UserVo">
 		select * from users
 	</select>
+	
+	<select id="findId" parameterType="String" resultType="String">
+		select user_id from users where name=#{name} and email=#{email}
+	</select>
+	<select id="findPwdChk" parameterType="String" resultType="String">
+		select pwd from users where user_id=#{user_id} and email=#{email}
+	</select>
+	<update id="findPwd" parameterType="com.spring.ott.vo.UserVo">
+		update users set pwd=#{pwd} where user_id=#{user_id} and email=#{email}
+	</update>
  </mapper>
  
   

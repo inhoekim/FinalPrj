@@ -3,6 +3,7 @@ package com.spring.ott.controller.csh;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +24,11 @@ public class UserDeleteController {
 	}
 	
 	@PostMapping("/deleteUser")
-	public String delete(String user_id, Model model) {
+	public String delete(String user_id, Model model, Principal principal) {
 		try {
 			service.deleteUser(user_id);
 			model.addAttribute("code","success");
+			SecurityContextHolder.clearContext();
 		}catch(Exception e) {
 			e.printStackTrace();
 			model.addAttribute("code","fail");
