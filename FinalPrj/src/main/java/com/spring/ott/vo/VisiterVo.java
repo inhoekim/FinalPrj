@@ -14,4 +14,8 @@ import lombok.ToString;
 public class VisiterVo {
 	private String ip_address;
 	private Date visit_date;
+	
+	//가상 컬럼
+	private int count;
+	private String visit_date2;
 }
