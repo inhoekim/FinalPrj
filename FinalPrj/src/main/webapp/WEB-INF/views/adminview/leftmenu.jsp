@@ -57,9 +57,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${cp}/memberchart">결제 차트 </a>
-                        <a class="collapse-item" href="${cp}/memberchart">회원 차트 </a>
-                        <a class="collapse-item" href="${cp}/memberchart">방문자 기록</a>
+                        <a class="collapse-item" href="${cp}/adminpaymentchart">결제 차트 </a>
+                        <a class="collapse-item" href="${cp}/adminpartchart">파티 차트 </a>
+                        <a class="collapse-item" href="${cp}/adminmemberchart">회원 차트 </a>
+                        <a class="collapse-item" href="${cp}/adminvisiterchart">방문 기록</a>
                     </div>
                 </div>
             </li>
@@ -94,19 +95,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

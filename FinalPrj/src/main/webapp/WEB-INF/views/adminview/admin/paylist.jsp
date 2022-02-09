@@ -5,21 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <!-- Custom styles for this page -->
 <link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <style type="text/css">
-	
+	#title{
+		color: white;
+	}
 	#d{
-	background: linear-gradient( white , #AFC0E0,#AFC0E0 ,#AFC0E0, #AFC0E0 ,white);
+	background: #bdbdbd;
 	color: black;
 	}
 	#dd{
-	background: linear-gradient( white , #AFC0E0,#AFC0E0 ,#AFC0E0, #AFC0E0 ,white);
+	background: #bdbdbd;
 	color: black;
 	}
 	#d0:hover{ 
-	background-color: #28A745;
+	background-color: #69f0ae;
+
 	color: white;
 	}
 	#d1:hover{ 
@@ -27,7 +29,7 @@
 	color: white;
 	}
 	#d2:hover{ 
-	background-color: #DC3545;
+	background-color: #ff6e40;
 	color: white;
 	}
 

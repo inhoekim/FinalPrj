@@ -8,13 +8,31 @@
 		insert into visiter values(#{ip_address},sysdate)
 	</insert>
 	
-	<select id="select">
-	<!--
-	[getVisitTodayCount()] -  금일 등록된 방문자를 카운트 한다.
-	SELECT COUNT(*) AS count from 테이블명
-  	WHERE FORMAT(컬럼명, 'YYYY-MM-DD') = FORMAT(now(), 'YYYY-MM-DD')
-출처: https://aljjabaegi.tistory.com/162 [알짜배기 프로그래머]
-	 -->
+	<select id="onedayselect" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		select ip_address, count(ip_address) count, to_char(visit_date,'YYYY/MM/DD') visit_date2 from visiter
+		group by to_char(visit_date,'YYYY/MM/DD'),ip_address
+		having to_char(visit_date,'YYYY/MM/DD')=#{visit_date}
+		order by count desc
 	</select>
+	
+	<select id="rankingselect" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		
+		SELECT * FROM
+		( SELECT ip_address, count(ip_address) count, to_char(visit_date,'YYYY/MM/DD') visit_date2 
+		from visiter
+		group by to_char(visit_date,'YYYY/MM/DD'),ip_address
+		having to_char(visit_date,'YYYY/MM/DD')=#{visit_date}
+		) 
+		WHERE ROWNUM &lt; 6
+		order by count desc
+		
+	</select>
+	
+	<select id="onedaylog" parameterType="String" resultType="int">
+		select count(ip_address) count 
+		from visiter 
+		where to_char(visit_date,'YYYY/MM/DD')=#{visit_date}
+	</select>
+	
 	
 </mapper>
