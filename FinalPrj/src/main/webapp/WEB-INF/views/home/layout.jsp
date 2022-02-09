@@ -57,7 +57,6 @@
 			<input type="checkbox" id="remember-me" name="remember-me" /><br>	
 			<input type="submit" value="로그인"><br>
 			<c:if test="${not empty param.errormsg}">
-			test
 		        <font color="red">
 		        	<p> ${param.errormsg }</p>
 		        </font>
