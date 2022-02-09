@@ -41,4 +41,13 @@
         </div>
     </div>
     </sec:authorize>
+
+	<div class="container_login">
+        <div id="login_div" class="login_item" style="border-bottom: 1px solid #efefef;">
+        	로그인
+        </div>
+        <div class="login_item">
+        	<a href="${pageContext.request.contextPath }/email">회원가입</a>
+        </div>
+    </div>    
 </div>

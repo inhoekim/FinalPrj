@@ -1,6 +1,8 @@
 package com.spring.ott.loginHandler;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +28,6 @@ public class loginFailHandler implements AuthenticationFailureHandler{
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		String username = request.getParameter(user_id);
-        String password = request.getParameter(pwd);        
         String errormsg = null;
 	        
         if(exception instanceof BadCredentialsException) {
@@ -41,11 +42,11 @@ public class loginFailHandler implements AuthenticationFailureHandler{
 
         
         request.setAttribute(user_id, username);
-        request.setAttribute(pwd, password);
         request.setAttribute(errormsgname, errormsg);
- 
-        request.getRequestDispatcher(defaultFailureUrl).forward(request, response);
-
+        
+//        request.getRequestDispatcher(defaultFailureUrl).forward(request, response);
+        response.sendRedirect(request.getContextPath()+"?errormsg="+URLEncoder.encode(errormsg, "utf-8"));
+        
 	}
 
 	public String getUser_id() {
