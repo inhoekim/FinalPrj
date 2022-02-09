@@ -18,6 +18,6 @@ public class LoginController {
 	
 	@PostMapping("/loginFail")
 	public String loginFail() {
-		return "home/login.tiles";
+		return "home/home.tiles";
 	}
 }
