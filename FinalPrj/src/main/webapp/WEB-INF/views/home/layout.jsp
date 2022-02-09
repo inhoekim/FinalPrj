@@ -67,4 +67,13 @@
 	    
     </div>
 </body>
+<script>
+ 	$(function(){
+ 		let flag = ${!empty param.login};
+ 		console.log(flag);
+ 		if(flag) {
+ 			$("#login").removeClass("hidden");
+ 		}
+ 	});
+</script>
 </html>

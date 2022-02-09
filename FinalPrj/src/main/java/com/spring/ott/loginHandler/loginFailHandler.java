@@ -45,7 +45,7 @@ public class loginFailHandler implements AuthenticationFailureHandler{
         request.setAttribute(errormsgname, errormsg);
         
 //        request.getRequestDispatcher(defaultFailureUrl).forward(request, response);
-        response.sendRedirect(request.getContextPath()+"?errormsg="+URLEncoder.encode(errormsg, "utf-8")+"?login=true");
+        response.sendRedirect(request.getContextPath()+"?login=true&errormsg="+URLEncoder.encode(errormsg, "utf-8"));
         
 	}
 
