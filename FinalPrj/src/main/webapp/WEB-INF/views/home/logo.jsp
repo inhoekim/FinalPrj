@@ -33,8 +33,8 @@
 	</sec:authorize>
 	<sec:authorize access="isAnonymous()">
     <div class="container_login">
-        <div class="login_item" style="border-bottom: 1px solid #efefef;">
-        	<a href="${pageContext.request.contextPath }/login">로그인</a>
+        <div id="login_div" class="login_item" style="border-bottom: 1px solid #efefef;">
+        	로그인
         </div>
         <div class="login_item">
         	<a href="${pageContext.request.contextPath }/email">회원가입</a>

@@ -609,3 +609,31 @@ footer {
   width: 60px;
   border-radius: 50%;
 }
+
+.emphasized_div {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 0 9999px, var(--color-grey) 0 0 10px;
+  z-index: 100;
+}
+
+.emphasized_div .top_bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	line-height: 14px;
+}
+.cancle {
+  cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
