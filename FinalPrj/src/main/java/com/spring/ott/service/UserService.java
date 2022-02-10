@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ott.security.csh.FinalUserDetail;
 import com.spring.ott.vo.AuthoritiesVo;
+import com.spring.ott.vo.MemberVo;
 import com.spring.ott.vo.UserVo;
 
 import data.mybatis.mapper.UserMapper;
@@ -57,5 +58,9 @@ public class UserService {
 	public List<UserVo> AllSelect(){
 		return mapper.AllSelect();
 	}
+	//김인회
+	public MemberVo selectMember (String user_id) {
+		return mapper.selectMember(user_id);
+	} 
 }
  

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.ott.vo.MatchingVo;
+import com.spring.ott.vo.MemberVo;
 
 import data.mybatis.mapper.MatchingMapper;
 
@@ -29,5 +30,9 @@ public class MatchingService {
 	
 	public List<MatchingVo> memberList(int party_id) {
 		return mapper.memberList(party_id);
+	}
+	
+	public List<MemberVo> selectMember(int party_id) {
+		return mapper.selectMember(party_id);
 	}
 }

@@ -15,10 +15,10 @@ import com.spring.ott.service.OttService;
 import com.spring.ott.service.PartyService;
 import com.spring.ott.service.UserService;
 import com.spring.ott.vo.MatchingVo;
+import com.spring.ott.vo.MemberVo;
 import com.spring.ott.vo.OttVo;
 import com.spring.ott.vo.PartyVo;
 import com.spring.ott.vo.UserVo;
-import com.spring.ott.vo.WatingRoomVo;
 
 @Controller
 public class MyPartyController {
@@ -39,11 +39,14 @@ public class MyPartyController {
 		}else if (map.containsKey(2)) {
 			int my_party = ((MatchingVo) map.get(2)).getParty_id();
 			PartyVo partyVo = partyService.selectParty(my_party);
+			MemberVo leader = userService.selectMember(partyVo.getLeader());
 			OttVo ottVo = ottService.selectOtt(partyVo.getOtt_id());
-			List<MatchingVo> list = matchingService.memberList(my_party);
-			model.addAttribute("matching_list", list);
+			List<MemberVo> list = matchingService.selectMember(my_party);
+			model.addAttribute("member_list", list);
+			model.addAttribute("leader", leader);
 			model.addAttribute("partyVo", partyVo);
 			model.addAttribute("ottVo", ottVo);
+			model.addAttribute("me", principal.getName());
 			return "automatching/myParty_member.tiles";
 		}else if (map.containsKey(3)) {
 			model.addAttribute("watingRoomVo", map.get(3));

@@ -6,7 +6,7 @@
             <div class="speech_bubble bubble_font">지금 바로!</div>
             <h1>더 <span>저렴하고</span>, 더 <span>간편하게</span><br>
             &nbsp;OTT를 감상해보세요
-            <img src="${pageContext.request.contextPath}/resources/img/movies/sparkling-48.png"/>
+            <img src="${pageContext.request.contextPath}/resources/img/sparkling-48.png"/>
         </h1>
         </div>
         

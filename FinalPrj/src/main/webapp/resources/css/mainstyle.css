@@ -797,7 +797,7 @@ input[type='radio']:checked + label {
 /* myParty */
 
 .myParty_container {
-  max-width: 800px;
+  max-width: 750px;
   margin: auto;
 }
 
@@ -874,7 +874,7 @@ input[type='radio']:checked + label {
 
 .member_container {
   padding: 20px;
-  width: 60%;
+  width: 80%;
 }
 
 .leader_box {
@@ -916,3 +916,123 @@ input[type='radio']:checked + label {
   justify-content: space-around;
 }
 
+.profile_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile_item .profile_id {
+  margin-top: 10px;
+  font-size: var(--font-mmicro);
+  font-weight: var(--weight-bold);
+}
+
+.profile_item .profile_id.empty {
+  font-size: 11px;
+  color: var(--color-grey);
+  font-weight: var(--weight-regular);
+}
+
+.profile_item .payment_state {
+  font-size: 11px;
+  color: var(--color-grey);
+  font-weight: var(--weight-semi-boldbold);
+}
+
+.you {
+  font-size: 8px;
+  color: var(--color-blue);
+}
+
+.myParty_box .box_content.default {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  border: 1px solid var(--color-light-white);
+}
+
+.box_content .content_left,
+.box_content .content_right {
+  padding: 0 30px;
+  color: var(--color-dark-grey);
+  font-size: var(--font-micro);
+}
+
+.box_content .content_left {
+  font-weight: 500;
+}
+
+.copy_str {
+  animation: copy_str 2s linear;
+}
+@keyframes copy_str {
+  4% {
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+}
+
+.check_str {
+  animation: check_str 2s linear;
+}
+@keyframes check_str {
+  4% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+.payment_content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.emphasized_div {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 330px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.7) 0 0 0 9999px, var(--color-grey) 0 0 10px;
+  z-index: 100;
+  padding: 10px 30px;
+}
+
+.emphasized_div .div_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cancle {
+  cursor: pointer;
+}
+
+.emphasized_div .div_content {
+  background-color: #f6f7fa;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.paycontent {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #3d4b74;
+  font-weight: var(--weight-semi-bold);
+  font-family: SpoqaHanSansNeo;
+  margin: 10px 0;
+}

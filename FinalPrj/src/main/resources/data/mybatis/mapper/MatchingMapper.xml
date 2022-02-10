@@ -18,4 +18,17 @@
 	<select id="memberList" parameterType="int" resultType="com.spring.ott.vo.MatchingVo">
 		select * from matching where party_id = #{party_id}
 	</select>
+	
+	<resultMap type="com.spring.ott.vo.MemberVo" id="member">
+		<result column="user_id" property="user_id"/>
+		<result column="payment_id" property="payment_id"/>
+		<result column="profile_id" property="profile_id"/>
+	</resultMap>
+	
+	<select id="selectMember" resultMap="member" parameterType="int">
+		select u.user_id, m.payment_id, p.src_name  from users u, matching m, profileimg p
+		where u.user_id = m.user_id and u.profile_id = p.profile_id
+		and m.party_id = #{party_id}
+	</select>
+	
 </mapper>
