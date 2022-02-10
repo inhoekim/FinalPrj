@@ -13,7 +13,7 @@
         <div class="myParty_box">
             <div class="box_title">
                 <div class="title_left">
-                    <img src="${pageContext.request.contextPath}/resources/img/ott_logos/icon_netflix_x2.png">
+                    <img src="${pageContext.request.contextPath}/resources/img/ott_logos/${logo_src}">
                     <div class="two_line">
                         <span class="line_top">${ottVo.ott_name } 프리미엄 파티</span>
                         <span class="line_bottom">파티원으로 이용중</span>
@@ -157,17 +157,28 @@
 
                 <div class="payment_content">
                     <span>결제상태</span>
-                    <div>
-                        <span>결제대기</span>
-                        <button>결제하기</button>
+                    <div style="display: flex; align-items: center">
+                    	<c:if test="${authority == true && partyVo.party_state == 0}">
+                    		<span style="margin-right: 20px;">결제완료</span>
+                        	<button>결제취소</button>
+                    	</c:if>
+						
+						<c:if test="${authority == true && partyVo.party_state != 0}">
+                    		<span>결제완료(취소불가)</span>
+                    	</c:if>
+                    	
+					 	<c:if test="${authority == false}">
+                    		<span style="margin-right: 20px; width:100px">결제대기</span>
+                        	<button class="confirm_button kakao"><i class="fas fa-comment"></i> 카카오로 결제하기</button>
+                    	</c:if>
                     </div>
                     
                 </div>
             </div>
     </div>
-	<span style="color:#908dc0e6;font-style:italic;font-size:13px;">(안내사항)</span><br>
-    <span style="color:#908dc0e6;font-size:13px;margin:3px 0;">결제취소와 파티탈퇴는 파티매칭이 완전히 완료되기 전까지만 가능합니다 </span><br>
-    <span style="color:#908dc0e6;font-size:13px;">반복적인 파티탈퇴 및 매칭취소의 행위는 강력한 제재대상이며, 해당 행위에 따른 불이익이 존재할 수 있음을 알려드립니다</span>
+	<span style="color:#908dc0e6;font-size:13px;">(안내사항)</span><br>
+    <span style="color:#908dc0e6;font-style:italic;font-size:13px;margin:3px 0;">- 결제취소와 파티탈퇴는 파티매칭이 완전히 완료되기 전까지만 가능합니다 </span><br>
+    <span style="color:#908dc0e6;font-style:italic;font-size:13px;">- 반복적인 파티탈퇴 및 매칭취소의 행위는 강력한 제재대상이며, 해당 행위에 따른 불이익이 존재할 수 있음을 알려드립니다</span>
     <div class="confirm_button" style="width:60%;margin: auto; padding: 5px; font-size: 20px; text-align: center; background-color: #fe918d; margin-top: 50px;">
         <a style="font-size: 20px; color: white;width:100%;display:inline-block" href="${pageContext.request.contextPath}/autoMatch/resign/member?party_id=${partyVo.party_id}">파티 탈퇴</a>
     </div>
