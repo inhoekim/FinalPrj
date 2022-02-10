@@ -14,6 +14,7 @@ import com.spring.ott.service.MatchingService;
 import com.spring.ott.service.OttService;
 import com.spring.ott.service.PartyService;
 import com.spring.ott.service.UserService;
+import com.spring.ott.util.CalendarUtil;
 import com.spring.ott.vo.MatchingVo;
 import com.spring.ott.vo.MemberVo;
 import com.spring.ott.vo.OttVo;
@@ -41,12 +42,18 @@ public class MyPartyController {
 			PartyVo partyVo = partyService.selectParty(my_party);
 			MemberVo leader = userService.selectMember(partyVo.getLeader());
 			OttVo ottVo = ottService.selectOtt(partyVo.getOtt_id());
-			List<MemberVo> list = matchingService.selectMember(my_party);
+			List<MemberVo> list = matchingService.selectMember(my_party);		
+			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
+			int fees = CalendarUtil.getFees(remain_day);
+			int price = (int)(ottVo.getMonth_price() / 30 * remain_day / 4 + fees);
 			model.addAttribute("member_list", list);
 			model.addAttribute("leader", leader);
 			model.addAttribute("partyVo", partyVo);
 			model.addAttribute("ottVo", ottVo);
 			model.addAttribute("me", principal.getName());
+			model.addAttribute("remain_day", remain_day);
+			model.addAttribute("fees", fees);
+			model.addAttribute("price", price);
 			return "automatching/myParty_member.tiles";
 		}else if (map.containsKey(3)) {
 			model.addAttribute("watingRoomVo", map.get(3));

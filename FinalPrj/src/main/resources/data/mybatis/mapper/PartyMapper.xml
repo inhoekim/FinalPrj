@@ -30,6 +30,6 @@
 	</select>
 	
 	<update id="memberUpdate" parameterType="hashmap">
-		update party set member_num = member_num + #{input_num} where party_id = #{party_id}
+		update party set member_num = member_num + (#{input_num}) where party_id = #{party_id}
 	</update>
 </mapper>

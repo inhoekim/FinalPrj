@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <script src="${pageContext.request.contextPath}/resources/js/myparty.js"></script>
 <c:set var="profile_src" value="${pageContext.request.contextPath}/resources/img/profile/"/>
 <c:set var="searching_src" value="${pageContext.request.contextPath}/resources/img/searching/search"/>
@@ -87,7 +89,7 @@
                     <span style="margin-left: 5px; font-size: 16px; font-weight: 600;">계정 정보</span>
                 </div>    
 
-                <a class="" href="#" style="margin-top: 20px">
+                <a href="${ottVo.domain_addr}" style="margin-top: 20px" target="_blank">
                     <span style="margin-left: 5px; font-size: 14px; font-weight: 400; color: #3E9FFF; margin-top: 25px;">
                         ${ottVo.ott_name } 바로가기
                         <i class="fas fa-link"></i>
@@ -139,14 +141,16 @@
             <div class="box_content">
                 <div class="payment_content">
                     <span>계정만료 예정일</span>
-                    <span>22-03-09 (27일남음)</span>
+                    <span>${partyVo.expiration_date} (${remain_day}일남음)</span>
                 </div>
 
                 <div class="payment_content">
                     <span>결제금액</span>
                     <div>
                         <img id="info" src="${pageContext.request.contextPath}/resources/img/info-24.png" style="vertical-align: middle; position: relative; top:-2px; width: 18px; height: 18px; cursor: pointer;">
-                        <span>3,240원</span>
+                        <span>
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${price }" />원
+						</span>
                     </div>
                     
                 </div>
@@ -161,10 +165,11 @@
                 </div>
             </div>
     </div>
-
-    
-    <div class="confirm_button" style="width:60%; margin: auto; padding: 5px; font-size: 20px; text-align: center; background-color: #fe918d; margin-top: 50px;">
-        <a style="font-size: 20px; color: white;" href="">파티 탈퇴</a>
+	<span style="color:#908dc0e6;font-style:italic;font-size:13px;">(안내사항)</span><br>
+    <span style="color:#908dc0e6;font-size:13px;margin:3px 0;">결제취소와 파티탈퇴는 파티매칭이 완전히 완료되기 전까지만 가능합니다 </span><br>
+    <span style="color:#908dc0e6;font-size:13px;">반복적인 파티탈퇴 및 매칭취소의 행위는 강력한 제재대상이며, 해당 행위에 따른 불이익이 존재할 수 있음을 알려드립니다</span>
+    <div class="confirm_button" style="width:60%;margin: auto; padding: 5px; font-size: 20px; text-align: center; background-color: #fe918d; margin-top: 50px;">
+        <a style="font-size: 20px; color: white;width:100%;display:inline-block" href="${pageContext.request.contextPath}/autoMatch/resign/member?party_id=${partyVo.party_id}">파티 탈퇴</a>
     </div>
 
     <input type="text" id="my_clipBoard" style="opacity: 0;">
@@ -179,24 +184,24 @@
        
         <div class="div_content">
             <div class="paycontent">
-                <span>${ottVo.ott_name } 프리미엄 요금제 금액(30일)</span>
-                <span><del>17,000원</del></span>
+                <span>${ottVo.ott_name } 프리미엄 요금제 금액(${remain_day}일)</span>
+                <span><del><fmt:formatNumber type="number" pattern="#,###" maxFractionDigits="0" value="${ottVo.month_price / 30 * remain_day}" />원</del></span>
             </div>
 
             <div class="paycontent">
                 <span>본인 몫(1/4)의 ${ottVo.ott_name } 이용료</span>
-                <span style="color : #42c5939e">-1000원</span>
+                <span style="color : #42c5939e">-<fmt:formatNumber type="number" pattern="#,###" maxFractionDigits="0" value="${ottVo.month_price / 30 * remain_day / 4 * 3}" />원</span>
             </div>
 
             <div class="paycontent">
                 <span>OTT플러스 수수료</span>
-                <span>+1000원</span>
+                <span>+${fees}원</span>
             </div>
 
             
             <div class="paycontent" style="margin-top: 20px; margin-bottom: 0; padding-top:20px; border-top: 1px solid #cccccc; font-size:16px;">
                 <span>총 결제금액</span>
-                <span>10,000원</span>
+                <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${price}" />원</span>
             </div>
         </div>
 

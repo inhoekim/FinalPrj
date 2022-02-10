@@ -23,5 +23,14 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 		partyMapper.memberUpdate(map);
 		return true;
 	}
+	
+	@Transactional
+	public boolean resignParty(HashMap<String, Object> map) {
+		//party에 멤버삭제
+		matchingMapper.delete(map);
+		//party member_num 칼럼 업데이트
+		partyMapper.memberUpdate(map);
+		return true;
+	}
 
 }
