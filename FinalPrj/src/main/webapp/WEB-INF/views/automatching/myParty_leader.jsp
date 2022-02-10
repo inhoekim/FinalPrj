@@ -16,9 +16,13 @@
                     <img src="${pageContext.request.contextPath}/resources/img/ott_logos/${logo_src}">
                     <div class="two_line">
                         <span class="line_top">${ottVo.ott_name } 프리미엄 파티</span>
-                        <span class="line_bottom">파티원으로 이용중</span>
+                        <span class="line_bottom">파티장으로 이용중</span>
                     </div>
                 </div>    
+
+                <a class="title_right" href="#">
+                    <i class="fas fa-cog party_setting"></i>
+                </a> 
             </div>
 
             <div class="box_content">
@@ -33,7 +37,7 @@
                         <div class="leader_box">
                             <div class="profile_item">
                                 <img src="${profile_src}${leader.src_name}">
-                                <span class="profile_id">${leader.user_id }</span>
+                                <span class="profile_id">${leader.user_id }<span class="you">(당신)</span></span>
                             </div>
                         </div> 
 
@@ -43,11 +47,7 @@
                         	<c:forEach var="member" items="${member_list}"> 
                       	    	<div class="profile_item">
 	                                <img src="${profile_src}${member.src_name}">
-	                                <span class="profile_id">${member.user_id }
-	                                <c:if test="${member.user_id eq me}">	
-	                                	<span class="you">(당신)</span>
-	                                </c:if>
-	                                </span>
+	                                <span class="profile_id">${member.user_id }</span>
 	                                <span class="payment_state">
 	                                	<c:choose>
 	                                		<c:when test="${not empty member.payment_id}">
@@ -108,14 +108,7 @@
                 <div class="content_left">
                     <span>PW</span>
                     <span id="user_pwd" style="margin-left: 15px; font-size: 16px;">
-                    	<c:choose>
-                    		<c:when test="${authority }">
-                    			${partyVo.share_pwd }
-                    		</c:when>
-                    		<c:otherwise>
-                    			<span style="color : #ff0000">결제 이후 확인할 수 있어요!</span>
-                    		</c:otherwise>
-                    	</c:choose>
+                    	${partyVo.share_pwd }
                     </span>
                 </div>
                 <div class="content_right">
@@ -136,42 +129,31 @@
 
             <div class="box_content">
                 <div class="payment_content">
-                    <span>계정만료 예정일</span>
+                    <span>계정만료 예정일(정산일)</span>
                     <span>${partyVo.expiration_date} (${remain_day}일남음)</span>
                 </div>
 
                 <div class="payment_content">
-                    <span>결제금액</span>
+                    <span>정산 정보</span>
                     <div>
                         <img id="info" src="${pageContext.request.contextPath}/resources/img/info-24.png" style="vertical-align: middle; position: relative; top:-2px; width: 18px; height: 18px; cursor: pointer;">
                         <span>
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${price }" />원
 						</span>
                     </div>
-                    
                 </div>
 
-                <div class="payment_content">
-                    <span>결제상태</span>
-                    <div style="display: flex; align-items: center">
-                    	<c:if test="${authority == true && partyVo.party_state == 0}">
-                    		<span style="margin-right: 20px;">결제완료</span>
-                        	<button>결제취소</button>
-                    	</c:if>
-						
-						<c:if test="${authority == true && partyVo.party_state != 0}">
-                    		<span>결제완료(취소불가)</span>
-                    	</c:if>
-                    	
-					 	<c:if test="${authority == false}">
-                    		<span style="margin-right: 20px; width:100px">결제대기</span>
-                        	<button class="confirm_button kakao"><i class="fas fa-comment"></i> 카카오로 결제하기</button>
-                    	</c:if>
-                    </div>
-                    
+                <div class="payment_content" style="padding: 0px 20px;">
+                    <span>정산 계좌</span>
+                    <div style="display:flex;align-items: center">
+                    	<img src="${pageContext.request.contextPath}/resources/img/bank_logos/${bank_src}" style="width:40px;">
+                    	<span>(${bank_name}) ${bank_account}</span>
+                    </div>                    
                 </div>
-            </div>
-    </div>
+            </div>    
+    	</div>
+
+    
 	<span style="color:#908dc0e6;font-size:13px;">(안내사항)</span><br>
     <span style="color:#908dc0e6;font-style:italic;font-size:13px;margin:3px 0;">- 결제취소와 파티탈퇴는 파티매칭이 완전히 완료되기 전까지만 가능합니다 </span><br>
     <span style="color:#908dc0e6;font-style:italic;font-size:13px;">- 반복적인 파티탈퇴 및 매칭취소의 행위는 강력한 제재대상이며, 해당 행위에 따른 불이익이 존재할 수 있음을 알려드립니다</span>
@@ -183,40 +165,32 @@
 </div>
 
 <div id="info_div" class="hidden">
-    <div class="emphasized_div">
+    <div class="emphasized_div" style="height: 295px">
         <div class="div_title">
-            <h4>결제금액 상세 안내</h4>
+            <h4>정산금액 상세 안내</h4>
             <img class="cancle" src="${pageContext.request.contextPath}/resources/img/close-24.png" style="width: 14px; height: 14px;">
         </div>
        
         <div class="div_content">
             <div class="paycontent">
-                <span>${ottVo.ott_name } 프리미엄 요금제 금액(${remain_day}일)</span>
-                <span><del><fmt:formatNumber type="number" pattern="#,###" maxFractionDigits="0" value="${ottVo.month_price / 30 * remain_day}" />원</del></span>
+                <span>${ottVo.ott_name } 프리미엄 요금제 금액</span>
+                <span><del><fmt:formatNumber type="number" pattern="#,###" maxFractionDigits="0" value="${ottVo.month_price}" />원</del></span>
             </div>
 
             <div class="paycontent">
                 <span>본인 몫(1/4)의 ${ottVo.ott_name } 이용료</span>
-                <span style="color : #42c5939e">- <fmt:formatNumber type="number" pattern="#,###" maxFractionDigits="0" value="${ottVo.month_price / 30 * remain_day / 4 * 3}" />원</span>
+                <span style="color : #42c5939e">- <fmt:formatNumber type="number" pattern="#,###" maxFractionDigits="0" value="${ottVo.month_price / 4}" />원</span>
             </div>
 
             <div class="paycontent">
                 <span>OTT플러스 수수료</span>
-                <span>+ ${fees}원</span>
+                <span>+ 490원</span>
             </div>
 
             
             <div class="paycontent" style="margin-top: 20px; margin-bottom: 0; padding-top:20px; border-top: 1px solid #cccccc; font-size:16px;">
-                <span>총 결제금액</span>
+                <span>총 정산금액</span>
                 <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${price}" />원</span>
-            </div>
-        </div>
-
-        <div style="margin-top: 10px;">
-            <span style="color : rgb(41, 41, 39); font-size: 14px;">수수료 안내</span>
-            <div style="display: flex; flex-direction: column; color:#000000a3; font-size: 10px;">
-                <span>[남은 파티 만료일]</span>
-                <span>1 ~ 10일 : 수수료 무료 / 11 ~ 20일 : 490원 / 21일 ~ 30일 : 990원</span>
             </div>
         </div>
     </div>

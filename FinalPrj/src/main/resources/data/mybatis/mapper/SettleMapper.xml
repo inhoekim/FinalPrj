@@ -7,4 +7,8 @@
 		insert into SETTLE values 
 		(SEQ_SETTLE.nextval,#{party_id},#{target_id},#{price},0,sysdate+30,#{bank_id},#{bank_account})
 	</insert>
+	
+	<select id="select" parameterType="string" resultType="com.spring.ott.vo.SettleVo">
+		select * from settle where target_id = #{target_id}
+	</select>
 </mapper>
