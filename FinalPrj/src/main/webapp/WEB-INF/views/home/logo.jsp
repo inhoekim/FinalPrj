@@ -17,7 +17,7 @@
     </div>
 
     <div class="container_logo">
-        <a href="#">OTT Plus</a>
+        <a href="${pageContext.request.contextPath}/">OTT Plus</a>
     </div>
 	<sec:authorize access="isAuthenticated()">
 		<div class="container_login">

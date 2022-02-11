@@ -60,6 +60,11 @@ ul {
   padding-left: 0;
 }
 
+@font-face {
+  font-family: 'neo';
+  src: url('../woff/neodgm_code.woff');
+}
+
 /* Typography */
 
 h1 {
@@ -566,6 +571,62 @@ p {
   text-align: left;
   line-height: 25px;
   margin: 0;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  height: 390px;
+  padding: 20px;
+  border-radius: var(--size-border-radius);
+  background-color: #66726d;
+  cursor: pointer;
+}
+
+.banner_content {
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.banner_content span {
+  color: #53e3ac;
+}
+
+.banner_content div {
+  margin: 6px 0;
+}
+
+.speech_bubble2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 100px;
+  height: 35px;
+  padding: 10px;
+  background: #53e3ac;
+  border-radius: var(--size-border-radius);
+  color: var(--color-white);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.speech_bubble2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  border-top-color: #53e3ac;
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -18px;
+  margin-bottom: -6px;
+  transform: rotate(25deg);
 }
 
 /* footer */
