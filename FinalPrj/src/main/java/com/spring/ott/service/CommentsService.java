@@ -37,4 +37,19 @@ public class CommentsService {
 	public int getCount(int post_id) {
 		return mapper.getCount(post_id);
 	}
+	public int delete(int comment_id) {
+		return mapper.delete(comment_id);
+	}
+	public int update(CommentsVo vo) {
+		return mapper.update(vo);
+	}
+	public int selref(int ref) {
+		return mapper.selref(ref);
+	}
+	public int selreff(int comment_id) {
+		return mapper.selreff(comment_id);
+	}
+	public int delPost(int post_id) {
+		return mapper.delPost(post_id);
+	}
 }

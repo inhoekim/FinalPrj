@@ -4,27 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.CommentsMapper">
 	<select id="selectAll" resultType="com.spring.ott.vo.CommentsVo" parameterType="int">
-		select * from comments where post_id=#{post_id}
+		select * from comments where post_id=#{post_id} order by ref asc,lev asc
 	</select>
 	<select id="getNum" resultType="int">
-		select NVL(max(comment_id),0) mnum from comments
+		select NVL(max(comment_id),0) cnt from comments
 	</select>
-	<update id="addStep" parameterType="hashmap">
-		update comments set step=step+1 where ref=#{ref} and step>#{step}
-	</update>
 	<insert id="insertComment" parameterType="com.spring.ott.vo.CommentsVo">
 		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},0,0,sysdate,null)
 	</insert>
 	<insert id="insertReComment" parameterType="com.spring.ott.vo.CommentsVo">
-		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},0,#{step},sysdate,null)
+		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},#{lev},#{step},sysdate,null)
 	</insert>
-	<update id="reCheck" parameterType="int">
-		update comments set ref=#{ref} where comments_id !=ref
-	</update>
 	<select id="getCount" resultType="int" parameterType="int">
-		select NVL(count(comments_id),0) cnt from comments where post_id=#{post_id}
+		select NVL(count(comment_id),0) cnt from comments where post_id=#{post_id}
 	</select>
-	<select id="selectComm" resultType="com.spring.ott.vo.CommentsVo">
-		select * from comments comment_id=#{comment_id}
+	<select id="selectComm" resultType="com.spring.ott.vo.CommentsVo" parameterType="int">
+		select * from comments where comment_id=#{comment_id}
+	</select>
+	<delete id="delete" parameterType="int">
+		delete from comments where comment_id=#{comment_id}
+	</delete>
+	<delete id="delPost" parameterType="int">
+		delete from comments where post_id=#{post_id}
+	</delete>
+	<update id="update" parameterType="com.spring.ott.vo.CommentsVo">
+		update comments set content=#{content} where comment_id=#{comment_id}
+	</update>
+	<select id="selref" parameterType="int" resultType="int">
+		select count(comment_id) from comments where ref=#{ref}
+	</select>
+	<select id="selreff" parameterType="int" resultType="int">
+		select ref from comments where comment_id=#{comment_id}
 	</select>
 </mapper>

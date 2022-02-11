@@ -39,7 +39,7 @@
 	</select>
 	<select id="recentPost" resultType="com.spring.ott.vo.PostVo">
 		 <![CDATA[
-		 		select board.category_id,board.title,board.created_day,
+		 		select board.category_id,board.title,board.created_day,board.post_id,
                 (select category_name from board_category cate where cate.category_id=board.category_id)cname,
 				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
 				(select NVL(count(*),0) from vote vo where vo.post_id=board.post_id)vocnt
@@ -47,7 +47,7 @@
 	</select>
 	<select id="bestPost" resultType="com.spring.ott.vo.PostVo">
 		 <![CDATA[
-		 		select board.category_id,board.title,board.created_day,
+		 		select board.category_id,board.title,board.created_day,board.post_id,
 				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
 				(select NVL(count(*),0) from vote vo where vo.post_id=board.post_id)vocnt
 				from board_post board where rownum<=10 order by vocnt desc]]>

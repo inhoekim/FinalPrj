@@ -27,6 +27,7 @@ ${vo.content}
 		<input type="text" id="input_reply" placeholder="댓글입력">
 		<button type="button" id="replyBtn">댓글달기</button>
 	</div>
+	
 </div>
 <div id="delAndupd">
 	<a href="${cp}/post/update?post_id=${vo.post_id}">글수정</a>
@@ -45,32 +46,130 @@ ${vo.content}
 						let content=d.content;
 						let user_id=d.user_id;
 						let created_day=d.created_day;
-						let html="<div class='comm'>";
+						var date = new Date(created_day);
+					
+						let html="<div id='comm"+comment_id+"'>";
 						html+= user_id+"<br>";
 						html+= content+"<br>";
-						html+= created_day+"<br>";
-						html+= "<input type='button' value='삭제' onclick='removeComm("+ comment_id +")'>";
+						html+= date.getFullYear()+
+				          "/"+(date.getMonth()+1)+
+				          "/"+date.getDate()+
+				          " "+date.getHours()+
+				          ":"+date.getMinutes()+
+				          ":"+date.getSeconds()+"<br>";
+						html+="<input type='button' value='삭제' onclick='removeComm("+ comment_id +")'>";
 						html+="<input type='button' value='수정'  onclick='updateForm("+ comment_id +")'>";
-						html+="<div>";	
+						html+="<input type='button' value='답글'  onclick='replyForm("+ comment_id +")'>";
+						html+="<div>";
+						html+="<div id='rereply_write"+comment_id+"' style='display:none;'>";
+						html+="<input type='text' id='input_rereply"+comment_id+"' placeholder='댓글입력'><br>";
+						html+="<button type='button' id='rereplyBtn' comment_id='"+comment_id+"' post_id='"+post_id+"'>답글달기</button>";
+						html+="</div>";
 						$("#commList").append(html);
 					});
 				}
 			});
-		
-	  });
+	 });
+	function list(){
+		$("#commList").empty();
+		$.ajax({
+			url:"${cp}/commList",
+			data:{"post_id":post_id},
+			dataType:'json',
+			success:function(data){
+				$(data.list).each(function(i,d){
+					let comment_id=d.comment_id;
+					let content=d.content;
+					let user_id=d.user_id;
+					let created_day=d.created_day;
+					var date = new Date(created_day);
+				
+					let html="<div id='comm"+comment_id+"'>";
+					html+= user_id+"<br>";
+					html+= content+"<br>";
+					html+= date.getFullYear()+
+			          "/"+(date.getMonth()+1)+
+			          "/"+date.getDate()+
+			          " "+date.getHours()+
+			          ":"+date.getMinutes()+
+			          ":"+date.getSeconds()+"<br>";
+					html+= "<input type='button' value='삭제' onclick='removeComm("+ comment_id +")'>";
+					html+="<input type='button' value='수정'  onclick='updateForm("+ comment_id +")'>";
+					html+="<input type='button' value='답글'  onclick='replyForm("+ comment_id +")'>";
+					html+="<div>";
+					html+="<div id='rereply_write"+comment_id+"' style='display:none;'>";
+					html+="<input type='text' id='input_rereply"+comment_id+"' placeholder='댓글입력'>";
+					html+="<button type='button' id='rereplyBtn' comment_id='"+comment_id+"' post_id='"+post_id+"'>답글달기</button>";
+					html+="</div>";
+					$("#commList").append(html);
+				});
+			}
+		});
+	}
+	 $(document).on("click","#rereplyBtn",function(){ 
+		 let comment_id=$(this).attr("comment_id");
+		 let content=$("#input_rereply"+comment_id).val();
+		 $.ajax({
+			 url:'${cp}/commrereply',
+			 data:{
+				 'comment_id':comment_id,
+				 'content':content,
+				 'post_id':${vo.post_id}
+			 },
+			 success:function(data){
+				 list();
+			 }
+		 });		 
+	
+	 });	
+	function replyForm(comment_id){
+		var rere = document.getElementById("rereply_write"+comment_id);
+		rere.style.display='block';
+	}
 	function removeComm(comment_id){
 		console.log(comment_id);
 		$.ajax({
-			url:'${cp}/commremove?comment_id='+comment_id,
-			dataType:'json',
+			url:'${cp}/commRemove',
+			data:{
+				"comment_id":comment_id
+			},
 			success:function(data){
-				console.log(data.code);
-				list(1);
+				list();
 			}
-		})
-	}
-	
-	
+		});
+	};
+	function updateForm(comment_id){
+		$.ajax({
+			url:'${cp}/selComm',
+			type:'get',
+			dataType:'json',
+			data:{
+				"comment_id":comment_id
+			},
+			success:function(data){
+				$("#comm"+comment_id).empty();
+				let html="<input type='text' id='input_update"+comment_id+"' value='"+data.content+"'>";
+				html+="<button type='button' id='updateBtn' comment_id='"+comment_id+"' post_id='"+post_id+"'>수정완료</button>";
+				$("#comm"+comment_id).append(html);
+			}
+		});
+		
+	}		
+	$(document).on("click","#updateBtn",function(){ 
+		let comment_id=$(this).attr("comment_id");
+		let content=$("#input_update"+comment_id).val();
+		 console.log(content);
+		 $.ajax({
+			 url:'${cp}/commupdate',
+			 data:{
+				 'comment_id':comment_id,
+				 'content':content
+			 },
+			 success:function(data){
+				 list();
+			 }
+		 });		
+	});
 	$("#like").click(function(){	
 		$.ajax({
 			url:'${cp}/insertLike',
@@ -97,11 +196,11 @@ ${vo.content}
 			}
 		});
 	});
-	$("#cmtBtn").click(function(){
+	$("#replyBtn").click(function(){
 		$.ajax({
 			url:'${cp}/commInsert',
 			data:{
-				post_id:${vo.post_id},user_id:"${vo.user_id}",content:$("#cmtTxt").val()
+				post_id:${vo.post_id},user_id:"${vo.user_id}",content:$("#input_reply").val()
 			},
 			type:'get',
 			success:function(data){
@@ -112,19 +211,19 @@ ${vo.content}
 						post_id:${vo.post_id}
 					},
 					success:function(data){
+						console.log(data.count);
 						$("#comCnt").empty();
-						$("#comCnt").html("&nbsp;&nbsp;"+data);
+						$("#comCnt").html("&nbsp;&nbsp;"+data.count);
+						list();
+						$("#input_reply").val("");
 					}
 				});
 			}
 		});
-	});
-	 $(document).on("click","#reply${com.comment_id}",function(){ 
-		 let comment_id=$(this).attr("comment_id");
-		 console.log(comment_id);
-		 
 	
-	 });
+	});
+	
+	
 
 </script>
 </body>

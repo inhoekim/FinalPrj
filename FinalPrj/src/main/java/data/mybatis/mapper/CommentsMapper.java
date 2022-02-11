@@ -14,4 +14,9 @@ public interface CommentsMapper {
 	int reCheck(int ref);
 	CommentsVo selectComm(int comment_id);
 	int getCount(int post_id);
+	int delete(int comment_id);
+	int update(CommentsVo vo);
+	int selref(int ref);
+	int selreff(int comment_id);
+	int delPost(int post_id);
 }

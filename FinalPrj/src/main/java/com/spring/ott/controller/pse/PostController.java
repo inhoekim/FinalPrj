@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.PostService;
 import com.spring.ott.vo.CategoryVo;
 import com.spring.ott.vo.PostVo;
@@ -17,9 +18,11 @@ import com.spring.ott.vo.PostVo;
 @Controller
 public class PostController {
 	@Autowired PostService service;
+	@Autowired CommentsService cservice;
 	@Autowired ServletContext sc;
 	@GetMapping("/post/delete")
 	public String delete(int post_id) {
+		cservice.delPost(post_id);
 		service.delete(post_id);
 		return "redirect:/board/list";
 				
