@@ -35,16 +35,16 @@
             <div style="position: relative; top:-5px">찾아보세요<img src="${pageContext.request.contextPath}/resources/img/sparkling-32.png" style="height: 25px;position: relative; top:4px"><br></div>
         </div>
 
-        <div style="display: flex; justify-content: center; margin: 30px 0">
-            <img src="${pageContext.request.contextPath}/resources/img/searching/search2-64.png" style="height: 110px; width: 110px;">
+        <div class="banner_img">
+            <img class="search_chick" src="${pageContext.request.contextPath}/resources/img/searching/search2-64.png">
             <div class="speech_bubble2">
                 <span style="position: relative; top:-3px; left:3px;display: flex;font-family: neo;">
-                    찾아줘 <img src="${pageContext.request.contextPath}/resources/img/chick-24.png" style="position:relative;width: 24px; height: 24px; top:-2px;left:4px;">
+                    찾아줘 <img class="chick" src="${pageContext.request.contextPath}/resources/img/chick-24.png">
                 </span>
             </div>
         </div>
 
-        <div style="background-color: white; border-radius: 7px; padding: 15px; font-family: neo; display: flex; flex-direction: column; align-items: center;">
+        <div class="banner_service">
             <div style="margin-bottom: 5px;">자동매칭 서비스</div> 
             <div>이용해보기</div>
         </div>

@@ -29,10 +29,12 @@
 	
 	<div id="main">
 		<tiles:insertAttribute name="leftside"/>
-		<section id="content">
-			<tiles:insertAttribute name="content"/>
-		</section>
-		<tiles:insertAttribute name="rightside"/>
+		 <div class="right_two">
+			<section id="content">
+				<tiles:insertAttribute name="content"/>
+			</section>
+			<tiles:insertAttribute name="rightside"/>
+		</div>
 	</div>
 	
 	<footer id="footer">

@@ -79,7 +79,7 @@
     </div>   
 
 
-    <div class="section_container">
+    <div class="section_container popular_comment">
         <div class="boundary">인기댓글</div>
 
         <div class="popular_comments">
@@ -133,14 +133,4 @@
         </div>
 
         <div class="pagenation"> < 3 / 3 ></div>
-    </div>
-
-    <div class="section_container">
-        영화,드라마 추천
-    </div>
-
-    <div class="section_container">
-        작성글
-        댓글
-        추천수
     </div>
