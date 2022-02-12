@@ -7,14 +7,14 @@
          <div class="cotainer_items">
              <div class="folder">
                  <div class="folder_category">
-                     <span class="category_name active">
-                         <i class="fas fa-folder-open"></i>
+                     <span class="category_name">
+                         <i class="fas fa-folder"></i>
                          OTT 종류
                      </span>
-                     <i class="fas fa-angle-up toggle" style="color:black"></i>
+                     <i class="fas fa-angle-down toggle" style="color:black"></i>
                  </div>
-                 <div class="folder_items active">
-                      <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list">넷플릭스</a></div>
+                 <div class="folder_items">
+                     <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list">넷플릭스</a></div>
                      <div class="folder_item">왓챠</div>
                      <div class="folder_item">디즈니</div>
                  </div>

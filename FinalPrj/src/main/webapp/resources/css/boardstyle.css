@@ -265,12 +265,15 @@ p {
 }
 
 .folder_items {
-  display: none;
+  visibility: hidden;
+  max-height: 0;
   margin: 0 35px;
+  transition: visibility 50ms, max-height 300ms;
 }
 
 .folder_items.active {
-  display: block;
+  max-height: 100px;
+  visibility: visible;
 }
 
 .folder_item {
@@ -281,6 +284,10 @@ p {
 
 .folder_category .toggle:hover {
   cursor: pointer;
+}
+
+.folder_category i {
+  transition: all 200ms;
 }
 
 .category_name:hover {
