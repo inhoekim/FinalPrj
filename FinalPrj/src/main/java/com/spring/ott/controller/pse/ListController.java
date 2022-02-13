@@ -45,6 +45,6 @@ public class ListController {
 		model.addAttribute("list", list);
 		
 		
-		return "board/list";
+		return "home/boardList.tiles";
 	}
 }
