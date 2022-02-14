@@ -6,7 +6,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" 
-                style=" background: linear-gradient(to right, #FB5270, #E75688, #CA5DAA, #AE62CA, #9C66DF, #9368EA);
+                style=" background: #353535;
                 color:black; ">
                 
                 

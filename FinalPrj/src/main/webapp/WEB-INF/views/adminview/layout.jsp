@@ -11,7 +11,9 @@
     <meta name="author" content="">
 
     <title>Admin- Dashboard</title>
-
+    <!-- Bootstrap core JavaScript-->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -20,8 +22,29 @@
 
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+	
+	<!-- Bootstrap core JavaScript-->
+    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	   
+    <!-- Core plugin JavaScript-->
+    <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+	
+	
+	<!-- 달력 api -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	<!-- 차트 api -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	
+	<!-- 데이터테이블 api -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.js"></script>
+
+	
 </head>
 <body id="page-top">
 	
@@ -40,7 +63,7 @@
 	
 	
 	            <!-- Main Content -->
-            <div id="content" style="background-color: #27293D">
+            <div id="content" style="background-color: #ECECEC; color:black;">
 	
 					<!-- 위쪽 메뉴 topmenu.jsp -->
 				
@@ -49,7 +72,7 @@
 	
 	
 	                <!-- Begin Page Content -->
-                	<div class="container-fluid" style="background-color: #27293D">
+                	<div class="container-fluid" style="background-color: #ECECEC">
 	
 							<!--진짜 캔탠츠 내용페이지 삽입 알맹이 -->
 				        <div id="content">
@@ -65,7 +88,7 @@
 		
 		
 		<!-- 푸터 footer.jsp -->
-		<div id="contentfooter" style="background-color: #27293D">
+		<div id="contentfooter" style="background-color: #ECECEC">
 			<tiles:insertAttribute name="siteBottom"/>
 		</div>
 		
@@ -86,25 +109,6 @@
 		<!-- 로그아웃 모델 logoutmodel.jsp-->
 	<%@include file="../adminview/logoutmodel.jsp" %>
 	
-	
-	    <!-- Bootstrap core JavaScript-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    
-    <!-- Page level custom scripts -->
-    <script src="${pageContext.request.contextPath}/resources/js/demo/chart-area-demo.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/demo/chart-pie-demo.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 </body>
 </html>
