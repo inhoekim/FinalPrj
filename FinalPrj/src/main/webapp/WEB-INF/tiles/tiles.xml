@@ -39,6 +39,16 @@
 	<definition name="automatching/*.tiles" extends="autoMatchingLayout">
 		<put-attribute name="main_content" value="/WEB-INF/views/automatching/{1}.jsp" />
 	</definition>	
+	
+	<definition name="boardLayout" template="/WEB-INF/views/board/layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/views/board/navbar.jsp" />
+		<put-attribute name="main_content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/board/footer.jsp" />
+	</definition>
+
+	<definition name="board/*.tiles" extends="boardLayout">
+		<put-attribute name="main_content" value="/WEB-INF/views/board/{1}.jsp" />
+	</definition>	
 	<!-- 김인회 End -->
 	
 </tiles-definitions>
