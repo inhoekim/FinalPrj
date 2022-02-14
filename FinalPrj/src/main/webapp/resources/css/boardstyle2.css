@@ -75,7 +75,7 @@ input[type='text']:focus {
 
 @font-face {
   font-family: 'neo';
-  src: url('/neodgm_code.woff');
+  src: url('../woff/neodgm_code.woff');
 }
 
 /* Typography */
@@ -816,7 +816,7 @@ footer {
   padding: 10px;
   top: -4px;
   border-radius: 0 0 5px 5px;
-  transition: opacity 200ms, height 300ms linear;
+  transition: opacity 550ms, height 250ms linear;
   height: 0;
   opacity: 0;
 }
