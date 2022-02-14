@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OTT</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/boardstyle.css">
-    <link href="${pageContext.request.contextPath}/resources/css/all.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/emphasize.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/leftside.js"></script>

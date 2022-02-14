@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="board_title">
     <h4>OTT 게시판</h4>
 </div>
 
 <div class="board_topbar">
-    <div class="topbar_classification">분류</div>
-    <i class="fas fa-angle-down toggle"></i>
+    <div class="topbar_title">
+        <div class="topbar_classification">분류: ${param.classification}</div>
+        <i class="fas fa-angle-down toggle"></i>
+    </div>
+    <div class="topbar_content">
+        <div class="content_wrapper">
+            <a href="${cp}/board/list?classification=all">전체</a>
+            <a href="${cp}/board/list?classification=announce">공지</a>
+            <a href="${cp}/board/list?classification=free">자유</a>
+            <a href="${cp}/board/list?classification=party">파티찾기</a>
+            <a href="${cp}/board/list?classification=report">신고</a>
+        </div>
+
+    </div>
 </div>
 
 <div class="table_wrapper">
@@ -101,7 +114,18 @@
 </div>
 
 <div class="board_bottomBar">
-    <div class="searchBar">검색</div>
-    <div class="writeButton">쓰기</div>
+    <form action="${cp}/board/list?classification=${param.classification}">
+        <div class="searchBar">
+            <select class="searchBar_select" name="field">
+                <option value="title" <c:if test="${field=='title'}">selected</c:if>>제목</option>
+                <option value="user_id" <c:if test="${field=='user_id'}">selected</c:if>>작성자</option>
+                <option value="content" <c:if test="${field=='content'}">selected</c:if>>내용</option>
+                <option value="ticon" <c:if test="${field=='ticon'}">selected</c:if>>제목+내용</option>
+            </select>
+            <input type="text" class="searchBar_input" name="keyword" value="${keyword}">
+            <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </form>
+    <a class="writeButton" href="#"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
 
 </div>

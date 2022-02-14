@@ -58,6 +58,21 @@ ul {
   padding-left: 0;
 }
 
+input[type='text'] {
+  position: relative;
+  border: 1px solid var(--color-light-white);
+  margin: 10px 0;
+  padding: 0 15px;
+  font-size: 16px;
+  margin: 0;
+}
+
+input[type='text']:focus {
+  outline: 1px solid rgb(185, 185, 185);
+  caret-color: rgb(155, 155, 155);
+  font-size: 12px;
+}
+
 @font-face {
   font-family: 'neo';
   src: url('/neodgm_code.woff');
@@ -764,9 +779,16 @@ footer {
 
 .board_topbar {
   display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.topbar_title {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 20px;
+  margin: 0 20px;
   font-size: var(--font-micro);
   color: var(--color-dark-grey);
   font-weight: 400;
@@ -776,6 +798,42 @@ footer {
   margin-top: 20px;
   background-color: #ffffff;
   border-radius: 5px;
+}
+
+.topbar_content {
+  position: relative;
+  font-size: var(--font-micro);
+
+  margin: 0 20px;
+}
+
+.content_wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: absolute;
+  width: 150px;
+  padding: 10px;
+  top: -4px;
+  border-radius: 0 0 5px 5px;
+  transition: opacity 200ms, height 300ms linear;
+  height: 0;
+  opacity: 0;
+}
+
+.content_wrapper.open {
+  height: 140px;
+  opacity: 1;
+}
+
+.content_wrapper a {
+  color: var(--color-dark-grey);
+  margin: 5px 0;
+}
+
+.content_wrapper a:hover {
+  color: var(--color-black);
+  font-weight: 600;
 }
 
 .table_wrapper {
@@ -855,6 +913,56 @@ footer {
   padding: 5px;
   display: flex;
   justify-content: space-between;
+}
+
+.writeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #9ed4bb;
+  color: var(--color-white);
+  height: 30px;
+  width: 55px;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.writeButton:hover {
+  background-color: #75d4b0;
+}
+
+.searchBar {
+  display: flex;
+}
+
+.searchBar_select {
+  width: 80px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.searchBar_input {
+  border-radius: 2px;
+  width: 120px;
+  height: 30px;
+  margin: 0 5px !important;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5e5e5;
+  border-radius: 4px;
+  border: none;
+  height: 30px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.search:hover {
+  background-color: #d3d2d2;
 }
 
 @media screen and (max-width: 900px) {
@@ -954,9 +1062,14 @@ footer {
   }
 
   .board_title,
-  .board_topbar,
   .board_bottomBar {
     margin: 20px 0;
+  }
+  .topbar_title {
+    margin: 0;
+  }
+  .topbar_content {
+    margin: 0;
   }
 }
 
