@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 	  engAndNumberFunc(document.getElementById("user_id"));
@@ -71,6 +72,11 @@ function check(){
 		document.uj.name.focus();
 		return false;
 	}
+	if(document.uj.name.value.length<2 || document.uj.name.value.length > 6){ 
+		alert("이름은 2~6글자 사이로 입력해주세요")
+		document.uj.name.focus();
+		return false;
+	}
 	if(document.uj.jnum1.value == "" || document.uj.jnum1.value.length < 0){ 
 		alert("주민번호 앞자리를 입력해주세요")
 		document.uj.jnum1.focus();
@@ -131,7 +137,24 @@ function check_pw(){
         	}
     	}
 }
- 
+
+$(function(){
+	$("#user_id").keyup(function(){
+		let user_id=$("#user_id").val();
+		if(user_id=="") return;
+		$.ajax({
+			url:'/final/idCheck/' + user_id,
+			dataType:'json',
+			success:function(data){
+				if(data.using==true){
+					$("#idcheck").html("사용 중인 아이디입니다.");
+				}else{
+					$("#idcheck").html("사용 가능한 아이디입니다.");
+				}
+			}
+		})
+	});
+});
 
 </script>
 
@@ -139,13 +162,13 @@ function check_pw(){
 <body>
 <form:form method="post" action="${pageContext.request.contextPath }/join" name="uj" onsubmit="return check();">
 	아이디 <br>
-	<input type="text" name="user_id" id="user_id" maxlength="13"><br>
+	<input type="text" name="user_id" id="user_id" maxlength="13">&nbsp;&nbsp;&nbsp;<span id="idcheck" style="font-size:0.5em;"></span><br>
 	비밀번호 <br>
 	<input type="password" name="pwd" id="pwd" onchange="check_pw()"><span style="font-size:0.5em; color:grey;">&nbsp;&nbsp;&nbsp; 6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </span><br>
 	비밀번호 확인<br>
 	<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
 	이름 <br>
-	<input type="text" name="name" id="name" minlength="2" maxlength="6"><br>
+	<input type="text" name="name" id="name" maxlength="6"><br>
 	주민번호 <br>
 	<input type="text" name="jnum1" id="jnum1" maxlength="6"> - <input type="password" name="jnum2" id="jnum2" maxlength="7"><br>
 	나이 <br>
@@ -171,9 +194,63 @@ function check_pw(){
 		<option value="해외">해외</option>
 	</select>
 	<br>
-	이메일 <br>
-	<input type="text" name="email" value="${email_id }" readonly="readonly"><br>
+	<tr>
+		<th>
+			이메일
+		</th>
+		<td>
+			<p>
+				<input id="email" type="text" name="email" placeholder="이메일 주소를 입력해주세요." required/>
+				<button type="button" id="emailChk" class="doubleChk">인증번호 보내기</button><br/>
+				<input id="email2" type="text" name="email2" placeholder="인증번호 입력" disabled required/>
+				<button type="button" id="emailChk2" class="doubleChk">이메일인증</button>
+				<span class="successEmailChk" style="font-size:0.5em;">이메일 입력후 인증번호 보내기를 해주십시오.</span>
+				<input type="hidden" id="emailDoubleChk"/>
+			</p>
+		</td>
+	</tr>
 	<input type="submit" value="가입">
 </form:form>
 </body>
+<script type="text/javascript">
+
+var code = "";
+$("#emailChk").click(function(){
+	var email = $("#email").val();
+	$.ajax({
+        type:"GET",
+        url:"mailCheck?email=" + email,
+        cache : false,
+        success:function(data){
+        	if(data == "error"){
+        		alert("이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해주세요.");
+				$("#email").attr("autofocus",true);
+				$(".successEmailChk").text("유효한 이메일 주소를 입력해주세요.");
+				$(".successEmailChk").css("color","red");
+        	}else{	        		
+				alert("인증번호 발송이 완료되었습니다.\n입력한 이메일에서 인증번호 확인을 해주십시오.");
+        		$("#email2").attr("disabled",false);
+        		$("#emailChk2").css("display","inline-block");
+        		$(".successEmailChk").text("인증번호를 입력한 뒤 이메일 인증을 눌러주십시오.");
+        		$(".successEmailChk").css("color","green");
+        		code = data;
+        	}
+        }
+    });
+});
+
+$("#emailChk2").click(function(){
+	if($("#email2").val() == code){
+		$(".successEmailChk").text("인증번호가 일치합니다.");
+		$(".successEmailChk").css("color","green");
+		$("#emailDoubleChk").val("true");
+		$("#email2").attr("disabled",true);
+	}else{
+		$(".successEmailChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+		$(".successEmailChk").css("color","red");
+		$("#emailDoubleChk").val("false");
+		$("#email2").attr("autofocus",true);
+	}
+});
+</script>
 </html>
