@@ -73,11 +73,11 @@
 <script>
  	$(function(){
 		let flag = false;
-		if(${!empty param.login}) {flag = true};
-		if(${login}) {
+		if(${!empty param.login}) {flag = true;}
+		if(${!empty login}) {
 			alert("로그인이 필요한 페이지입니다");
 			flag = true;
-			}; 
+		}
  		if(flag) {
  			$("#loginWrapper").removeClass("hidden");
  	        $("html").css("pointer-events" , "none");
