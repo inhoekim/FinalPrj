@@ -37,7 +37,7 @@
         	로그인
         </div>
         <div class="login_item">
-        	<a href="${pageContext.request.contextPath }/email">회원가입</a>
+        	<a href="${pageContext.request.contextPath }/join">회원가입</a>
         </div>
     </div>
     </sec:authorize>

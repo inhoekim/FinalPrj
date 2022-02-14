@@ -39,7 +39,7 @@ public class UserService {
 	public String findId(String name, String email) {
 		return mapper.findId(name, email);
 	}
-	public String findPwdChk(String user_id, String email) {
+	public UserVo findPwdChk(String user_id, String email) {
 		return mapper.findPwdChk(user_id, email);
 	}
 	public int findPwd(UserVo vo) {

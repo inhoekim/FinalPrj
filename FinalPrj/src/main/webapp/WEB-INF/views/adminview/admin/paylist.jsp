@@ -49,40 +49,29 @@
             <th id="d">결제일</th>
         </tr>
     </thead>
-    <tbody>
-       <c:forEach var="vo" items="${list}">
-       	<c:choose>
-       		<c:when test="${vo.status =='0' }">
-             <tr id="d0">
-                <td id="d0">${vo.payment_id}</td>
-                <td id="d0">${vo.user_id}</td>
-                <td id="d0">${vo.price}</td>
-                <td id="d0">결제완료 (환불가능)</td>
-                <td id="d0">${vo.payment_date}</td>
-             </tr>
-     		</c:when>
-       		<c:when test="${vo.status =='1' }">
-             <tr id="d1">
-                <td id="d1">${vo.payment_id}</td>
-                <td id="d1">${vo.user_id}</td>
-                <td id="d1">${vo.price}</td>
-                <td id="d1">결제완료 (환불 불가능)</td>
-                <td id="d1">${vo.payment_date}</td>
-             </tr>
-     		</c:when>
-       		<c:when test="${vo.status =='2' }">
-             <tr id="d2">
-                <td id="d2">${vo.payment_id}</td>
-                <td id="d2">${vo.user_id}</td>
-                <td id="d2">${vo.price}</td>
-                <td id="d2">환불</td>
-                <td id="d2">${vo.payment_date}</td>
-             </tr>
-     		</c:when>
-     		
-     	</c:choose>
-        </c:forEach>
-    </tbody>
+    
 </table>
 </body>
+<script type="text/javascript">
+
+//데이터테이블 API
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        
+    	ajax : {
+    		"url":"/final/adminpaylist1",
+    		type:"get",
+    		'dataSrc':''
+                
+    	},
+    	columns :[
+    		{data: "payment_id"},
+    		{data: "user_id"},
+    		{data: "price"},
+    		{data: "status"},
+    		{data: "payment_date"}
+    	]
+    } );
+} );
+</script>
 </html>
