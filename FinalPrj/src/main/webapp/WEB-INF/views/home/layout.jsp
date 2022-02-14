@@ -72,7 +72,9 @@
 </body>
 <script>
  	$(function(){
- 		let flag = ${!empty param.login};
+		let flag = false;
+		if(${!empty param.login}) {flag = true};
+		if(${login}) {flag = true}; 
  		if(flag) {
  			$("#loginWrapper").removeClass("hidden");
  	        $("html").css("pointer-events" , "none");
