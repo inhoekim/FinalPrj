@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <div class="writer">
-                        <img class="writer_profile" src="profile/woman2-32.png">
+                        <img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/profile/woman2-32.png">
                         admin
                     </div>
                 </td>
@@ -54,7 +54,7 @@
                 </td>
                 <td>
                     <div class="writer">
-                        <img class="writer_profile" src="profile/woman2-32.png">
+                        <img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/profile/woman2-32.png">
                         admin
                     </div>
                 </td>

@@ -31,7 +31,7 @@
 		<tiles:insertAttribute name="leftside"/>
 		 <div class="right_two">
 			<section id="content">
-				<tiles:insertAttribute name="content"/>
+				<tiles:insertAttribute name="main_content"/>
 			</section>
 			<tiles:insertAttribute name="rightside"/>
 		</div>
