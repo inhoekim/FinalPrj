@@ -938,6 +938,7 @@ footer {
     justify-content: space-between;
     border: none;
     width: 100%;
+    padding: 0 20px;
   }
 
   .banner {
@@ -973,5 +974,9 @@ footer {
   .post .board_category {
     width: 50px;
     font-size: var(--font-mmicro);
+  }
+
+  .rightside_container {
+    margin-left: 0;
   }
 }

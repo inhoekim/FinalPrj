@@ -18,4 +18,8 @@ public class SettleService {
 	public SettleVo select(String target_id) {
 		return mapper.select(target_id);
 	}
+	
+	public int cancleSettle(int party_id) {
+		return mapper.cancleSettle(party_id);
+	}
 }

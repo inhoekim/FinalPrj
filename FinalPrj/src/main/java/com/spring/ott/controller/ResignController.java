@@ -39,4 +39,22 @@ public class ResignController {
 		return "home/alert";
 	}
 	
+	@GetMapping("/autoMatch/resign/leader")
+	public String resignLeader(Model model,int party_id,Principal principal) {
+		PartyVo partyVo = partyService.selectParty(party_id);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("party_id", party_id);
+		map.put("party_state", 3);
+		if(partyVo.getParty_state() == 0) {
+			erollPartyService.resignPartyLeader(party_id, map);
+			model.addAttribute("msg", "파티를 탈퇴하였습니다!");
+			model.addAttribute("url", servletContext.getContextPath() + "/autoMatch/myParty");
+		}else {
+			model.addAttribute("msg", "매칭이 완료된 파티는 탈퇴가 불가능합니다.");
+			model.addAttribute("url", servletContext.getContextPath() + "/autoMatch/myParty");
+		}
+
+		return "home/alert";
+	}
+	
 }

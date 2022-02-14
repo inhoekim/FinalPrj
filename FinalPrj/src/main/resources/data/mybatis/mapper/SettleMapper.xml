@@ -11,4 +11,8 @@
 	<select id="select" parameterType="string" resultType="com.spring.ott.vo.SettleVo">
 		select * from settle where target_id = #{target_id}
 	</select>
+	
+	<update id="cancleSettle" parameterType="int">
+		update settle set settle_state = 2 where party_id = #{party_id} and settle_state = 0
+	</update>
 </mapper>

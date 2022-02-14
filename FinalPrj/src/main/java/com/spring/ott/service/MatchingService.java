@@ -24,6 +24,10 @@ public class MatchingService {
 		return mapper.delete(map);
 	}
 	
+	public int deleteAll(int party_id) {
+		return mapper.deleteAll(party_id);
+	}
+	
 	public MatchingVo matchingCheck(String user_id) {
 		return mapper.matchingCheck(user_id);
 	}

@@ -11,4 +11,5 @@ public interface PartyMapper {
 	PartyVo matchingCheck(String user_id);
 	PartyVo selectParty(int party_id);
 	int memberUpdate(HashMap<String,Object> map);
+	int stateUpdate(HashMap<String,Object> map);
 }

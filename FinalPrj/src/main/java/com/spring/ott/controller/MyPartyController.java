@@ -45,7 +45,7 @@ public class MyPartyController {
 			SettleVo settleVo = settleService.select(leader.getUser_id());
 			List<MemberVo> list = matchingService.selectMember(partyVo.getParty_id());		
 			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
-			int price = (int)(ottVo.getMonth_price() / 4 + 490);
+			int price = (int)(ottVo.getMonth_price() / 4 * 3 - 490);
 			model.addAttribute("member_list", list);
 			model.addAttribute("partyVo", partyVo);
 			model.addAttribute("ottVo", ottVo);

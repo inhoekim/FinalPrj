@@ -36,4 +36,8 @@ public class PartyService {
 	public int memberUpdate(HashMap<String,Object> map) {
 		return mapper.memberUpdate(map);
 	}
+	
+	public int stateUpdate(HashMap<String,Object> map) {
+		return mapper.stateUpdate(map);
+	}
 }

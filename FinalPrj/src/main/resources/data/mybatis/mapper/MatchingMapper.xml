@@ -7,6 +7,10 @@
 		delete from matching where party_id = #{party_id} and user_id = #{user_id}
 	</delete>
 	
+	<delete id="deleteAll" parameterType="int">
+		delete from matching where party_id = #{party_id}
+	</delete>
+	
 	<insert id="insert" parameterType="Hashmap">
 		insert into matching values (#{party_id}, #{user_id}, null , null, sysdate)
 	</insert>
