@@ -12,6 +12,7 @@
 <title>OTT+</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainstyle.css">
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+<link href="${pageContext.request.contextPath}/resources/css/all.min.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/ea309b6399.js" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
