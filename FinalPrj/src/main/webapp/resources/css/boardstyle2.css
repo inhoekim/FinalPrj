@@ -58,6 +58,16 @@ ul {
   padding-left: 0;
 }
 
+button {
+  border: none;
+}
+
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
+}
+
 input[type='text'] {
   position: relative;
   border: 1px solid var(--color-light-white);
@@ -340,6 +350,7 @@ p {
 /* section Post*/
 #content {
   width: 79%;
+  padding: 0 20px;
 }
 
 .post_section {
@@ -773,7 +784,7 @@ footer {
 
 /* Board List (게시판 리스트)*/
 .board_title {
-  margin: 10px 20px;
+  margin: 10px 0;
   font-size: var(--font-regular);
 }
 
@@ -788,7 +799,6 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 20px;
   font-size: var(--font-micro);
   color: var(--color-dark-grey);
   font-weight: 400;
@@ -803,8 +813,6 @@ footer {
 .topbar_content {
   position: relative;
   font-size: var(--font-micro);
-
-  margin: 0 20px;
 }
 
 .content_wrapper {
@@ -816,14 +824,15 @@ footer {
   padding: 10px;
   top: -4px;
   border-radius: 0 0 5px 5px;
-  transition: opacity 550ms, height 250ms linear;
+  transition: height 200ms linear;
   height: 0;
   opacity: 0;
+  overflow: hidden;
 }
 
 .content_wrapper.open {
-  height: 140px;
   opacity: 1;
+  height: 140px;
 }
 
 .content_wrapper a {
@@ -836,9 +845,6 @@ footer {
   font-weight: 600;
 }
 
-.table_wrapper {
-  margin: 0 20px;
-}
 .board_table {
   width: 100%;
   background-color: var(--color-white);
@@ -909,7 +915,7 @@ footer {
 }
 
 .board_bottomBar {
-  margin: 20px;
+  margin: 20px 0;
   padding: 5px;
   display: flex;
   justify-content: space-between;
@@ -990,7 +996,7 @@ footer {
 
   #content {
     width: 100%;
-    border-bottom: 1px solid var(--color-grey);
+    padding: 0;
   }
 
   .post_section .section_container:nth-child(1) {
@@ -1092,80 +1098,12 @@ footer {
   }
   #content {
     width: 100%;
-    border-bottom: 1px solid var(--color-grey);
   }
 
   .rightside {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    width: 100%;
+    display: none;
   }
 
-  .banner {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    width: 340px;
-    height: 210px;
-    flex-wrap: wrap;
-    padding: 10px;
-  }
-
-  .banner_content {
-    font-size: 16px;
-  }
-  .search_chick {
-    width: 60px;
-    height: 60px;
-  }
-
-  .banner_img {
-    margin: 0;
-    margin-left: 10px;
-    transform: scaleX(-1);
-  }
-
-  .speech_bubble2 {
-    transform: scaleX(-1);
-    left: -10px;
-    font-size: 13px;
-    width: 80px;
-    height: 30px;
-  }
-
-  .chick {
-    width: 20px;
-    height: 20px;
-  }
-
-  .speech_bubble2:after {
-    transform: scaleX(-1) rotate(20deg);
-    left: 100%;
-  }
-
-  .banner_service {
-    margin-top: 5px;
-    width: 100%;
-  }
-
-  .post .board_category {
-    width: 50px;
-    font-size: var(--font-mmicro);
-  }
-
-  .rightside_container .post .post_title {
-    font-size: var(--font- micro);
-  }
-
-  .rightside_container .post .board_category {
-    width: 50px;
-    font-size: var(--font-mmicro);
-  }
-
-  .speech_bubble {
-    width: 180px;
-  }
 
   .board_list {
     padding-right: 0px;
@@ -1179,53 +1117,9 @@ footer {
   }
   #content {
     width: 100%;
-    border-bottom: 1px solid var(--color-grey);
   }
 
   .rightside {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    width: 100%;
-    padding: 0 20px;
-  }
-
-  .banner {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    width: 450px;
-    height: 210px;
-    flex-wrap: wrap;
-  }
-
-  .banner_img {
-    margin: 0;
-    margin-left: 10px;
-    transform: scaleX(-1);
-  }
-
-  .speech_bubble2 {
-    transform: scaleX(-1);
-    left: -20px;
-  }
-
-  .speech_bubble2:after {
-    transform: scaleX(-1) rotate(20deg);
-    left: 100%;
-  }
-
-  .banner_service {
-    margin-top: 5px;
-    width: 100%;
-  }
-
-  .post .board_category {
-    width: 50px;
-    font-size: var(--font-mmicro);
-  }
-
-  .rightside_container {
-    margin-left: 0;
+    display: none;
   }
 }
