@@ -12,11 +12,7 @@ public interface VisiterMapper {
 	
 	
 	//멤버 차트 
-	public List<VisiterVo> membercount1();
-	public List<VisiterVo> membercount2();
-	public List<VisiterVo> membercount3();
-	public List<VisiterVo> membercount4();
-	public List<VisiterVo> membercount5(String visit_date,String visit_date1);
-	public List<VisiterVo> membercount6();
-	public List<VisiterVo> membercount7();
+	public List<VisiterVo> memberstatus();
+	public List<VisiterVo> memberage();
+	public List<VisiterVo> DayCount(String visit_date);
 }

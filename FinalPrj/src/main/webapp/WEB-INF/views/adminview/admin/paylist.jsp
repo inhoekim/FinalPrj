@@ -8,9 +8,7 @@
 <!-- Custom styles for this page -->
 <link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <style type="text/css">
-	#title{
-		color: white;
-	}
+
 	#d{
 	background: #bdbdbd;
 	color: black;
@@ -19,26 +17,16 @@
 	background: #bdbdbd;
 	color: black;
 	}
-	#d0:hover{ 
-	background-color: #69f0ae;
 
-	color: white;
-	}
-	#d1:hover{ 
-	background-color: #FFC107;
-	color: white;
-	}
-	#d2:hover{ 
-	background-color: #ff6e40;
-	color: white;
-	}
 
 </style>
 </head>
 <body>
 
-<h2 id="title">결제조회</h2>
-<hr>
+<h2 style="color: black; ">결제 조회</h2>
+<hr style="width: 100%; height: 2px; background-color: #bdbdbd; margin-bottom: 20px;">
+
+
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead id="dd">
         <tr id="dd">

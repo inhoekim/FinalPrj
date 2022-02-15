@@ -41,35 +41,32 @@
 	
 	
 	<!-- 멤버 차트 -->
-	<select id="membercount6" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(black_enabled) COUNT FROM USERS 
-		WHERE black_enabled = 0 AND enabeld = '1'
+	<!-- 회원상태 차트 블랙유저,탈퇴유저 -->
+	<select id="memberstatus" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT *
+		FROM (SELECT COUNT(*) count  FROM USERS WHERE black_enabled = 0 AND enabeld = 1) A,
+		(SELECT COUNT(*) count1 FROM USERS WHERE  enabeld = 0) B
 	</select>
-	<select id="membercount7" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(black_enabled) COUNT FROM USERS 
-		WHERE black_enabled = 0 AND enabeld = '1'
+
+	<!-- 나이대별 차트 -->
+	<select id="memberage" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT * FROM
+		(SELECT COUNT(*) AGE10  FROM USERS WHERE AGE > 9 AND AGE &lt;  20) AGE10,
+		(SELECT COUNT(*) AGE20  FROM USERS WHERE AGE > 19 AND AGE &lt;  30) AGE20,
+		(SELECT COUNT(*) AGE30  FROM USERS WHERE AGE > 29 AND AGE &lt;  40) AGE30,
+		(SELECT COUNT(*) AGE40  FROM USERS WHERE AGE > 39 AND AGE &lt;  50) AGE40
 	</select>
-	
-	<select id="membercount1" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(age) COUNT FROM USERS 
-		WHERE AGE &gt; 9 AND AGE &lt; 20
-	</select>
-	<select id="membercount2" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(age) COUNT FROM USERS 
-		WHERE AGE &gt; 19 AND AGE &lt; 30
-	</select>
-	<select id="membercount3" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(age) COUNT FROM USERS 
-		WHERE AGE &gt; 29 AND AGE &lt; 40
-	</select>
-	<select id="membercount4" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(age) COUNT FROM USERS 
-		WHERE AGE &gt; 39 AND AGE &lt; 50
-	</select>
-	<select id="membercount5" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
-		SELECT COUNT(regdate) COUNT FROM USERS
-		group by to_char(regdate,'YYYY/MM/DD')
-	HAVING to_char(regdate,'YYYY/MM/DD')=#{visit_date} AND to_char(regdate,'YYYY/MM/DD')=#{visit_date1}
+
+
+	<select id="DayCount" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT * FROM
+		(SELECT COUNT(*) DAY1  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-6) DAY1,
+		(SELECT COUNT(*) DAY2  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-5) DAY2,
+		(SELECT COUNT(*) DAY3  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-4) DAY3,
+		(SELECT COUNT(*) DAY4  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-3) DAY4,
+		(SELECT COUNT(*) DAY5  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-2) DAY5,
+		(SELECT COUNT(*) DAY6  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-1) DAY6,
+		(SELECT COUNT(*) DAY7  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = #{visit_date}) DAY7
 	</select>
 	
 	

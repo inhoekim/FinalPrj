@@ -53,12 +53,12 @@ public class AdminChartController {
 		return mv;
 	}
 	
-	// 3번페이지 ajax전용 차트js 1      여기서부터 시작해라 태우야
+	// 3번페이지 ajax전용 차트js 1  
 	@RequestMapping(value = "/adminmemberchart1", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String test31() {
 		
 		
-		List<VisiterVo> list1 = service.membercount6();
+		List<VisiterVo> list1 = service.memberstatus();
 		Gson gson = new Gson();
 		JsonArray jArray = new JsonArray();
 		
@@ -66,14 +66,96 @@ public class AdminChartController {
 		while(it.hasNext()) {
 			VisiterVo vo = it.next();
 			JsonObject object = new JsonObject();
-			String ip = vo.getIp_address();
 			int cnt = vo.getCount();
-			
-			object.addProperty("IP", ip);
+			int cnt1 = vo.getCount1();
+
 			object.addProperty("Count", cnt);
+			object.addProperty("Count1", cnt1);
+
 			jArray.add(object);
 		}
 				
+		String json = gson.toJson(jArray);
+		
+		
+		return json;
+	}
+	// 3번페이지 ajax전용 차트js 2 
+	@RequestMapping(value = "/adminmemberchart2", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody String test32() {
+		
+		
+		List<VisiterVo> list1 = service.memberage();
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+		
+		Iterator<VisiterVo> it = list1.iterator();
+		while(it.hasNext()) {
+			VisiterVo vo = it.next();
+			JsonObject object = new JsonObject();
+			int age1 = vo.getAge10();
+			int age2 = vo.getAge20();
+			int age3 = vo.getAge30();
+			int age4 = vo.getAge40();
+
+			
+			object.addProperty("Age10", age1);
+			object.addProperty("Age20", age2);
+			object.addProperty("Age30", age3);
+			object.addProperty("Age40", age4);
+
+
+			jArray.add(object);
+		}
+		
+		String json = gson.toJson(jArray);
+		
+		
+		return json;
+	}
+	
+	// 3번페이지 ajax전용 차트js 3
+	@RequestMapping(value = "/adminmemberchart3", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody String test33() {
+		
+		//현재 날짜 구해서 데이터형태를 포맷후 넘겨주기
+		LocalDate now = LocalDate.now();
+		
+		//포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		
+		// formatedNow 변수에 포맷적용
+		String formatedNow = now.format(formatter);
+		
+		List<VisiterVo> list1 = service.DayCount(formatedNow);
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+		
+		Iterator<VisiterVo> it = list1.iterator();
+		while(it.hasNext()) {
+			VisiterVo vo = it.next();
+			JsonObject object = new JsonObject();
+			String day1  = vo.getDay1();
+			String day2  = vo.getDay2();
+			String day3  = vo.getDay3();
+			String day4  = vo.getDay4();
+			String day5  = vo.getDay5();
+			String day6  = vo.getDay6();
+			String day7  = vo.getDay7();
+
+			object.addProperty("DAY1", day1);
+			object.addProperty("DAY2", day2);
+			object.addProperty("DAY3", day3);
+			object.addProperty("DAY4", day4);
+			object.addProperty("DAY5", day5);
+			object.addProperty("DAY6", day6);
+			object.addProperty("DAY7", day7);
+
+			
+			
+			jArray.add(object);
+		}
+		
 		String json = gson.toJson(jArray);
 		
 		
