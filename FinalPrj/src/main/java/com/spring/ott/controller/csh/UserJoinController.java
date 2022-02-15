@@ -23,7 +23,7 @@ public class UserJoinController {
 	
 	@GetMapping("/join")
 	public String joinForm() {
-		return "csh/userJoin";
+		return "home/userJoin.tiles";
 	}
 	@PostMapping("/join")
 	public String join(@Valid UserVo uVo, AuthoritiesVo aVo, Model model,HttpServletRequest request) {

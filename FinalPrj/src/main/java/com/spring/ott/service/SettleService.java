@@ -1,5 +1,7 @@
 package com.spring.ott.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,8 @@ public class SettleService {
 	public int insert(SettleVo vo) {
 		return mapper.insert(vo);
 	}
-	
-	public SettleVo select(String target_id) {
-		return mapper.select(target_id);
+	public SettleVo selectSettle(HashMap<String, Object> map) {
+		return mapper.selectSettle(map);
 	}
 	
 	public int cancleSettle(int party_id) {

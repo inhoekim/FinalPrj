@@ -58,9 +58,34 @@ ul {
   padding-left: 0;
 }
 
+button {
+  border: none;
+}
+
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+input[type='text'] {
+  position: relative;
+  border: 1px solid var(--color-light-white);
+  margin: 10px 0;
+  padding: 0 15px;
+  font-size: 16px;
+  margin: 0;
+}
+
+input[type='text']:focus {
+  outline: 1px solid rgb(185, 185, 185);
+  caret-color: rgb(155, 155, 155);
+  font-size: 12px;
+}
+
 @font-face {
   font-family: 'neo';
-  src: url('/neodgm_code.woff');
+  src: url('../woff/neodgm_code.woff');
 }
 
 /* Typography */
@@ -215,7 +240,7 @@ p {
   position: relative;
   display: flex;
   height: 30px;
-  width: 14%;
+  width: 10%;
   min-width: 29px;
   font-size: 20px;
   text-align: center;
@@ -233,12 +258,12 @@ p {
 }
 
 .comment_profile:hover {
-  width: 70%;
+  width: 60%;
   background-color: var(--color-light-green2);
 }
 
 .comment_profile:hover + .comment_content {
-  width: 30%;
+  width: 40%;
 }
 
 .profile_img {
@@ -325,6 +350,7 @@ p {
 /* section Post*/
 #content {
   width: 79%;
+  padding: 0 20px;
 }
 
 .post_section {
@@ -725,17 +751,54 @@ footer {
   left: 4px;
 }
 
+/* login div */
+
+.emphasized_div {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 0 9999px, var(--color-grey) 0 0 10px;
+  z-index: 100;
+}
+
+.emphasized_div .top_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 14px;
+}
+.cancle {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+
 /* Board List (게시판 리스트)*/
 .board_title {
-  margin: 10px 20px;
+  margin: 10px 0;
   font-size: var(--font-regular);
 }
 
 .board_topbar {
   display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.topbar_title {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 20px;
   font-size: var(--font-micro);
   color: var(--color-dark-grey);
   font-weight: 400;
@@ -747,9 +810,41 @@ footer {
   border-radius: 5px;
 }
 
-.table_wrapper {
-  margin: 0 20px;
+.topbar_content {
+  position: relative;
+  font-size: var(--font-micro);
 }
+
+.content_wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: absolute;
+  width: 150px;
+  padding: 10px;
+  top: -4px;
+  border-radius: 0 0 5px 5px;
+  transition: height 200ms linear;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.content_wrapper.open {
+  opacity: 1;
+  height: 140px;
+}
+
+.content_wrapper a {
+  color: var(--color-dark-grey);
+  margin: 5px 0;
+}
+
+.content_wrapper a:hover {
+  color: var(--color-black);
+  font-weight: 600;
+}
+
 .board_table {
   width: 100%;
   background-color: var(--color-white);
@@ -820,10 +915,60 @@ footer {
 }
 
 .board_bottomBar {
-  margin: 20px;
+  margin: 20px 0;
   padding: 5px;
   display: flex;
   justify-content: space-between;
+}
+
+.writeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #9ed4bb;
+  color: var(--color-white);
+  height: 30px;
+  width: 55px;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.writeButton:hover {
+  background-color: #75d4b0;
+}
+
+.searchBar {
+  display: flex;
+}
+
+.searchBar_select {
+  width: 80px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.searchBar_input {
+  border-radius: 2px;
+  width: 120px;
+  height: 30px;
+  margin: 0 5px !important;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5e5e5;
+  border-radius: 4px;
+  border: none;
+  height: 30px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.search:hover {
+  background-color: #d3d2d2;
 }
 
 @media screen and (max-width: 900px) {
@@ -851,7 +996,7 @@ footer {
 
   #content {
     width: 100%;
-    border-bottom: 1px solid var(--color-grey);
+    padding: 0;
   }
 
   .post_section .section_container:nth-child(1) {
@@ -923,9 +1068,14 @@ footer {
   }
 
   .board_title,
-  .board_topbar,
   .board_bottomBar {
     margin: 20px 0;
+  }
+  .topbar_title {
+    margin: 0;
+  }
+  .topbar_content {
+    margin: 0;
   }
 }
 
@@ -948,80 +1098,12 @@ footer {
   }
   #content {
     width: 100%;
-    border-bottom: 1px solid var(--color-grey);
   }
 
   .rightside {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    width: 100%;
+    display: none;
   }
 
-  .banner {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    width: 340px;
-    height: 210px;
-    flex-wrap: wrap;
-    padding: 10px;
-  }
-
-  .banner_content {
-    font-size: 16px;
-  }
-  .search_chick {
-    width: 60px;
-    height: 60px;
-  }
-
-  .banner_img {
-    margin: 0;
-    margin-left: 10px;
-    transform: scaleX(-1);
-  }
-
-  .speech_bubble2 {
-    transform: scaleX(-1);
-    left: -10px;
-    font-size: 13px;
-    width: 80px;
-    height: 30px;
-  }
-
-  .chick {
-    width: 20px;
-    height: 20px;
-  }
-
-  .speech_bubble2:after {
-    transform: scaleX(-1) rotate(20deg);
-    left: 100%;
-  }
-
-  .banner_service {
-    margin-top: 5px;
-    width: 100%;
-  }
-
-  .post .board_category {
-    width: 50px;
-    font-size: var(--font-mmicro);
-  }
-
-  .rightside_container .post .post_title {
-    font-size: var(--font- micro);
-  }
-
-  .rightside_container .post .board_category {
-    width: 50px;
-    font-size: var(--font-mmicro);
-  }
-
-  .speech_bubble {
-    width: 180px;
-  }
 
   .board_list {
     padding-right: 0px;
@@ -1035,53 +1117,9 @@ footer {
   }
   #content {
     width: 100%;
-    border-bottom: 1px solid var(--color-grey);
   }
 
   .rightside {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    width: 100%;
-    padding: 0 20px;
-  }
-
-  .banner {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    width: 450px;
-    height: 210px;
-    flex-wrap: wrap;
-  }
-
-  .banner_img {
-    margin: 0;
-    margin-left: 10px;
-    transform: scaleX(-1);
-  }
-
-  .speech_bubble2 {
-    transform: scaleX(-1);
-    left: -20px;
-  }
-
-  .speech_bubble2:after {
-    transform: scaleX(-1) rotate(20deg);
-    left: 100%;
-  }
-
-  .banner_service {
-    margin-top: 5px;
-    width: 100%;
-  }
-
-  .post .board_category {
-    width: 50px;
-    font-size: var(--font-mmicro);
-  }
-
-  .rightside_container {
-    margin-left: 0;
+    display: none;
   }
 }

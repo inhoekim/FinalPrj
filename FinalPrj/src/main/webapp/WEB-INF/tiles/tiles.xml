@@ -41,9 +41,11 @@
 	</definition>	
 	
 	<definition name="boardLayout" template="/WEB-INF/views/board/layout.jsp">
-		<put-attribute name="navbar" value="/WEB-INF/views/board/navbar.jsp" />
+		<put-attribute name="logo" value="/WEB-INF/views/home/logo.jsp" />
+		<put-attribute name="leftside" value="/WEB-INF/views/home/leftside.jsp" />
 		<put-attribute name="main_content" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/board/footer.jsp" />
+		<put-attribute name="rightside" value="/WEB-INF/views/home/rightside.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/home/footer.jsp" />
 	</definition>
 
 	<definition name="board/*.tiles" extends="boardLayout">

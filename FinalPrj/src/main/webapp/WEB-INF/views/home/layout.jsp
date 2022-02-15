@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OTT</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/boardstyle.css">
+    <link href="${pageContext.request.contextPath}/resources/fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
-    <script src="https://kit.fontawesome.com/ea309b6399.js" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/resources/js/emphasize.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/leftside.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
@@ -72,7 +72,12 @@
 </body>
 <script>
  	$(function(){
- 		let flag = ${!empty param.login};
+		let flag = false;
+		if(${!empty param.login}) {flag = true;}
+		if(${!empty login}) {
+			alert("로그인이 필요한 페이지입니다");
+			flag = true;
+		}
  		if(flag) {
  			$("#loginWrapper").removeClass("hidden");
  	        $("html").css("pointer-events" , "none");

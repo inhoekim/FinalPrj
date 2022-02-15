@@ -8,6 +8,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,7 +48,9 @@ public class UserVo {
 	@Email
 	private String email;
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date regdate;
+	
 	private int profile_id; //김인회수정
 	private String enabled;
 	private String black_enabled;

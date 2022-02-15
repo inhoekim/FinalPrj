@@ -42,7 +42,10 @@ public class MyPartyController {
 			PartyVo partyVo = (PartyVo) map.get(1);
 			MemberVo leader = userService.selectMember(partyVo.getLeader());
 			OttVo ottVo = ottService.selectOtt(partyVo.getOtt_id());
-			SettleVo settleVo = settleService.select(leader.getUser_id());
+			HashMap<String, Object> map2 = new HashMap<>();
+			map2.put("target_id", principal.getName());
+			map2.put("party_id", partyVo.getParty_id());
+			SettleVo settleVo = settleService.selectSettle(map2);
 			List<MemberVo> list = matchingService.selectMember(partyVo.getParty_id());		
 			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
 			int price = (int)(ottVo.getMonth_price() / 4 * 3 - 490);

@@ -33,15 +33,14 @@ public class UserFindPwdController {
 	
 	@PostMapping("/findPwd")
 	public ModelAndView pwdMail(HttpServletRequest request, String user_id, String email, HttpServletResponse response_email) throws IOException{
-		String n=service.findPwdChk(user_id, email);
+		UserVo vo=service.findPwdChk(user_id, email);
 		ModelAndView mv = new ModelAndView();
 		
-		if(n!=null) {	//user_id랑 email로 pwd 검색해서 존재하면
+		if(vo!=null) {	//user_id랑 email로 pwd 검색해서 존재하면
 			
 			Random rnd = new Random();
 			int dice = rnd.nextInt(4589362) + 49311;
-			
-			UserVo vo=new UserVo();
+			System.out.println("dice : " + dice); //체크
 			vo.setPwd(pwdEncoder.encode(Integer.toString(dice)));	//생성된 난수로 비밀번호 설정 & encoding
 			System.out.println(vo.getPwd()); //체크용
 			service.findPwd(vo);
