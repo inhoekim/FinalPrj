@@ -36,7 +36,7 @@
      <select id="totalRowCnt" resultType="int">
 		select nvl(count(*),0)from users
 	</select>
-	<select id="UserList" parameterType="hashmap" resultType="com.spring.ott.vo.UserVo">
+	<select id="userList" parameterType="hashmap" resultType="com.spring.ott.vo.UserVo">
 		select * from
 		(
 			select b.*, rownum rnum
@@ -47,7 +47,7 @@
 		)
 		<![CDATA[ where rnum >= #{startRow} and rnum <= #{endRow}]]>
 	</select>
-	<select id="AllSelect" resultType="com.spring.ott.vo.UserVo">
+	<select id="allSelect" resultType="com.spring.ott.vo.UserVo">
 		select * from users
 	</select>
 	
