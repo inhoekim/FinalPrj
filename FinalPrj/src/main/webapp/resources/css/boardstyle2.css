@@ -810,6 +810,10 @@ footer {
   border-radius: 5px;
 }
 
+.topbar_title > * {
+	pointer-events: none;
+}
+
 .topbar_content {
   position: relative;
   font-size: var(--font-micro);
@@ -833,7 +837,9 @@ footer {
 .content_wrapper.open {
   opacity: 1;
   height: 140px;
+  box-shadow: 0 7px 10px 1px #e1dfdd;
 }
+
 
 .content_wrapper a {
   color: var(--color-dark-grey);
@@ -844,6 +850,8 @@ footer {
   color: var(--color-black);
   font-weight: 600;
 }
+
+
 
 .board_table {
   width: 100%;
@@ -1074,6 +1082,7 @@ footer {
   .topbar_title {
     margin: 0;
   }
+
   .topbar_content {
     margin: 0;
   }
