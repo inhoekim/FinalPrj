@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ott.security.csh.FinalUserDetail;
 import com.spring.ott.vo.AuthoritiesVo;
+import com.spring.ott.vo.BlackListVo;
 import com.spring.ott.vo.MemberVo;
 import com.spring.ott.vo.UserVo;
 
@@ -49,15 +50,16 @@ public class UserService {
 		return mapper.selectUser(user_id);
 	}
 	
-	public List<UserVo> PayList(HashMap<String, Integer> map){
-		return mapper.UserList(map);
+	public List<UserVo> userList(HashMap<String, Integer> map){
+		return mapper.userList(map);
 	}
 	public int totalRowCnt() {
 		return mapper.totalRowCnt();
 	}
-	public List<UserVo> AllSelect(){
-		return mapper.AllSelect();
+	public List<UserVo> allSelect(){
+		return mapper.allSelect();
 	}
+	
 	//김인회
 	public MemberVo selectMember (String user_id) {
 		return mapper.selectMember(user_id);

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.ott.security.csh.FinalUserDetail;
 import com.spring.ott.vo.AuthoritiesVo;
+import com.spring.ott.vo.BlackListVo;
 import com.spring.ott.vo.MemberVo;
 import com.spring.ott.vo.UserVo;
 
@@ -22,9 +23,8 @@ public interface UserMapper {
 	UserVo selectUser(String user_id);
 	MemberVo selectMember (String user_id); //김인회
 	
-	public List<UserVo> UserList(HashMap<String, Integer>map);
+	public List<UserVo> userList(HashMap<String, Integer>map);
 	public int totalRowCnt();
-	public List<UserVo> AllSelect();
-	
+	public List<UserVo> allSelect();
 }
  

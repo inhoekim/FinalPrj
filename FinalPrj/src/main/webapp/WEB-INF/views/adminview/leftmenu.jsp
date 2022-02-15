@@ -11,7 +11,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fab fa-java" ></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">FINAL<sup>OOT조</sup></div>
+                <div class="sidebar-brand-text mx-3">FINAL<sup>OTT조</sup></div>
             </a>
 
             <!-- Divider -->
@@ -42,6 +42,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="${cp}/adminlist">회원 조회</a>
+                        <a class="collapse-item" href="${cp}/adminblacklist">블랙리스트 조회</a>
                         <a class="collapse-item" href="${cp}/adminpaylist">결제 관리</a>
                     </div>
                 </div>
