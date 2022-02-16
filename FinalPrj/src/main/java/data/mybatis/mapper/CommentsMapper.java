@@ -19,4 +19,6 @@ public interface CommentsMapper {
 	int selref(int ref);
 	int selreff(int comment_id);
 	int delPost(int post_id);
+	List<CommentsVo> bestComm();
+	List<CommentsVo> recentComm();
 }

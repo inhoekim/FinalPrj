@@ -3,18 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.VoteMapper">
-	<insert id="insertLike" parameterType="com.spring.ott.vo.VoteVo">
-		insert into vote values(seq_vote.nextval,#{post_id},#{user_id},1,sysdate)
+	<insert id="insertPostLike" parameterType="com.spring.ott.vo.VoteVo">
+		insert into vote values(seq_vote.nextval,#{post_id},null,#{user_id},sysdate)
+	</insert>
+	<insert id="insertCommLike" parameterType="com.spring.ott.vo.VoteVo">
+		insert into vote values(seq_vote.nextval,null,#{comment_id},#{user_id},sysdate)
 	</insert>
 	<delete id="deleteLike" parameterType="hashmap">
 		delete from vote where post_id=#{post_id} and user_id=#{user_id}
+	</delete>
+	<delete id="deleteCommLike" parameterType="hashmap">
+		delete from vote where comment_id=#{comment_id} and user_id=#{user_id}
 	</delete>
 	<select id="checkLike" parameterType="hashmap" resultType="com.spring.ott.vo.VoteVo">
 		select * from vote where post_id=#{post_id} and user_id=#{user_id}
 	</select>
 		
 	<select id="likeCount" resultType="int" parameterType="int">
-		select count(*) from vote where post_id=#{post_id}
+		select count(post_id) from vote where post_id=#{post_id}
 	</select>
-
+	<select id="checkComm" parameterType="hashmap" resultType="com.spring.ott.vo.VoteVo">
+		select * from vote where comment_id=#{comment_id} and user_id=#{user_id}
+	</select>
 </mapper>

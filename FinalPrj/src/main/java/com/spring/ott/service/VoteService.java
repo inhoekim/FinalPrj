@@ -12,8 +12,11 @@ import data.mybatis.mapper.VoteMapper;
 @Service
 public class VoteService {
 	@Autowired VoteMapper mapper;
-	public int insertLike(VoteVo vo) {
-		return mapper.insertLike(vo);
+	public int insertPostLike(VoteVo vo) {
+		return mapper.insertPostLike(vo);
+	}
+	public int insertCommLike(VoteVo vo) {
+		return mapper.insertCommLike(vo);
 	}
 	public int deleteLike(HashMap<String, Object> map) {
 		return mapper.deleteLike(map);
@@ -23,5 +26,11 @@ public class VoteService {
 	}
 	public int likeCount(int post_id) {
 		return mapper.likeCount(post_id);
+	}
+	public VoteVo checkComm(HashMap<String, Object> map) {
+		return mapper.checkComm(map);
+	}
+	public int deleteCommLike(HashMap<String, Object> map) {
+		return mapper.deleteCommLike(map);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.spring.ott.vo.CategoryVo;
+import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.FilesVo;
 import com.spring.ott.vo.PostVo;
 
@@ -20,4 +21,7 @@ public interface PostMapper {
 	int update(PostVo vo);
 	List<CategoryVo> category();
 	PostVo one(int post_id);
+	List<PostVo> userPost(String user_id);
+	List<CommentsVo> userComment(String user_id);
+	List<PostVo> partyPost();
 }

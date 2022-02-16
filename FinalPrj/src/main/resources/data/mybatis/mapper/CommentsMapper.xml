@@ -4,16 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.CommentsMapper">
 	<select id="selectAll" resultType="com.spring.ott.vo.CommentsVo" parameterType="int">
-		select * from comments where post_id=#{post_id} order by ref asc,lev asc
+		select com.comment_id,com.user_id,com.content,com.created_day,com.parent_id,(select count(comment_id) from vote where vote.comment_id = com.comment_id)cvoCnt from comments com where post_id=#{post_id} order by ref asc,lev asc
 	</select>
 	<select id="getNum" resultType="int">
 		select NVL(max(comment_id),0) cnt from comments
 	</select>
 	<insert id="insertComment" parameterType="com.spring.ott.vo.CommentsVo">
-		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},0,0,sysdate,null)
+		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},0,0,sysdate,null,null)
 	</insert>
 	<insert id="insertReComment" parameterType="com.spring.ott.vo.CommentsVo">
-		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},#{lev},#{step},sysdate,null)
+		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},#{lev},1,sysdate,null,#{parent_id})
 	</insert>
 	<select id="getCount" resultType="int" parameterType="int">
 		select NVL(count(comment_id),0) cnt from comments where post_id=#{post_id}
@@ -35,5 +35,11 @@
 	</select>
 	<select id="selreff" parameterType="int" resultType="int">
 		select ref from comments where comment_id=#{comment_id}
+	</select>
+	<select id="bestComm" resultType="com.spring.ott.vo.CommentsVo">
+		select com.user_id,com.content,com.created_day,(select count(comment_id) from vote where vote.comment_id = com.comment_id)cvoCnt from comments com where <![CDATA[ rownum<=3 order by cvocnt desc ]]>
+	</select>
+	<select id="recentComm" resultType="com.spring.ott.vo.CommentsVo">
+		select content from comments where <![CDATA[ rownum<=5 order by created_day desc]]>
 	</select>
 </mapper>

@@ -52,4 +52,10 @@ public class CommentsService {
 	public int delPost(int post_id) {
 		return mapper.delPost(post_id);
 	}
+	public List<CommentsVo> bestComm(){
+		return mapper.bestComm();
+	}
+	public List<CommentsVo> recentComm(){
+		return mapper.recentComm();
+	}
 }
