@@ -41,7 +41,7 @@
 		select NVL(count(*),0) cnt from board_post 
 		<where>
 		<include refid="search"/>
-		and category_id = #{category} <if test="subcate != 0">and board.subcate = #{subcate}</if>	
+		and category_id = #{category} <if test="subcate != 0">and subcate = #{subcate}</if>	
 		</where>
 	</select>
 	<select id="recentPost" resultType="com.spring.ott.vo.PostVo">
