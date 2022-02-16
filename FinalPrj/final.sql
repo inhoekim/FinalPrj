@@ -48,7 +48,7 @@ CREATE TABLE USERS --유저
 CREATE TABLE BOARD_CATEGORY --게시판 카테고리
 (
     category_id number(10) PRIMARY KEY, --시퀀스
-    category_name varchar2(20) NOT NULL, -- 카테고리 이름
+    category_name varchar2(20) NOT NULL -- 카테고리 이름
 );
 
 CREATE TABLE BOARD_POST -- 게시글
