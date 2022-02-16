@@ -73,7 +73,7 @@ input[type='text'] {
   border: 1px solid var(--color-light-white);
   margin: 10px 0;
   padding: 0 15px;
-  font-size: 16px;
+  font-size: 12px;
   margin: 0;
 }
 
@@ -838,6 +838,7 @@ footer {
   opacity: 1;
   height: 140px;
   box-shadow: 0 7px 10px 1px #e1dfdd;
+  z-index: 99;
 }
 
 

@@ -61,4 +61,7 @@ public class PostService {
 	public List<PostVo> partyPost(){
 		return mapper.partyPost();
 	}
+	public 	List<PostVo> recent_notice(int category_id){
+		return mapper.recent_notice(category_id);
+	}
 }

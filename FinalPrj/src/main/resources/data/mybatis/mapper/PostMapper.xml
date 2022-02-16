@@ -5,11 +5,11 @@
 <mapper namespace="data.mybatis.mapper.PostMapper">
 	<sql id="search">
  		<if test="field=='ticon'">
- 		where title like '%' || #{keyword} || '%' or content like '%' || #{keyword} || '%'	
+ 		and title like '%' || #{keyword} || '%' or content like '%' || #{keyword} || '%'	
  		</if>
 		<if test="field=='title' or field=='content' or field=='user_id'">
-		where ${field} like '%' || #{keyword} || '%'
-		 </if>
+		and ${field} like '%' || #{keyword} || '%'
+		</if>
 	</sql>
 	<insert id="postInsert" parameterType="com.spring.ott.vo.PostVo">
 		insert into board_post values(seq_board_post.nextval,#{user_id},#{category_id},#{subcate},#{title},#{content},0,sysdate,null)
@@ -22,8 +22,10 @@
 		(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comCnt,
 		(select NVL(count(post_id),0) from vote vo where vo.post_id=board.post_id)voCnt
 		from board_post board 
-		where board.category_id = #{category} <if test="subcate != 0">and board.subcate = #{subcate}</if>	
+		<where>
 		<include refid="search"/> 
+		and board.category_id = #{category} <if test="subcate != 0">and board.subcate = #{subcate}</if>	
+		</where>
 		order by board.created_day desc)a <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
 	<select id="postDetail" resultType="com.spring.ott.vo.PostVo" parameterType="int">
@@ -36,7 +38,7 @@
 		update board_post set hit=hit+1 where post_id=#{post_id}
 	</update>
 	<select id="count" resultType="int" parameterType="hashmap">
-		select NVL(count(*),0) cnt from board_post <include refid="search"/>
+		select NVL(count(*),0) cnt from board_post <where><include refid="search"/></where>
 	</select>
 	<select id="recentPost" resultType="com.spring.ott.vo.PostVo">
 		 <![CDATA[
@@ -75,5 +77,12 @@
 		<![CDATA[
 		select board.title,(select category_name from board_category cate where cate.category_id=board.category_id)cname
 							from board_post board where board.subcate=1 and rownum<=4 order by board.created_day desc ]]>
+	</select>
+	
+	<select id="recent_notice" parameterType="int" resultType="com.spring.ott.vo.PostVo">
+		select * from (select b.*, (select NVL(count(b.post_id),0) from vote v where v.post_id=b.post_id)voCnt,rownum rnum 
+		from board_post b 
+		where category_id = #{category_id} and subcate = 1 order by created_day) a
+		where <![CDATA[ rnum >=1 and rnum <= 3]]>
 	</select>
 </mapper>

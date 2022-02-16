@@ -25,6 +25,7 @@
 <div class="post_detail" style="padding: 20px">
 	<form:form method="post" action="${pageContext.request.contextPath}/board/insert">
 		<select name="subcate">
+			<option value="1" selected="selected">공지</option>
 			<option value="2" selected="selected">파티찾기</option>
 			<option value="3">자유</option>
 		</select>

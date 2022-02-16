@@ -44,14 +44,18 @@ public class ListController {
 		
 		String[] subcate_str = {"전체","공지", "파티찾기", "자유", "신고"};
 		String[] category_str = {"넷플릭스","왓챠", "디즈니", "전체공지"};
+		String[] admin_profile = {"icon_netflix_x2.png" ,"icon_watcha_x2.png","icon_disney_x2.png"};
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("list", list);
-		model.addAttribute("subcate", subcate_str[subcate]);
-		model.addAttribute("category_str", category_str[category]);
+		model.addAttribute("subcate_str", subcate_str);
+		model.addAttribute("subcate", subcate);
+		model.addAttribute("category_str", category_str);
 		model.addAttribute("category", category);
-		
+		model.addAttribute("admin_profile", admin_profile[category]);
+		List<PostVo> notice = service.recent_notice(category);
+		model.addAttribute("notice", notice);
 		return "board/boardList.tiles";
 	}
 }
