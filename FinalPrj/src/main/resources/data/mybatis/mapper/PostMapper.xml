@@ -38,7 +38,11 @@
 		update board_post set hit=hit+1 where post_id=#{post_id}
 	</update>
 	<select id="count" resultType="int" parameterType="hashmap">
-		select NVL(count(*),0) cnt from board_post <where><include refid="search"/></where>
+		select NVL(count(*),0) cnt from board_post 
+		<where>
+		<include refid="search"/>
+		and category_id = #{category} <if test="subcate != 0">and board.subcate = #{subcate}</if>	
+		</where>
 	</select>
 	<select id="recentPost" resultType="com.spring.ott.vo.PostVo">
 		 <![CDATA[

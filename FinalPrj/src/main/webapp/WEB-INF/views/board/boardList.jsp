@@ -46,7 +46,7 @@
 	                <td><div>공지</div></td>
 	                <td class="td_title">
 	                    <div class="title">
-	                        ${vo.title}
+	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}">${vo.title}</a>
 	                    </div>
 	                    <div class="commentNum">${vo.comCnt}</div>
 	                </td>
@@ -68,7 +68,7 @@
 	                <td><div>${subcate_str[vo.subcate]}</div></td>
 	                <td class="td_title">
 	                    <div class="title">
-	                        ${vo.title}
+	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}">${vo.title}</a>
 	                    </div>
 	                    <div class="commentNum">${vo.comCnt}</div>
 	                </td>
@@ -103,4 +103,21 @@
     </form>
     <a class="writeButton" href="${pageContext.request.contextPath}/board/insert?category=${category}"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
 
+</div>
+
+<div class="pagination_wrapper">	
+<div class="pagination">
+	<a href="${pageContext.request.contextPath}/board/list?pageNum=${pu.startPageNum-1}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}">이전</a>
+	<c:forEach var="i" begin="${pu.startPageNum}" end="${pu.endPageNum}">
+	<c:choose>
+	 	<c:when test="${i==pu.pageNum}">
+	 		<a href="${pageContext.request.contextPath}/board/list?pageNum=${i}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}"><span style="color:#e67979">${i}</span></a>
+	 	</c:when>
+		<c:otherwise>
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=${i}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}"><span style="color:gray">${i}</span></a>
+		</c:otherwise>
+	</c:choose>
+	</c:forEach>
+	<a href="${pageContext.request.contextPath}/board/list?pageNum=${pu.endPageNum+1}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}">다음</a>
+</div>
 </div>

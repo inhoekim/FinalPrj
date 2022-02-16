@@ -982,6 +982,27 @@ footer {
   background-color: #d3d2d2;
 }
 
+.pagination_wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.pagination {
+	display: flex;
+	background-color : #ffffff;
+	font-size: 13px;
+	border-radius: 7px;
+}
+
+.pagination a {
+	border-right: 1px solid #d3cbcb70;
+	padding: 8px;
+}
+
+.pagination a:nth-last-child(1) {
+	border-right: none;
+}
+
 /* board_detail Part */
 
 .post_detail {

@@ -30,16 +30,19 @@ public class ListController {
 		System.out.println(keyword);
 		map.put("field", field);
 		map.put("keyword", keyword);
+		map.put("subcate", subcate);
+		map.put("category", category);
 		
+		int page_row = 5;
 		int totalRowCount=service.count(map);
-		System.out.println(totalRowCount);
-		PageUtil pu=new PageUtil(pageNum, 5, 5, totalRowCount);
+		int totalPage = totalRowCount / page_row + 1;
+		if(pageNum <= 0) pageNum = 1;
+		else if (pageNum > totalPage) pageNum = totalPage;
+		PageUtil pu=new PageUtil(pageNum, page_row, 5, totalRowCount);
 		int startRow=pu.getStartRow();//시작행번호
 		int endRow=pu.getEndRow();//끝행번호
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-		map.put("subcate", subcate);
-		map.put("category", category);
 		List<PostVo> list=service.postList(map);
 		
 		String[] subcate_str = {"전체","공지", "파티찾기", "자유", "신고"};
