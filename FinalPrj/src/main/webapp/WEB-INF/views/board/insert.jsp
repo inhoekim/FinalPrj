@@ -28,7 +28,6 @@
 			<option value="2">파티찾기</option>
 			<option value="3">자유</option>
 		</select>
-		<input type="hidden" name="user_id" value="${user_id}"/><br>
 		<input type="hidden" name="category_id" value="${category}"/><br>
 		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
 		<br><br> 
