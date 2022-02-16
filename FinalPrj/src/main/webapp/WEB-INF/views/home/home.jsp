@@ -10,28 +10,28 @@
                 <div class="post">
                     <div class="post_num first">1</div>
                     <a class="board_category" href="${cp}/board/list?category=${rList[0].category_id}">${rList[0].cname}</a>
-                    <a href="${cp}/board/detail?post_id=${rList[0].post_id}" class="post_title">${rList[0].title}</a>
+                    <a href="${cp}/board/detail?post_id=${rList[0].post_id}&category=${rList[0].category_id}" class="post_title">${rList[0].title}</a>
                     <span class="comment_cnt">${rList[0].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num second">2</div>
                     <a class="board_category" href="${cp}/board/list?category=${rList[1].category_id}">${rList[1].cname}</a>
-                    <a href="${cp}/board/detail?post_id=${rList[1].post_id}" class="post_title">${rList[1].title}</a>
+                    <a href="${cp}/board/detail?post_id=${rList[1].post_id}&category=${rList[1].category_id}" class="post_title">${rList[1].title}</a>
                     <span class="comment_cnt">${rList[1].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num third">3</div>
                     <a class="board_category" href="${cp}/board/list?category=${rList[2].category_id}">${rList[2].cname}</a>
-                    <a href="${cp}/board/detail?post_id=${rList[2].post_id}" class="post_title">${rList[2].title}</a>
+                    <a href="${cp}/board/detail?post_id=${rList[2].post_id}&category=${rList[2].category_id}" class="post_title">${rList[2].title}</a>
                     <span class="comment_cnt">${rList[2].comCnt}</span>
                 </div>
                  <c:forEach var="cnt" begin="3" end="9">
 				 <div class="post">
                     <div class="post_num">${cnt+1}</div>
                     <a class="board_category" href="${cp}/board/list?category=${rList[cnt].category_id}">${rList[cnt].cname}</a>
-                    <a href="${cp}/board/detail?post_id=${rList[cnt].post_id}" class="post_title">${rList[cnt].title}</a>
+                    <a href="${cp}/board/detail?post_id=${rList[cnt].post_id}&category=${rList[cnt].category_id}" class="post_title">${rList[cnt].title}</a>
                     <span class="comment_cnt">${rList[cnt].comCnt}</span>
                 </div>
 				
@@ -46,21 +46,21 @@
             <div class="post">
                     <div class="post_num first">1</div>
                     <i class="fas fa-heart like"><span class="like_cnt">${bList[0].voCnt}</span></i>
-                    <a href="${cp}/board/detail?post_id=${bList[0].post_id}" class="post_title">${bList[0].title}</a>
+                    <a href="${cp}/board/detail?post_id=${bList[0].post_id}&category=${bList[0].category_id}" class="post_title">${bList[0].title}</a>
                     <span class="comment_cnt">${bList[0].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num second">2</div>
                     <i class="fas fa-heart like"><span class="like_cnt">${bList[1].voCnt}</span></i>
-                    <a href="${cp}/board/detail?post_id=${bList[1].post_id}" class="post_title">${bList[1].title}</a>
+                    <a href="${cp}/board/detail?post_id=${bList[1].post_id}&category=${bList[1].category_id}" class="post_title">${bList[1].title}</a>
                     <span class="comment_cnt">${bList[1].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num third">3</div>
                     <i class="fas fa-heart like"><span class="like_cnt">${bList[2].voCnt}</span></i>
-                    <a href="${cp}/board/detail?post_id=${bList[2].post_id}" class="post_title">${bList[2].title}</a>
+                    <a href="${cp}/board/detail?post_id=${bList[2].post_id}&category=${bList[2].category_id}" class="post_title">${bList[2].title}</a>
                     <span class="comment_cnt">${bList[2].comCnt}</span>
                 </div>
 
@@ -68,7 +68,7 @@
                 <div class="post">
                     <div class="post_num">${cnt+1}</div>
                     <i class="fas fa-heart like"><span class="like_cnt">${bList[cnt].voCnt}</span></i>
-                    <a href="${cp}/board/detail?post_id=${bList[cnt].post_id}" class="post_title">${bList[cnt].title}</a>
+                    <a href="${cp}/board/detail?post_id=${bList[cnt].post_id}&category=${bList[cnt].category_id}" class="post_title">${bList[cnt].title}</a>
                     <span class="comment_cnt">${bList[cnt].comCnt}</span>
                 </div>
   			</c:forEach>
@@ -131,6 +131,4 @@
                 </div>
             </div>
         </div>
-
-        <div class="pagenation"> < 3 / 3 ></div>
     </div>

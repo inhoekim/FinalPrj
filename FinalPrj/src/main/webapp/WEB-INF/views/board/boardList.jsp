@@ -46,7 +46,7 @@
 	                <td><div>공지</div></td>
 	                <td class="td_title">
 	                    <div class="title">
-	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}">${vo.title}</a>
+	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}&category=${category}&pageNum=${pu.pageNum}&subcate=${subcate}">${vo.title}</a>
 	                    </div>
 	                    <div class="commentNum">${vo.comCnt}</div>
 	                </td>
@@ -68,7 +68,7 @@
 	                <td><div>${subcate_str[vo.subcate]}</div></td>
 	                <td class="td_title">
 	                    <div class="title">
-	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}">${vo.title}</a>
+	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}&category=${category}&pageNum=${pu.pageNum}&subcate=${subcate}">${vo.title}</a>
 	                    </div>
 	                    <div class="commentNum">${vo.comCnt}</div>
 	                </td>
