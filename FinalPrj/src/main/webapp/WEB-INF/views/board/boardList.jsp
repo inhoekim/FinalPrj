@@ -3,21 +3,21 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="board_title">
-    <h4>OTT 게시판</h4>
+    <h4>${category_str} 게시판</h4>
 </div>
 
 <div class="board_topbar">
     <div class="topbar_title">
-        <div class="topbar_classification">분류: ${param.classification}</div>
+        <div class="topbar_classification">분류: ${subcate}</div>
         <i class="fas fa-angle-down toggle"></i>
     </div>
     <div class="topbar_content">
         <div class="content_wrapper">
-            <a href="${cp}/board/list?classification=all">전체</a>
-            <a href="${cp}/board/list?classification=announce">공지</a>
-            <a href="${cp}/board/list?classification=free">자유</a>
-            <a href="${cp}/board/list?classification=party">파티찾기</a>
-            <a href="${cp}/board/list?classification=report">신고</a>
+            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=0">전체</a>
+            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=1">공지</a>
+            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=2">파티찾기</a>
+            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=3">자유</a>
+            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=4">신고</a>
         </div>
 
     </div>
@@ -114,7 +114,7 @@
 </div>
 
 <div class="board_bottomBar">
-    <form action="${cp}/board/list?classification=${param.classification}">
+    <form action="${pageContext.request.contextPath}/board/list?category=${category}&subcate=${subcate}">
         <div class="searchBar">
             <select class="searchBar_select" name="field">
                 <option value="title" <c:if test="${field=='title'}">selected</c:if>>제목</option>
@@ -126,6 +126,6 @@
             <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
-    <a class="writeButton" href="#"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
+    <a class="writeButton" href="${pageContext.request.contextPath}/board/insert?category=${category}"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
 
 </div>

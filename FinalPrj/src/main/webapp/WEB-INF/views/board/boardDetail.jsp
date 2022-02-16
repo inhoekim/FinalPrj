@@ -67,7 +67,7 @@
                         댓글내용 {comment_content}
                     </div>
                     <div class="content_interaction">
-                        <div class="recommnet">답글 <span style="maring-left: 5px">{답글_cnt}</span></div>
+                        <div class="recommnet">답글</div>
                         <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
                     </div>
 

@@ -18,10 +18,11 @@
 		insert into files values(SEQ_FILES.nextval,#{post_id},#{file_type},#{file_size},#{org_name},#{src_name},sysdate)
 	</insert>
 	<select id="postList" resultType="com.spring.ott.vo.PostVo" parameterType="hashmap">
-	select * from(select board.post_id,board.title,board.hit,board.user_id,board.created_day,board.content,board.subcate,rownum rnum,
+	select * from(select board.post_id,board.title,board.hit,board.user_id,board.created_day,board.content,board.category_id,board.subcate,rownum rnum,
 		(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comCnt,
 		(select NVL(count(post_id),0) from vote vo where vo.post_id=board.post_id)voCnt
-		from board_post board
+		from board_post board 
+		where board.category_id = #{category} <if test="subcate != 0">and board.subcate = #{subcate}</if>	
 		<include refid="search"/> 
 		order by board.created_day desc)a <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>

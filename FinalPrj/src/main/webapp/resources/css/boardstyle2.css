@@ -987,9 +987,10 @@ footer {
   border-radius: var(--size-border-radius);
 }
 
-.post_title {
+.post_detail .post_title {
   height: 40px;
   padding: 15px;
+  margin-bottom: 10px;
 }
 
 .post_title .classification {

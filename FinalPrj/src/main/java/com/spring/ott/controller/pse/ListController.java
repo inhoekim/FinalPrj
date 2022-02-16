@@ -22,7 +22,9 @@ public class ListController {
 	@Autowired PostService service;
 	
 	@RequestMapping("/board/list")
-	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,Model model,String field,String keyword) {
+	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
+			@RequestParam(value="subcate",defaultValue = "0") int subcate,
+			int category,Model model,String field,String keyword) {
 		HashMap<String , Object> map =new HashMap<String, Object>();
 		System.out.println(field);
 		System.out.println(keyword);
@@ -36,14 +38,19 @@ public class ListController {
 		int endRow=pu.getEndRow();//끝행번호
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-	
+		map.put("subcate", subcate);
+		map.put("category", category);
 		List<PostVo> list=service.postList(map);
 		
+		String[] subcate_str = {"전체","공지", "파티찾기", "자유", "신고"};
+		String[] category_str = {"넷플릭스","왓챠", "디즈니", "전체공지"};
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("list", list);
-		
+		model.addAttribute("subcate", subcate_str[subcate]);
+		model.addAttribute("category_str", category_str[category]);
+		model.addAttribute("category", category);
 		
 		return "board/boardList.tiles";
 	}

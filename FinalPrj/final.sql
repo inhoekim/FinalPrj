@@ -49,7 +49,6 @@ CREATE TABLE BOARD_CATEGORY --게시판 카테고리
 (
     category_id number(10) PRIMARY KEY, --시퀀스
     category_name varchar2(20) NOT NULL, -- 카테고리 이름
-    board_address varchar2(50) NOT NULL -- 해당 카테고리 메인 게시판 주소
 );
 
 CREATE TABLE BOARD_POST -- 게시글
@@ -57,7 +56,7 @@ CREATE TABLE BOARD_POST -- 게시글
     post_id number(10) PRIMARY KEY, --시퀀스
     user_id varchar2(20) NOT NULL, --글쓴이
     category_id number(1) NOT NULL, --카테고리번호
-    subcate number(3) NOT NULL, --분류
+    subcate number(3) NOT NULL, --분류 (0:전체 / 1:공지 / 2:파티찾기 / 3:자유 / 4:신고)
     title varchar2(20) NOT NULL, --글제목
     content varchar2(4000) NOT NULL, --글내용
     hit number(10) DEFAULT 0 NOT NULL, --조회수
@@ -160,7 +159,6 @@ CREATE TABLE BOARD_ACCUSATION -- 신고게시글
 (
     accusate_id number(10) PRIMARY KEY, --시퀀스
     user_id varchar2(20) NOT NULL, --글쓴이
-    category_id number(1) NOT NULL, --카테고리번호
     target_id varchar2(20) NOT NULL, --신고 대상자 아이디
     title varchar2(20) NOT NULL, --글제목
     content varchar2(4000) NOT NULL, --글내용
@@ -266,7 +264,7 @@ CREATE SEQUENCE SEQ_BLACKLIST; -- BLACKLIST 테이블 시퀀스
 CREATE SEQUENCE SEQ_FILES; -- FILES 테이블 시퀀스
 CREATE SEQUENCE SEQ_VOTE; -- VOTE 테이블 시퀀스
 CREATE SEQUENCE SEQ_NOTIFICATION; -- NOTIFICATION 테이블 시퀀스
-CREATE SEQUENCE SEQ_BOARD_CATEGORY; -- CATEGORY 테이블 시퀀스
+CREATE SEQUENCE SEQ_BOARD_CATEGORY START WITH 4; -- CATEGORY 테이블 시퀀스
 CREATE SEQUENCE SEQ_BOARD_POST; -- POST 테이블 시퀀스
 CREATE SEQUENCE SEQ_BOARD_ACCUSATION; -- ACCUSATION 테이블 시퀀스
 CREATE SEQUENCE SEQ_SETTLE; -- SETTLE 테이블 시퀀스
@@ -289,5 +287,10 @@ insert into PROFILEIMG values (5,'woman1-64.png', 'woman1-64.png');
 insert into PROFILEIMG values (6,'woman2-64.png', 'woman2-64.png'); 
 insert into PROFILEIMG values (7,'woman3-64.png', 'woman3-64.png'); 
 insert into PROFILEIMG values (8,'woman4-64.png', 'woman4-64.png'); 
+
+insert into BOARD_CATEGORY values(0,'넷플릭스');
+insert into BOARD_CATEGORY values(1,'왓챠');
+insert into BOARD_CATEGORY values(2,'디즈니');
+insert into BOARD_CATEGORY values(3,'전체공지');
 
 commit;
