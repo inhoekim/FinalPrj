@@ -57,6 +57,7 @@ CREATE TABLE BOARD_POST -- 게시글
     post_id number(10) PRIMARY KEY, --시퀀스
     user_id varchar2(20) NOT NULL, --글쓴이
     category_id number(1) NOT NULL, --카테고리번호
+    subcate number(3) NOT NULL, --분류
     title varchar2(20) NOT NULL, --글제목
     content varchar2(4000) NOT NULL, --글내용
     hit number(10) DEFAULT 0 NOT NULL, --조회수
@@ -109,6 +110,7 @@ CREATE TABLE COMMENTS -- 댓글
     comment_id number(10) PRIMARY KEY, --댓글번호(소속 게시글에서 가장 큰 댓글번호 + 1 방식으로) 시퀀스 아님!!
     post_id number(10) NOT NULL, --댓글을 포함하고있는 글번호
     user_id varchar2(20) NOT NULL, -- 댓글을 쓴 사람아이디
+    parent_id varchar2(20),--답글이면 그 댓글의 부모아이디
     content varchar2(1000) NOT NULL, -- 댓글내용,
     ref number(10) NOT NULL, -- 대댓글기능용 jsp14_board 참고
     lev number(10) NOT NULL, 
@@ -131,12 +133,13 @@ CREATE TABLE SUBSCRIBE --구독관리
 CREATE TABLE VOTE -- 추천 및 비추천
 (
     vote_id number(10) PRIMARY KEY, -- 시퀀스
-    post_id number(10) NOT NULL, -- 추천대상 게시글
+    post_id number(10), -- 추천대상 게시글
+    comment_id number(10),--추천대상 댓글
     user_id varchar2(20) NOT NULL, --추천하는 사람 ID
-    y_n number(1) NOT NULL, -- 0: 추천 , 1: 비추천
     created_day date NOT NULL, -- 추천한 날짜
     CONSTRAINT FK_VOTE_POST FOREIGN KEY(post_id) REFERENCES BOARD_POST(post_id),
-    CONSTRAINT FK_VOTE_USERID FOREIGN KEY(user_id) REFERENCES USERS(user_id)
+    CONSTRAINT FK_VOTE_USERID FOREIGN KEY(user_id) REFERENCES USERS(user_id),
+    CONSTRAINT FK_VOTE_COMMNETID FOREIGN KEY(comment_id) REFERENCES comments(comment_id)
 );
 
 CREATE TABLE NOTIFICATIONS -- 알림
