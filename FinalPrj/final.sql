@@ -57,7 +57,7 @@ CREATE TABLE BOARD_POST -- 게시글
     user_id varchar2(20) NOT NULL, --글쓴이
     category_id number(1) NOT NULL, --카테고리번호
     subcate number(3) NOT NULL, --분류 (0:전체 / 1:공지 / 2:파티찾기 / 3:자유 / 4:신고)
-    title varchar2(20) NOT NULL, --글제목
+    title varchar2(150) NOT NULL, --글제목
     content varchar2(4000) NOT NULL, --글내용
     hit number(10) DEFAULT 0 NOT NULL, --조회수
     created_day date NOT NULL, --글 작성일

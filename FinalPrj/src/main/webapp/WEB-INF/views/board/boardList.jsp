@@ -52,7 +52,7 @@
 	                </td>
 	                <td>
 	                    <div class="writer">
-	                        <img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/ott_logos/${admin_profile}">
+	                        <img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/ott_logos/${admin_profile}">
 	                        admin
 	                    </div>
 	                </td>

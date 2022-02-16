@@ -902,6 +902,8 @@ footer {
   border: 1px solid #cfcbcb;
   border-radius: 15px;
   margin-right: 2px;
+  width: 28px;
+  height: 28px;
 }
 
 .th_writer {
