@@ -22,11 +22,11 @@ public class DetailController {
 	@Autowired PostService service;
 	@Autowired CommentsService cService;
 	@GetMapping("/board/detail")
-	public String detail(int post_id,Model m) {
-		service.addHit(post_id);
-		PostVo vo= service.postDetail(post_id);
-		m.addAttribute("vo", vo);
-		return "board/detail";
+	public String detail(Model m) {
+		//service.addHit(post_id);
+		//PostVo vo= service.postDetail(post_id);
+		//m.addAttribute("vo", vo);
+		return "board/boardDetail.tiles";
 	}
 	@RequestMapping(value ="/commList",method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
@@ -35,6 +35,7 @@ public class DetailController {
 		List<CommentsVo> list=cService.selectAll(post_id);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("list", list);
+		
 		return map;
 	}
 }

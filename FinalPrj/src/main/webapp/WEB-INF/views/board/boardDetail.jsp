@@ -54,9 +54,44 @@
     </div>
 
     <div class="commentBox">
-        <div class="commentBox_title">댓글 8</div>
+        <div class="commentBox_title">댓글<span style="color : #e67979; margin-left: 5px;">{comment_cnt}</span></div>
         <div class="commentBox_content">
-            댓글반복
+            <div class="comment">
+                <img class="writer_profile" src="profile/woman1-32.png">
+                <div class="comment_wrapper">
+                    <div class="content_header">
+                        <span style="margin-right: 10px"><b>{user_id}</b></span>
+                        <span style="color: darkgray">{timestamp}</span>
+                    </div>
+                    <div class="content_main">
+                        댓글내용 {comment_content}
+                    </div>
+                    <div class="content_interaction">
+                        <div class="recommnet">답글 <span style="maring-left: 5px">{답글_cnt}</span></div>
+                        <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="comment">
+                <img class="writer_profile" src="profile/woman1-32.png">
+                <div class="comment_wrapper">
+                    <div class="content_header">
+                        <span style="margin-right: 10px"><b>{user_id}</b></span>
+                        <span style="color: darkgray">{timestamp}</span>
+                    </div>
+                    <div class="content_main">
+                        댓글내용 {comment_content}
+                    </div>
+                    <div class="content_interaction">
+                        <div class="recommnet">답글 <span style="maring-left: 5px">{답글_cnt}</span></div>
+                        <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
+                    </div>
+
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
