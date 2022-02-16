@@ -38,4 +38,14 @@ public class DetailController {
 		
 		return map;
 	}
+	@RequestMapping(value ="/userwriteList",method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public HashMap<String, Object> getwriteList(String user_id){
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		List<PostVo> plist=service.userPost(user_id);
+		List<CommentsVo> clist=service.userComment(user_id);
+		map.put("plist", plist);
+		map.put("clist", clist);
+		return map;
+	}
 }

@@ -3,6 +3,7 @@ package com.spring.ott.controller.pse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,16 +31,18 @@ import com.spring.ott.vo.PostVo;
 public class InsertController {
 	@Autowired PostService service;
 	@GetMapping("/board/insert")
-	public String insertForm(Model m) {
+	public String insertForm(Model m,Principal user_id) {
 		List<CategoryVo> list=service.category();
 		m.addAttribute("list", list);
+		m.addAttribute("user_id", user_id);
 		return "board/insert";
 	}
 	@PostMapping("/board/insert")
-	public String insert(PostVo vo ,Model m) {
+	public String insert(PostVo vo ,Model m,Principal user_id) {
+		vo.setUser_id(user_id.getName());
 		service.postInsert(vo);
 		
-		return "redirect:/";
+		return "redirect:/board/list";
 	}
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody

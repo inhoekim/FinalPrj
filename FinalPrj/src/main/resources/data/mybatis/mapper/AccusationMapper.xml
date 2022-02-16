@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.AccusationMapper">
+	<select id="selectList" resultType="com.spring.ott.vo.AccusationVo">
+		select * from board_accusation
+	</select>
+	<insert id="postAccusation" parameterType="com.spring.ott.vo.AccusationVo">
+		insert into board_accusation values(SEQ_BOARD_ACCUSATION.nextval,#{user_id},#{category_id},#{target_id},#{title},#{content},sysdate,#{post_id},null)
+	</insert>
+	<insert id="commentAccusation" parameterType="com.spring.ott.vo.AccusationVo">
+		insert into board_accusation values(SEQ_BOARD_ACCUSATION.nextval,#{user_id},#{category_id},#{target_id},#{title},#{content},sysdate,null,#{comment_id})
+	</insert>
+</mapper>

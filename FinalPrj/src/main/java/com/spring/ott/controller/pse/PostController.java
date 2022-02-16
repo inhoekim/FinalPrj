@@ -1,5 +1,6 @@
 package com.spring.ott.controller.pse;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -10,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.spring.ott.service.AccusationService;
 import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.vo.AccusationVo;
 import com.spring.ott.vo.CategoryVo;
 import com.spring.ott.vo.PostVo;
 
@@ -19,6 +22,7 @@ import com.spring.ott.vo.PostVo;
 public class PostController {
 	@Autowired PostService service;
 	@Autowired CommentsService cservice;
+	@Autowired AccusationService aservice;
 	@Autowired ServletContext sc;
 	@GetMapping("/post/delete")
 	public String delete(int post_id) {
@@ -41,6 +45,20 @@ public class PostController {
 	@PostMapping("/post/update")
 	public String updateSave(PostVo vo) {
 		service.update(vo);
+		return "redirect:/board/list";
+	}
+	@GetMapping("/post/accusation")
+	public String accusationForm(int post_id,Model m) {
+		PostVo vo=service.one(post_id);
+		m.addAttribute("vo", vo);
+		return "/board/accusation";
+		
+	}
+	@PostMapping("/post/accusation")
+	public String accsation(AccusationVo vo,Principal prin) {
+		String user_id=prin.getName();
+		vo.setUser_id(user_id);
+		aservice.postAccusation(vo);
 		return "redirect:/board/list";
 	}
 }

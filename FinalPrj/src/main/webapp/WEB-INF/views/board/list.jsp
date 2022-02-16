@@ -13,6 +13,7 @@
 <table>
  	<tr>
  		<th>번호</th>
+ 		<th>분류</th>
  		<th>제목</th>
  		<th>글쓴이</th>
  		<th>날짜</th>
@@ -21,6 +22,12 @@
  	<c:forEach var="vo" items="${list}">
  	<tr>
  		<th>${vo.post_id}</th>
+ 		<th>
+ 		<c:if test="${vo.subcate==0}">자유</c:if>
+ 		<c:if test="${vo.subcate==1}">파티찾기</c:if>
+ 		<c:if test="${vo.subcate==2}">영화추천(소개)</c:if>
+ 		<c:if test="${vo.subcate==3}">신고</c:if>
+ 		</th>
  		<th><a href="${cp}/board/detail?post_id=${vo.post_id}">${vo.title}</a><span>&nbsp;&nbsp;${vo.comCnt}</span></th>
  		<th>${vo.user_id}</th>
  		<th>${vo.created_day}</th>

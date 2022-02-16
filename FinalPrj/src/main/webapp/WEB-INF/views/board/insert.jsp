@@ -99,7 +99,13 @@ $(document).ready(function() {
 				<option value="${category.category_id}">${category.category_name}</option>
 			</c:forEach>
 		</select>
-		<input type="text" name="user_id" style="width: 20%;" placeholder="작성자"/><br>
+		<select name="subcate">
+			<option value="0">자유</option>
+			<option value="1">파티찾기</option>
+			<option value="2">영화추천(소개)</option>
+			<option value="3">신고</option>
+		</select>
+		<input type="hidden" name="user_id" value="${user_id}"/><br>
 		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
 		<br><br> 
 		<textarea id="summernote" name="content"></textarea>
@@ -113,12 +119,9 @@ function goWrite(frm) {
 	var user_id = frm.user_id.value;
 	var content = frm.content.value;
 	var category = frm.category_id.value;
+	var subcate = frm.subcate.value;
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
-		return false;
-	}
-	if (user_id.trim() == ''){
-		alert("작성자를 입력해주세요");
 		return false;
 	}
 	if (content.trim() == ''){

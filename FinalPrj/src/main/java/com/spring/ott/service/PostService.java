@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ott.vo.CategoryVo;
+import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.FilesVo;
 import com.spring.ott.vo.PostVo;
 
@@ -50,5 +51,14 @@ public class PostService {
 	}
 	public PostVo one(int post_id) {
 		return mapper.one(post_id);
+	}
+	public List<PostVo> userPost(String user_id){
+		return mapper.userPost(user_id);
+	}
+	public List<CommentsVo> userComment(String user_id){
+		return mapper.userComment(user_id);
+	}
+	public List<PostVo> partyPost(){
+		return mapper.partyPost();
 	}
 }

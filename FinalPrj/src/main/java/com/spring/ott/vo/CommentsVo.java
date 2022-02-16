@@ -20,5 +20,6 @@ public class CommentsVo {
 	private int step;
 	private Date created_day;
 	private Date updated_day;
-	
+	private String parent_id;
+	private int cvoCnt;
 }
