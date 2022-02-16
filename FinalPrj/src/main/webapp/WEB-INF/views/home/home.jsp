@@ -9,28 +9,28 @@
 
                 <div class="post">
                     <div class="post_num first">1</div>
-                    <a class="board_category" href="#">${rList[0].cname}</a>
+                    <a class="board_category" href="${cp}/board/list?category=${rList[0].category_id}">${rList[0].cname}</a>
                     <a href="${cp}/board/detail?post_id=${rList[0].post_id}" class="post_title">${rList[0].title}</a>
                     <span class="comment_cnt">${rList[0].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num second">2</div>
-                    <a class="board_category" href="#">${rList[1].cname}</a>
+                    <a class="board_category" href="${cp}/board/list?category=${rList[1].category_id}">${rList[1].cname}</a>
                     <a href="${cp}/board/detail?post_id=${rList[1].post_id}" class="post_title">${rList[1].title}</a>
                     <span class="comment_cnt">${rList[1].comCnt}</span>
                 </div>
 
                 <div class="post">
                     <div class="post_num third">3</div>
-                    <a class="board_category" href="#">${rList[2].cname}</a>
+                    <a class="board_category" href="${cp}/board/list?category=${rList[2].category_id}">${rList[2].cname}</a>
                     <a href="${cp}/board/detail?post_id=${rList[2].post_id}" class="post_title">${rList[2].title}</a>
                     <span class="comment_cnt">${rList[2].comCnt}</span>
                 </div>
                  <c:forEach var="cnt" begin="3" end="9">
 				 <div class="post">
                     <div class="post_num">${cnt+1}</div>
-                    <a class="board_category" href="#">${rList[cnt].cname}</a>
+                    <a class="board_category" href="${cp}/board/list?category=${rList[cnt].category_id}">${rList[cnt].cname}</a>
                     <a href="${cp}/board/detail?post_id=${rList[cnt].post_id}" class="post_title">${rList[cnt].title}</a>
                     <span class="comment_cnt">${rList[cnt].comCnt}</span>
                 </div>
