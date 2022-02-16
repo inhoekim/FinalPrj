@@ -25,7 +25,7 @@
 <div class="post_detail" style="padding: 20px">
 	<form:form method="post" action="${pageContext.request.contextPath}/board/insert">
 		<select name="subcate">
-			<option value="2">파티찾기</option>
+			<option value="2" selected="selected">파티찾기</option>
 			<option value="3">자유</option>
 		</select>
 		<input type="hidden" name="category_id" value="${category}"/><br>
@@ -114,10 +114,7 @@ $(document).ready(function() {
 
 function goWrite(frm) {
 	var title = frm.title.value;
-	var user_id = frm.user_id.value;
 	var content = frm.content.value;
-	var category = frm.category_id.value;
-	var subcate = frm.subcate.value;
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
 		return false;

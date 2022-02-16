@@ -42,10 +42,11 @@ public class InsertController {
 	}
 	@PostMapping("/board/insert")
 	public String insert(PostVo vo ,Model m,Principal user_id) {
+		System.out.println(vo);
 		vo.setUser_id(user_id.getName());
 		service.postInsert(vo);
-		
-		return "redirect:/board/list";
+		String url = "/board/list?category=" + vo.getCategory_id() + "&subcate=" + vo.getSubcate();
+		return "redirect:" + url;
 	}
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
