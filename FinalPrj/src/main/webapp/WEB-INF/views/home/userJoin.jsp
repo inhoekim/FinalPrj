@@ -223,7 +223,7 @@ $("#emailChk").click(function(){
         cache : false,
         success:function(data){
         	if(data == "error"){
-        		alert("이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해주세요.");
+        		alert("인증번호 발신하는 이메일의 아이디&비밀번호를 확인해주세요");
 				$("#email").attr("autofocus",true);
 				$(".successEmailChk").text("유효한 이메일 주소를 입력해주세요.");
 				$(".successEmailChk").css("color","red");
