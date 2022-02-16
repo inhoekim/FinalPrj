@@ -30,7 +30,7 @@
 				<th class="d" >정지 시작 날짜</th>
 				<th class="d" >정지 만료 날짜</th>
 				<th class="d" >정지 사유</th>
-				<th class="d" >블랙/정상</th>
+				<th class="d" >정지/정상</th>
 			</tr>
 		</thead> 
 	</table>
@@ -50,7 +50,16 @@ $(document).ready(function() {
     		{data: "black_start_date"},
     		{data: "black_expiry_date"},
     		{data: "content"},
-    		{data: "black_enabled"}
+    		{data: "black_enabled",
+    		 render:function(data){
+    			 if(data=='0'){
+    				 return '정지'
+    			 }else{
+    				 return '정상'
+    			 }
+    		  }	
+    			
+    		}
     	]
     } );
 } );

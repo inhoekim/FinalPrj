@@ -12,6 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -38,6 +39,8 @@ public class loginFailHandler implements AuthenticationFailureHandler{
             errormsg = MessageUtils.getMessage("error.Disabled");
         } else if(exception instanceof CredentialsExpiredException) {
             errormsg = MessageUtils.getMessage("error.CredentialsExpired");
+        } else if(exception instanceof LockedException) {
+        	errormsg = MessageUtils.getMessage("error.Locked");
         }
 
         

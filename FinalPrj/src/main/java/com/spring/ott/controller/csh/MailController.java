@@ -60,7 +60,6 @@ public class MailController {
 			num=Integer.toString(dice);
 		} catch(Exception e) {
 			e.printStackTrace();
-			num="error";
 		}
 				
 		return num;

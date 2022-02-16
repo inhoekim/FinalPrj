@@ -7,6 +7,7 @@
      	<id property="user_id" column="user_id"/>
      	<result property="pwd" column="pwd"/>
      	<result property="enabled" column="enabled"/>
+     	<result property="black_enabled" column="black_enabled"/>
      	<collection property="authList" ofType="com.spring.ott.vo.AuthoritiesVo">
      		<result property="user_id" column="user_id"/>
      		<result property="authority" column="authority"/>
