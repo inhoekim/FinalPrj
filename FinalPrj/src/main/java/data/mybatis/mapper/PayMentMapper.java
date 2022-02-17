@@ -10,4 +10,5 @@ public interface PayMentMapper {
 	public List<PayMentVo> PayList(HashMap<String, Integer>map);
 	public int totalRowCnt();
 	public List<PayMentVo> AllSelect();
+	public int payupdate(String payment_id);
 }

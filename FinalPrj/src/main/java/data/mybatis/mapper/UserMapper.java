@@ -25,6 +25,6 @@ public interface UserMapper {
 	
 	public List<UserVo> userList(HashMap<String, Integer>map);
 	public int totalRowCnt();
-	public List<UserVo> allSelect();
+	public List<UserVo> AllSelect();
 }
  
