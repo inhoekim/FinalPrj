@@ -22,4 +22,6 @@ public class CommentsVo {
 	private Date updated_day;
 	private String parent_id;
 	private int cvoCnt;
+	//가상컬럼
+	private String profile_src;
 }
