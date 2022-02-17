@@ -183,10 +183,12 @@ ${vo.content}
 		 });		 
 	
 	 });	
+	 
 	function replyForm(comment_id){
 		var rere = document.getElementById("rereply_write"+comment_id);
 		rere.style.display='block';
 	}
+	
 	function removeComm(comment_id){
 		console.log(comment_id);
 		$.ajax({

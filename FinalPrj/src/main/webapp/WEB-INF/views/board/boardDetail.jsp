@@ -6,6 +6,7 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
 
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
+
 <div class="board_title">
     <h4>${category_str[category]} 게시판</h4>
 </div>
@@ -81,7 +82,7 @@
 	                        ${comment_content}
 	                    </div>
 	                    <div class="content_interaction">
-	                        <div class="recommnet">답글</div>
+	                        <div class="recomment">답글</div>
 	                        <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
 	                    </div>
 	                </div>
@@ -247,7 +248,7 @@ function list(){
 				let cvoCnt =d.cvoCnt;
 				let profile_src = d.profile_src;
 				
-				let html="<div class='comment'>";
+				let html="<div class='comment' id='comm"+comment_id+"'>";
 				html+= "<img class='writer_profile' src='${cp}/resources/img/profile/"+ profile_src +"'>";
 				html+= "<div class='comment_wrapper'><div class='content_header'>";
 				if(parent_id!=null){
@@ -256,13 +257,46 @@ function list(){
 				html+= "<span style='margin-right: 10px'><b>" + user_id + "</b></span>";
 				html+= "<span style='color: darkgray'>" + created_day + "</span></div>";
 				html+= "<div class='content_main'>" + content + "</div>";
-				html+= "<div class='content_interaction'><div class='recommnet'>답글</div>";
-				html+= "<div class='likeButton'><i class='fas fa-heart' style='color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>"
+				html+= "<div class='content_interaction'>";
+				if(user_id == "${myProfile.user_id}") {html+= "<div class='left_wrapper'><div class='update_comment' onclick='updateForm("+ comment_id +")'>수정</div><div class='delete_comment' onclick='removeComm("+ comment_id +")'>삭제</div></div>";}
+				else{html+= "<div class='recomment'>답글</div>"}
+				html+= "<div class='likeButton'><i class='fas fa-heart' style='color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>";
 				html+= cvoCnt + "</span></div></div></div></div>";
 				$("#taget_box").append(html);
 			});
 		}
 	});
+}
+//댓글삭제
+function removeComm(comment_id){
+	console.log(comment_id);
+	$.ajax({
+		url:'${cp}/commRemove',
+		data:{
+			"comment_id":comment_id
+		},
+		success:function(data){
+			list();
+		}
+	});
+};
+//댓글 업데이트
+function updateForm(comment_id){
+	$.ajax({
+		url:'${cp}/selComm',
+		type:'get',
+		dataType:'json',
+		data:{
+			"comment_id":comment_id
+		},
+		success:function(data){
+			$("#comm"+comment_id).empty();
+			let html="<input type='text' id='input_update"+comment_id+"' value='"+data.content+"'>";
+			html+="<button type='button' id='updateBtn' comment_id='"+comment_id+"' post_id='"+post_id+"'>수정완료</button>";
+			$("#comm"+comment_id).append(html);
+		}
+	});
+	
 }
 
 	$(function(){

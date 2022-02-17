@@ -89,6 +89,13 @@ input[type='text']:focus {
   src: url('../woff/neodgm_code.woff');
 }
 
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Typography */
 
 h1 {
@@ -1229,11 +1236,25 @@ footer {
   align-items: center;
 }
 
-.comment .recomment {
-	font-family: 'Do Hyeon', sans-serif;
+.content_interaction .left_wrapper {
+	display: flex;
 }
 
-.comment .recomment,
+.content_interaction .left_wrapper div {
+	margin: 0 2px;
+}
+
+.content_interaction .left_wrapper div:nth-child(1) {
+	margin-left: 0;
+}
+
+.content_interaction .recomment,.delete_comment,
+.update_comment{
+	font-family: 'GangwonEdu_OTFBoldA';
+}
+
+.content_interaction .recomment,
+.update_comment,.delete_comment,
 .likeButton {
   background-color: #efefef;
   padding: 5px;
@@ -1241,7 +1262,7 @@ footer {
   cursor: pointer;
 }
 
-.comment .recommnet:hover,
+.recomment:hover,.update_comment:hover,.delete_comment:hover,
 .likeButton:hover {
   background-color: #c9c5c5;
 }
