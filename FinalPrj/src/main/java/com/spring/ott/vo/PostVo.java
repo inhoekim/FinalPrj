@@ -23,4 +23,6 @@ public class PostVo {
 	private int voCnt;
 	private String cname;
 	private int subcate;
+	//가상칼럼
+	private String post_profile;
 }

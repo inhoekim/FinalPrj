@@ -22,29 +22,43 @@ public class ListController {
 	@Autowired PostService service;
 	
 	@RequestMapping("/board/list")
-	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,Model model,String field,String keyword) {
+	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
+			@RequestParam(value="subcate",defaultValue = "0") int subcate,
+			int category,Model model,String field,String keyword) {
 		HashMap<String , Object> map =new HashMap<String, Object>();
 		System.out.println(field);
 		System.out.println(keyword);
 		map.put("field", field);
 		map.put("keyword", keyword);
+		map.put("subcate", subcate);
+		map.put("category", category);
 		
+		int page_row = 5;
 		int totalRowCount=service.count(map);
-		System.out.println(totalRowCount);
-		PageUtil pu=new PageUtil(pageNum, 5, 5, totalRowCount);
+		int totalPage = totalRowCount / page_row + 1;
+		if(pageNum <= 0) pageNum = 1;
+		else if (pageNum > totalPage) pageNum = totalPage;
+		PageUtil pu=new PageUtil(pageNum, page_row, 5, totalRowCount);
 		int startRow=pu.getStartRow();//시작행번호
 		int endRow=pu.getEndRow();//끝행번호
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-	
 		List<PostVo> list=service.postList(map);
 		
+		String[] subcate_str = {"전체","공지", "파티찾기", "자유", "신고"};
+		String[] category_str = {"넷플릭스","왓챠", "디즈니", "전체공지"};
+		String[] admin_profile = {"icon_netflix_x2.png" ,"icon_watcha_x2.png","icon_disney_x2.png"};
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("list", list);
-		
-		
+		model.addAttribute("subcate_str", subcate_str);
+		model.addAttribute("subcate", subcate);
+		model.addAttribute("category_str", category_str);
+		model.addAttribute("category", category);
+		model.addAttribute("admin_profile", admin_profile[category]);
+		List<PostVo> notice = service.recent_notice(category);
+		model.addAttribute("notice", notice);
 		return "board/boardList.tiles";
 	}
 }

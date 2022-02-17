@@ -14,9 +14,9 @@
                      <i class="fas fa-angle-down toggle" style="color:black"></i>
                  </div>
                  <div class="folder_items">
-                     <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list">넷플릭스</a></div>
-                     <div class="folder_item">왓챠</div>
-                     <div class="folder_item">디즈니</div>
+                     <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list?category=0">넷플릭스</a></div>
+                     <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list?category=1">왓챠</a></div>
+                     <div class="folder_item"><a href="${pageContext.request.contextPath}/board/list?category=2">디즈니</a></div>
                  </div>
              </div>
              <div class="folder">

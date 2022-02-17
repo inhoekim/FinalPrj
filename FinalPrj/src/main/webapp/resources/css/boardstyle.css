@@ -981,4 +981,9 @@ footer {
   .rightside_container {
     margin-left: 0;
   }
+  
+  .rightside_container:nth-last-child(1) {
+  	margin-left: 10px;
+  }
+  
 }

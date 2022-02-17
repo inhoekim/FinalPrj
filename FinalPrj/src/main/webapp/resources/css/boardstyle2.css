@@ -73,7 +73,7 @@ input[type='text'] {
   border: 1px solid var(--color-light-white);
   margin: 10px 0;
   padding: 0 15px;
-  font-size: 16px;
+  font-size: 12px;
   margin: 0;
 }
 
@@ -838,6 +838,7 @@ footer {
   opacity: 1;
   height: 140px;
   box-shadow: 0 7px 10px 1px #e1dfdd;
+  z-index: 99;
 }
 
 
@@ -901,6 +902,8 @@ footer {
   border: 1px solid #cfcbcb;
   border-radius: 15px;
   margin-right: 2px;
+  width: 28px;
+  height: 28px;
 }
 
 .th_writer {
@@ -979,6 +982,28 @@ footer {
   background-color: #d3d2d2;
 }
 
+.pagination_wrapper {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.pagination {
+	display: flex;
+	background-color : #ffffff;
+	font-size: 13px;
+	border-radius: 7px;
+}
+
+.pagination a {
+	border-right: 1px solid #d3cbcb70;
+	padding: 8px;
+}
+
+.pagination a:nth-last-child(1) {
+	border-right: none;
+}
+
 /* board_detail Part */
 
 .post_detail {
@@ -987,9 +1012,10 @@ footer {
   border-radius: var(--size-border-radius);
 }
 
-.post_title {
+.post_detail .post_title {
   height: 40px;
   padding: 15px;
+  margin-bottom: 10px;
 }
 
 .post_title .classification {
@@ -1049,12 +1075,14 @@ footer {
 .likeVote {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 115px;
   height: 35px;
   padding: 5px;
   border-radius: 10px;
   background-color: #fae7e7;
   font-size: 14px;
+  margin: 0;
   margin-right: 10px;
   cursor: pointer;
 }
@@ -1157,6 +1185,59 @@ footer {
   top: -20px;
 }
 
+.commentBox_title {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fd;
+  height: 35px;
+  padding: 10px 20px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #e4e4e4;
+  font-size: 14px;
+}
+
+.comment img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.comment .comment_wrapper {
+  width: 100%;
+}
+
+.comment .content_main {
+  margin: 10px 0;
+}
+
+.comment .content_interaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment .recommnet,
+.likeButton {
+  background-color: #efefef;
+  padding: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comment .recommnet:hover,
+.likeButton:hover {
+  background-color: #c9c5c5;
+}
+
+.comment:nth-last-child(1) {
+  border-bottom: none;
+}
 
 @media screen and (max-width: 900px) {
   #main {

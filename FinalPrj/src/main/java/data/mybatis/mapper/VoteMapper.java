@@ -1,8 +1,9 @@
 package data.mybatis.mapper;
 
 import java.util.HashMap;
+import java.util.List;
 
-
+import com.spring.ott.vo.UserProfileVo;
 import com.spring.ott.vo.VoteVo;
 
 public interface VoteMapper {
@@ -13,4 +14,5 @@ public interface VoteMapper {
 	int likeCount(int post_id);
 	VoteVo checkComm(HashMap<String, Object> map);
 	int deleteCommLike(HashMap<String, Object> map);
+	List<UserProfileVo> getLikeList(int post_id);
 }

@@ -36,7 +36,7 @@ public class MailController {
 		
 		Random rnd = new Random();
 		int dice = rnd.nextInt(4589362) + 49311;
-		System.out.println("#######인증 번호 :" +dice);
+		System.out.println("#######인증 번호######## :" +dice);
 		String setFrom ="yspt12@naver.com";
 		String toMail = email;
 		String title = "회원가입 인증 이메일입니다.";
@@ -58,6 +58,7 @@ public class MailController {
 			javaMailSender.send(message);
 			
 			num=Integer.toString(dice);
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			num="error";

@@ -24,4 +24,5 @@ public interface PostMapper {
 	List<PostVo> userPost(String user_id);
 	List<CommentsVo> userComment(String user_id);
 	List<PostVo> partyPost();
+	List<PostVo> recent_notice(int category_id);
 }

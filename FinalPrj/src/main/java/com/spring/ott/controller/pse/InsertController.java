@@ -31,18 +31,22 @@ import com.spring.ott.vo.PostVo;
 public class InsertController {
 	@Autowired PostService service;
 	@GetMapping("/board/insert")
-	public String insertForm(Model m,Principal user_id) {
+	public String insertForm(int category, Model m,Principal user_id) {
+		String[] category_str = {"넷플릭스","왓챠", "디즈니", "전체공지"};
 		List<CategoryVo> list=service.category();
+		m.addAttribute("category_str", category_str[category]);
+		m.addAttribute("category", category);
 		m.addAttribute("list", list);
 		m.addAttribute("user_id", user_id);
-		return "board/insert";
+		return "board/insert.tiles";
 	}
 	@PostMapping("/board/insert")
 	public String insert(PostVo vo ,Model m,Principal user_id) {
+		System.out.println(vo);
 		vo.setUser_id(user_id.getName());
 		service.postInsert(vo);
-		
-		return "redirect:/board/list";
+		String url = "/board/list?category=" + vo.getCategory_id() + "&subcate=" + vo.getSubcate();
+		return "redirect:" + url;
 	}
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody

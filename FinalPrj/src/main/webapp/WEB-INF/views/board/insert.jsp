@@ -9,15 +9,37 @@
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
 <!-- include summernote-ko-KR -->
 <script src="${pageContext.request.contextPath}/resources/summernote/summernote-ko-KR.js"></script>
 <title>글쓰기</title>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
+</head>
+<body>
+
+<div class="board_title">
+    <h4>${category_str} 게시판</h4>
+</div>
+
+<div class="post_detail" style="padding: 20px">
+	<form:form method="post" action="${pageContext.request.contextPath}/board/insert">
+		<select name="subcate">
+			<option value="1" selected="selected">공지</option>
+			<option value="2" selected="selected">파티찾기</option>
+			<option value="3">자유</option>
+		</select>
+		<input type="hidden" name="category_id" value="${category}"/><br>
+		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+		<br><br> 
+		<textarea id="summernote" name="content" style="margin-bottom: 20px"></textarea>
+		<div style="width: 100%; text-align: right">
+			<input id="subBtn" type="button" value="작성" style="border:1px solid #b8b8b8; border-radius: 5px;margin: 10px 0; cursor: pointer;font-size:12px;font-weight: 600 " onclick="goWrite(this.form)"/>
+		</div>
+		
+	</form:form>
+</div>
+
 <script>
 
 $(document).ready(function() {
@@ -88,38 +110,12 @@ $(document).ready(function() {
         });
 
 </script>
-</head>
-<body>
-<h2 style="text-align: center;">글 작성</h2><br><br><br>
 
-<div style="width: 60%; margin: auto;">
-	<form:form method="post" action="${pageContext.request.contextPath}/board/insert">
-		<select name="category_id">
-			<c:forEach var="category" items="${list}">
-				<option value="${category.category_id}">${category.category_name}</option>
-			</c:forEach>
-		</select>
-		<select name="subcate">
-			<option value="0">자유</option>
-			<option value="1">파티찾기</option>
-			<option value="2">영화추천(소개)</option>
-			<option value="3">신고</option>
-		</select>
-		<input type="hidden" name="user_id" value="${user_id}"/><br>
-		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
-		<br><br> 
-		<textarea id="summernote" name="content"></textarea>
-		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
-	</form:form>
-</div>
 <script type="text/javascript">
 
 function goWrite(frm) {
 	var title = frm.title.value;
-	var user_id = frm.user_id.value;
 	var content = frm.content.value;
-	var category = frm.category_id.value;
-	var subcate = frm.subcate.value;
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
 		return false;
@@ -131,6 +127,5 @@ function goWrite(frm) {
 	frm.submit();
 }
 </script>
-<a href="${pageContext.request.contextPath}/board/list">글조회</a>
 </body>
 </html>

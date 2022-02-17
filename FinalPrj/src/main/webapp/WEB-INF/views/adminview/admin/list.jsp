@@ -51,10 +51,18 @@ $(document).ready(function() {
     		{data: "name"},
     		{data: "email"},
     		{data: "area"},
-    		{data: "enabled"},
+    		{data: "enabled",
+    		 render:function(data){
+    			 if(data=='0'){
+    				 return '탈퇴'
+    			 }else{
+    				 return '정상'
+    			 }
+    		  }	
+    		},
     		{data: "regdate"}
     	]
-    } );
+    });
 } );
 </script>
 </html>
