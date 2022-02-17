@@ -290,70 +290,86 @@ function updateForm(comment_id){
 			"comment_id":comment_id
 		},
 		success:function(data){
-			$("#comm"+comment_id).empty();
-			let html="<input type='text' id='input_update"+comment_id+"' value='"+data.content+"'>";
-			html+="<button type='button' id='updateBtn' comment_id='"+comment_id+"' post_id='"+post_id+"'>수정완료</button>";
-			$("#comm"+comment_id).append(html);
+			$("#comm"+comment_id).children(".comment_wrapper").children(".content_main").remove();
+			$("#comm"+comment_id).children(".comment_wrapper").children(".content_interaction").remove();
+			let html = "<textarea class='comment_inputBox' style='margin-top:20px'>" + data.content + "</textarea>";
+			$("#comm"+comment_id).children(".comment_wrapper").append(html);
+			html = "<div class='button_wrapper'><button id='update_button' class='comment_button' comment_id='"+comment_id+"'>수정</button></div>";
+			$("#comm"+comment_id).children(".comment_wrapper").append(html);
 		}
 	});
-	
 }
 
-	$(function(){
-		list();
-		//좋아요 버튼 이벤트
-		$(".likeVote").click(function(){	
-			$.ajax({
-				url:'${cp}/insertPostLike',
-				type:'get',
-				dataType:'json',
-				data:{
-					post_id:${postVo.post_id},user_id:"${postVo.user_id}"
-				},
-				success:function(data){
-					$.ajax({
-						url:'${cp}/likeCount',
-						type:'get',
-						dataType:'json',
-						data:{
-							post_id: ${postVo.post_id},
-							user_id: "${postVo.user_id}"
-						},
-						success:function(data){
-							$(".likeVote").children(".like_cnt").text(data);
-						}
-					});
-				}
-			});
+//업데이트 완료 버튼
+$(document).on("click","#update_button",function(){ 
+	let comment_id=$(this).attr("comment_id");
+	let content=$(this).parent().siblings(".comment_inputBox").val();
+	 $.ajax({
+		 url:'${cp}/commupdate',
+		 data:{
+			 'comment_id':comment_id,
+			 'content':content
+		 },
+		 success:function(data){
+			 list();
+		 }
+	 });		
+});	
+
+$(function(){
+	list();
+	//좋아요 버튼 이벤트
+	$(".likeVote").click(function(){	
+		$.ajax({
+			url:'${cp}/insertPostLike',
+			type:'get',
+			dataType:'json',
+			data:{
+				post_id:${postVo.post_id},user_id:"${postVo.user_id}"
+			},
+			success:function(data){
+				$.ajax({
+					url:'${cp}/likeCount',
+					type:'get',
+					dataType:'json',
+					data:{
+						post_id: ${postVo.post_id},
+						user_id: "${postVo.user_id}"
+					},
+					success:function(data){
+						$(".likeVote").children(".like_cnt").text(data);
+					}
+				});
+			}
 		});
-		//댓글 입력 버튼
-		$(".comment_button").click(function(){
-			$.ajax({
-				url:'${cp}/commInsert',
-				data:{
-					post_id: ${postVo.post_id},
-					user_id: "${currentUserName}",
-					content: $(".comment_inputBox").val()
-				},
-				type:'get',
-				success:function(data){
-					$.ajax({
-						url:'${cp}/commCount',
-						type:'get',
-						data:{
-							post_id:${postVo.post_id},
-						},
-						success:function(data){
-							console.log(data.count);
-							$("#span_comm").empty();
-							$("#span_comm").text(data.count);
-							list();
-							$(".comment_inputBox").val("");
-						}
-					});
-				}
-			});
-		
+	});
+	//댓글 입력 버튼
+	$(".comment_button").click(function(){
+		$.ajax({
+			url:'${cp}/commInsert',
+			data:{
+				post_id: ${postVo.post_id},
+				user_id: "${currentUserName}",
+				content: $(".comment_inputBox").val()
+			},
+			type:'get',
+			success:function(data){
+				$.ajax({
+					url:'${cp}/commCount',
+					type:'get',
+					data:{
+						post_id:${postVo.post_id},
+					},
+					success:function(data){
+						console.log(data.count);
+						$("#span_comm").empty();
+						$("#span_comm").text(data.count);
+						list();
+						$(".comment_inputBox").val("");
+					}
+				});
+			}
 		});
-	})
+	});
+})
 </script>

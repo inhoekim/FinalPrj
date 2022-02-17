@@ -28,4 +28,7 @@ public class NotificationsService {
 	public int deleteCommNoti(HashMap<String, Object> map) {
 		return mapper.deleteCommNoti(map);
 	}
+	public int deleteComm(int comment_id) {
+		return mapper.deleteComm(comment_id);
+	}
 }

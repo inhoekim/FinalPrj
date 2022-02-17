@@ -48,6 +48,7 @@ public class CommentsController {
 		if(vo.getLev()>0) {
 			service.update(new CommentsVo(comment_id, comment_id, null, "", comment_id, comment_id, comment_id, null, null,null,0,""));
 		}else {
+			nservice.deleteComm(comment_id);
 			service.delete(comment_id);
 		}
 	}

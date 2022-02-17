@@ -1267,10 +1267,6 @@ footer {
   background-color: #c9c5c5;
 }
 
-.comment:nth-last-child(1) {
-  border-bottom: none;
-}
-
 .comment_inputBox {
 	background-color: #efefef;
 	height: 100px;
