@@ -37,8 +37,10 @@ public class DetailController {
 		service.addHit(post_id);
 		PostVo postVo= service.postDetail(post_id);
 		List<UserProfileVo> profiles = voteService.getLikeList(post_id);
-		UserProfileVo myProfile = profileService.userProfile(principal.getName()); 
-		model.addAttribute("myProfile",myProfile);
+		if(principal != null) {
+			UserProfileVo myProfile = profileService.userProfile(principal.getName()); 
+			model.addAttribute("myProfile",myProfile);
+		}
 		model.addAttribute("postVo", postVo);
 		model.addAttribute("profiles", profiles);
 

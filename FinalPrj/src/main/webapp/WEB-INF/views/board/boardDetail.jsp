@@ -101,7 +101,7 @@
           		</sec:authorize>
           		
           		<sec:authorize access="isAnonymous()">
-          			<i class="fas fa-user writer_profile" style="display: flex;justify-content: center;line-height: 24px;color: gray;"></i>
+          			<i class="fas fa-user writer_profile" style="display: flex;justify-content: center;line-height: 40px;color: gray;width: 40px;height: 40px;font-size: 25px;margin-right: 10px;"></i>
           			<div class="comment_wrapper">
 	          			<textarea class="comment_inputBox" placeholder="댓글등록은 로그인 후 이용 가능합니다." disabled></textarea>
 	          		</div>
