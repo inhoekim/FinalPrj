@@ -36,7 +36,7 @@ public class DetailController {
 		List<UserProfileVo> profiles = voteService.getLikeList(post_id);
 		model.addAttribute("postVo", postVo);
 		model.addAttribute("profiles", profiles);
-		
+
 		/* 하단 boardList 배치 */
 		HashMap<String , Object> map =new HashMap<String, Object>();
 		System.out.println(field);

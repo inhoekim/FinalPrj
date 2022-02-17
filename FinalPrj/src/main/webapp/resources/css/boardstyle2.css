@@ -1082,6 +1082,7 @@ footer {
   border-radius: 10px;
   background-color: #fae7e7;
   font-size: 14px;
+  margin: 0;
   margin-right: 10px;
   cursor: pointer;
 }

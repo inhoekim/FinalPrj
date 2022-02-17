@@ -10,6 +10,6 @@ import lombok.ToString;
 @Data
 @ToString
 public class UserProfileVo {
-	private int user_id;
+	private String user_id;
 	private String src_name;
 }

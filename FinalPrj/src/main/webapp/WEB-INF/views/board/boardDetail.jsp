@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 
 <div class="board_title">
     <h4>${category_str[category]} 게시판</h4>
@@ -16,7 +17,7 @@
 
     <div class="post_profile">
         <div class="mainInfo">
-            <div class="writer"><img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/profile/${postVo.post_profile}"><b>${postVo.user_id }</b></div>
+            <div class="writer"><img class="writer_profile" src="${cp}/resources/img/profile/${postVo.post_profile}"><b>${postVo.user_id }</b></div>
             <span style="margin-left: 10px"><fmt:formatDate value="${postVo.created_day}" pattern="yyyy-MM-dd HH:mm"/></span>
         </div>
 
@@ -41,7 +42,7 @@
 					 		<span>추천이 존재하지 않습니다</span>
 					 	</c:when>
 						<c:otherwise>
-							<span>{profiles[0].user_id}포함 <span style="color:#e67979"> ${fn:length(profiles)}</span>명이 추천</span>
+							<span>${profiles[0].user_id}포함 <span style="color:#e67979"> ${fn:length(profiles)}</span>명이 추천</span>
 						</c:otherwise>
 					</c:choose>
             </div>
@@ -57,7 +58,7 @@
         <div class="like_detail">
         	<c:forEach var="vo" items="${profiles}">
         		<div class="detail">
-                	<img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/profile/${vo.src_name}"/>
+                	<img class="writer_profile" src="${cp}/resources/img/profile/${vo.src_name}"/>
                 	<span style="margin-top: 3px;">${vo.user_id}</span>
             	</div>   
         	</c:forEach>
@@ -65,7 +66,7 @@
     </div>
 
     <div class="commentBox">
-        <div class="commentBox_title">댓글<span style="color : #e67979; margin-left: 5px;">{postVo.comCnt}</span></div>
+        <div class="commentBox_title">댓글<span style="color : #e67979; margin-left: 5px;">${postVo.comCnt}</span></div>
         <div class="commentBox_content">
             <div class="comment">
                 <img class="writer_profile" src="profile/woman1-32.png">
@@ -115,11 +116,11 @@
     </div>
     <div class="topbar_content">
         <div class="content_wrapper">
-            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=0">전체</a>
-            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=1">공지</a>
-            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=2">파티찾기</a>
-            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=3">자유</a>
-            <a href="${pageContext.request.contextPath}/board/list?category=${category}&subcate=4">신고</a>
+            <a href="${cp}/board/list?category=${category}&subcate=0">전체</a>
+            <a href="${cp}/board/list?category=${category}&subcate=1">공지</a>
+            <a href="${cp}/board/list?category=${category}&subcate=2">파티찾기</a>
+            <a href="${cp}/board/list?category=${category}&subcate=3">자유</a>
+            <a href="${cp}/board/list?category=${category}&subcate=4">신고</a>
         </div>
 
     </div>
@@ -147,13 +148,13 @@
 	                <td><div>공지</div></td>
 	                <td class="td_title">
 	                    <div class="title">
-	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}&category=${category}&pageNum=${pu.pageNum}&subcate=${subcate}">${vo.title}</a>
+	                        <a href="${cp}/board/detail?post_id=${vo.post_id}&category=${category}&pageNum=${pu.pageNum}&subcate=${subcate}">${vo.title}</a>
 	                    </div>
 	                    <div class="commentNum">${vo.comCnt}</div>
 	                </td>
 	                <td>
 	                    <div class="writer">
-	                        <img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/ott_logos/${admin_profile}">
+	                        <img class="writer_profile" style="background-color: #817e7e36;" src="${cp}/resources/img/ott_logos/${admin_profile}">
 	                        admin
 	                    </div>
 	                </td>
@@ -169,13 +170,13 @@
 	                <td><div>${subcate_str[vo.subcate]}</div></td>
 	                <td class="td_title">
 	                    <div class="title">
-	                        <a href="${pageContext.request.contextPath}/board/detail?post_id=${vo.post_id}&category=${category}&pageNum=${pu.pageNum}&subcate=${subcate}">${vo.title}</a>
+	                        <a href="${cp}/board/detail?post_id=${vo.post_id}&category=${category}&pageNum=${pu.pageNum}&subcate=${subcate}">${vo.title}</a>
 	                    </div>
 	                    <div class="commentNum">${vo.comCnt}</div>
 	                </td>
 	                <td>
 	                    <div class="writer">
-	                   		<img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/profile/${vo.post_profile}">
+	                   		<img class="writer_profile" style="background-color: #817e7e36;" src="${cp}/resources/img/profile/${vo.post_profile}">
 	                        ${vo.user_id}
 	                    </div>
 	                </td>
@@ -189,7 +190,7 @@
 </div>
 
 <div class="board_bottomBar">
-    <form action="${pageContext.request.contextPath}/board/list">
+    <form action="${cp}/board/list">
         <div class="searchBar">
             <select class="searchBar_select" name="field">
                 <option value="title" <c:if test="${field=='title'}">selected</c:if>>제목</option>
@@ -203,22 +204,52 @@
             <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
-    <a class="writeButton" href="${pageContext.request.contextPath}/board/insert?category=${category}"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
+    <a class="writeButton" href="${cp}/board/insert?category=${category}"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
 </div>
 
 <div class="pagination_wrapper">	
 <div class="pagination">
-	<a href="${pageContext.request.contextPath}/board/list?pageNum=${pu.startPageNum-1}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}">이전</a>
+	<a href="${cp}/board/list?pageNum=${pu.startPageNum-1}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}">이전</a>
 	<c:forEach var="i" begin="${pu.startPageNum}" end="${pu.endPageNum}">
 	<c:choose>
 	 	<c:when test="${i==pu.pageNum}">
-	 		<a href="${pageContext.request.contextPath}/board/list?pageNum=${i}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}"><span style="color:#e67979">${i}</span></a>
+	 		<a href="${cp}/board/list?pageNum=${i}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}"><span style="color:#e67979">${i}</span></a>
 	 	</c:when>
 		<c:otherwise>
-			<a href="${pageContext.request.contextPath}/board/list?pageNum=${i}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}"><span style="color:gray">${i}</span></a>
+			<a href="${cp}/board/list?pageNum=${i}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}"><span style="color:gray">${i}</span></a>
 		</c:otherwise>
 	</c:choose>
 	</c:forEach>
-	<a href="${pageContext.request.contextPath}/board/list?pageNum=${pu.endPageNum+1}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}">다음</a>
+	<a href="${cp}/board/list?pageNum=${pu.endPageNum+1}&field=${field}&keyword=${keyword}&category=${category}&subcate=${subcate}">다음</a>
 </div>
 </div>
+
+<script>
+	$(function(){
+		//좋아요 버튼 이벤트
+		$(".likeVote").click(function(){	
+			$.ajax({
+				url:'${cp}/insertPostLike',
+				type:'get',
+				dataType:'json',
+				data:{
+					post_id:${postVo.post_id},user_id:"${postVo.user_id}"
+				},
+				success:function(data){
+					$.ajax({
+						url:'${cp}/likeCount',
+						type:'get',
+						dataType:'json',
+						data:{
+							post_id: ${postVo.post_id},
+							user_id: "${postVo.user_id}"
+						},
+						success:function(data){
+							$(".likeVote").children(".like_cnt").text(data);
+						}
+					});
+				}
+			});
+		});
+	})
+</script>
