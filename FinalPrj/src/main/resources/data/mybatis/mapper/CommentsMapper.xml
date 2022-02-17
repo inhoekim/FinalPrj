@@ -13,10 +13,10 @@
 		select NVL(max(comment_id),0) cnt from comments
 	</select>
 	<insert id="insertComment" parameterType="com.spring.ott.vo.CommentsVo">
-		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},0,0,sysdate,null,null)
+		insert into comments values(#{comment_id},#{post_id},#{user_id},null,#{content},#{ref},0,0,sysdate,null)
 	</insert>
 	<insert id="insertReComment" parameterType="com.spring.ott.vo.CommentsVo">
-		insert into comments values(#{comment_id},#{post_id},#{user_id},#{content},#{ref},#{lev},1,sysdate,null,#{parent_id})
+		insert into comments values(#{comment_id},#{post_id},#{user_id},#{parent_id},#{content},#{ref},#{lev},1,sysdate,null)
 	</insert>
 	<select id="getCount" resultType="int" parameterType="int">
 		select NVL(count(comment_id),0) cnt from comments where post_id=#{post_id}

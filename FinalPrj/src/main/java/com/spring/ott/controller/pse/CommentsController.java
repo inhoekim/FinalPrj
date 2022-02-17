@@ -30,7 +30,7 @@ public class CommentsController {
 		int comment_id=service.getNum()+1;
 		PostVo vo=pservice.one(post_id);
 		String id=vo.getUser_id();
-		service.insertComment(new CommentsVo(comment_id, post_id, user_id, content, comment_id, 0, 0, null, null,null,0,""));
+		service.insertComment(new CommentsVo(comment_id, post_id, user_id ,content, comment_id, 0, 0, null, null,null,0,""));
 		nservice.commNoti(new NotificationsVo(comment_id, id, post_id, 1,user_id, comment_id));
 	}
 	@RequestMapping(value ="/commCount",method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})

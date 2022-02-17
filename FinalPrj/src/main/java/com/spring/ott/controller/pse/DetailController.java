@@ -1,5 +1,6 @@
 package com.spring.ott.controller.pse;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.service.ProfileImgService;
 import com.spring.ott.service.VoteService;
 import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.PostVo;
@@ -26,14 +28,17 @@ public class DetailController {
 	@Autowired PostService service;
 	@Autowired CommentsService cService;
 	@Autowired VoteService voteService;
+	@Autowired ProfileImgService profileService;
 	
 	@GetMapping("/board/detail")
 	public String detail(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 			@RequestParam(value="subcate",defaultValue = "0") int subcate,
-			int post_id, int category,Model model,String field,String keyword) {
+			int post_id, int category,Model model,String field,String keyword,Principal principal) {
 		service.addHit(post_id);
 		PostVo postVo= service.postDetail(post_id);
 		List<UserProfileVo> profiles = voteService.getLikeList(post_id);
+		UserProfileVo myProfile = profileService.userProfile(principal.getName()); 
+		model.addAttribute("myProfile",myProfile);
 		model.addAttribute("postVo", postVo);
 		model.addAttribute("profiles", profiles);
 

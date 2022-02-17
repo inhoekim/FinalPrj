@@ -89,22 +89,23 @@
             </div>
           	
           	<div class="comment">
-          		<img class="writer_profile" src="profile/woman1-32.png">
-          		<div class="comment_wrapper">
-          			<sec:authorize access="isAuthenticated()">
-          				<sec:authentication property="principal.username" var="currentUserName"/>
+          	    <sec:authorize access="isAuthenticated()">
+          			<sec:authentication property="principal.username" var="currentUserName"/>
+          			<img class="writer_profile" src="${cp}/resources/img/profile/${myProfile.src_name}">
+          			<div class="comment_wrapper">
           				<textarea class="comment_inputBox" placeholder="댓글 내용을 입력해주세요."></textarea>
           				<div class="button_wrapper">
           					<button class="comment_button">등록</button>
           				</div>
-          			</sec:authorize>
+          			</div>	
+          		</sec:authorize>
           		
-          			<sec:authorize access="isAnonymous()">
+          		<sec:authorize access="isAnonymous()">
+          			<i class="fas fa-user writer_profile" style="display: flex;justify-content: center;line-height: 24px;color: gray;"></i>
+          			<div class="comment_wrapper">
 	          			<textarea class="comment_inputBox" placeholder="댓글등록은 로그인 후 이용 가능합니다." disabled></textarea>
-	          			<div class="button_wrapper">
-	          			</div>
-          			</sec:authorize>
-          		</div>
+	          		</div>
+          		</sec:authorize>
           	</div>  
         </div>
     </div>
@@ -240,8 +241,8 @@ function list(){
 				let content=d.content;
 				let user_id=d.user_id;
 				var date = new Date(d.created_day);
-				let created_day = date.getFullYear().slice(-2) + "." + (date.getMonth()+1) + "." + date.getDate() 
-					+ date.getHours() + ":" + date.getMinutes();
+				let created_day = new String(date.getFullYear()).slice(-2) + "." + (date.getMonth()+1) + "." + date.getDate() 
+					+ " " + date.getHours() + ":" + date.getMinutes();
 				let parent_id=d.parent_id;
 				let cvoCnt =d.cvoCnt;
 				let profile_src = d.profile_src;
@@ -250,7 +251,7 @@ function list(){
 				html+= "<img class='writer_profile' src='${cp}/resources/img/profile/"+ profile_src +"'>";
 				html+= "<div class='comment_wrapper'><div class='content_header'>";
 				if(parent_id!=null){
-					html+= "<span style='margin-right: 10px'><b>@" + parent_id "</b></span>";		
+					html+= "<span style='margin-right: 10px'><b>@" + parent_id + "</b></span>";		
 				}
 				html+= "<span style='margin-right: 10px'><b>" + user_id + "</b></span>";
 				html+= "<span style='color: darkgray'>" + created_day + "</span></div>";
@@ -262,9 +263,10 @@ function list(){
 			});
 		}
 	});
-
+}
 
 	$(function(){
+		list();
 		//좋아요 버튼 이벤트
 		$(".likeVote").click(function(){	
 			$.ajax({
