@@ -33,7 +33,7 @@ public class FinalUserDetail implements UserDetails{
 	public String getUsername() {return user_id;}
 
 	@Override
-	public boolean isAccountNonExpired() {return true;} //블랙리스트 DB 기간에 속해있는지 판단후 t/f 주는식으로
+	public boolean isAccountNonExpired() {return true;}
 
 	@Override
 	public boolean isAccountNonLocked() {return black_enabled;}
