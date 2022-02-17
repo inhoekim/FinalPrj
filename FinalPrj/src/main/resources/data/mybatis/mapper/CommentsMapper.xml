@@ -40,6 +40,6 @@
 		select com.user_id,com.content,com.created_day,(select count(comment_id) from vote where vote.comment_id = com.comment_id)cvoCnt from comments com where <![CDATA[ rownum<=3 order by cvocnt desc ]]>
 	</select>
 	<select id="recentComm" resultType="com.spring.ott.vo.CommentsVo">
-		select content from comments where <![CDATA[ rownum<=5 order by created_day desc]]>
+		select content,user_id from comments where <![CDATA[ rownum<=5 order by created_day desc]]>
 	</select>
 </mapper>

@@ -82,52 +82,52 @@
     <div class="section_container popular_comment">
         <div class="boundary">인기댓글</div>
 
-        <div class="popular_comments">
+                <div class="popular_comments">
             <div class="comment">
                 <div class="user_speech">
                     <a href="#" class="speech_bubble">
-                        <p class="content">안녕하세요!!asdasadsa안녕하세요안녕하세요asdasdaasdasdass안녕하asdda세요안녕하세요안녕하세요안녕하세요</p>
+                        <p class="content">${cBList[0].content}</p>
                         <div class="info">
-                            <i class="fas fa-heart like"><span class="like_cnt">188</span></i>
-                            <span class="date">방금전</span>
+                            <i class="fas fa-heart like"><span class="like_cnt">${cBList[0].cvoCnt}</span></i>
+                            <span class="date">${cBList[0].created_day}</span>
                         </div>
                     </a>
                 </div>
                 <div class="user_profile">
                     <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_profile_1.svg"/>
-                    <span>김인회</span>
+                    <span>${cBList[0].user_id}</span>
                 </div>
             </div>
 
             <div class="comment">
                 <div class="user_speech">
                     <a href="#" class="speech_bubble">
-                        <p class="content">안녕하세요!!</p>
+                        <p class="content">${cBList[1].content}</p>
                         <div class="info">
-                            <i class="fas fa-heart like"><span class="like_cnt">188</span></i>
-                            <span class="date">5분전</span>
+                            <i class="fas fa-heart like"><span class="like_cnt">${cBList[1].cvoCnt}</span></i>
+                            <span class="date">${cBList[1].created_day}</span>
                         </div>
                     </a>
                 </div>
                 <div class="user_profile">
                     <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_profile_3.svg"/>
-                    <span>아메리카남나임</span>
+                    <span>${cBList[1].user_id}</span>
                 </div>
             </div>
 
             <div class="comment">
                 <div class="user_speech">
                     <a href="#" class="speech_bubble">
-                        <p class="content">안녕하세요!!</p>
+                        <p class="content">${cBList[2].content}</p>
                         <div class="info">
-                            <i class="fas fa-heart like"><span class="like_cnt">188</span></i>
-                            <span class="date">2022.01.24</span>
+                            <i class="fas fa-heart like"><span class="like_cnt">${cBList[2].cvoCnt}</span></i>
+                            <span class="date">${cBList[2].created_day}</span>
                         </div>
                     </a>
                 </div>
                 <div class="user_profile">
                     <i class="fas fa-user user_profile_img"></i>
-                    <span>개똥이</span>
+                    <span>${cBList[2].user_id}</span>
                 </div>
             </div>
         </div>

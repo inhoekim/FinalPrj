@@ -36,7 +36,7 @@
          </div>
      </div>
 
-     <div class="leftside_container">
+      <div class="leftside_container">
          <div class="cotainer_title">최신 댓글</div>
          <!--댓글-->
          <div class="cotainer_items">
@@ -44,41 +44,41 @@
              <div class="comment">
                  <div class="comment_profile">
                      <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_posting_photo.svg"/>
-                     <div class="profile_id">김인회</div>
+                     <div class="profile_id">${cRList[0].user_id}</div>
                  </div>
-                 <div class="comment_content">댓글내용입니다.TEST입니다.어쩌구저쩌구 블라블라.</div>
+                 <div class="comment_content">${cRList[0].content}</div>
              </div>
 
              <div class="comment">
                  <div class="comment_profile">
                      <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_posting_photo.svg"/>
-                     <div class="profile_id">가나다라마바사아자차카타파하</div>
+                     <div class="profile_id">${cRList[1].user_id}</div>
                  </div>
-                 <div class="comment_content">어쩌구 저쩌구 블라블라</div>
+                 <div class="comment_content">${cRList[1].content}</div>
              </div>
 
              <div class="comment">
                  <div class="comment_profile">
                      <i class="fas fa-user profile_img"></i>
-                     <div class="profile_id">ABCDEFGHIJKLMNOPQRS</div>
+                     <div class="profile_id">${cRList[2].user_id}</div>
                  </div>
-                 <div class="comment_content">댓글내용</div>
+                 <div class="comment_content">${cRList[2].content}</div>
              </div>
 
              <div class="comment">
                  <div class="comment_profile">
                      <i class="fas fa-user profile_img"></i>
-                     <div class="profile_id">테스트</div>
+                     <div class="profile_id">${cRList[3].user_id}</div>
                  </div>
-                 <div class="comment_content">댓글내용</div>
+                 <div class="comment_content">${cRList[3].content}</div>
              </div>
 
              <div class="comment">
                  <div class="comment_profile">
                      <i class="fas fa-user profile_img"></i>
-                     <div class="profile_id">테스트</div>
+                     <div class="profile_id">${cRList[4].user_id}</div>
                  </div>
-                 <div class="comment_content">댓글내용</div>
+                 <div class="comment_content">${cRList[4].content}</div>
              </div>
 
          </div>
