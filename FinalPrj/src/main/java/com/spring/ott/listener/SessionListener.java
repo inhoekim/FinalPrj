@@ -19,6 +19,7 @@ public class SessionListener implements HttpSessionListener{
 		//ip를 가져오는 메소드 만들거임
 	public String getIpAddr() {
 		String ip_addr = null;
+		System.out.println("?????????????????????");
 		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = sra.getRequest();
 		
@@ -58,7 +59,7 @@ public class SessionListener implements HttpSessionListener{
 			//HttpSession session =se.getSession();
 			
 				//service.inservisiter(ip_address);
-			((VisiterService)(context.getBean("visiterService"))).inservisiter(ip_address);
+			((VisiterService)(context.getBean("visiterService"))).ipinsert(ip_address);
 
 			}catch(NullPointerException e) {
 				e.printStackTrace();

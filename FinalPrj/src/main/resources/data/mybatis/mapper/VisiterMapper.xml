@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.VisiterMapper">
 
-	<insert id="insert" parameterType="String">
+	<insert id="ipinsert" parameterType="String">
 		insert into visiter values(#{ip_address},sysdate)
 	</insert>
 	
@@ -44,8 +44,8 @@
 	<!-- 회원상태 차트 블랙유저,탈퇴유저 -->
 	<select id="memberstatus" resultType="com.spring.ott.vo.VisiterVo">
 		SELECT *
-		FROM (SELECT COUNT(*) count  FROM USERS WHERE black_enabled = 0 AND enabeld = 1) A,
-		(SELECT COUNT(*) count1 FROM USERS WHERE  enabeld = 0) B
+		FROM (SELECT COUNT(*) count  FROM USERS WHERE black_enabled = 0 AND enabled = 1) A,
+		(SELECT COUNT(*) count1 FROM USERS WHERE  enabled = 0) B
 	</select>
 
 	<!-- 나이대별 차트 -->

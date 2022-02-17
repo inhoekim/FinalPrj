@@ -56,13 +56,13 @@ public class UserService {
 	public int totalRowCnt() {
 		return mapper.totalRowCnt();
 	}
-	public List<UserVo> allSelect(){
-		return mapper.allSelect();
+	public List<UserVo> AllSelect(){
+		return mapper.AllSelect();
 	}
 	
 	//김인회
 	public MemberVo selectMember (String user_id) {
 		return mapper.selectMember(user_id);
-	} 
+	}
 }
  

@@ -27,4 +27,8 @@ public class PayMentService {
 		return mapper.AllSelect();
 	}
 	
+	public int payupdate(String payment_id) {
+		return mapper.payupdate(payment_id);
+	}
+	
 }

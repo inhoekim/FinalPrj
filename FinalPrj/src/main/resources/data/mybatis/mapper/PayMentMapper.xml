@@ -26,4 +26,8 @@
 		select * from payment
 	</select>
 	
+	<update id="payupdate" parameterType="String">
+		UPDATE PAYMENT SET STATUS = 2 WHERE PAYMENT_ID = #{payment_id}
+	</update>
+	
 </mapper>
