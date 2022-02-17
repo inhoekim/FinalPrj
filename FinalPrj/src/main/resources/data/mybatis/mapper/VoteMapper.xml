@@ -25,4 +25,10 @@
 	<select id="checkComm" parameterType="hashmap" resultType="com.spring.ott.vo.VoteVo">
 		select * from vote where comment_id=#{comment_id} and user_id=#{user_id}
 	</select>
+	
+	<select id="getLikeList" parameterType="int" resultType="com.spring.ott.vo.UserProfileVo">
+		select u.user_id, p.src_name 
+		from users u, PROFILEIMG p, (select user_id from vote where post_id = #{post_id})t
+		where u.user_id = t.user_id and u.profile_id = p.profile_id
+	</select>
 </mapper>

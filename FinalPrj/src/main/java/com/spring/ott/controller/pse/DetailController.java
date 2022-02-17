@@ -15,22 +15,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.service.VoteService;
 import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.PostVo;
+import com.spring.ott.vo.UserProfileVo;
 import com.util.PageUtil;
 
 @Controller
 public class DetailController {
 	@Autowired PostService service;
 	@Autowired CommentsService cService;
+	@Autowired VoteService voteService;
 	
 	@GetMapping("/board/detail")
 	public String detail(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 			@RequestParam(value="subcate",defaultValue = "0") int subcate,
 			int post_id, int category,Model model,String field,String keyword) {
 		service.addHit(post_id);
-		PostVo vo= service.postDetail(post_id);
-		model.addAttribute("vo", vo);
+		PostVo postVo= service.postDetail(post_id);
+		List<UserProfileVo> profiles = voteService.getLikeList(post_id);
+		model.addAttribute("postVo", postVo);
+		model.addAttribute("profiles", profiles);
 		
 		/* 하단 boardList 배치 */
 		HashMap<String , Object> map =new HashMap<String, Object>();
@@ -68,11 +73,9 @@ public class DetailController {
 		model.addAttribute("admin_profile", admin_profile[category]);
 		List<PostVo> notice = service.recent_notice(category);
 		model.addAttribute("notice", notice);
-		
-		
-		
 		return "board/boardDetail.tiles";
 	}
+	
 	@RequestMapping(value ="/commList",method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public HashMap<String, Object> getComm(int post_id) {

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <div class="board_title">
     <h4>${category_str[category]} 게시판</h4>
@@ -9,33 +10,40 @@
 
 <div class="post_detail">
     <div class="post_title">
-        <span class="classification">파티찾기</span>
-        <span class="title">글제목</span>
+        <span class="classification">${subcate_str[postVo.subcate]}</span>
+        <span class="title">${postVo.title }</span>
     </div>
 
     <div class="post_profile">
         <div class="mainInfo">
-            <div class="writer"><img class="writer_profile" src="#">김인회</div>
-            <span style="margin-left: 10px">2022-02-15 08:13</span>
+            <div class="writer"><img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/profile/${postVo.post_profile}"><b>${postVo.user_id }</b></div>
+            <span style="margin-left: 10px"><fmt:formatDate value="${postVo.created_day}" pattern="yyyy-MM-dd HH:mm"/></span>
         </div>
 
         <div class="otherInfo">
-            <span>조회수 423</span>
-            <span>하트 2</span>
-            <span>댓글 3</span>
+            <span>조회수 ${postVo.hit}</span>
+            <span>하트 ${postVo.voCnt}</span>
+            <span>댓글 ${postVo.comCnt}</span>
         </div>
     </div>
 
     <div class="post_content">
-        글내용
+        ${postVo.content}
     </div>
 
     <div class="interaction">
         <div class="likeBox">
-            <div class="likeVote"><i class="fas fa-heart like" style="margin-right: 5px;"></i>좋아요 <span class="like_cnt">188</span></div>
+            <div class="likeVote"><i class="fas fa-heart like" style="margin-right: 5px;"></i>좋아요 <span class="like_cnt">${postVo.voCnt}</span></div>
             <div class="like_detailBox">
                 <i class="fas fa-user profile_img"></i>
-                <span>{user_id}포함 <span style="color:#e67979">{like_cnt}</span>명이 추천</span>
+                	<c:choose>
+					 	<c:when test="${empty profiles}">
+					 		<span>추천이 존재하지 않습니다</span>
+					 	</c:when>
+						<c:otherwise>
+							<span>{profiles[0].user_id}포함 <span style="color:#e67979"> ${fn:length(profiles)}</span>명이 추천</span>
+						</c:otherwise>
+					</c:choose>
             </div>
         </div>
 
@@ -47,15 +55,17 @@
 
     <div class="like_detail_wrapper">
         <div class="like_detail">
-            <div class="detail">
-                <img class="writer_profile" src="/profile/man4-32.png"/>
-                <span style="margin-top: 3px;">{user_id}</span>
-            </div>         
+        	<c:forEach var="vo" items="${profiles}">
+        		<div class="detail">
+                	<img class="writer_profile" src="${pageContext.request.contextPath}/resources/img/profile/${vo.src_name}"/>
+                	<span style="margin-top: 3px;">${vo.user_id}</span>
+            	</div>   
+        	</c:forEach>
         </div>
     </div>
 
     <div class="commentBox">
-        <div class="commentBox_title">댓글<span style="color : #e67979; margin-left: 5px;">{comment_cnt}</span></div>
+        <div class="commentBox_title">댓글<span style="color : #e67979; margin-left: 5px;">{postVo.comCnt}</span></div>
         <div class="commentBox_content">
             <div class="comment">
                 <img class="writer_profile" src="profile/woman1-32.png">
@@ -165,6 +175,7 @@
 	                </td>
 	                <td>
 	                    <div class="writer">
+	                   		<img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/profile/${vo.post_profile}">
 	                        ${vo.user_id}
 	                    </div>
 	                </td>

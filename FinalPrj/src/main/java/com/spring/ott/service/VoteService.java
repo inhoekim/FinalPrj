@@ -1,10 +1,12 @@
 package com.spring.ott.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.ott.vo.UserProfileVo;
 import com.spring.ott.vo.VoteVo;
 
 import data.mybatis.mapper.VoteMapper;
@@ -32,5 +34,8 @@ public class VoteService {
 	}
 	public int deleteCommLike(HashMap<String, Object> map) {
 		return mapper.deleteCommLike(map);
+	}
+	public List<UserProfileVo> getLikeList(int post_id) {
+		return mapper.getLikeList(post_id);
 	}
 }

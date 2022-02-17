@@ -74,6 +74,7 @@
 	                </td>
 	                <td>
 	                    <div class="writer">
+	                    	<img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/profile/${vo.post_profile}">
 	                        ${vo.user_id}
 	                    </div>
 	                </td>
