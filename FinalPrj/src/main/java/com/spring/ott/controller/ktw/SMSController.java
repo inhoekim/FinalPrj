@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SMSController {
 	
-	@RequestMapping(value = "/sms", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminsms", method = RequestMethod.GET)
 	public String test( ) {
 		
 		return "sms.tiles";
+		//return "adminview/admin/sms";
 	}
 	
 	

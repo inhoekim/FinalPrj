@@ -3,9 +3,399 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
  <html>
-
     <head>
-        <title>sms - jsp </title>
+        <style type="text/css">
+		/*  form태그 전체를 감싸고있는 박스   */
+		#bigbox{
+			width:  1200px;
+			display: flex;
+			justify-content: center;
+			background-color: white;
+			border-radius: 9px;
+			box-shadow : 0 0 20px 1px grey;
+			padding-top: 40px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom : 100px;
+			box-sizing: content-box !important;
+		}
+		/* 단문,장문 잔여건수 안내문 */
+		#box1{
+			display: flex;
+			width: 800px;
+			border: 2px solid #212121; 
+			background-color: white;
+			color: #212121;
+			border-radius: 9px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding-left: 80px;
+		}
+
+
+		#box100{
+			display: flex;
+		}
+		#box101{
+			width: 180px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			font-size: 18px;
+			padding-top: 20px;
+			border-top-left-radius: 9px;
+			border-top-right-radius: 9px;
+		}
+		#box102{
+			width: 800px;
+			text-align: left;
+			font-size: 18px;
+			border-bottom: 1px solid lightgrey;
+			padding-left: 20px;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		
+
+		#box104{
+			display: flex;
+		}		
+		#box105{
+			width: 180px; height: 80px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 30px;
+			border-bottom: 1px solid #212121;
+			
+		}		
+		#box106{
+			width: 800px; height: 80px;
+			text-align: left;
+			font-size: 18px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}		
+		#box107{
+			width: 500px; height: 30px;
+			font-size: 20px;
+			border-radius: 3px;
+			border : 1px solid #212121;
+		}
+
+
+		#box109{
+			display: flex;
+		}		
+		#box110{
+			width: 180px; height: 170px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 60px;
+			border-bottom: 1px solid #212121;
+		}		
+		#box111{
+			width: 800px; height: 170px;
+			text-align: left;
+			font-size: 18px;
+			border-bottom: 1px solid lightgrey;
+			padding-left: 20px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+		}
+		#box112{
+			width:500px; height: 130px;
+			margin-top: 10px;
+			font-size: 15px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+
+		#box114{
+			display: flex;
+		}
+		#box115{
+			width: 180px; height: 60px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 20px;
+			border-bottom: 1px solid #212121;
+		}
+		#box116{
+			width:800px; height: 60px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+			padding-top: 20px;
+			padding-bottom: 10px;
+		}
+		#box117{
+			width: 150px; height: 20px;
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+			text-align: center;
+		}
+
+
+		#box119{
+			display: flex;
+		}
+		#box120{
+			width: 180px; height: 80px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 30px;
+			border-bottom: 1px solid #212121;
+		}
+		#box121{
+			width:800px; height: 80px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}		
+		#box122{
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+
+		#box124{
+			display: flex;
+		}
+		#box125{
+			width: 180px; height: 50px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 10px;
+			border-bottom: 1px solid #212121;
+		}
+		#box126{
+			width:800px; height: 50px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+
+
+		#box128{
+			display: flex;
+		}
+		#box129{
+			width: 180px; height: 50px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 15px;
+			border-bottom: 1px solid #212121;
+		}
+		#box130{
+			width:800px; height: 50px;
+			padding-top: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+		#box131{
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+
+		#box133{
+			display: flex;
+		}
+		#box134{
+			width: 180px; height: 50px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 10px;
+			border-bottom: 1px solid #212121;
+		}
+		#box135{
+			width:800px; height: 50px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+		#box136{
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+		#box138{
+			display: flex;
+		}
+		#box139{
+			width: 180px; height: 55px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 15px;
+			border-bottom: 1px solid #212121;
+		}		
+		#box140{
+			width:800px; height: 50px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+		#box141{
+			width: 250px;
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+
+		#box143{
+			display: flex;
+		}
+		#box144{
+			width: 180px; height: 60px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			border-bottom: 1px solid #212121;
+			padding-top: 10px
+		}
+		#box145{
+			width:800px; height: 45px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+		#box146{
+			width: 250px;
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+
+		#box148{
+			display: flex;
+		}
+		#box149{
+			width: 180px; height: 60px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			padding-top: 5px;
+			border-bottom: 1px solid #212121;
+		}
+		#box150{
+			width:800px; height: 45px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+		#box151{
+			width: 250px;
+			font-size: 17px;
+			border : 1px solid #212121;
+			border-radius: 3px;
+		}
+
+
+		#box153{
+			display: flex;
+		}
+		#box154{
+			width: 180px; height: 50px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			border-bottom: 1px solid #212121;
+		}
+		#box155{
+			width:800px; height: 35px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+
+
+		#box158{
+			display: flex;
+		}
+		#box159{
+			width: 180px; height: 50px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			border-bottom: 1px solid #212121;
+		}
+		#box160{
+			width:800px; height: 35px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+
+
+		#box162{
+			display: flex;
+		}
+		#box163{
+			width: 180px; height: 40px;
+			background-color: #212121;
+			color: antiquewhite;
+			text-align: center;
+			border-bottom: 1px solid #212121;
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
+		#box164{
+			width:800px; height: 40px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			border-bottom: 1px solid lightgrey;
+		}
+
+
+		#box166{
+			display: flex;
+		}				
+		#box167{
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}		
+		#box168{
+			padding-top: 10px;
+			padding-left: 90px;
+		}	
+
+
+		#button{
+			background-color: #212121;
+			color: antiquewhite;
+			width: 180px; height: 40px;
+			border-radius: 9px;
+			border-color: #212121;
+			cursor: pointer;
+			font-size: 20px;
+		}
+
+
+
+        </style>
+
         <script type="text/javascript">
             function setPhoneNumber(val) {
                 var numList = val.split("-");
@@ -62,61 +452,157 @@
                 http_request.send();
             }
         </script>
-    </head>
-
+</head>
+	
+<h2 style="color: black; ">SMS 발송</h2>
+<hr style="width: 100%; height: 2px; background-color: #bdbdbd; margin-bottom: 20px;">
+	
     <body onload="loadJSON()">
+
+
+<div id="bigbox" >
+
+
     <form:form method="post" name="smsForm" action="${pageContext.request.contextPath}/sms1">
-        <input type="hidden" name="action" value="go"> 발송타입
-        <span>
-          <input type="radio" name="smsType" value="S">단문(SMS)</span>
-        <span>
-          <input type="radio" name="smsType" value="L">장문(LMS)</span>
-        <br /> 제목 :
-        <input type="text" name="subject" value="제목"> 장문(LMS)인 경우(한글30자이내)
-        <br /> 전송메세지
-        <textarea name="msg" cols="30" rows="10" style="width:455px;">내용입력</textarea>
-        <br />
-        <br />
-        <p>단문(SMS) : 최대 90byte까지 전송할 수 있으며, 잔여건수 1건이 차감됩니다.
-            <br /> 장문(LMS) : 한번에 최대 2,000byte까지 전송할 수 있으며 1회 발송당 잔여건수 3건이 차감됩니다.
-        </p>
-        <br />받는 번호
-        <input type="text" name="rphone" value="011-111-1111"> 예) 011-011-111 , '-' 포함해서 입력.
-        <br />이름삽입번호
-        <input type="text" name="destination" value="" size=80> 예) 010-000-0000|홍길동
-        <br /> 보내는 번호
-        <input type="hidden" name="sphone1">
-        <input type="hidden" name="sphone2">
-        <input type="hidden" name="sphone3">
-        <span id="sendPhoneList"></span>
-        <br />예약 날짜
-        <input type="text" name="rdate" maxlength="8"> 예)20090909
-        <br />예약 시간
-        <input type="text" name="rtime" maxlength="6"> 예)173000 ,오후 5시 30분,예약시간은 최소 10분 이상으로 설정.
-        <br />return url
-        <input type="text" name="returnurl" maxlength="64" value="http://localhost:9090/final/sms" readonly="readonly">
-        <br /> test flag
-        <input type="text" name="testflag" maxlength="1"> 예) 테스트시: Y
-        <br />nointeractive
-        <input type="text" name="nointeractive" maxlength="1"> 예) 사용할 경우 : 1, 성공시 대화상자(alert)를 생략.
-        <br />반복설정
-        <input type="checkbox" name="repeatFlag" value="Y">
-        <br /> 반복횟수
-        <select name="repeatNum">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select> 예) 1~10회 가능.
-        <br />전송간격
-        <select name="repeatTime"> 예)15분 이상부터 가능.
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-        </select>분마다
-        <br>
-        <input type="submit" value="전송">
-        <br/>이통사 정책에 따라 발신번호와 수신번호가 같은 경우 발송되지 않습니다.
-    </form:form>
+        <input type="hidden" id="boxtype" name="action" value="go"> 
+
+		<div id= "box100"> 
+			<div id="box101"><p>발송타입</p></div>
+			<div id="box102">
+				<span><input type="radio" name="smsType" value="S">단문(SMS)</span>
+				<span><input type="radio" name="smsType" value="L">장문(LMS)</span>
+			</div>
+		</div>
+
+		<div id="box104">
+        	<div id="box105">메세지제목</div>
+			<div id="box106">
+				장문(LMS)인 경우(한글30자이내) <br>
+        		<input type="text" name="subject" id="box107" value="제목"> 
+			</div>
+		</div>
+
+        <div id="box109">
+			<div id="box110"> 전송메세지</div>
+			<div id="box111">
+        		<textarea name="msg" cols="30" rows="10" id="box112">내용입력</textarea>
+			</div>
+		</div>
+
+		<div id="box114">
+			<div id="box115">받는 번호</div>
+			<div id="box116">
+				<input type="text" name="rphone" value="010-1111-1111" id="box117"> 예) 010-1111-111 , '-' 포함해서 입력.
+			</div>
+		</div>
+
+		<div id="box119">
+			<div id="box120">이름삽입번호</div>
+			<div id="box121">
+				예) 010-000-0000|홍길동,010-000-0001|김길동 <br>
+				<input type="text" name="destination" value="" size=80 id="box122">
+			</div>
+		</div>
+
+		<div id="box124">
+			<div id="box125">보내는 번호</div>
+			<div id="box126">
+				<input type="hidden" name="sphone1">
+				<input type="hidden" name="sphone2">
+				<input type="hidden" name="sphone3">
+				<span id="sendPhoneList"></span>
+			</div>
+		</div>
+
+		<div id="box128">
+			<div id="box129">예약 날짜</div>
+			<div id="box130">
+				<input type="text" name="rdate" maxlength="8" id="box131"> 예)20090909
+			</div>
+		</div>
+
+		<div id="box133">
+			<div id="box134">예약 시간</div>
+			<div id="box135">
+				<input type="text" name="rtime" maxlength="6" id="box136"> 예)173000 ,오후 5시 30분,예약시간은 최소 10분 이상으로 설정.
+			</div>
+		</div>
+
+		<div id="box138">
+			<div id="box139">Return Url</div>
+			<div id="box140">
+				<input type="text" name="returnurl" maxlength="64" value="http://localhost:9090/final/sms" readonly="readonly" id="box141">
+			</div>
+		</div>
+
+		<div id="box143">
+			<div id="box144">Test Flag</div>
+			<div id="box145">
+				<input type="text" name="testflag" maxlength="1" id="box146"> 예) 테스트시: Y
+			</div>
+		</div>
+
+		<div id="box148">
+			<div id="box149">nointeractive</div>
+			<div id="box150">
+				<input type="text" name="nointeractive" maxlength="1" id="box151"> 예) 사용할 경우 : 1, 성공시 대화상자(alert)를 생략.
+			</div>
+		</div>
+
+		<div id="box153">
+			<div id="box154">반복설정</div>
+			<div id="box155">
+				<input type="checkbox" name="repeatFlag" value="Y" id="box156">
+				사용할 경우 체크해주세요
+			</div>
+		</div>
+
+		<div id="box158">
+			<div id="box159">반복횟수</div>
+			<div id="box160">
+				<select name="repeatNum">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select> 예) 1~10회 가능.
+			</div>
+		</div>
+
+		<div id="box162">
+			<div id="box163">전송간격</div>
+			<div id="box164">
+				<select name="repeatTime"> 예)15분 이상부터 가능.
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+				</select>분마다
+			</div>
+		</div>
+
+		<div id="box166">
+			<div id="box167">
+				이통사 정책에 따라 발신번호와 수신번호가 같은 경우 발송되지 않습니다.
+			</div>
+			<div id="box168">
+				<input type="submit" value="전송" id="button">
+			</div>
+		</div>
+
+
+
+
+
+		<div id="box1">
+			<p>단문(SMS) : 최대 90byte까지 전송할 수 있으며, 잔여건수 1건이 차감됩니다.
+			<br/> 장문(LMS) : 한번에 최대 2,000byte까지 전송할 수 있으며 1회 발송당 잔여건수 3건이 차감됩니다.
+			</p>
+		</div>
+
+		</form:form>
+
+</div> <!--빅박스의 끝-->
+
+
     </body>
 <APM_DO_NOT_TOUCH>
 
@@ -141,4 +627,3 @@ function OL(J){var L=+new Date,z;!document[Z(83,196,200,184,197,204,166,184,191,
 
 
     </html>
-            
