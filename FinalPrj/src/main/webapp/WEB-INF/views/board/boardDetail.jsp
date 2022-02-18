@@ -246,7 +246,7 @@ function list(){
 				let user_id=d.user_id;
 				var date = new Date(d.created_day);
 				let created_day = new String(date.getFullYear()).slice(-2) + "." + (date.getMonth()+1) + "." + date.getDate() 
-					+ " " + date.getHours() + ":" + date.getMinutes();
+					+ " " + ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2);
 				let parent_id=d.parent_id;
 				let cvoCnt =d.cvoCnt;
 				let profile_src = d.profile_src;
@@ -312,6 +312,10 @@ function updateForm(comment_id){
 }
 //대댓글 폼
 function replyForm(event){
+	if(${empty myProfile.user_id}) {
+		alert("로그인 후 이용 가능합니다");
+		return ;
+	}
 	$(".replyForm").remove();
 	let html = "<div class='comment replyForm' style='margin: 10px'>";
 	html += "<img class='writer_profile' src='${cp}/resources/img/profile/${myProfile.src_name}'>";
@@ -338,13 +342,8 @@ $(document).on("click","#update_button",function(){
 		 }
 	 });		
 });	
-//대댓글
-/* 
-html+="<div id='rereply_write"+comment_id+"' style='display:none;'>";
-html+="<input type='text' id='input_rereply"+comment_id+"' placeholder='댓글입력'>";
-html+="<button type='button' id='rereplyBtn' comment_id='"+comment_id+"' post_id='"+post_id+"' user_id='"+user_id+"'>답글달기</button>";
-html+="</div>";
- */
+
+
 $(document).on("click",".recomment_confirm",function(){
 	let comment_id = new String($(this).closest(".comment").parent().closest(".comment").attr("id")).substr(4);
 	let content = $(".reply_txt").val();
@@ -370,7 +369,11 @@ $(document).on("click",".recomment_confirm",function(){
 $(function(){
 	list();
 	//좋아요 버튼 이벤트
-	$(".likeVote").click(function(){	
+	$(".likeVote").click(function(){
+		if(${empty myProfile.user_id}) {
+			alert("로그인 후 이용 가능합니다");
+			return ;
+		}
 		$.ajax({
 			url:'${cp}/insertPostLike',
 			type:'get',
