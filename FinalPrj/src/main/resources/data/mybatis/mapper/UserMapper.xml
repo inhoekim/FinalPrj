@@ -36,6 +36,9 @@
      <update id="blackUser" parameterType="String">
      	update users set black_enabled=0 where user_id=#{user_id}
      </update>
+     <update id="unBlackUser" parameterType="String">
+     	update users set black_enabled=1 where user_id=#{user_id}
+     </update>
      
      <select id="totalRowCnt" resultType="int">
 		select nvl(count(*),0)from users
