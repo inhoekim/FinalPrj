@@ -243,8 +243,7 @@ ${vo.content}
 					type:'get',
 					dataType:'json',
 					data:{
-						post_id: ${vo.post_id},
-						user_id: "${vo.user_id}"
+						post_id:${vo.post_id},user_id:"${vo.user_id}"
 					},
 					success:function(data){
 						$("#like").empty();
