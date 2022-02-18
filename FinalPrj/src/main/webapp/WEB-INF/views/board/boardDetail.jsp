@@ -240,6 +240,9 @@ function list(){
 			$(data.list).each(function(i,d){
 				let comment_id=d.comment_id;
 				let content=d.content;
+				let deleted_str = "<span style='color:grey'><strike>삭제된 댓글입니다</strike></span>";
+				let flag = true ;
+				if(content == deleted_str) {flag = false;}
 				let user_id=d.user_id;
 				var date = new Date(d.created_day);
 				let created_day = new String(date.getFullYear()).slice(-2) + "." + (date.getMonth()+1) + "." + date.getDate() 
@@ -248,20 +251,28 @@ function list(){
 				let cvoCnt =d.cvoCnt;
 				let profile_src = d.profile_src;
 				
-				let html="<div class='comment' id='comm"+comment_id+"'>";
+				let html = "";
+				if(parent_id!=null){
+					html+="<div class='comment' id='comm"+comment_id+"' style='border-top: none;'>";
+				}else {
+					html="<div class='comment' id='comm"+comment_id+"'>";
+				}
 				html+= "<img class='writer_profile' src='${cp}/resources/img/profile/"+ profile_src +"'>";
 				html+= "<div class='comment_wrapper'><div class='content_header'>";
 				if(parent_id!=null){
 					html+= "<span style='margin-right: 10px'><b>@" + parent_id + "</b></span>";		
 				}
-				html+= "<span style='margin-right: 10px'><b>" + user_id + "</b></span>";
+				html+= "<span style='margin-right: 10px' class='comment_userid'><b>" + user_id + "</b></span>";
 				html+= "<span style='color: darkgray'>" + created_day + "</span></div>";
 				html+= "<div class='content_main'>" + content + "</div>";
-				html+= "<div class='content_interaction'>";
-				if(user_id == "${myProfile.user_id}") {html+= "<div class='left_wrapper'><div class='update_comment' onclick='updateForm("+ comment_id +")'>수정</div><div class='delete_comment' onclick='removeComm("+ comment_id +")'>삭제</div></div>";}
-				else{html+= "<div class='recomment'>답글</div>"}
-				html+= "<div class='likeButton'><i class='fas fa-heart' style='color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>";
-				html+= cvoCnt + "</span></div></div></div></div>";
+				
+				if(flag) {
+					html+= "<div class='content_interaction'>";
+					if(user_id == "${myProfile.user_id}") {html+= "<div class='left_wrapper'><div class='update_comment' onclick='updateForm("+ comment_id +")'>수정</div><div class='delete_comment' onclick='removeComm("+ comment_id +")'>삭제</div></div>";}
+					else{html+= "<div class='recomment' onclick='replyForm(event)';>답글</div>"}
+					html+= "<div class='likeButton'><i class='fas fa-heart' style='color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>";
+					html+= cvoCnt + "</span></div></div></div></div>";
+				}
 				$("#taget_box").append(html);
 			});
 		}
@@ -299,6 +310,18 @@ function updateForm(comment_id){
 		}
 	});
 }
+//대댓글 폼
+function replyForm(event){
+	$(".replyForm").remove();
+	let html = "<div class='comment replyForm' style='margin: 10px'>";
+	html += "<img class='writer_profile' src='${cp}/resources/img/profile/${myProfile.src_name}'>";
+	html += "<div class='comment_wrapper'>";
+	html += "<textarea class='comment_inputBox reply_txt' placeholder='댓글 내용을 입력해주세요.''></textarea>"
+	html += "<div class='button_wrapper'><button class='recomment_confirm'>등록</button></div>";
+	html += "</div>";
+	$(event.target).closest(".comment_wrapper").append(html);
+}
+
 
 //업데이트 완료 버튼
 $(document).on("click","#update_button",function(){ 
@@ -314,6 +337,34 @@ $(document).on("click","#update_button",function(){
 			 list();
 		 }
 	 });		
+});	
+//대댓글
+/* 
+html+="<div id='rereply_write"+comment_id+"' style='display:none;'>";
+html+="<input type='text' id='input_rereply"+comment_id+"' placeholder='댓글입력'>";
+html+="<button type='button' id='rereplyBtn' comment_id='"+comment_id+"' post_id='"+post_id+"' user_id='"+user_id+"'>답글달기</button>";
+html+="</div>";
+ */
+$(document).on("click",".recomment_confirm",function(){
+	let comment_id = new String($(this).closest(".comment").parent().closest(".comment").attr("id")).substr(4);
+	let content = $(".reply_txt").val();
+	let parent_id = $(this).closest(".comment").siblings(".content_header").children(".comment_userid").text();
+	
+	console.log($(this).closest(".comment").closest(".comment"));
+	
+	$.ajax({
+	 url:'${cp}/commrereply',
+	 data:{
+		 'comment_id': comment_id,
+		 'content': content,
+		 'post_id': ${postVo.post_id},
+		 'parent_id': parent_id	 	
+	 },
+	 success:function(data){
+		 list();
+	 }
+	});		 
+
 });	
 
 $(function(){

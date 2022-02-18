@@ -89,9 +89,10 @@ input[type='text']:focus {
   src: url('../woff/neodgm_code.woff');
 }
 
+
 @font-face {
-    font-family: 'GangwonEdu_OTFBoldA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -1212,10 +1213,17 @@ footer {
 .comment {
   display: flex;
   padding: 20px;
-  border-bottom: 1px solid #e4e4e4;
+  border-top: 1px solid #e4e4e4;
   font-size: 14px;
 }
 
+.comment:nth-child(1) {
+	border: none;
+}
+
+.comment .replyForm {
+	border: none;
+}
 .comment img {
   width: 40px;
   height: 40px;
@@ -1250,16 +1258,21 @@ footer {
 
 .content_interaction .recomment,.delete_comment,
 .update_comment{
-	font-family: 'GangwonEdu_OTFBoldA';
+	font-family: 'InfinitySans-RegularA1';
+
 }
 
 .content_interaction .recomment,
 .update_comment,.delete_comment,
 .likeButton {
-  background-color: #efefef;
-  padding: 5px;
-  border-radius: 6px;
-  cursor: pointer;
+	width: 40px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	background-color: #efefef;
+	padding: 5px;
+	border-radius: 6px;
+	cursor: pointer;
 }
 
 .recomment:hover,.update_comment:hover,.delete_comment:hover,
@@ -1287,7 +1300,7 @@ footer {
 	flex-direction: row-reverse;
 }
 
-.comment_button {
+.comment_button, .recomment_confirm {
 	width: 40px;
     height: 30px;
     padding: 5px;
