@@ -71,6 +71,8 @@
         <div class="commentBox_title">댓글<span id="span_comm" style="color : #e67979; margin-left: 5px;">${postVo.comCnt}</span></div>
         <div class="commentBox_content">
         	<div id="taget_box">
+        	
+        		<!--  댓글 템플릿
 	            <div class="comment">
 	                <img class="writer_profile" src="profile/woman1-32.png">
 	                <div class="comment_wrapper">
@@ -87,6 +89,7 @@
 	                    </div>
 	                </div>
 	            </div>
+	             -->	            
             </div>
           	
           	<div class="comment">
@@ -342,8 +345,25 @@ $(document).on("click","#update_button",function(){
 		 }
 	 });		
 });	
+// 댓글 좋아요 기능
+$(document).on("click",".likeButton",function(){
+	if(${empty myProfile.user_id}) {
+		alert("로그인 후 이용 가능합니다");
+		return ;
+	}	
+	let comment_id= new String($(this).closest(".comment").attr("id")).substr(4);
+	$.ajax({
+		 url:'${cp}/insertCommLike',
+		 data:{
+			 'comment_id':comment_id
+			  },
+		 success:function(data){
+			 list();
+		 }
+	 });		
+ });
 
-
+//대댓글 입력확인 버튼 이벤트
 $(document).on("click",".recomment_confirm",function(){
 	let comment_id = new String($(this).closest(".comment").parent().closest(".comment").attr("id")).substr(4);
 	let content = $(".reply_txt").val();
