@@ -23,14 +23,14 @@
                  <div class="folder_category">
                      <span class="category_name">
                      <i class="fas fa-folder"></i>
-                     기타게시판
+                     공용
                      </span>
                      <i class="fas fa-angle-down toggle" style="color:black"></i>
                  </div>
 
                  <div class="folder_items">
-                     <div class="folder_item">자유게시판</div>
-                     <div class="folder_item">신고</div>
+                     <div class="folder_item">전체공지</div>
+                     <div class="folder_item"><a href="${pageContext.request.contextPath}/board/accusation">신고</a></div>
                  </div>
              </div>
          </div>

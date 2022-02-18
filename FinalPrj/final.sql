@@ -162,7 +162,9 @@ CREATE TABLE BOARD_ACCUSATION -- 신고게시글
     target_id varchar2(20) NOT NULL, --신고 대상자 아이디
     title varchar2(20) NOT NULL, --글제목
     content varchar2(4000) NOT NULL, --글내용
+    why number(1) NOT NULL, --신고사유 (0:혐오발언, 1:음란물게시, 2:광고, 3:기타)
     created_day date NOT NULL, --글 작성일
+    result number(1), -- 처리상태 (0:처리대기, 1:정지처분, 2:오신고)
     post_id number(10), -- 신고 대상 글번호
     comment_id number(10), -- 신고 대상 댓글번호
     CONSTRAINT FK_ACCUSATION_POST FOREIGN KEY(post_id) REFERENCES BOARD_POST(post_id),

@@ -44,7 +44,7 @@
 					 		<span>추천이 존재하지 않습니다</span>
 					 	</c:when>
 						<c:otherwise>
-							<span>${profiles[0].user_id}포함 <span style="color:#e67979"> ${fn:length(profiles)}</span>명이 추천</span>
+							<span><b>${profiles[0].user_id}</b>님 포함 <span style="color:#e67979"> ${fn:length(profiles)}</span>명이 추천</span>
 						</c:otherwise>
 					</c:choose>
             </div>

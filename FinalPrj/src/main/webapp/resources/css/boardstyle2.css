@@ -1275,6 +1275,10 @@ footer {
 	cursor: pointer;
 }
 
+.delete_comment {
+	background-color: pink;
+}
+
 .recomment:hover,.update_comment:hover,.delete_comment:hover,
 .likeButton:hover {
   background-color: #c9c5c5;
