@@ -40,6 +40,9 @@ public class UserService {
 	public int blackUser(String user_id) {
 		return mapper.blackUser(user_id);
 	}
+	public int unBlackUser(String user_id) {
+		return mapper.unBlackUser(user_id);
+	}
 	public String findId(String name, String email) {
 		return mapper.findId(name, email);
 	}

@@ -6,4 +6,5 @@ import com.spring.ott.vo.BlackListVo;
 
 public interface BlackListMapper {
 	public List<BlackListVo> blackList();
+	public int blackListInsert(BlackListVo vo); 
 }
