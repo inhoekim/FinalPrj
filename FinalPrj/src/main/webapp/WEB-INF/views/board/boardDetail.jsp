@@ -273,7 +273,7 @@ function list(){
 					html+= "<div class='content_interaction'>";
 					if(user_id == "${myProfile.user_id}") {html+= "<div class='left_wrapper'><div class='update_comment' onclick='updateForm("+ comment_id +")'>수정</div><div class='delete_comment' onclick='removeComm("+ comment_id +")'>삭제</div></div>";}
 					else{html+= "<div class='recomment' onclick='replyForm(event)';>답글</div>"}
-					html+= "<div class='likeButton'><i class='fas fa-heart' style='color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>";
+					html+= "<div class='likeButton'><i class='fas fa-heart' style='position:relative;top:2px;color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>";
 					html+= cvoCnt + "</span></div></div></div></div>";
 				}
 				$("#taget_box").append(html);
