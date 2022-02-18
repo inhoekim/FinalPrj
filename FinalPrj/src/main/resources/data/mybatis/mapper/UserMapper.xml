@@ -30,14 +30,17 @@
      <select id="selectUser" parameterType="String" resultType="com.spring.ott.vo.UserVo">
      	select * from users where user_id=#{user_id}
      </select>
-     <delete id="deleteUser" parameterType="String">
+     <update id="deleteUser" parameterType="String">
      	update users set enabled=0 where user_id=#{user_id}
-     </delete>
+     </update>
+     <update id="blackUser" parameterType="String">
+     	update users set black_enabled=0 where user_id=#{user_id}
+     </update>
      
      <select id="totalRowCnt" resultType="int">
 		select nvl(count(*),0)from users
 	</select>
-	<select id="userList" parameterType="hashmap" resultType="com.spring.ott.vo.UserVo">
+	<select id="UserList" parameterType="hashmap" resultType="com.spring.ott.vo.UserVo">
 		select * from
 		(
 			select b.*, rownum rnum
@@ -48,7 +51,7 @@
 		)
 		<![CDATA[ where rnum >= #{startRow} and rnum <= #{endRow}]]>
 	</select>
-	<select id="allSelect" resultType="com.spring.ott.vo.UserVo">
+	<select id="AllSelect" resultType="com.spring.ott.vo.UserVo">
 		select * from users
 	</select>
 	

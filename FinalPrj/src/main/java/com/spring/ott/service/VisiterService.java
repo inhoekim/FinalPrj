@@ -13,8 +13,8 @@ import data.mybatis.mapper.VisiterMapper;
 public class VisiterService {
 	@Autowired private VisiterMapper mapper;
 	
-	public int inservisiter(String ip_address) {
-		return mapper.insert(ip_address);
+	public int ipinsert(String ip_address) {
+		return mapper.ipinsert(ip_address);
 	}
 	
 	public List<VisiterVo> onedayselect(String visit_date) {

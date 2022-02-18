@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,10 +183,12 @@ ${vo.content}
 		 });		 
 	
 	 });	
+	 
 	function replyForm(comment_id){
 		var rere = document.getElementById("rereply_write"+comment_id);
 		rere.style.display='block';
 	}
+	
 	function removeComm(comment_id){
 		console.log(comment_id);
 		$.ajax({

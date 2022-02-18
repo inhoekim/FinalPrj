@@ -46,12 +46,12 @@
 				if(rsp.success){
 					//결제 성공시
 				var msg = '결제에 성공하였습니다.';
-				msg += '\n결제번호 : ' + rsp.imp_uid; //결제 번호
+				msg += '\n결제번호 : ' + rsp.pg_tid; //결제 번호
 				msg += '\n주문자명 : ' + "ㅁㄴㅇ"; // name
 				msg += '\n결제금액 : ' + rsp.paid_amount; //결제금액
 				
 				//제이쿼리 
-				$("input[name='payment_id']").val(rsp.imp_uid);
+				$("input[name='payment_id']").val(rsp.pg_tid);
 				$("input[name='price']").val(rsp.paid_amount);
 				document.kakaopayf.submit();
 				alert(msg);

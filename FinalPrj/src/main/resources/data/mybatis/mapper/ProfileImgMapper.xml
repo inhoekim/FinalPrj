@@ -6,4 +6,10 @@
 	<select id="selectProfile" parameterType="int" resultType="com.spring.ott.vo.ProfileImgVo">
 		select * from profileImg where profile_id = #{profile_id}
 	</select>
+	
+	<select id="userProfile" parameterType="string" resultType="com.spring.ott.vo.UserProfileVo">
+		select u.user_id, p.src_name 
+		from users u, PROFILEIMG p
+		where u.profile_id = p.profile_id and u.user_id = #{user_id}
+	</select>
 </mapper>

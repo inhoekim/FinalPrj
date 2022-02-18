@@ -37,6 +37,9 @@ public class UserService {
 	public int deleteUser(String user_id) {
 		return mapper.deleteUser(user_id);
 	}
+	public int blackUser(String user_id) {
+		return mapper.blackUser(user_id);
+	}
 	public String findId(String name, String email) {
 		return mapper.findId(name, email);
 	}
@@ -56,13 +59,13 @@ public class UserService {
 	public int totalRowCnt() {
 		return mapper.totalRowCnt();
 	}
-	public List<UserVo> allSelect(){
-		return mapper.allSelect();
+	public List<UserVo> AllSelect(){
+		return mapper.AllSelect();
 	}
 	
 	//김인회
 	public MemberVo selectMember (String user_id) {
 		return mapper.selectMember(user_id);
-	} 
+	}
 }
  

@@ -744,6 +744,8 @@ footer {
   justify-content: space-between;
   align-items: center;
   line-height: 14px;
+  background-color: #edf6f2;
+  text-align: center;
 }
 .cancle {
   cursor: pointer;
@@ -752,6 +754,7 @@ footer {
 .hidden {
   display: none;
 }
+
 
 @media screen and (max-width: 900px) {
   #main {

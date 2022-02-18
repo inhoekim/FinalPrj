@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
+
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 
 <div class="board_title">
@@ -66,44 +68,46 @@
     </div>
 
     <div class="commentBox">
-        <div class="commentBox_title">댓글<span style="color : #e67979; margin-left: 5px;">${postVo.comCnt}</span></div>
+        <div class="commentBox_title">댓글<span id="span_comm" style="color : #e67979; margin-left: 5px;">${postVo.comCnt}</span></div>
         <div class="commentBox_content">
-            <div class="comment">
-                <img class="writer_profile" src="profile/woman1-32.png">
-                <div class="comment_wrapper">
-                    <div class="content_header">
-                        <span style="margin-right: 10px"><b>{user_id}</b></span>
-                        <span style="color: darkgray">{timestamp}</span>
-                    </div>
-                    <div class="content_main">
-                        댓글내용 {comment_content}
-                    </div>
-                    <div class="content_interaction">
-                        <div class="recommnet">답글</div>
-                        <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
-                    </div>
-
-                </div>
+        	<div id="taget_box">
+	            <div class="comment">
+	                <img class="writer_profile" src="profile/woman1-32.png">
+	                <div class="comment_wrapper">
+	                    <div class="content_header">
+	                        <span style="margin-right: 10px"><b>${user_id}</b></span>
+	                        <span style="color: darkgray">${timestamp}</span>
+	                    </div>
+	                    <div class="content_main">
+	                        ${comment_content}
+	                    </div>
+	                    <div class="content_interaction">
+	                        <div class="recomment">답글</div>
+	                        <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
+	                    </div>
+	                </div>
+	            </div>
             </div>
-
-            <div class="comment">
-                <img class="writer_profile" src="profile/woman1-32.png">
-                <div class="comment_wrapper">
-                    <div class="content_header">
-                        <span style="margin-right: 10px"><b>{user_id}</b></span>
-                        <span style="color: darkgray">{timestamp}</span>
-                    </div>
-                    <div class="content_main">
-                        댓글내용 {comment_content}
-                    </div>
-                    <div class="content_interaction">
-                        <div class="recommnet">답글 <span style="maring-left: 5px">{답글_cnt}</span></div>
-                        <div class="likeButton"><i class="fas fa-heart" style="color: #e67979;margin-right: 3px;font-size: 12px;"></i><span class="like_cnt" style="font-size: 12px; margin: 0;">188</span></div>
-                    </div>
-
-                </div>
-            </div>
-            
+          	
+          	<div class="comment">
+          	    <sec:authorize access="isAuthenticated()">
+          			<sec:authentication property="principal.username" var="currentUserName"/>
+          			<img class="writer_profile" src="${cp}/resources/img/profile/${myProfile.src_name}">
+          			<div class="comment_wrapper">
+          				<textarea class="comment_inputBox" placeholder="댓글 내용을 입력해주세요."></textarea>
+          				<div class="button_wrapper">
+          					<button class="comment_button">등록</button>
+          				</div>
+          			</div>	
+          		</sec:authorize>
+          		
+          		<sec:authorize access="isAnonymous()">
+          			<i class="fas fa-user writer_profile" style="display: flex;justify-content: center;line-height: 40px;color: gray;width: 40px;height: 40px;font-size: 25px;margin-right: 10px;"></i>
+          			<div class="comment_wrapper">
+	          			<textarea class="comment_inputBox" placeholder="댓글등록은 로그인 후 이용 가능합니다." disabled></textarea>
+	          		</div>
+          		</sec:authorize>
+          	</div>  
         </div>
     </div>
 </div>
@@ -225,31 +229,147 @@
 </div>
 
 <script>
-	$(function(){
-		//좋아요 버튼 이벤트
-		$(".likeVote").click(function(){	
-			$.ajax({
-				url:'${cp}/insertPostLike',
-				type:'get',
-				dataType:'json',
-				data:{
-					post_id:${postVo.post_id},user_id:"${postVo.user_id}"
-				},
-				success:function(data){
-					$.ajax({
-						url:'${cp}/likeCount',
-						type:'get',
-						dataType:'json',
-						data:{
-							post_id: ${postVo.post_id},
-							user_id: "${postVo.user_id}"
-						},
-						success:function(data){
-							$(".likeVote").children(".like_cnt").text(data);
-						}
-					});
+//댓글 로딩 함수
+function list(){
+	$("#taget_box").empty();
+	$.ajax({
+		url:"${cp}/commList",
+		data:{"post_id":${postVo.post_id}},
+		dataType:'json',
+		success:function(data){
+			$(data.list).each(function(i,d){
+				let comment_id=d.comment_id;
+				let content=d.content;
+				let user_id=d.user_id;
+				var date = new Date(d.created_day);
+				let created_day = new String(date.getFullYear()).slice(-2) + "." + (date.getMonth()+1) + "." + date.getDate() 
+					+ " " + date.getHours() + ":" + date.getMinutes();
+				let parent_id=d.parent_id;
+				let cvoCnt =d.cvoCnt;
+				let profile_src = d.profile_src;
+				
+				let html="<div class='comment' id='comm"+comment_id+"'>";
+				html+= "<img class='writer_profile' src='${cp}/resources/img/profile/"+ profile_src +"'>";
+				html+= "<div class='comment_wrapper'><div class='content_header'>";
+				if(parent_id!=null){
+					html+= "<span style='margin-right: 10px'><b>@" + parent_id + "</b></span>";		
 				}
+				html+= "<span style='margin-right: 10px'><b>" + user_id + "</b></span>";
+				html+= "<span style='color: darkgray'>" + created_day + "</span></div>";
+				html+= "<div class='content_main'>" + content + "</div>";
+				html+= "<div class='content_interaction'>";
+				if(user_id == "${myProfile.user_id}") {html+= "<div class='left_wrapper'><div class='update_comment' onclick='updateForm("+ comment_id +")'>수정</div><div class='delete_comment' onclick='removeComm("+ comment_id +")'>삭제</div></div>";}
+				else{html+= "<div class='recomment'>답글</div>"}
+				html+= "<div class='likeButton'><i class='fas fa-heart' style='color: #e67979;margin-right: 3px;font-size: 12px;'></i><span class='like_cnt' style='font-size: 12px; margin: 0;'>";
+				html+= cvoCnt + "</span></div></div></div></div>";
+				$("#taget_box").append(html);
 			});
+		}
+	});
+}
+//댓글삭제
+function removeComm(comment_id){
+	console.log(comment_id);
+	$.ajax({
+		url:'${cp}/commRemove',
+		data:{
+			"comment_id":comment_id
+		},
+		success:function(data){
+			list();
+		}
+	});
+};
+//댓글 업데이트
+function updateForm(comment_id){
+	$.ajax({
+		url:'${cp}/selComm',
+		type:'get',
+		dataType:'json',
+		data:{
+			"comment_id":comment_id
+		},
+		success:function(data){
+			$("#comm"+comment_id).children(".comment_wrapper").children(".content_main").remove();
+			$("#comm"+comment_id).children(".comment_wrapper").children(".content_interaction").remove();
+			let html = "<textarea class='comment_inputBox' style='margin-top:20px'>" + data.content + "</textarea>";
+			$("#comm"+comment_id).children(".comment_wrapper").append(html);
+			html = "<div class='button_wrapper'><button id='update_button' class='comment_button' comment_id='"+comment_id+"'>수정</button></div>";
+			$("#comm"+comment_id).children(".comment_wrapper").append(html);
+		}
+	});
+}
+
+//업데이트 완료 버튼
+$(document).on("click","#update_button",function(){ 
+	let comment_id=$(this).attr("comment_id");
+	let content=$(this).parent().siblings(".comment_inputBox").val();
+	 $.ajax({
+		 url:'${cp}/commupdate',
+		 data:{
+			 'comment_id':comment_id,
+			 'content':content
+		 },
+		 success:function(data){
+			 list();
+		 }
+	 });		
+});	
+
+$(function(){
+	list();
+	//좋아요 버튼 이벤트
+	$(".likeVote").click(function(){	
+		$.ajax({
+			url:'${cp}/insertPostLike',
+			type:'get',
+			dataType:'json',
+			data:{
+				post_id:${postVo.post_id},user_id:"${postVo.user_id}"
+			},
+			success:function(data){
+				$.ajax({
+					url:'${cp}/likeCount',
+					type:'get',
+					dataType:'json',
+					data:{
+						post_id: ${postVo.post_id},
+						user_id: "${postVo.user_id}"
+					},
+					success:function(data){
+						$(".likeVote").children(".like_cnt").text(data);
+					}
+				});
+			}
 		});
-	})
+	});
+	//댓글 입력 버튼
+	$(".comment_button").click(function(){
+		$.ajax({
+			url:'${cp}/commInsert',
+			data:{
+				post_id: ${postVo.post_id},
+				user_id: "${currentUserName}",
+				content: $(".comment_inputBox").val()
+			},
+			type:'get',
+			success:function(data){
+				$.ajax({
+					url:'${cp}/commCount',
+					type:'get',
+					data:{
+						post_id:${postVo.post_id},
+					},
+					success:function(data){
+						console.log(data.count);
+						$("#span_comm").empty();
+						$("#span_comm").text(data.count);
+						list();
+						$(".comment_inputBox").val("");
+					}
+				});
+			}
+		});
+	});
+})
 </script>

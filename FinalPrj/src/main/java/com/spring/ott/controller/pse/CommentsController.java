@@ -30,7 +30,7 @@ public class CommentsController {
 		int comment_id=service.getNum()+1;
 		PostVo vo=pservice.one(post_id);
 		String id=vo.getUser_id();
-		service.insertComment(new CommentsVo(comment_id, post_id, user_id, content, comment_id, 0, 0, null, null,null,0));
+		service.insertComment(new CommentsVo(comment_id, post_id, user_id ,content, comment_id, 0, 0, null, null,null,0,""));
 		nservice.commNoti(new NotificationsVo(comment_id, id, post_id, 1,user_id, comment_id));
 	}
 	@RequestMapping(value ="/commCount",method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -46,8 +46,9 @@ public class CommentsController {
 	public void remove(int comment_id) {
 		CommentsVo vo=service.selectComm(comment_id);
 		if(vo.getLev()>0) {
-			service.update(new CommentsVo(comment_id, comment_id, null, "", comment_id, comment_id, comment_id, null, null,null,0));
+			service.update(new CommentsVo(comment_id, comment_id, null, "", comment_id, comment_id, comment_id, null, null,null,0,""));
 		}else {
+			nservice.deleteComm(comment_id);
 			service.delete(comment_id);
 		}
 	}
@@ -62,7 +63,7 @@ public class CommentsController {
 	@RequestMapping(value ="/commupdate",method = RequestMethod.GET)
 	@ResponseBody
 	public void update(int comment_id,String content) {
-		CommentsVo vo =new CommentsVo(comment_id, comment_id, content, content, comment_id, comment_id, comment_id, null, null,null,0);
+		CommentsVo vo =new CommentsVo(comment_id, comment_id, content, content, comment_id, comment_id, comment_id, null, null,null,0,"");
 		service.update(vo);
 	}
 	@RequestMapping(value ="/commrereply",method = RequestMethod.GET)
@@ -73,7 +74,7 @@ public class CommentsController {
 		int comments_id=service.getNum()+1;
 		int ref=service.selreff(comment_id);
 		int lev=service.selref(ref);
-		service.insertReComment(new CommentsVo(comments_id,post_id,user_id,content,ref,lev, 1, null, null,parent_id,0));
+		service.insertReComment(new CommentsVo(comments_id,post_id,user_id,content,ref,lev, 1, null, null,parent_id,0,""));
 		nservice.commNoti(new NotificationsVo(ref, parent_id, post_id,2,user_id,comments_id ));
 	}
 }
