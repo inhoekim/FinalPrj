@@ -3,6 +3,8 @@ package com.spring.ott.controller.csh;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ott.service.AccusationService;
-import com.spring.ott.service.PostService;
 import com.spring.ott.vo.AccusationVo;
-import com.spring.ott.vo.PostVo;
 import com.util.PageUtil;
 
 @Controller
 public class AccusationController {
+	@Autowired private ServletContext servletContext;
 	@Autowired AccusationService accService;
 	
 	@RequestMapping("/board/accusation")
@@ -51,5 +52,14 @@ public class AccusationController {
 		return "board/accusationList.tiles";
 	}
 	
+	@PostMapping("/board/accusation")
+	public String accInsert(AccusationVo vo,Model model,int pageNum, int subcate,int post_id,int category,String field,String keyword) {
+		accService.postAccusation(vo);
+		model.addAttribute("msg", "신고접수를 완료하였습니다.");
+		String param = "post_id="+ post_id + "&pageNum=" + pageNum +"&field=" + field + "&keyword=" + keyword +
+				"&category=" + category + "&subcate=" + subcate;
+		model.addAttribute("url", servletContext.getContextPath() + "/board/detail?" + param);
+		return "home/alert";
+	}
 
 }

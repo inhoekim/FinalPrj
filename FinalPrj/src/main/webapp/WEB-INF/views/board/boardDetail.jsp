@@ -235,8 +235,8 @@
 <div id="accWrapper" class="hidden">
   <div class="emphasized_div">
    	<div class="top_bar">
-   		<div style="display:flex; align-content: center">
-   			<img src="${cp}/resources/img/warning_red-24.png" style="width:26px;height:26px;line-height: 10px">
+   		<div style="display:flex; align-content: center;line-height: 10px">
+   			<img src="${cp}/resources/img/warning_red-24.png" style="width:26px;height:26px;">
    			<h3>신고</h3>
    		</div>
    		
@@ -271,6 +271,11 @@
         <input type="hidden" name="user_id" value="${myProfile.user_id}">
 		<input type="hidden" name="target_id" value="${postVo.user_id}">
 		<input type="hidden" name="post_id" value="${postVo.post_id}">
+		<input type="hidden" name="pageNum" value="${pu.pageNum}">
+		<input type="hidden" name="field" value="${field}">
+		<input type="hidden" name="keyword" value="${keyword}">
+		<input type="hidden" name="category" value="${category}">
+		<input type="hidden" name="subcate" value="${subcate}">
 		<button class="acc_button">신고</button>
     </form:form>
   </div>

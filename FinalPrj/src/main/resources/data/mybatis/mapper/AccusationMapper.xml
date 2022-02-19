@@ -11,12 +11,10 @@
 		and ${field} like '%' || #{keyword} || '%'
 		</if>
 	</sql>
-
 	
 	<insert id="postAccusation" parameterType="com.spring.ott.vo.AccusationVo">
-		insert into board_accusation values(SEQ_BOARD_ACCUSATION.nextval,#{user_id},#{target_id},#{title},#{content},#{why},sysdate,0,#{post_id},#{comment_id})
+		insert into board_accusation values(SEQ_BOARD_ACCUSATION.nextval,#{user_id},#{target_id},#{title},#{content},#{why},sysdate,0,#{post_id},null)
 	</insert>
-
 
 	<select id="count" resultType="int" parameterType="hashmap">
 		select NVL(count(*),0) cnt from board_accusation 
