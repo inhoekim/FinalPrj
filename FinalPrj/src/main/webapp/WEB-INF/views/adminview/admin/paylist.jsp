@@ -56,7 +56,7 @@ $(document).ready(function() {
     		{data: "payment_id"},
     		{data: "user_id"},
     		{data: "price"},
-    		{data: "status"},
+    		{data: "status"}, 
     		{data: "payment_date"}
     	]
     } );

@@ -16,54 +16,50 @@
 	background-color:#bdbdbd;
 	color: black;
 	}
-
 </style>
 </head>
 <body>
 
-	<h2 style="color: black; ">회원 목록</h2>
+	<h2 style="color: black; ">블랙리스트 목록</h2>
 	<hr style="width: 100%; height: 2px; background-color: #bdbdbd; margin-bottom: 20px;">
 	  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		<thead class="dd">
 			<tr class="dd">
 				<th class="d" >아이디</th>
-				<th class="d" >이름</th>
-				<th class="d" >이메일</th>
-				<th class="d" >지역</th>
-				<th class="d" >탈퇴/정상</th>
-				<th class="d" >가입일</th>
+				<th class="d" >정지 시작 날짜</th>
+				<th class="d" >정지 만료 날짜</th>
+				<th class="d" >정지 사유</th>
+				<th class="d" >정지/정상</th>
 			</tr>
 		</thead> 
 	</table>
 
 </body>
 <script type="text/javascript">
-
 $(document).ready(function() {	
     $('#dataTable').DataTable({
     	ajax : {
-    		"url":"/final/adminlist1",
+    		"url":"/final/adminblacklist1",
     		type:"get",
     		'dataSrc':''
     	},
     	columns :[
     		{data: "user_id"},
-    		{data: "name"},
-    		{data: "email"},
-    		{data: "area"},
-    		{data: "enabled",
-    		 render: function(data){
-	    			 if(data =='0'){
-	    				 return '탈퇴'
-	    			 }
-	    			 else{
-	    				 return '정상'
-	    			 }
-    		 	}	
-    		},
-    		{data: "regdate"}
+    		{data: "black_start_date"},
+    		{data: "black_expiry_date"},
+    		{data: "content"},
+    		{data: "black_enabled",
+    		 render:function(data){
+    			 if(data=='0'){
+    				 return '정지'
+    			 }else{
+    				 return '정상'
+    			 }
+    		  }	
+    			
+    		}
     	]
     } );
 } );
 </script>
-</html>
+</html> 
