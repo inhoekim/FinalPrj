@@ -76,12 +76,17 @@ input[type='text'] {
   padding: 0 15px;
   font-size: 12px;
   margin: 0;
+  border-radius: 4px;
 }
 
 input[type='text']:focus {
   outline: 1px solid rgb(185, 185, 185);
   caret-color: rgb(155, 155, 155);
   font-size: 12px;
+}
+
+select:focus {
+	outline: none;
 }
 
 @font-face {
@@ -768,7 +773,6 @@ footer {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  height: 300px;
   padding: 20px;
   background-color: white;
   border-radius: 8px;
@@ -1284,7 +1288,7 @@ footer {
   background-color: #c9c5c5;
 }
 
-.comment_inputBox {
+.comment_inputBox, #acc_content {
 	background-color: #efefef;
 	height: 100px;
     width: 100%;
@@ -1314,6 +1318,39 @@ footer {
     border-radius: 8px;
     margin-top: 10px;
     cursor: pointer;
+}
+
+/* accusation */
+
+.acc_form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+.acc_form div {
+	margin: 3px 0;
+}
+.acc_select {
+  width: 85px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.acc_button {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #fbf1b8c9;
+	font-size:16px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+#acc_title {
+	height: 20px;
+	margin-left: 5px;
 }
 
 @media screen and (max-width: 900px) {

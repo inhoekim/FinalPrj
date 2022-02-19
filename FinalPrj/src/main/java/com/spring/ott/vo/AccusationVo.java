@@ -23,3 +23,5 @@ public class AccusationVo {
 	private String my_profile;
 	private String target_profile;
 }
+
+

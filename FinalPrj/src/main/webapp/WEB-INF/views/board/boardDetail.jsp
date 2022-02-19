@@ -4,8 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
-
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
+
 
 <div class="board_title">
     <h4>${category_str[category]} 게시판</h4>
@@ -231,6 +232,51 @@
 </div>
 </div>
 
+<div id="accWrapper" class="hidden">
+  <div class="emphasized_div">
+   	<div class="top_bar">
+   		<div style="display:flex; align-content: center">
+   			<img src="${cp}/resources/img/warning_red-24.png" style="width:26px;height:26px;line-height: 10px">
+   			<h3>신고</h3>
+   		</div>
+   		
+   		<div id="cancle" class="cancle" style="display: inline-block">
+   			<img src="${pageContext.request.contextPath}/resources/img/close-24.png" style="width:12px; height: 12px">
+   		</div>
+   	</div>
+   	
+   	<form:form method="post" action="${pageContext.request.contextPath }/board/accusation" class="acc_form">   	
+       	<div>
+	       	<label for="acc_select">신고종류</label>
+	       	<select id="acc_select" class="acc_select" name="why">
+	            <option value="0">혐오발언</option>
+	            <option value="1">음란물게시</option>
+	            <option value="2">광고</option>
+	            <option value="3">기타</option>
+	        </select>
+       	</div>
+
+        <div>대상자 : <b>${postVo.user_id}</b></div>
+        
+        <div>
+        	<label for="acc_title">신고글(제목)</label>
+        	<input id="acc_title" type="text" name="title">
+        </div>
+        
+        <div>
+        	<label for="acc_content">내용</label>
+        	<textarea id="acc_content" name="content" style="margin: 10px 0;"></textarea>
+        </div>
+       
+        <input type="hidden" name="user_id" value="${myProfile.user_id}">
+		<input type="hidden" name="target_id" value="${postVo.user_id}">
+		<input type="hidden" name="post_id" value="${postVo.post_id}">
+		<button class="acc_button">신고</button>
+    </form:form>
+  </div>
+</div>
+
+
 <script>
 //댓글 로딩 함수
 function list(){
@@ -447,3 +493,5 @@ $(function(){
 	});
 })
 </script>
+
+<script src="${cp}/resources/js/emphasize_acc.js"></script>
