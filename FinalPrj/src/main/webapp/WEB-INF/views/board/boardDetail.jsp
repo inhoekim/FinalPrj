@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="accusation">
+        <div class="accusation" onclick="logincheck(event)">
             <div class="accusation_word">신고</div>
             <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
@@ -379,7 +379,14 @@ function replyForm(event){
 	html += "</div>";
 	$(event.target).closest(".comment_wrapper").append(html);
 }
-
+//로그인체크 
+function logincheck(event){
+	if(${empty myProfile.user_id}) {
+		alert("로그인 후 이용 가능합니다");
+		event.stopImmediatePropagation();
+		return;
+	}
+};
 
 //업데이트 완료 버튼
 $(document).on("click","#update_button",function(){ 
