@@ -31,4 +31,7 @@ public class NotificationsService {
 	public int deleteComm(int comment_id) {
 		return mapper.deleteComm(comment_id);
 	}
+	public int delPostNoti(int post_id) {
+		return mapper.delPostNoti(post_id);
+	}
 }

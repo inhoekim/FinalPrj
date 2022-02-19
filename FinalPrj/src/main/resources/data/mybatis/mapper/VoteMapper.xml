@@ -31,4 +31,10 @@
 		from users u, PROFILEIMG p, (select user_id from vote where post_id = #{post_id})t
 		where u.user_id = t.user_id and u.profile_id = p.profile_id
 	</select>
+	<delete id="delete" parameterType="int">
+		delete from vote where comment_id=#{comment_id}
+	</delete>
+	<delete id="delPostVote" parameterType="int">
+		delete from vote where post_id=#{post_id} or comment_id IN (select comment_id from comments where post_id=#{post_id})
+	</delete>
 </mapper>

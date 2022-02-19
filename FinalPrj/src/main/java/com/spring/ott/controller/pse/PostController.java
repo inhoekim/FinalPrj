@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spring.ott.service.AccusationService;
 import com.spring.ott.service.CommentsService;
+import com.spring.ott.service.NotificationsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.service.VoteService;
 import com.spring.ott.vo.AccusationVo;
 import com.spring.ott.vo.CategoryVo;
 import com.spring.ott.vo.PostVo;
@@ -23,12 +25,16 @@ public class PostController {
 	@Autowired PostService service;
 	@Autowired CommentsService cservice;
 	@Autowired AccusationService aservice;
+	@Autowired VoteService vservice;
+	@Autowired NotificationsService nservice;
 	@Autowired ServletContext sc;
 	@GetMapping("/post/delete")
 	public String delete(int post_id) {
+		nservice.delPostNoti(post_id);
+		vservice.delPostVote(post_id);
 		cservice.delPost(post_id);
 		service.delete(post_id);
-		return "redirect:/board/list";
+		return "redirect:/";
 				
 	}
 	@GetMapping("/post/update")

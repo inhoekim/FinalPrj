@@ -15,4 +15,6 @@ public interface VoteMapper {
 	VoteVo checkComm(HashMap<String, Object> map);
 	int deleteCommLike(HashMap<String, Object> map);
 	List<UserProfileVo> getLikeList(int post_id);
+	int delete(int comment_id);
+	int delPostVote(int post_id);
 }
