@@ -28,8 +28,8 @@ public class AdminPayListController {
 	public List<PayMentVo> test1(Model model) {
 		List<PayMentVo> list =service.AllSelect();
 		
+		
 		model.addAttribute("list",list);
-
 		return list;
 	}
 	

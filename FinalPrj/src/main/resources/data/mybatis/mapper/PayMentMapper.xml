@@ -23,7 +23,8 @@
 		<![CDATA[ where rnum >= #{startRow} and rnum <= #{endRow}]]>
 	</select>
 	<select id="AllSelect" resultType="com.spring.ott.vo.PayMentVo">
-		select * from payment
+		SELECT PAYMENT_ID,USER_ID,PRICE ,DECODE(STATUS,0,'결제완료' ,1,'결제완료' ,2,'결제취소') STATUS ,PAYMENT_DATE 
+		FROM PAYMENT
 	</select>
 	
 	<update id="payupdate" parameterType="String">

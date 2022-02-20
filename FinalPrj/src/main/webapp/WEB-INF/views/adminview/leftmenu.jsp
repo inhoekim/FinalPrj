@@ -58,7 +58,6 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${cp}/adminpaymentchart">결제 차트 </a>
                         <a class="collapse-item" href="${cp}/adminmemberchart">회원 차트 </a>
                         <a class="collapse-item" href="${cp}/adminvisiterchart">방문 기록</a>
                     </div>

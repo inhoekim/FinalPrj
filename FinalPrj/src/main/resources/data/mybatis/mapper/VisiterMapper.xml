@@ -40,7 +40,7 @@
 	</select>
 	
 	
-	<!-- 멤버 차트 -->
+	<!-- 차트 전용-->
 	<!-- 회원상태 차트 블랙유저,탈퇴유저 -->
 	<select id="memberstatus" resultType="com.spring.ott.vo.VisiterVo">
 		SELECT *
@@ -70,4 +70,69 @@
 	</select>
 	
 	
+	
+		<!-- 결제 취소 차트전용  PAY1~7 취소 VO -->
+	<select id="Pay7CanCel" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT * FROM
+		(SELECT COUNT(*) PAY1 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-6 AND STATUS = 2) PAY1,
+		(SELECT COUNT(*) PAY2 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-5 AND STATUS = 2) PAY2,
+		(SELECT COUNT(*) PAY3 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-4 AND STATUS = 2) PAY3,
+		(SELECT COUNT(*) PAY4 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-3 AND STATUS = 2) PAY4,
+		(SELECT COUNT(*) PAY5 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-2 AND STATUS = 2) PAY5,
+		(SELECT COUNT(*) PAY6 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-1 AND STATUS = 2) PAY6,
+		(SELECT COUNT(*) PAY7  FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = #{payment_date} AND STATUS = 2 ) PAY7
+	</select>
+	
+		<!-- 결제 성공 차트전용 PAY11~17 VO-->
+	<select id="Pay7OK" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT * FROM
+		(SELECT COUNT(*) PAY11 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-6 AND STATUS IN(0,1)) PAY11,
+		(SELECT COUNT(*) PAY12 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-5 AND STATUS IN(0,1)) PAY12,
+		(SELECT COUNT(*) PAY13 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-4 AND STATUS IN(0,1)) PAY13,
+		(SELECT COUNT(*) PAY14 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-3 AND STATUS IN(0,1)) PAY14,
+		(SELECT COUNT(*) PAY15 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-2 AND STATUS IN(0,1)) PAY15,
+		(SELECT COUNT(*) PAY16 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-1 AND STATUS IN(0,1)) PAY16,
+		(SELECT COUNT(*) PAY17  FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = #{payment_date} AND STATUS IN(0,1) ) PAY17
+	</select>
+	
+		<!-- 결제 총매출 차트전용  PAY21~27 총매출 VO -->
+	<select id="Pay7ALL" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT * FROM
+		(SELECT COUNT(*) PAY21 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-6 ) PAY21,
+		(SELECT COUNT(*) PAY22 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-5 ) PAY22,
+		(SELECT COUNT(*) PAY23 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-4 ) PAY23,
+		(SELECT COUNT(*) PAY24 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-3 ) PAY24,
+		(SELECT COUNT(*) PAY25 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-2 ) PAY25,
+		(SELECT COUNT(*) PAY26 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-1 ) PAY26,
+		(SELECT COUNT(*) PAY27  FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = #{payment_date} ) PAY27
+	</select>
+	<!-- 제발되라 -->
+	<select id="Pay7final" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+	SELECT * FROM
+	(SELECT COUNT(*) PAY1 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-6 AND STATUS = 2 ) PAY1,
+	(SELECT COUNT(*) PAY2 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-5 AND STATUS = 2 ) PAY2,
+	(SELECT COUNT(*) PAY3 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-4 AND STATUS = 2 ) PAY3,
+	(SELECT COUNT(*) PAY4 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-3 AND STATUS = 2 ) PAY4,
+	(SELECT COUNT(*) PAY5 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-2 AND STATUS = 2 ) PAY5,
+	(SELECT COUNT(*) PAY6 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-1 AND STATUS = 2 ) PAY6,
+	(SELECT COUNT(*) PAY7 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD') AND STATUS = 2 ) PAY7,
+	
+	
+	(SELECT COUNT(*) PAY11 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-6 AND STATUS IN(0,1 )) PAY11,
+	(SELECT COUNT(*) PAY12 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-5 AND STATUS IN(0,1 )) PAY12,
+	(SELECT COUNT(*) PAY13 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-4 AND STATUS IN(0,1 )) PAY13,
+	(SELECT COUNT(*) PAY14 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-3 AND STATUS IN(0,1 )) PAY14,
+	(SELECT COUNT(*) PAY15 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-2 AND STATUS IN(0,1 )) PAY15,
+	(SELECT COUNT(*) PAY16 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-1 AND STATUS IN(0,1 )) PAY16,
+	(SELECT COUNT(*) PAY17 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD') AND STATUS IN(0,1 )) PAY17,
+	
+	
+	(SELECT COUNT(*) PAY21 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-6 ) PAY21,
+	(SELECT COUNT(*) PAY22 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-5 ) PAY22,
+	(SELECT COUNT(*) PAY23 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-4 ) PAY23,
+	(SELECT COUNT(*) PAY24 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-3 ) PAY24,
+	(SELECT COUNT(*) PAY25 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-2 ) PAY25,
+	(SELECT COUNT(*) PAY26 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-1 ) PAY26,
+	(SELECT COUNT(*) PAY27  FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = #{payment_date} ) PAY27
+	</select>
 </mapper>
