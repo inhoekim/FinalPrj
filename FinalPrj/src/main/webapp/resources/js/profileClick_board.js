@@ -1,6 +1,11 @@
 'use strict'
 
-$(function(){    
+function getCp(){
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+}
+
+$(function(){
+	let url = getCp() + "/profile/"
 	$(".comment_profile").click(function(event){
 		$(".profile_box_Wrapper").remove();
 	
@@ -11,8 +16,8 @@ $(function(){
 		});
 		
 		let user_id = $(this).children(".profile_id").text();
-		$("<a class='box_content' href='" + user_id + "'>최근글 보기</a>").appendTo(".profile_box");
-		$("<a class='box_content' href='" + user_id + "'>최근댓글 보기</a>").appendTo(".profile_box");
+		$("<a class='box_content' href='" + url + user_id + "'>최근글 보기</a>").appendTo(".profile_box");
+		$("<a class='box_content' href='" + url + user_id + "'>최근댓글 보기</a>").appendTo(".profile_box");
 		
 	});
 	
@@ -26,8 +31,8 @@ $(function(){
 		});
 		
 		let user_id = $(this).children("span").text();
-		$("<a class='box_content' href='" + user_id + "'>최근글 보기</a>").appendTo(".profile_box");
-		$("<a class='box_content' href='" + user_id + "'>최근댓글 보기</a>").appendTo(".profile_box");
+		$("<a class='box_content' href='" + url + user_id + "'>최근글 보기</a>").appendTo(".profile_box");
+		$("<a class='box_content' href='" + url + user_id + "'>최근댓글 보기</a>").appendTo(".profile_box");
 		
 	});
 

@@ -226,6 +226,7 @@ p {
   border-radius: var(--size-border-radius);
   transition: all 300ms ease;
   border: 2px solid var(--color-grey);
+  cursor: pointer;
 }
 
 .comment_profile:hover {
