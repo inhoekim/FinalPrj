@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.NotificationsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.service.VoteService;
 import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.NotificationsVo;
 import com.spring.ott.vo.PostVo;
@@ -22,6 +23,7 @@ public class CommentsController {
 	@Autowired CommentsService service;
 	@Autowired NotificationsService nservice;
 	@Autowired PostService pservice;
+	@Autowired VoteService vservice;
 	@RequestMapping(value ="/commInsert",method = RequestMethod.GET)
 	@ResponseBody
 	public void insertComm(String content,int post_id,Principal prin) {
@@ -46,8 +48,11 @@ public class CommentsController {
 	public void remove(int comment_id) {
 		CommentsVo vo=service.selectComm(comment_id);
 		if(vo.getLev()>0) {
+			nservice.deleteComm(comment_id);//알림지우기
+			vservice.delete(comment_id);//추천지우기
 			service.update(new CommentsVo(comment_id, comment_id, null, "<span style='color:grey'><strike>삭제된 댓글입니다</strike></span>", comment_id, comment_id, comment_id, null, null,null,0,""));
 		}else {
+			vservice.delete(comment_id);
 			nservice.deleteComm(comment_id);
 			service.delete(comment_id);
 		}
@@ -76,5 +81,6 @@ public class CommentsController {
 		int lev=service.selref(ref);
 		service.insertReComment(new CommentsVo(comments_id,post_id,user_id,content,ref,lev, 1, null, null,parent_id,0,""));
 		nservice.commNoti(new NotificationsVo(ref, parent_id, post_id,2,user_id,comments_id ));
+		
 	}
 }

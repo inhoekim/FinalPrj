@@ -38,4 +38,10 @@ public class VoteService {
 	public List<UserProfileVo> getLikeList(int post_id) {
 		return mapper.getLikeList(post_id);
 	}
+	public int delete(int comment_id) {
+		return mapper.delete(comment_id);
+	}
+	public int delPostVote(int post_id) {
+		return mapper.delPostVote(post_id);
+	}
 }

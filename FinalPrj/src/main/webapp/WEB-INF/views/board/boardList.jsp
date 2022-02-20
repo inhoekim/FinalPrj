@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="board_title">
     <h4>${category_str[category]} 게시판</h4>
@@ -102,7 +103,14 @@
             <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
-    <a class="writeButton" href="${pageContext.request.contextPath}/board/insert?category=${category}"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
+  	<sec:authorize access="isAnonymous()">
+  	<a class="writeButton" href="${pageContext.request.contextPath}/login"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
+  	</sec:authorize>
+  	<sec:authorize access="isAuthenticated()">
+  	<a class="writeButton" href="${pageContext.request.contextPath}/board/insert?category=${category}"><i class="fa-solid fa-pencil"></i><span style="font-size: 12px; margin-left: 3px;">쓰기</span></a>
+  	</sec:authorize>
+
+	
 
 </div>
 
