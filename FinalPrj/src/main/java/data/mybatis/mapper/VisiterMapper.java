@@ -15,4 +15,10 @@ public interface VisiterMapper {
 	public List<VisiterVo> memberstatus();
 	public List<VisiterVo> memberage();
 	public List<VisiterVo> DayCount(String visit_date);
+	
+	//결제 차트
+	public List<VisiterVo> Pay7CanCel(String payment_date);
+	public List<VisiterVo> Pay7OK(String payment_date);
+	public List<VisiterVo> Pay7ALL(String payment_date);
+	public List<VisiterVo> Pay7final(String payment_date);
 }
