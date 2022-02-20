@@ -16,6 +16,8 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/emphasize.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/leftside.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/profileClick_home.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

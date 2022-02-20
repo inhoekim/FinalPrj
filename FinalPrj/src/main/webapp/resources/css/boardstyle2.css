@@ -1353,6 +1353,27 @@ footer {
 	margin-left: 5px;
 }
 
+/* profile_box */
+.profile_box {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	width: 100px;
+	height: 50px;
+	padding: 10px;
+	font-size: 13px;
+    font-weight: 400;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 0 10px 1px #c1c1c1c1;
+}
+
+.profile_box .box_content {
+	text-align: center;
+	margin: 4px 0;
+}
+
 @media screen and (max-width: 900px) {
   #main {
     flex-direction: column;
