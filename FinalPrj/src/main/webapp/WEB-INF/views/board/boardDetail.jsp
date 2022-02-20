@@ -20,7 +20,7 @@
 
     <div class="post_profile">
         <div class="mainInfo">
-            <div class="writer"><img class="writer_profile" src="${cp}/resources/img/profile/${postVo.post_profile}"><b>${postVo.user_id }</b></div>
+            <div class="writer"><img class="writer_profile" src="${cp}/resources/img/profile/${postVo.post_profile}"><span style="font-weight: 600">${postVo.user_id }</span></div>
             <span style="margin-left: 10px"><fmt:formatDate value="${postVo.created_day}" pattern="yyyy-MM-dd HH:mm"/></span>
         </div>
 
@@ -163,7 +163,7 @@
 	                <td>
 	                    <div class="writer">
 	                        <img class="writer_profile" style="background-color: #817e7e36;" src="${cp}/resources/img/ott_logos/${admin_profile}">
-	                        admin
+	                        <span>admin</span>
 	                    </div>
 	                </td>
 	                <td><div><fmt:formatDate value="${vo.created_day}" pattern="yy.MM.dd"/></div></td>
@@ -185,7 +185,7 @@
 	                <td>
 	                    <div class="writer">
 	                   		<img class="writer_profile" style="background-color: #817e7e36;" src="${cp}/resources/img/profile/${vo.post_profile}">
-	                        ${vo.user_id}
+	                        <span>${vo.user_id}</span>
 	                    </div>
 	                </td>
 	                <td><div><fmt:formatDate value="${vo.created_day}" pattern="yy.MM.dd"/></div></td>
