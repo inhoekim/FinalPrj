@@ -1412,6 +1412,11 @@ footer {
     color: rgb(149 148 148);
 }
 
+.mainInfo .writer,
+.comment .writer_profile{
+	cursor: pointer;
+}	
+
 @media screen and (max-width: 900px) {
   #main {
     flex-direction: column;

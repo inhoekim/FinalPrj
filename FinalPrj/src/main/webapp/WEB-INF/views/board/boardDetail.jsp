@@ -444,6 +444,8 @@ $(document).on("click",".recomment_confirm",function(){
 
 });	
 
+
+
 $(function(){
 	list();
 	//좋아요 버튼 이벤트
