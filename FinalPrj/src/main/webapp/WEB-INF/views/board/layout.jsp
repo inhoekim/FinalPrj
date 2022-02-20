@@ -52,24 +52,24 @@
     		<img src="${pageContext.request.contextPath}/resources/img/close-24.png" style="width:18px; height: 18px">
     		</div>
     	</div>
-    	
-    	<form:form method="post" action="${pageContext.request.contextPath }/login">
+    	<div class="loginContainer" style="text-align:center;">
+    	<form:form method="post" action="${pageContext.request.contextPath }/login" class="loginForm">
         	<div style="margin-top: 20px;"> 
-	        아이디<br>
-			<input type="text" name="user_id" value="${user_id }"><br>
-			비밀번호<br>
-			<input type="password" name="pwd"><br>
-			<label for="remember-me">로그인 유지</label>
-			<input type="checkbox" id="remember-me" name="remember-me" /><br>	
-			<input type="submit" value="로그인"><br>
-			<c:if test="${not empty param.errormsg}">
-		        <font color="red">
-		        	<p> ${param.errormsg }</p>
-		        </font>
-		    </c:if><br>
-			<a href="${pageContext.request.contextPath }/findId">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>
-	    </div>
+		        
+				<input type="text" name="user_id" value="${user_id }" placeholder="아이디" style="width:300px; height:30px;"><br><br>
+				<input type="password" name="pwd" placeholder="비밀번호" style="width:300px; height:30px;"><br><br>
+				<label for="remember-me">로그인 유지</label>
+				<input type="checkbox" id="remember-me" name="remember-me" /><br><br>	
+				<input type="submit" value="로그인"><br>
+				<c:if test="${not empty param.errormsg}">
+			        <font color="red" size="2">
+			        	 ${param.errormsg }
+			        </font>
+			    </c:if><br><br>
+				<a style="color:#5d5e5e73;font-weight:600;font-size:13px" href="${pageContext.request.contextPath }/findId">아이디 찾기 | 비밀번호 찾기</a>
+	    	</div>
 	    </form:form>
+	    </div>
 	 </div>
     </div>
 </body>
