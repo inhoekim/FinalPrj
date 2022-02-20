@@ -1374,6 +1374,42 @@ footer {
 	margin: 4px 0;
 }
 
+/* profile_Page */
+
+.profile_banner {
+  margin: 30px 0;
+}
+
+.profileBox {
+	display: flex;
+	flex-direction: column;
+	margin: 20px 80px;
+	height: 300px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 0 10px 1px #c5ebda5c;
+}
+
+.profile_boxItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.profile_boxItem .board_category {
+    margin-right: 20px;
+    border: 1px solid #e7e7e78c;
+    border-radius: 6px;
+    width: 65px;
+    height: 25px;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    color: rgb(149 148 148);
+}
+
 @media screen and (max-width: 900px) {
   #main {
     flex-direction: column;
