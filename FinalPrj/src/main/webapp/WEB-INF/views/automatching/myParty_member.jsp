@@ -145,7 +145,7 @@
                     <span>${partyVo.expiration_date} (${remain_day}일남음)</span>
                 </div>
                 
-				<c:if test="${authority == true">
+				<c:if test="${authority == true}">
 					<div class="payment_content">
 	                    <span>결제금액</span>
 	                    <div>
