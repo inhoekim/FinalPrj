@@ -167,7 +167,6 @@ CREATE TABLE BOARD_ACCUSATION -- 신고게시글
     result number(1), -- 처리상태 (0:처리대기, 1:정지처분, 2:오신고)
     post_id number(10), -- 신고 대상 글번호
     comment_id number(10), -- 신고 대상 댓글번호
-    CONSTRAINT FK_ACCUSATION_POST FOREIGN KEY(post_id) REFERENCES BOARD_POST(post_id),
     CONSTRAINT FK_ACCUSATION_COMMENT FOREIGN KEY(comment_id) REFERENCES COMMENTS(comment_id),
     CONSTRAINT FK_ACCUSATION_USERID FOREIGN KEY(user_id) REFERENCES USERS(user_id),
     CONSTRAINT FK_ACCUSATION_TARGETID FOREIGN KEY(target_id) REFERENCES USERS(user_id)

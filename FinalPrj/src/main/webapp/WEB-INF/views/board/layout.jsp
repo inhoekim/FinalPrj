@@ -10,6 +10,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
     <title>OTT</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/boardstyle2.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
@@ -17,6 +21,12 @@
 	<script src="${pageContext.request.contextPath}/resources/js/leftside.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/board.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/profileClick_board.js"></script>
+	<!-- include libraries(jQuery, bootstrap) -->
+	<script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
+	<!-- include summernote-ko-KR -->
+	<script src="${pageContext.request.contextPath}/resources/summernote/summernote-ko-KR.js"></script>
+	
     <link href="${pageContext.request.contextPath}/resources/fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

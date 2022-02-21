@@ -65,7 +65,7 @@
 		delete from board_post where post_id=#{post_id}
 	</delete>
 	<update id="update" parameterType="com.spring.ott.vo.PostVo">
-		update board_post set category_id=#{category_id},title=#{title},content=#{content},updated_day=sysdate where post_id=#{post_id}
+		update board_post set content=#{content},updated_day=sysdate where post_id=#{post_id}
 	</update>
 	<select id="category" resultType="com.spring.ott.vo.CategoryVo">
 		select * from board_category

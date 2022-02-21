@@ -4,9 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
-<c:set var="cp" value="${pageContext.request.contextPath}"/>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 
 <div class="board_title">
     <h4>${category_str[category]} 게시판</h4>
@@ -54,7 +54,7 @@
 		<div class="otherInteraction">
 			<c:choose>
 			<c:when test="${not empty myProfile && myProfile.user_id eq postVo.user_id}">
-		        <a class="inter_update" href="">
+		        <a class="inter_update" onclick="postUpdate()">
 		            <span class="accusation_word">수정</span>
 		            <i class="fa-solid fa-pencil"></i>
 		        </a>
@@ -404,6 +404,88 @@ function logincheck(event){
 		return;
 	}
 };
+//서머노트 로딩
+function note_load(){
+	var toolbar = [
+	    // 글꼴 설정
+	    ['fontname', ['fontname']],
+	    // 글자 크기 설정
+	    ['fontsize', ['fontsize']],
+	    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+	    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+	    // 글자색
+	    ['color', ['forecolor','color']],
+	    // 표만들기
+	    ['table', ['table']],
+	    // 글머리 기호, 번호매기기, 문단정렬
+	    ['para', ['ul', 'ol', 'paragraph']],
+	    // 줄간격
+	    ['height', ['height']],
+	    // 그림첨부, 링크만들기, 동영상첨부
+	    ['insert',['picture','link','video']],
+	    // 코드보기, 확대해서보기, 도움말
+	    ['view', ['codeview','fullscreen', 'help']]
+	  ];
+
+var setting = {
+           height : 300,
+           minHeight : null,
+           maxHeight : null,
+           focus : true,
+           lang : 'ko-KR',
+           toolbar : toolbar,
+           callbacks : { //여기 부분이 이미지를 첨부하는 부분
+           onImageUpload : function(files, editor,
+           welEditable) {
+           for (var i = files.length - 1; i >= 0; i--) {
+           uploadSummernoteImageFile(files[i],
+           this);
+           		}
+           	}
+           }
+        };
+
+       $('#summernote').summernote(setting);
+       
+       function uploadSummernoteImageFile(file, el) {
+       	var token = $("meta[name='_csrf']").attr("content");
+   		var header = $("meta[name='_csrf_header']").attr("content");
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader(header, token);
+            },
+			type : "POST",
+			url : "${cp}/uploadSummernoteImageFile",
+			contentType : false,
+			enctype : 'multipart/form-data',
+			processData : false,
+			success : function(data) {
+				console.log(data.url);
+				$(el).summernote('editor.insertImage', data.url);
+			}
+		});
+	}
+}
+
+//글수정 버튼
+function postUpdate(){
+	let html = '<form id="helpme" method="post" action="${pageContext.request.contextPath}/post/update">';
+	html += '<input type="hidden" name="post_id" value="${postVo.post_id}">';
+	html += '<input type="hidden" name="category_id" value="${postVo.category_id}">';
+	html += '<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>';
+	html += '<div style="width: 100%; text-align: right">';
+	html += '<input type="submit" value="수정" style="border:1px solid #b8b8b8; border-radius: 5px;margin: 10px 0; cursor: pointer;font-size:12px;font-weight: 600 ">';
+	html += '</div>';
+	html += '</form>';
+	$(".post_content").empty().append(html);
+	$('<textarea id="summernote" name="content" style="margin-bottom: 20px"></textarea>').html("${postVo.content}")
+	.prependTo("#helpme");
+	note_load();
+}
 
 //업데이트 완료 버튼
 $(document).on("click","#update_button",function(){ 
@@ -522,7 +604,9 @@ $(function(){
 			}
 		});
 	});
+	
 })
 </script>
+
 
 <script src="${cp}/resources/js/emphasize_acc.js"></script>
