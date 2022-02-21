@@ -12,5 +12,5 @@
 	<insert id="blackListInsert" parameterType="com.spring.ott.vo.BlackListVo">
 		insert into blacklist values(#{user_id}, sysdate, #{expire_date}, #{content})
 	</insert>
-	
+	 
 </mapper>

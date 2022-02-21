@@ -57,7 +57,7 @@ public class BlackListController {
 		System.out.println("스케줄러 동작중");
 		//blacklist expire_date 읽어오기
 		List<BlackListVo> expList=bService.selectExpDate();
-		
+		 
 		//오늘 날짜 받아오기
 		LocalDate now=LocalDate.now();
 		Date nDate=Date.valueOf(now); 

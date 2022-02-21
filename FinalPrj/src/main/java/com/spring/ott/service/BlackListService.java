@@ -16,7 +16,7 @@ public class BlackListService {
 	
 	public List<BlackListVo> blackList(){
 		return mapper.blackList();
-	}
+	} 
 	public List<BlackListVo> selectExpDate(){
 		return mapper.selectExpDate();
 	}

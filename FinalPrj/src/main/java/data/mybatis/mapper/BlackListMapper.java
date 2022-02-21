@@ -10,3 +10,4 @@ public interface BlackListMapper {
 	public List<BlackListVo> selectExpDate();
 	public int blackListInsert(BlackListVo vo);
 }
+ 
