@@ -22,5 +22,8 @@ public interface VisiterMapper {
 	public List<VisiterVo> Pay7ALL(String payment_date);
 	public List<VisiterVo> Pay7final(String payment_date);
 	
+	//메인페이지 파티 카운트전용
+	public VisiterVo CNT1();
+	public VisiterVo NewMemberCount(String visit_date);
 	
 }
