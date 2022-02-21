@@ -43,7 +43,7 @@
 		select * from matching where payment_id = #{payment_id}
 	</select>
 	
-	<select id="selectByUser" parameterType="Hashmap" resultType="com.spring.ott.vo.MemberVo">
+	<select id="selectByUser" parameterType="Hashmap" resultType="com.spring.ott.vo.MatchingVo">
 		select * from matching where user_id = #{user_id} and party_id = #{party_id}
 	</select>
 	
