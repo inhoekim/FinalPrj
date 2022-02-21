@@ -114,7 +114,7 @@
                     <span>PW</span>
                     <span id="user_pwd" style="margin-left: 15px; font-size: 16px;">
                     	<c:choose>
-                    		<c:when test="${authority }">
+                    		<c:when test="${authority}">
                     			${partyVo.share_pwd }
                     		</c:when>
                     		<c:otherwise>
@@ -243,13 +243,12 @@
 
 <form:form method="post" name='kakaopayf' action="${pageContext.request.contextPath}/autoMatch/kakaopayform">
 	<input type="hidden" name="payment_id" value="" >
-	<input type="hidden" name="user_id" value="${me.user_id}" ><!-- 로긴한 아이디 -->
+	<input type="hidden" name="user_id" value="${me.user_id}">
 	<input type="hidden" name="price" value="" >
 	<input type="hidden" name="status" value="${0}" >
 	<input type="hidden" name="party_id" value="${partyVo.party_id}" >
 </form:form>    
-    
-</div>   
+      
 <script>
 
 
@@ -303,13 +302,13 @@ $("#canclePay").click(function(){
         "url": "${pageContext.request.contextPath}/autoMatch/kakaocancel",
         "type": "get",
         "data": {
-            tid : "${}",
-            cancel_amount : "${}"
+            tid : "${payment.payment_id}",
+            cancel_amount : "${payment.price}"
         },
         "dataType": "text",
         success:function(data){
       	  alert("결제취소완료!");
-      	  location.href="${pageContext.request.contextPath}/autoMatch/kakaocancelend?tid=${}";
+      	  location.href="${pageContext.request.contextPath}/autoMatch/kakaocancelend?tid=${payment.payment_id}";
         }
       });
 })

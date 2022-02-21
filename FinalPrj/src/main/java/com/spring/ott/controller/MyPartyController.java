@@ -90,7 +90,7 @@ public class MyPartyController {
 			model.addAttribute("price", price);
 			String[] logos = {"icon_netflix_x2.png","icon_watcha_x2.png","icon_disney_x2.png"};
 			model.addAttribute("logo_src", logos[ottVo.getOtt_id()]);
-			return "automatching/myParty_member";
+			return "automatching/myParty_member.tiles";
 		}else if (map.containsKey(3)) {
 			model.addAttribute("watingRoomVo", map.get(3));
 			return "automatching/wating.tiles";
