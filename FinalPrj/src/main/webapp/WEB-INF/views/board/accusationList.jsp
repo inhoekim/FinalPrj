@@ -109,7 +109,7 @@ function accAjax(event){
 				$('<label id="result_label" for="result">정지여부<input type="checkbox" id="judgeCheck"/></label>').appendTo(".judgeBox");
 				$("<div class='black' style='margin-top:6px'>정지일: <input type='number' value='1' min='1' max='9999' name='n' style='height: 20px;padding:3px'/></div>").appendTo(".judgeBox");
 				$("<div class='black'>사유: <input type='text' name='content' style='height: 20px;'/></div>").appendTo(".judgeBox");
-				$("<input type='hidden' name='user_id' value='"+ data.user_id +"'/>").appendTo(".judgeBox");
+				$("<input type='hidden' name='user_id' value='"+ data.target_id +"'/>").appendTo(".judgeBox");
 				$("<input type='hidden' name='accusate_id' value='"+ data.accusate_id +"'/>").appendTo(".judgeBox");
 				$("<input type='hidden' id='result' name='result' value='2'/>").appendTo(".judgeBox");
 				$("<div style='text-align:right'><input id='submitButton' type='submit' value='처리' style='width:50px;height:25px;text-align:center'/></div>").appendTo(".judgeBox");
