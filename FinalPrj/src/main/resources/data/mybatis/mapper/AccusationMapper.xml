@@ -33,5 +33,6 @@
 		</where>
 		order by created_day desc)a <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
-
+	
+		
 </mapper>

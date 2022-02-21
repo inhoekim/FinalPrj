@@ -16,13 +16,13 @@ import com.spring.ott.vo.BlackListVo;
 public class AdminBlackListController {
 	@Autowired BlackListService service;
 
-	@RequestMapping("/adminblacklist")
+	@RequestMapping("/admin/adminblacklist")
 	public ModelAndView list( Model model) {
 		ModelAndView mv = new ModelAndView("blacklist.tiles");
 		return mv;
 	}
 
-	@RequestMapping(value = "/adminblacklist1")
+	@RequestMapping(value = "/admin/adminblacklist1")
 	@ResponseBody
 	public List<BlackListVo> test(Model model) {
 		List<BlackListVo> list = service.blackList();

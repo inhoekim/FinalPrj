@@ -7,7 +7,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${cp}/wp-admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${cp}/admin/wp-admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fab fa-java" ></i>
                 </div>
@@ -19,7 +19,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="${cp}/wp-admin">
+                <a class="nav-link" href="${cp}/admin/wp-admin">
                     <i class="fas fa-home"></i>
                     <span>HOME</span></a>
             </li>
@@ -41,9 +41,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${cp}/adminlist">회원 조회</a>
-                        <a class="collapse-item" href="${cp}/adminblacklist">블랙리스트 조회</a>
-                        <a class="collapse-item" href="${cp}/adminpaylist">결제 관리</a>
+                        <a class="collapse-item" href="${cp}/admin/adminlist">회원 조회</a>
+                        <a class="collapse-item" href="${cp}/admin/adminblacklist">블랙리스트 조회</a>
+                        <a class="collapse-item" href="${cp}/admin/adminpaylist">결제 관리</a>
                     </div>
                 </div>
             </li>
@@ -58,8 +58,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${cp}/adminmemberchart">회원 차트 </a>
-                        <a class="collapse-item" href="${cp}/adminvisiterchart">방문 기록</a>
+                        <a class="collapse-item" href="${cp}/admin/adminmemberchart">회원 차트 </a>
+                        <a class="collapse-item" href="${cp}/admin/adminvisiterchart">방문 기록</a>
                     </div>
                 </div>
             </li>
@@ -75,7 +75,7 @@
 
 			<!-- Nav Item - SMS -->
             <li class="nav-item">
-                <a class="nav-link" href="${cp}/adminsms">
+                <a class="nav-link" href="${cp}/admin/adminsms">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>SMS 발송</span></a>
             </li>
@@ -85,17 +85,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+
             
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="${pageContext.request.contextPath}/resources/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+
 
         </ul>
         <!-- End of Sidebar -->

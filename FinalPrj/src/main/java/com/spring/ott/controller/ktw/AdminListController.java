@@ -15,13 +15,13 @@ import com.spring.ott.vo.UserVo;
 public class AdminListController {
 	@Autowired UserService service;
 	
-	@RequestMapping("/adminlist")
+	@RequestMapping("/admin/adminlist")
 	public ModelAndView list( Model model) {
 		ModelAndView mv = new ModelAndView("list.tiles");
 		return mv;
 	}
 
-	@RequestMapping(value = "/adminlist1")
+	@RequestMapping(value = "/admin/adminlist1")
 	@ResponseBody
 	public List<UserVo> test(Model model) {
 		List<UserVo> list = service.AllSelect();

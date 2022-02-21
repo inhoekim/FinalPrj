@@ -106,7 +106,7 @@
 		(SELECT COUNT(*) PAY26 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE( #{payment_date} , 'YYYY/MM/DD')-1 ) PAY26,
 		(SELECT COUNT(*) PAY27  FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = #{payment_date} ) PAY27
 	</select>
-	<!-- 제발되라 -->
+	<!-- 결제 차트 최종판 -->
 	<select id="Pay7final" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
 	SELECT * FROM
 	(SELECT COUNT(*) PAY1 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-6 AND STATUS = 2 ) PAY1,
@@ -135,4 +135,7 @@
 	(SELECT COUNT(*) PAY26 FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = TO_DATE(#{payment_date} , 'YYYY/MM/DD')-1 ) PAY26,
 	(SELECT COUNT(*) PAY27  FROM PAYMENT WHERE to_char(payment_date,'YYYY/MM/DD') = #{payment_date} ) PAY27
 	</select>
+	
+	<!-- 파티 차트전용 -->
+
 </mapper>

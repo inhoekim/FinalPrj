@@ -26,7 +26,7 @@ import com.spring.ott.vo.PayMentVo;
 public class KakaoCancelController {
 	@Autowired PayMentService service;
 	
-	@RequestMapping("/kakaoc")
+	@RequestMapping("/admin/kakaoc")
 	public ModelAndView list(Model model) {
 		ModelAndView mv = new ModelAndView("kakaocancel.tiles");
 
@@ -34,7 +34,7 @@ public class KakaoCancelController {
 	}
 	
 	//카카오페이 API 결제취소 부분
-	@GetMapping("/kakaocancel")
+	@GetMapping("/admin/kakaocancel")
 	public @ResponseBody String taewoo(String tid, int cancel_amount) {
 		
 		try {
@@ -84,7 +84,7 @@ public class KakaoCancelController {
 	}
 	
 	//결제 취소 성공후 이동할 페이지
-	@GetMapping("/kakaocancelend")
+	@GetMapping("/admin/kakaocancelend")
 	public String payend(String tid) {
 		
 		int a = service.payupdate(tid);

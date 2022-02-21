@@ -24,7 +24,7 @@
 	<h1>카카오페이 테스트</h1>
 	
 	<div id="check_module" >카카오로 계속하기</div>
-			<form:form method="post" name='kakaopayf' action="${pageContext.request.contextPath}/kakaopayform">
+			<form:form method="post" name='kakaopayf' action="${pageContext.request.contextPath}/admin/kakaopayform">
 				<input type="hidden" name="payment_id" value="" >
 				<input type="hidden" name="user_id" value="${userId}" ><!-- 로긴한 아이디 -->
 				<input type="hidden" name="price" value="" >
@@ -40,14 +40,14 @@
 			merchant_uid: 'merchant_' + new Date().getTime(),
 			name: '본인 몫(1/4)의 넷플릭스 이용료',
 			amount: 5240,
-			buyer_name: '이름',//셀렉해서 유저 이름으로 변경해줘야함
+			buyer_name: '이름',// {name } 유저테이블의 name컬럼
 			buyer_postcode: '123-456',
 			}, function (rsp) {
 				if(rsp.success){
 					//결제 성공시
 				var msg = '결제에 성공하였습니다.';
 				msg += '\n결제번호 : ' + rsp.pg_tid; //결제 번호
-				msg += '\n주문자명 : ' + "ㅁㄴㅇ"; // name
+				msg += '\n주문자명 : ' + "ㅁㄴㅇ"; // {name } 유저테이블의 name컬럼
 				msg += '\n결제금액 : ' + rsp.paid_amount; //결제금액
 				
 				//제이쿼리 

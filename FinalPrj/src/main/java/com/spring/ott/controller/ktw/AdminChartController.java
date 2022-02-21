@@ -29,7 +29,7 @@ public class AdminChartController {
 	
 	//결제 차트 에이작스 전용
 	// 3번페이지 ajax전용 차트js 1  
-	@RequestMapping(value = "/adminpaymentchart1", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/admin/adminpaymentchart1", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String test11() {
 		
 		//현재 날짜 구해서 데이터형태를 포맷후 넘겨주기
@@ -110,7 +110,7 @@ public class AdminChartController {
 	
 	//3번째 페이지 시작 회원 차트
 	
-	@RequestMapping(value = "/adminmemberchart", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminmemberchart", method = RequestMethod.GET)
 	public ModelAndView test3(Model model) {
 		ModelAndView mv= new ModelAndView("3memberchart.tiles");
 		
@@ -118,7 +118,7 @@ public class AdminChartController {
 	}
 	
 	// 3번페이지 ajax전용 차트js 1  
-	@RequestMapping(value = "/adminmemberchart1", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/admin/adminmemberchart1", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String test31() {
 		
 		
@@ -145,7 +145,7 @@ public class AdminChartController {
 		return json;
 	}
 	// 3번페이지 ajax전용 차트js 2 
-	@RequestMapping(value = "/adminmemberchart2", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/admin/adminmemberchart2", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String test32() {
 		
 		
@@ -179,7 +179,7 @@ public class AdminChartController {
 	}
 	
 	// 3번페이지 ajax전용 차트js 3
-	@RequestMapping(value = "/adminmemberchart3", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/admin/adminmemberchart3", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String test33() {
 		
 		//현재 날짜 구해서 데이터형태를 포맷후 넘겨주기
@@ -233,7 +233,7 @@ public class AdminChartController {
 	
 	
 	//4번째 페이지 시작
-	@RequestMapping(value = "/adminvisiterchart", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminvisiterchart", method = RequestMethod.GET)
 	public ModelAndView test4(Model model) {
 		ModelAndView mv= new ModelAndView("4visiterchart.tiles");
 		
@@ -277,7 +277,7 @@ public class AdminChartController {
 	}
 	
 	// 4번페이지 ajax전용 차트js
-	@RequestMapping(value = "/adminvisiterchart2", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/admin/adminvisiterchart2", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String test42(String day) {
 		
 		System.out.println(day);
@@ -306,7 +306,7 @@ public class AdminChartController {
 	
 	
 	// 4번페이지 ajax전용 데이터테이블
-	@RequestMapping(value = "/adminvisiterchart3")
+	@RequestMapping(value = "/admin/adminvisiterchart3")
 	@ResponseBody
 	public List<VisiterVo> test43(Model model) {
 		List<VisiterVo> list =service.alldayselect();

@@ -15,10 +15,12 @@ import com.spring.ott.service.AccusationService;
 import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.NotificationsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.service.ProfileImgService;
 import com.spring.ott.service.VoteService;
 import com.spring.ott.vo.AccusationVo;
 import com.spring.ott.vo.CategoryVo;
 import com.spring.ott.vo.PostVo;
+import com.spring.ott.vo.UserProfileVo;
 
 @Controller
 public class PostController {
@@ -27,7 +29,9 @@ public class PostController {
 	@Autowired AccusationService aservice;
 	@Autowired VoteService vservice;
 	@Autowired NotificationsService nservice;
+	@Autowired ProfileImgService profileService;
 	@Autowired ServletContext sc;
+	
 	@GetMapping("/post/delete")
 	public String delete(int post_id) {
 		nservice.delPostNoti(post_id);
@@ -37,21 +41,12 @@ public class PostController {
 		return "redirect:/";
 				
 	}
-	@GetMapping("/post/update")
-	public String update(int post_id,Model m) {
-		List<CategoryVo> cateList=service.category();
-		PostVo vo=service.one(post_id);
-		
-		m.addAttribute("list", cateList);
-		m.addAttribute("title", vo.getTitle());
-		m.addAttribute("post_id", post_id);
-		m.addAttribute("content", vo.getContent());
-		return "/board/update";
-	}
 	@PostMapping("/post/update")
-	public String updateSave(PostVo vo) {
-		service.update(vo);
-		return "redirect:/board/list";
+	public String updateSave(PostVo postVo, Model model) {
+		service.update(postVo);
+		model.addAttribute("msg", "글수정이 완료되었습니다!");
+		model.addAttribute("url", sc.getContextPath() + "/board/detail?post_id=" + postVo.getPost_id() + "&category=" + postVo.getCategory_id());
+		return "home/alert";
 	}
 	@GetMapping("/post/accusation")
 	public String accusationForm(int post_id,Model m) {

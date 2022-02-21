@@ -197,7 +197,7 @@
 			
 			
 			$.ajax({
-				url:"/final/adminvisiterchart2",
+				url:"/final/admin/adminvisiterchart2",
 				type :"get",
 				data:{  day  },
 				
@@ -315,7 +315,7 @@ $(document).ready(function() {
     $('#dataTable').DataTable({
         
     	ajax : {
-    		"url":"/final/adminvisiterchart3",
+    		"url":"/final/admin/adminvisiterchart3",
     		type:"get",
     		'dataSrc':''
                 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,9 @@
     <title>Admin- Dashboard</title>
     <!-- Bootstrap core JavaScript-->
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	
+	<!-- 아이콘버그 잡기 -->
+	<link href="${pageContext.request.contextPath}/resources/fontawesome-6.0.0-web/css/all.min.css" rel="stylesheet">
 	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -107,8 +111,30 @@
     
     
 		<!-- 로그아웃 모델 logoutmodel.jsp-->
-	<%@include file="../adminview/logoutmodel.jsp" %>
-	
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃 안내</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">로그아웃을 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">아니요</button>
+                    
+                    <form:form method="post" name='lgform' action="${pageContext.request.contextPath }/logout">
+                   		<input type="submit" class="btn btn-primary" value="Logout"  ></input>
+               		</form:form>
+               
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>

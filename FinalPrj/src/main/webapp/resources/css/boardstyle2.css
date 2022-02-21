@@ -1113,6 +1113,14 @@ footer {
   align-items: center;
 }
 
+.otherInteraction {
+	display: flex;	
+}
+
+.otherInteraction a {
+	margin: 0 2px;
+}
+
 .likeVote {
   display: flex;
   align-items: center;
@@ -1214,6 +1222,40 @@ footer {
   background-color: #cccdcf;
 }
 
+.inter_delete {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbcdcd;
+  border-radius: 5px;
+  width: 35px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inter_delete:hover {
+  background-color: #f59393;
+}
+
+.inter_update {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d7e9e1;
+  border-radius: 5px;
+  width: 35px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inter_update:hover {
+  background-color: #9ed4bb;
+}
+
 .accusation_word {
   position: absolute;
   top: -10px;
@@ -1225,9 +1267,12 @@ footer {
   font-weight: 400;
   opacity: 0;
   transition: all 200ms ease-in;
+  width: 33px;
 }
 
-.accusation:hover .accusation_word {
+.accusation:hover .accusation_word,
+.inter_update:hover .accusation_word,
+.inter_delete:hover .accusation_word {
   opacity: 1;
   top: -20px;
 }
@@ -1308,10 +1353,14 @@ footer {
 }
 
 .delete_comment {
-	background-color: pink;
+	background-color: #f7dce1;
 }
 
-.recomment:hover,.update_comment:hover,.delete_comment:hover,
+.delete_comment:hover {
+	background-color: #f5bfc9;
+}
+
+.recomment:hover,.update_comment:hover,
 .likeButton:hover {
   background-color: #c9c5c5;
 }

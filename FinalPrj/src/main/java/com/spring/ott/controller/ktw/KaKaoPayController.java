@@ -14,7 +14,7 @@ public class KaKaoPayController {
 	
 	@Autowired PayMentService service;
 	
-	@RequestMapping(value="/kakaopayform",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/kakaopayform",method=RequestMethod.POST)
 	public String join(PayMentVo vo, Model model) {
 		System.out.println("vo:" + vo);
 		try {

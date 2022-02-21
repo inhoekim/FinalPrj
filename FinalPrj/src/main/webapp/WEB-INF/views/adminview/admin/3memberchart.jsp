@@ -138,7 +138,7 @@
 		$(document).ready(function(){
 				
 				$.ajax({
-					url:"/final/adminmemberchart1",
+					url:"/final/admin/adminmemberchart1",
 					type :"get",
 					
 					success:function(data){
@@ -223,7 +223,7 @@
 		$(document).ready(function(){
 				
 				$.ajax({
-					url:"/final/adminmemberchart2",
+					url:"/final/admin/adminmemberchart2",
 					type :"get",
 					
 					success:function(data){
@@ -321,7 +321,7 @@
 		$(document).ready(function(){
 				
 				$.ajax({
-					url:"/final/adminmemberchart3",
+					url:"/final/admin/adminmemberchart3",
 					type :"get",
 					
 					success:function(data){

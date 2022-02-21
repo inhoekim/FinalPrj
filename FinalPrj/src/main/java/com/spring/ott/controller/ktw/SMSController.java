@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SMSController {
 	
-	@RequestMapping(value = "/adminsms", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminsms", method = RequestMethod.GET)
 	public String test( ) {
 		
 		return "sms.tiles";
@@ -15,19 +15,19 @@ public class SMSController {
 	}
 	
 	
-	@RequestMapping(value = "/sms1", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sms1", method = RequestMethod.POST)
 	public String test1( ) {
 		
 		return "adminview/admin/sms1";
 	}
-	@RequestMapping(value = "/sms1", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/sms1", method = RequestMethod.GET)
 	public String test11( ) {
 		
 		return "adminview/admin/sms1";
 	}
 	
 	//test
-	@RequestMapping(value = "/sms2", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/sms2", method = RequestMethod.GET)
 	public String test2( ) {
 		
 		return "adminview/admin/sms2";

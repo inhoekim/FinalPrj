@@ -40,9 +40,6 @@ public class DetailController {
 		if(principal != null) {
 			UserProfileVo myProfile = profileService.userProfile(principal.getName()); 
 			model.addAttribute("myProfile",myProfile);
-		}else {
-			UserProfileVo myProfile = new UserProfileVo(null,null);
-			model.addAttribute("myProfile",myProfile);
 		}
 		model.addAttribute("postVo", postVo);
 		model.addAttribute("profiles", profiles);
