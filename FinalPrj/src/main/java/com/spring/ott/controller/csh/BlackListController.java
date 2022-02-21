@@ -52,10 +52,10 @@ public class BlackListController {
 		return "/";
 	}
 	
-	@Scheduled(cron = "0/10 0 0 * * *")
+	@Scheduled(cron="0 1 0 * * *") // 매일 0시1분에 실행되도록.
 	public void doExpireBlack() {
 		System.out.println("스케줄러 동작중");
-		//blacklist expire_date 읽어오기
+		//blacklist 읽어오기
 		List<BlackListVo> expList=bService.selectExpDate();
 		 
 		//오늘 날짜 받아오기
@@ -75,6 +75,8 @@ public class BlackListController {
 			}
 		}
 	}
+	
+	
 	
 }
 
