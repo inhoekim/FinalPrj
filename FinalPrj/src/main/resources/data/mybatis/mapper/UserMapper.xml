@@ -67,4 +67,19 @@
 	<update id="findPwd" parameterType="com.spring.ott.vo.UserVo">
 		update users set pwd=#{pwd} where user_id=#{user_id} and email=#{email}
 	</update>
+	
+	<!-- 김인회 start -->
+	<resultMap type="com.spring.ott.vo.MemberVo" id="member">
+		<result column="user_id" property="user_id"/>
+		<result column="src_name" property="src_name"/>
+	</resultMap>
+
+	<select id="selectMember" resultMap="member" parameterType="string">
+		select u.user_id, p.src_name  from users u, profileimg p
+		where u.profile_id = p.profile_id and u.user_id = #{user_id}
+	</select>
+
+	<!-- 김인회 end -->
+	
+	
  </mapper>

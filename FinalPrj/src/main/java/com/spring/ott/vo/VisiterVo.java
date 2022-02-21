@@ -30,4 +30,27 @@ public class VisiterVo {
 	private String Day5;
 	private String Day6;
 	private String Day7;
+	
+	private String payment_date;
+	private int Pay1;
+	private int Pay2;
+	private int Pay3;
+	private int Pay4;
+	private int Pay5;
+	private int Pay6;
+	private int Pay7;
+	private int Pay11;
+	private int Pay12;
+	private int Pay13;
+	private int Pay14;
+	private int Pay15;
+	private int Pay16;
+	private int Pay17;
+	private int Pay21;
+	private int Pay22;
+	private int Pay23;
+	private int Pay24;
+	private int Pay25;
+	private int Pay26;
+	private int Pay27;
 }

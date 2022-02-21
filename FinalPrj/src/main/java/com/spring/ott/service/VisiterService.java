@@ -41,4 +41,19 @@ public class VisiterService {
 	public List<VisiterVo> DayCount(String visit_date) {
 		return mapper.DayCount(visit_date);
 	}
+	
+	
+	//결제 차트
+	public List<VisiterVo> Pay7CanCel(String payment_date) {
+		return mapper.Pay7CanCel(payment_date);
+	}
+	public List<VisiterVo> Pay7OK(String payment_date) {
+		return mapper.Pay7OK(payment_date);
+	}
+	public List<VisiterVo> Pay7ALL(String payment_date) {
+		return mapper.Pay7ALL(payment_date);
+	}
+	public List<VisiterVo> Pay7final(String payment_date) {
+		return mapper.Pay7final(payment_date);
+	}
 }

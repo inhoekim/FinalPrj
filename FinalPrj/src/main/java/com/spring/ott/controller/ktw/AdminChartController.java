@@ -25,21 +25,85 @@ import com.spring.ott.vo.VisiterVo;
 public class AdminChartController {
 
 	@Autowired private VisiterService service;
-	@Autowired private UserService userservice;
+
 	
-	
-	//1번째 페이지 시작  결제 차트
-	@RequestMapping(value = "/adminpaymentchart", method = RequestMethod.GET)
-	public String test1( ) {
+	//결제 차트 에이작스 전용
+	// 3번페이지 ajax전용 차트js 1  
+	@RequestMapping(value = "/adminpaymentchart1", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody String test11() {
 		
-		return "1paymentchart.tiles";
-	}
-	
-	//2번째 페이지 시작 파티 차트
-	@RequestMapping(value = "/adminpartchart", method = RequestMethod.GET)
-	public String test2( ) {
+		//현재 날짜 구해서 데이터형태를 포맷후 넘겨주기
+		LocalDate now = LocalDate.now();
 		
-		return "2partchart.tiles";
+		//포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		
+		// formatedNow 변수에 포맷적용
+		String formatedNow = now.format(formatter);
+		
+		List<VisiterVo> list1 = service.Pay7final(formatedNow);
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+		
+		Iterator<VisiterVo> it = list1.iterator();
+		while(it.hasNext()) {
+			VisiterVo vo = it.next();
+			JsonObject object = new JsonObject();
+			int pay1 = vo.getPay1();
+			int pay2 = vo.getPay2();
+			int pay3 = vo.getPay3();
+			int pay4 = vo.getPay4();
+			int pay5 = vo.getPay5();
+			int pay6 = vo.getPay6();
+			int pay7 = vo.getPay7();
+			
+			int pay11 = vo.getPay11();
+			int pay12 = vo.getPay12();
+			int pay13 = vo.getPay13();
+			int pay14 = vo.getPay14();
+			int pay15 = vo.getPay15();
+			int pay16 = vo.getPay16();
+			int pay17 = vo.getPay17();
+			
+			int pay21 = vo.getPay21();
+			int pay22 = vo.getPay22();
+			int pay23 = vo.getPay23();
+			int pay24 = vo.getPay24();
+			int pay25 = vo.getPay25();
+			int pay26 = vo.getPay26();
+			int pay27 = vo.getPay27();
+			object.addProperty("Pay1", pay1);
+			object.addProperty("Pay2", pay2);
+			object.addProperty("Pay3", pay3);
+			object.addProperty("Pay4", pay4);
+			object.addProperty("Pay5", pay5);
+			object.addProperty("Pay6", pay6);
+			object.addProperty("Pay7", pay7);
+			
+			object.addProperty("Pay11", pay11);
+			object.addProperty("Pay12", pay12);
+			object.addProperty("Pay13", pay13);
+			object.addProperty("Pay14", pay14);
+			object.addProperty("Pay15", pay15);
+			object.addProperty("Pay16", pay16);
+			object.addProperty("Pay17", pay17);
+			
+			object.addProperty("Pay21", pay21);
+			object.addProperty("Pay22", pay22);
+			object.addProperty("Pay23", pay23);
+			object.addProperty("Pay24", pay24);
+			object.addProperty("Pay25", pay25);
+			object.addProperty("Pay26", pay26);
+			object.addProperty("Pay27", pay27);
+
+			jArray.add(object);
+		}
+		
+
+		String json = gson.toJson(jArray);
+		System.out.println(json.toString());
+		
+		return json;
 	}
 	
 	

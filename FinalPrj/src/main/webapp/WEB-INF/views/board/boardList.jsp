@@ -54,7 +54,7 @@
 	                <td>
 	                    <div class="writer">
 	                        <img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/ott_logos/${admin_profile}">
-	                        admin
+	                        <span>admin</span>
 	                    </div>
 	                </td>
 	                <td><div><fmt:formatDate value="${vo.created_day}" pattern="yy.MM.dd"/></div></td>
@@ -76,7 +76,7 @@
 	                <td>
 	                    <div class="writer">
 	                    	<img class="writer_profile" style="background-color: #817e7e36;" src="${pageContext.request.contextPath}/resources/img/profile/${vo.post_profile}">
-	                        ${vo.user_id}
+	                        <span>${vo.user_id}</span>
 	                    </div>
 	                </td>
 	                <td><div><fmt:formatDate value="${vo.created_day}" pattern="yy.MM.dd"/></div></td>

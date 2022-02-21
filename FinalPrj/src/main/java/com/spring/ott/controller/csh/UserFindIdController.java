@@ -15,7 +15,7 @@ public class UserFindIdController {
 	
 	@GetMapping("/findId")
 	public String findIdForm() {
-		return "csh/findIdForm";
+		return "home/findID.tiles";
 	}
 	
 	@PostMapping("/findId")

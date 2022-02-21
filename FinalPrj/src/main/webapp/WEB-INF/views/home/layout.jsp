@@ -16,6 +16,8 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/emphasize.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/leftside.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/profileClick_home.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +65,7 @@
 			        	 ${param.errormsg }
 			        </font>
 			    </c:if><br><br>
-				<a href="${pageContext.request.contextPath }/findId">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>
+				<a style="color:#5d5e5e73;font-weight:600;font-size:13px" href="${pageContext.request.contextPath }/findId">아이디 찾기 | 비밀번호 찾기</a>
 	    	</div>
 	    </form:form>
 	    </div>

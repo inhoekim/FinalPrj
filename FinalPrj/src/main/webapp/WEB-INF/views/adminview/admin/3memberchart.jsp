@@ -170,7 +170,7 @@
 										}],
 										options : {
 												title : {
-												display : false,
+												display : true,
 												text: '회원상태 비율'
 												}
 										}
@@ -205,14 +205,6 @@
 									} //옵션의 끝 태그
 								  
 						});
-						
-						function colorize() {
-							var r = Math.floor(Math.random()*200);
-							var g = Math.floor(Math.random()*200);
-							var b = Math.floor(Math.random()*200);
-							var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
-							return color;
-						}
 						
 
 						

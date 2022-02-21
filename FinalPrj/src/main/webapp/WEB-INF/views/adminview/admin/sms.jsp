@@ -531,7 +531,7 @@
 		<div id="box138">
 			<div id="box139">Return Url</div>
 			<div id="box140">
-				<input type="text" name="returnurl" maxlength="64" value="http://localhost:9090/final/sms" readonly="readonly" id="box141">
+				<input type="text" name="returnurl" maxlength="64" value="http://localhost:9090/final/adminsms" readonly="readonly" id="box141">
 			</div>
 		</div>
 
