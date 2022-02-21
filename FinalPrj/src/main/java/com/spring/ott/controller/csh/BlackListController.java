@@ -26,10 +26,8 @@ public class BlackListController {
 	@Autowired BlackListService bService;
 	
 	@RequestMapping("/enrollBlack")
-	public String enrollBlackList(String user_id, BlackListVo bVo, HttpServletRequest req) {
-		//n일 가져오기
-		int n=Integer.parseInt(req.getParameter("n"));
-		
+	public String enrollBlackList(String user_id, BlackListVo bVo, int n)//n일 가져오기
+	{		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal=Calendar.getInstance();
 		//오늘로부터 n일 뒤
@@ -41,7 +39,6 @@ public class BlackListController {
 		//vo에 만료일 설정
 		bVo.setBlack_expiry_date(eDate);
 		bmService.enrollBlackList(user_id, bVo);
-		
 	
 		return "/board/accusation";
 	}
