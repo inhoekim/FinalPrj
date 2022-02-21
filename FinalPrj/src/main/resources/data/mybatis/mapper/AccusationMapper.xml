@@ -34,5 +34,8 @@
 		order by created_day desc)a <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
 	
+	<select id="selectOne" resultType="com.spring.ott.vo.AccusationVo" parameterType="int">
+		select * from board_accusation where ACCUSATE_ID = #{accusate_id}
+	</select>
 		
 </mapper>

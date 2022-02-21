@@ -25,11 +25,11 @@
 		<tbody>			
 			<c:forEach var="vo" items="${list}">
 				<tr>
-	                <td><div>${vo.accusate_id}</div></td>
+	                <td><div class="acc_id">${vo.accusate_id}</div></td>
 	                <td><div>${acc_str[vo.why]}</div></td>
 	                <td class="td_title">
-	                    <div class="title">
-	                        <a href="${pageContext.request.contextPath}/board/acc_detail?post_id=${vo.post_id}&pageNum=${pu.pageNum}">${vo.title}</a>
+	                    <div class="title" onclick="accAjax(event)">
+	                        <span>${vo.title}</span>
 	                    </div>
 	                </td>
 	                <td>
@@ -81,3 +81,44 @@
 	<a href="${pageContext.request.contextPath}/board/accusation?pageNum=${pu.endPageNum+1}&field=${field}&keyword=${keyword}">다음</a>
 </div>
 </div>
+
+<script>
+function accAjax(event){
+	let ACCUSATE_ID = $($(event.target).closest("tr")).find(".acc_id").text();
+	$.ajax({ 
+		url: getCp() + "/board/accusation/judge/" + ACCUSATE_ID,
+		type: "get",
+		dataType: "json",
+		success: function(data){
+
+			$(".judgeBox_Wrapper").remove();
+			$("<form class='judgeBox_Wrapper' method='post' action='${pageContext.request.contextPath}/board/accusation/judge/" + data.accusate_id +"'>" + 
+			"<div class='judgeBox'></div><input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}'/></form>")
+			.appendTo("body").css({
+				"top": event.pageY + 5,
+				"left": event.pageX + 5,
+				"position": "absolute"
+			});
+			
+			$("<div>제목: " + data.title + "</div>").appendTo(".judgeBox");
+			$("<div>내용: " + data.content + "</div>").appendTo(".judgeBox");
+			$("<div>대상자: @" + data.target_id + "</div>").appendTo(".judgeBox");
+			$("<div>링크주소: <a href='${pageContext.request.contextPath}/board/detail?post_id=" + data.post_id +"' >link</a></div>").appendTo(".judgeBox");
+			
+			
+		}
+	});
+}
+
+function check_judge(){
+	let regexr = /[0-9]{1,3}$/;
+}
+
+//profile_box창 이외 영역 클릭시 되돌아오기
+$(document).mouseup(function(event){       
+    if($(".judgeBox_Wrapper").has(event.target).length === 0){
+        $(".judgeBox_Wrapper").remove();
+    };
+}) 
+
+</script>

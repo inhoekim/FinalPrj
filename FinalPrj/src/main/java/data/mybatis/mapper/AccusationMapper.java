@@ -9,4 +9,5 @@ public interface AccusationMapper {
 	List<AccusationVo> selectList(HashMap<String, Object> map);
 	int count(HashMap<String, Object> map);
 	int postAccusation(AccusationVo vo);
+	AccusationVo selectOne(int accusate_id);
 }

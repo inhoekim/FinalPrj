@@ -1492,6 +1492,19 @@ footer {
 	cursor: pointer;
 }	
 
+/* judge Form(정지입력-admin) */
+.judgeBox {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	height: 300px;
+	background-color: white;
+	box-shadow: 0 0 10px 1px grey;
+	border-radius: 6px;
+	padding: 10px;
+	
+}
+
 @media screen and (max-width: 900px) {
   #main {
     flex-direction: column;
