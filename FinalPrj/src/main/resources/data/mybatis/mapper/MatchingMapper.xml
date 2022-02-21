@@ -35,4 +35,8 @@
 		and m.party_id = #{party_id}
 	</select>
 	
+	<update id="updatePayment" parameterType="Hashmap">
+		update matching set payment_id = #{payment_id} where user_id = #{user_id} and party_id = #{party_id}
+	</update>
+	
 </mapper>

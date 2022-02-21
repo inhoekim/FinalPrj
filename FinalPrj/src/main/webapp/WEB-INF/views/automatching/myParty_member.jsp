@@ -2,8 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script src="${pageContext.request.contextPath}/resources/js/myparty.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <c:set var="profile_src" value="${pageContext.request.contextPath}/resources/img/profile/"/>
 <c:set var="searching_src" value="${pageContext.request.contextPath}/resources/img/searching/search"/>
 <c:set var="searching_num" value="${3 - partyVo.member_num}"/>
@@ -44,7 +49,7 @@
                       	    	<div class="profile_item">
 	                                <img src="${profile_src}${member.src_name}">
 	                                <span class="profile_id">${member.user_id }
-	                                <c:if test="${member.user_id eq me}">	
+	                                <c:if test="${member.user_id eq me.user_id}">	
 	                                	<span class="you">(당신)</span>
 	                                </c:if>
 	                                </span>
@@ -145,7 +150,7 @@
                     <div>
                         <img id="info" src="${pageContext.request.contextPath}/resources/img/info-24.png" style="vertical-align: middle; position: relative; top:-2px; width: 18px; height: 18px; cursor: pointer;">
                         <span>
-							<fmt:formatNumber type="number" maxFractionDigits="3" value="${price }" />원
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${price}" />원
 						</span>
                     </div>
                     
@@ -165,7 +170,7 @@
                     	
 					 	<c:if test="${authority == false}">
                     		<span style="margin-right: 20px; width:100px">결제대기</span>
-                        	<button class="confirm_button kakao"><i class="fas fa-comment"></i> 카카오로 결제하기</button>
+                        	<button id="check_module" class="confirm_button kakao"><i class="fas fa-comment"></i> 카카오로 결제하기</button>
                     	</c:if>
                     </div>
                     
@@ -222,6 +227,15 @@
     </div>
 </div>
     
+
+<form:form method="post" name='kakaopayf' action="${pageContext.request.contextPath}/autoMatch/kakaopayform">
+	<input type="hidden" name="payment_id" value="" >
+	<input type="hidden" name="user_id" value="${me.user_id}" ><!-- 로긴한 아이디 -->
+	<input type="hidden" name="price" value="" >
+	<input type="hidden" name="status" value="${0}" >
+	<input type="hidden" name="party_id" value="${partyVo.party_id}" >
+</form:form>    
+    
     
 <script>
 	$(function(){
@@ -230,4 +244,42 @@
 			alert("${msg}");
 		}
 	});
+	
+	$("#check_module").click(function () {
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp44517334'); 
+		IMP.request_pay({
+			pg: 'kakaopay',
+			pay_method: 'card',
+			merchant_uid: 'merchant_' + new Date().getTime(),
+			name: '본인 몫(1/4)의 OTT 이용료',
+			amount: ${price},
+			buyer_name: '${me.name}',// {name } 유저테이블의 name컬럼
+			buyer_postcode: '123-456',
+			}, function (rsp) {
+				if(rsp.success){
+					//결제 성공시
+				var msg = '결제에 성공하였습니다.';
+				msg += '\n결제번호 : ' + rsp.pg_tid; //결제 번호
+				msg += '\n주문자명 : ${me.name}'; // {name } 유저테이블의 name컬럼
+				msg += '\n결제금액 : ' + rsp.paid_amount; //결제금액
+				
+				//제이쿼리 
+				$("input[name='payment_id']").val(rsp.pg_tid);
+				$("input[name='price']").val(rsp.paid_amount);
+				document.kakaopayf.submit();
+				alert(msg);
+
+				
+				} else{
+					//결제 실패시
+				var msg = '결제에 실패하였습니다.';
+				msg += '\n실패사유 : ' + rsp.error_msg;
+				
+				alert(msg);
+				}
+				
+			});
+		});
+	
 </script>

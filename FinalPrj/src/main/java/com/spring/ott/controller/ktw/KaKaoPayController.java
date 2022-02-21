@@ -14,11 +14,11 @@ public class KaKaoPayController {
 	
 	@Autowired PayMentService service;
 	
-	@RequestMapping(value="/admin/kakaopayform",method=RequestMethod.POST)
-	public String join(PayMentVo vo, Model model) {
+	@RequestMapping(value="/autoMatch/kakaopayform",method=RequestMethod.POST)
+	public String join(PayMentVo vo, int party_id, Model model) {
 		System.out.println("vo:" + vo);
 		try {
-			service.PayInsert(vo);
+			service.PayInsert(vo, party_id);
 			System.out.println("카카오페이컨트롤러 db저장성공");
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -26,7 +26,7 @@ public class KaKaoPayController {
 		}
 		
 		
-		return "redirect:/wp-admin";
+		return "redirect:/autoMatch/myParty";
 	}
 	
 	

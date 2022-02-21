@@ -68,6 +68,7 @@ public class MyPartyController {
 			PartyVo partyVo = partyService.selectParty(my_party);
 			MemberVo leader = userService.selectMember(partyVo.getLeader());
 			OttVo ottVo = ottService.selectOtt(partyVo.getOtt_id());
+			UserVo myVo = userService.selectUser(principal.getName());
 			List<MemberVo> list = matchingService.selectMember(my_party);		
 			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
 			int fees = CalendarUtil.getFees(remain_day);
@@ -76,7 +77,7 @@ public class MyPartyController {
 			model.addAttribute("leader", leader);
 			model.addAttribute("partyVo", partyVo);
 			model.addAttribute("ottVo", ottVo);
-			model.addAttribute("me", principal.getName());
+			model.addAttribute("me", myVo);
 			model.addAttribute("remain_day", remain_day);
 			model.addAttribute("fees", fees);
 			model.addAttribute("price", price);

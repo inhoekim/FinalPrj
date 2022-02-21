@@ -7,6 +7,7 @@ import com.spring.ott.vo.MatchingVo;
 import com.spring.ott.vo.MemberVo;
 
 public interface MatchingMapper {
+	int updatePayment(HashMap<String, Object> map);
 	int insert(HashMap<String, Object> map);
 	int delete(HashMap<String, Object> map);
 	int deleteAll(int party_id);
