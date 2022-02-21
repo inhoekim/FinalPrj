@@ -80,7 +80,7 @@ function last_confirm(event){
     }
     else if(!pwd_regexr.test(share_pwd)) {
         event.preventDefault();
-        $("#share_id").val("");
+        $("#share_pwd").val("");
         $("#share_pwd").focus();
         animate_shake("#share_pwd",2);
     }
