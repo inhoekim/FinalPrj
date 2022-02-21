@@ -39,7 +39,7 @@
 $(document).ready(function() {	
     $('#dataTable').DataTable({
     	ajax : {
-    		"url":"/final/adminblacklist1",
+    		"url":"/final/admin/adminblacklist1",
     		type:"get",
     		'dataSrc':''
     	},

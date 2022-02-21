@@ -61,7 +61,7 @@
 $(document).ready(function(){
 		
 		$.ajax({
-			url:"/final/adminpaymentchart1",
+			url:"/final/admin/adminpaymentchart1",
 			type :"get",
 			
 			success:function(data){
@@ -164,7 +164,7 @@ $(document).ready(function() {
     $('#dataTable').DataTable({
         
     	ajax : {
-    		"url":"/final/adminpaylist1",
+    		"url":"/final/admin/adminpaylist1",
     		type:"get",
     		'dataSrc':''
                 

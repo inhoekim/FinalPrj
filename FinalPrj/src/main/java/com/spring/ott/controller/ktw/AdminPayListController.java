@@ -17,13 +17,13 @@ public class AdminPayListController {
 	
 	@Autowired private PayMentService service;
 	
-	@RequestMapping("/adminpaylist")
+	@RequestMapping("/admin/adminpaylist")
 	public ModelAndView list(Model model) {
 		ModelAndView mv = new ModelAndView("paylist.tiles");
 
 		return mv;
 	}
-	@RequestMapping(value = "/adminpaylist1")
+	@RequestMapping(value = "/admin/adminpaylist1")
 	@ResponseBody
 	public List<PayMentVo> test1(Model model) {
 		List<PayMentVo> list =service.AllSelect();

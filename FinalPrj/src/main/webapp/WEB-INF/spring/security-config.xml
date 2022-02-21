@@ -15,10 +15,9 @@
 	</bean>
 
 	
-	
 	<sec:http auto-config="true">
 		<sec:intercept-url pattern="/autoMatch" access="hasRole('ROLE_MEMBER')"/>
-		<sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:form-login login-page="/login" username-parameter="user_id" password-parameter="pwd"
 		 				authentication-failure-handler-ref="loginFailureHandler" />
 		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"

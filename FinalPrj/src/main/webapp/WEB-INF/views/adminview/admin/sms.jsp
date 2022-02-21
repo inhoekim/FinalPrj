@@ -407,7 +407,7 @@
             }
 
             function loadJSON() {
-                var data_file = "/final/sms2";
+                var data_file = "/final/admin/sms2";
                 var http_request = new XMLHttpRequest();
                 try {
                     // Opera 8.0+, Firefox, Chrome, Safari
@@ -463,7 +463,7 @@
 <div id="bigbox" >
 
 
-    <form:form method="post" name="smsForm" action="${pageContext.request.contextPath}/sms1">
+    <form:form method="post" name="smsForm" action="${pageContext.request.contextPath}/admin/sms1">
         <input type="hidden" id="boxtype" name="action" value="go"> 
 
 		<div id= "box100"> 
@@ -531,7 +531,7 @@
 		<div id="box138">
 			<div id="box139">Return Url</div>
 			<div id="box140">
-				<input type="text" name="returnurl" maxlength="64" value="http://localhost:9090/final/adminsms" readonly="readonly" id="box141">
+				<input type="text" name="returnurl" maxlength="64" value="http://localhost:9090/final/admin/adminsms" readonly="readonly" id="box141">
 			</div>
 		</div>
 

@@ -19,7 +19,7 @@
 function cancelPay() {
     $.ajax({
 
-      "url": "/final/kakaocancel",
+      "url": "/final/admin/kakaocancel",
       "type": "get",
       "data": {
     	  // JSTL 변수 수정필요 
@@ -30,7 +30,7 @@ function cancelPay() {
       success:function(data){
     	  console.log("s")
     	  alert("결제취소완료!");
-    	  location.href="${pageContext.request.contextPath}/kakaocancelend?tid=T1620c996d20f93341d6";
+    	  location.href="${pageContext.request.contextPath}/admin/kakaocancelend?tid=T1620c996d20f93341d6";
       }
     });
   }

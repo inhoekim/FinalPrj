@@ -21,4 +21,6 @@ public interface VisiterMapper {
 	public List<VisiterVo> Pay7OK(String payment_date);
 	public List<VisiterVo> Pay7ALL(String payment_date);
 	public List<VisiterVo> Pay7final(String payment_date);
+	
+	
 }

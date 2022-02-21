@@ -42,7 +42,7 @@
 $(document).ready(function() {	
     $('#dataTable').DataTable({
     	ajax : {
-    		"url":"/final/adminlist1",
+    		"url":"/final/admin/adminlist1",
     		type:"get",
     		'dataSrc':''
     	},
