@@ -6,7 +6,11 @@
 	<select id="blackList" resultType="com.spring.ott.vo.BlackListVo">
 		select b.user_id, b.black_start_date, b.black_expiry_date, b.content, u.black_enabled from blacklist b, users u where b.user_id=u.user_id
 	</select>
+	<select id="selectExpDate" resultType="com.spring.ott.vo.BlackListVo">
+		select * from blacklist
+	</select>
 	<insert id="blackListInsert" parameterType="com.spring.ott.vo.BlackListVo">
 		insert into blacklist values(#{user_id}, sysdate, #{expire_date}, #{content})
 	</insert>
+	
 </mapper>

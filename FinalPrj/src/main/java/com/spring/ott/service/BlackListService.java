@@ -1,5 +1,6 @@
 package com.spring.ott.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,8 @@ public class BlackListService {
 	
 	public List<BlackListVo> blackList(){
 		return mapper.blackList();
+	}
+	public List<BlackListVo> selectExpDate(){
+		return mapper.selectExpDate();
 	}
 }
