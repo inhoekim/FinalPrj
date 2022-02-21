@@ -112,14 +112,12 @@
                             <div class="card shadow mb-4" style="width: 100%; height: 500px;">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overvi</h6>
 
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body" >
-
-                                        <canvas id="myAreaChart"></canvas>
-
+                                    <canvas id="myChart1"></canvas>
                                 </div>
                             </div>
 
@@ -280,6 +278,107 @@
 
 </body>
 <script type="text/javascript">
+<!-- 차트 -->
+$(document).ready(function(){
+		
+		$.ajax({
+			url:"/final/admin/mainch",
+			type :"get",
+			
+			success:function(data){
+				
+				var jsonData = data;
+				var jsonObject = JSON.stringify(jsonData);
+				var jData = JSON.parse(jsonObject);
+						
+				
+				console.log(data);
+				var labelList1 = new Array();
+				var labelList2 = new Array();
+				var labelList3 = new Array();
+				
+				
+				for(var i = 0; i<jData.length; i++) {
+					var d = jData[i];
+					//리스트1 결제총매출
+					console.log(d);
+					labelList3.push(d.Pay1 , d.Pay2 , d.Pay3 , d.Pay4 , d.Pay5 , d.Pay6 , d.Pay7);
+					labelList2.push(d.Pay11 , d.Pay12 , d.Pay13 , d.Pay14 , d.Pay15 , d.Pay16 , d.Pay17);
+					labelList1.push(d.Pay21 , d.Pay22 , d.Pay23 , d.Pay24 , d.Pay25 , d.Pay26 , d.Pay27);
+				}
+				
+		
+				console.log(labelList1);
+				console.log(labelList2);
+				console.log(labelList3);
 
+
+					
+				
+				
+				var ctx1 = document.getElementById('myChart1').getContext('2d');
+				new Chart(ctx1, {
+					      type: 'line',
+						  data: {
+							  labels: ['1월','2월','3월','4월','5월','6월','7월'],
+							  datasets: [{
+							  label: '결제 총횟수',
+			                    type : 'line',         // 'line' type
+			                    fill : true,         // 채우기 없음
+			                    lineTension : 0.2,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
+			                    pointRadius : 0,    // 각 지점에 포인트 주지 않음
+			                    backgroundColor: 'rgb(255, 153, 0, 0.2)',
+			                    borderColor: 'rgb(255, 153, 0)',
+			                    data: labelList1
+						  },{
+							  label: '결제 완료',
+			                    type : 'line',
+			                    fill : true,
+			                    lineTension : 0.2,
+			                    pointRadius : 0,
+			                    backgroundColor: 'rgb(255, 204, 0, 0.2)',
+			                    borderColor: 'rgb(255, 204, 0)',
+			                    data: labelList2
+						  
+					},{
+						  label: '결제 취소',
+		                    type : 'line',
+		                    fill : true,
+		                    lineTension : 0.2,
+		                    pointRadius : 0,
+		                    backgroundColor: 'rgb(155, 184, 0, 0.2)',
+		                    borderColor: 'rgb(155, 184, 0)',
+		                    data: labelList3
+					  
+				}],
+						  },  options: {
+							    //그래프의 제목 옵션
+							    title: {
+							        display: true,
+							        text: '회원가입 차트',
+							        fontSize: 20
+							    },
+							    //그래프의 항목 옵션
+							    legend: {
+							        display: true,
+							        position: 'bottom',
+							    },
+
+							    
+							    scales: {
+							        yAxes: [{
+							            ticks: {
+							                beginAtZero: true
+							            }
+							        }]
+							    }
+							    
+							}
+						  
+				});
+				
+			}
+		})
+});
 </script>
 </html>

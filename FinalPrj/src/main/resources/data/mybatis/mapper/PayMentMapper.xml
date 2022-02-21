@@ -26,6 +26,10 @@
 		SELECT PAYMENT_ID,USER_ID,PRICE ,DECODE(STATUS,0,'결제완료' ,1,'결제완료' ,2,'결제취소') STATUS ,PAYMENT_DATE 
 		FROM PAYMENT
 	</select>
+	<!-- 아이디로 정보 조회 -->
+	<select id="IdSelect" parameterType="String" resultType="com.spring.ott.vo.PayMentVo">
+		SELECT * FROM PAYMENT WHERE USER_ID = ${USER_ID}
+	</select>
 	
 	<update id="payupdate" parameterType="String">
 		UPDATE PAYMENT SET STATUS = 2 WHERE PAYMENT_ID = #{payment_id}

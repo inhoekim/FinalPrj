@@ -45,5 +45,8 @@ public class PayMentServiceImpl implements PayMentService{
 	public int payupdate(String payment_id) {
 		return mapper.payupdate(payment_id);
 	}
+	public PayMentVo IdSelect(String payment_id) {
+		return mapper.IdSelect(payment_id);
+	}
 	
 }

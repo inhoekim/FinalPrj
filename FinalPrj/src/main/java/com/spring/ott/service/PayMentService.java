@@ -13,4 +13,5 @@ public interface PayMentService {
 	public int totalRowCnt();
 	public List<PayMentVo> AllSelect();
 	public int payupdate(String payment_id);
+	public PayMentVo IdSelect(String payment_id);
 }
