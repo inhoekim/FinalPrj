@@ -87,9 +87,4 @@ public class AccusationController {
 		return accVo;
 	}
 
-	@PostMapping("/board/accusation/judge/{ACCUSATE_ID}")
-	public String judge(@PathVariable("ACCUSATE_ID") int accusate_id, AccusationVo vo) {
-		System.out.println(vo);
-		return "";
-	}
 }

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,21 +14,32 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.ott.service.AccusationService;
 import com.spring.ott.service.BlackListManiService;
 import com.spring.ott.service.BlackListService;
 import com.spring.ott.service.UserService;
+import com.spring.ott.vo.AccusationVo;
 import com.spring.ott.vo.BlackListVo;
 
 @Controller
 public class BlackListController {
-	
+	@Autowired AccusationService accService;
 	@Autowired BlackListManiService bmService;
 	@Autowired UserService uService;
 	@Autowired BlackListService bService;
 	
 	@RequestMapping("/enrollBlack")
-	public String enrollBlackList(String user_id, BlackListVo bVo, int n)//n일 가져오기
+	public String enrollBlackList(int accusate_id, int result, String user_id, BlackListVo bVo, int n)//n일 가져오기
 	{		
+		/* 추가 */
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("accusate_id", accusate_id);
+		map.put("result", result);
+		accService.updateOne(map);
+		if(result == 2) {
+			return "redirect:/board/accusation";
+		}
+		/* end */
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal=Calendar.getInstance();
 		//오늘로부터 n일 뒤
@@ -38,9 +50,9 @@ public class BlackListController {
 		Date eDate=Date.valueOf(sDate);
 		//vo에 만료일 설정
 		bVo.setBlack_expiry_date(eDate);
+
 		bmService.enrollBlackList(user_id, bVo);
-	
-		return "/board/accusation";
+		return "redirect:/board/accusation";
 	}
 	
 	@RequestMapping("/disenrollBlack")	

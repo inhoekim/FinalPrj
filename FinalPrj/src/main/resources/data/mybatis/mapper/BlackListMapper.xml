@@ -10,7 +10,7 @@
 		select * from blacklist
 	</select>
 	<insert id="blackListInsert" parameterType="com.spring.ott.vo.BlackListVo">
-		insert into blacklist values(#{user_id}, sysdate, #{expire_date}, #{content})
+		insert into blacklist values(SEQ_BLACKLIST.nextval, #{user_id}, sysdate, #{black_expiry_date}, #{content})
 	</insert>
 	 
 </mapper>

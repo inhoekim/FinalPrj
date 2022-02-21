@@ -27,4 +27,8 @@ public class AccusationService {
 	public AccusationVo selectOne(int accusate_id) {
 		return mapper.selectOne(accusate_id);
 	}
+	
+	public int updateOne(HashMap<String, Object> map) {
+		return mapper.updateOne(map);
+	}
 }

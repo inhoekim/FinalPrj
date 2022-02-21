@@ -92,7 +92,7 @@ function accAjax(event){
 		success: function(data){
 
 			$(".judgeBox_Wrapper").remove();
-			$("<form class='judgeBox_Wrapper' method='post' action='${pageContext.request.contextPath}/board/accusation/judge/" + data.accusate_id +"'>" + 
+			$("<form class='judgeBox_Wrapper' method='post' action='${pageContext.request.contextPath}/enrollBlack'>" + 
 			"<div class='judgeBox'></div><input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}'/></form>")
 			.appendTo("body").css({
 				"top": event.pageY + 5,
@@ -104,19 +104,18 @@ function accAjax(event){
 			$("<div>내용: " + data.content + "</div>").appendTo(".judgeBox");
 			$("<div>대상자: @<b>" + data.target_id + "</b></div>").appendTo(".judgeBox");
 			$("<div>링크주소: <a target='_blank' style='color: blue' href='${pageContext.request.contextPath}/board/detail?post_id=" + data.post_id +"' >@link</a></div>").appendTo(".judgeBox");
-			$("<div style='color:gray; margin-top:20px'>-처분-</div>").appendTo(".judgeBox");
-			$('<label id="result_label" for="result">정지여부<input type="checkbox" id="result" name="result" value="1"/></label>').appendTo(".judgeBox");
-			$("<div class='black' style='margin-top:6px'>정지일: <input type='number' min='1' max='9999' name='n' style='height: 20px;padding:3px'/></div>").appendTo(".judgeBox");
-			$("<div class='black'>사유: <input type='text' name='content' style='height: 20px;'/></div>").appendTo(".judgeBox");
-			$("<input type='hidden' name='user_id' value='"+ data.user_id +"'/>").appendTo(".judgeBox");
-			$("<div style='text-align:right'><input id='submitButton' type='submit' value='처리' style='width:50px;height:25px;text-align:center'/></div>").appendTo(".judgeBox");
-			
+			if(data.result == 0) {
+				$("<div style='color:gray; margin-top:20px'>-처분-</div>").appendTo(".judgeBox");
+				$('<label id="result_label" for="result">정지여부<input type="checkbox" id="judgeCheck"/></label>').appendTo(".judgeBox");
+				$("<div class='black' style='margin-top:6px'>정지일: <input type='number' value='1' min='1' max='9999' name='n' style='height: 20px;padding:3px'/></div>").appendTo(".judgeBox");
+				$("<div class='black'>사유: <input type='text' name='content' style='height: 20px;'/></div>").appendTo(".judgeBox");
+				$("<input type='hidden' name='user_id' value='"+ data.user_id +"'/>").appendTo(".judgeBox");
+				$("<input type='hidden' name='accusate_id' value='"+ data.accusate_id +"'/>").appendTo(".judgeBox");
+				$("<input type='hidden' id='result' name='result' value='2'/>").appendTo(".judgeBox");
+				$("<div style='text-align:right'><input id='submitButton' type='submit' value='처리' style='width:50px;height:25px;text-align:center'/></div>").appendTo(".judgeBox");
+			}
 		}
 	});
-}
-
-function check_judge(){
-	let regexr = /[0-9]{1,3}$/;
 }
 
 //profile_box창 이외 영역 클릭시 되돌아오기
@@ -127,13 +126,13 @@ $(document).mouseup(function(event){
 }) 
 
 $(document).on("click", "#submitButton", function(event){       
-    if($("#result").is(":checked") == false) {
-    	$("#result").val("0");		
+    if($("#judgeCheck").is(":checked") == true) {
+    	$("#result").val("1");		
     }
 }) 
 
-$(document).on("click", "#result", function(event){       
-    if($("#result").is(":checked") == true) {
+$(document).on("click", "#judgeCheck", function(event){       
+    if($("#judgeCheck").is(":checked") == true) {
     	$(".black").show();
     }else {
     	$(".black").hide();
