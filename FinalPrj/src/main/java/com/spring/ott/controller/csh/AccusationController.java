@@ -8,9 +8,11 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ott.service.AccusationService;
 import com.spring.ott.service.CommentsService;
@@ -27,7 +29,7 @@ public class AccusationController {
 	@Autowired PostService service;
 	@Autowired CommentsService cService;
 	
-	@RequestMapping("/board/accusation")
+	@GetMapping("/board/accusation")
 	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 			Model model,String field,String keyword) {
 		HashMap<String , Object> map =new HashMap<String, Object>();
@@ -77,6 +79,12 @@ public class AccusationController {
 				"&category=" + category + "&subcate=" + subcate;
 		model.addAttribute("url", servletContext.getContextPath() + "/board/detail?" + param);
 		return "home/alert";
+	}
+	
+	@GetMapping("/board/accusation/judge/{ACCUSATE_ID}")
+	public @ResponseBody AccusationVo judgeForm(@PathVariable("ACCUSATE_ID") int accusate_id) {
+		AccusationVo accVo = accService.selectOne(accusate_id);
+		return accVo;
 	}
 
 }

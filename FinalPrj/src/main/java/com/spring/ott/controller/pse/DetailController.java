@@ -33,9 +33,13 @@ public class DetailController {
 	@GetMapping("/board/detail")
 	public String detail(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 			@RequestParam(value="subcate",defaultValue = "0") int subcate,
-			int post_id, int category,Model model,String field,String keyword,Principal principal) {
+			int post_id,Model model,String field,String keyword,Principal principal) {
 		service.addHit(post_id);
 		PostVo postVo= service.postDetail(post_id);
+		if(postVo == null) {
+			return "board/boardDelete.tiles";
+		}
+		int category = postVo.getCategory_id();
 		List<UserProfileVo> profiles = voteService.getLikeList(post_id);
 		if(principal != null) {
 			UserProfileVo myProfile = profileService.userProfile(principal.getName()); 
