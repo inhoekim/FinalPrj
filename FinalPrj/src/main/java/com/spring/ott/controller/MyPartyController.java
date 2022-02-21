@@ -13,6 +13,7 @@ import com.spring.ott.service.MatchingCheckService;
 import com.spring.ott.service.MatchingService;
 import com.spring.ott.service.OttService;
 import com.spring.ott.service.PartyService;
+import com.spring.ott.service.PayMentService;
 import com.spring.ott.service.SettleService;
 import com.spring.ott.service.UserService;
 import com.spring.ott.util.CalendarUtil;
@@ -30,6 +31,7 @@ public class MyPartyController {
 	@Autowired MatchingService matchingService;
 	@Autowired OttService ottService;
 	@Autowired PartyService partyService;
+	@Autowired PayMentService paymentService;
 	@Autowired SettleService settleService;
 	
 	@GetMapping("/autoMatch/myParty")

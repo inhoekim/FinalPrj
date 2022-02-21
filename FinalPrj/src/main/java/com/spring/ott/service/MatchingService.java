@@ -39,4 +39,8 @@ public class MatchingService {
 	public List<MemberVo> selectMember(int party_id) {
 		return mapper.selectMember(party_id);
 	}
+	
+	public MatchingVo selectByPayment(String payment_id) {
+		return mapper.selectByPayment(payment_id);
+	}
 }

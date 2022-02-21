@@ -34,7 +34,7 @@ public class KakaoCancelController {
 	}
 	
 	//카카오페이 API 결제취소 부분
-	@GetMapping("/admin/kakaocancel")
+	@GetMapping("/autoMatch/kakaocancel")
 	public @ResponseBody String taewoo(String tid, int cancel_amount) {
 		
 		try {
@@ -84,10 +84,9 @@ public class KakaoCancelController {
 	}
 	
 	//결제 취소 성공후 이동할 페이지
-	@GetMapping("/admin/kakaocancelend")
+	@GetMapping("/autoMatch/kakaocancelend")
 	public String payend(String tid) {
-		
-		int a = service.payupdate(tid);
+		boolean a = service.payupdate(tid);
 		System.out.println("결과 :" +a);
 		return "redirect:/autoMatch/myParty";
 	}

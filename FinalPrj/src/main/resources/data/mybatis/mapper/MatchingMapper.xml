@@ -39,4 +39,8 @@
 		update matching set payment_id = #{payment_id} where user_id = #{user_id} and party_id = #{party_id}
 	</update>
 	
+	<select id="selectByPayment" parameterType="String">
+		select * from matching where payment_id = #{payment_id}
+	</select>
+	
 </mapper>

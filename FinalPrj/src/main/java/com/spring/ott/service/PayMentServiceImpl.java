@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.ott.vo.MatchingVo;
 import com.spring.ott.vo.PayMentVo;
 
 import data.mybatis.mapper.MatchingMapper;
@@ -29,6 +30,20 @@ public class PayMentServiceImpl implements PayMentService{
 		matchingMapper.updatePayment(map);
 		return true;
 	}
+	//Payment 테이블 Update -> Matching 테이블 결제정보 Update (트랜잭션 처리) 
+	@Transactional
+	public boolean payupdate(String payment_id) {
+		//Payment 테이블 Update
+		mapper.payupdate(payment_id);
+		//Matching테이블에 결제정보 update
+		MatchingVo matchVo =  matchingMapper.selectByPayment(payment_id);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_id", null);
+		map.put("user_id", matchVo.getUser_id());
+		map.put("party_id", matchVo.getParty_id());
+		matchingMapper.updatePayment(map);
+		return true;
+	}
 	
 	public List<PayMentVo> PayList(HashMap<String, Integer> map){
 		return mapper.PayList(map);
@@ -42,8 +57,6 @@ public class PayMentServiceImpl implements PayMentService{
 		return mapper.AllSelect();
 	}
 	
-	public int payupdate(String payment_id) {
-		return mapper.payupdate(payment_id);
-	}
+
 	
 }

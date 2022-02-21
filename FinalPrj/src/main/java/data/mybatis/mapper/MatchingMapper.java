@@ -14,4 +14,5 @@ public interface MatchingMapper {
 	MatchingVo matchingCheck(String user_id);
 	List<MatchingVo> memberList(int party_id);
 	List<MemberVo> selectMember(int party_id);
+	MatchingVo selectByPayment(String payment_id);
 }

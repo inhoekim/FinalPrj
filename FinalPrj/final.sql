@@ -228,9 +228,7 @@ CREATE TABLE MATCHING -- 매칭테이블
     next_payment_id varchar2(50), -- 다음달 결제번호 (FK)
     matching_date date NOT NULL, -- 매칭된 날짜
     CONSTRAINT PK_MATCHING PRIMARY KEY(party_id, user_id),
-    CONSTRAINT FK_MATCHING_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id),
-    CONSTRAINT FK_MATCHING_PAYMENT FOREIGN KEY(payment_id) REFERENCES PAYMENT(payment_id),
-    CONSTRAINT FK_MATCHING_NEXTPAYMENT FOREIGN KEY(next_payment_id) REFERENCES PAYMENT(payment_id)
+    CONSTRAINT FK_MATCHING_PARTYID FOREIGN KEY(party_id) REFERENCES PARTY(party_id)
 );
 
 CREATE TABLE WATINGROOM -- 매칭신청 대기인원 테이블
