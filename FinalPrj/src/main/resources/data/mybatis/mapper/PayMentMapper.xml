@@ -28,7 +28,7 @@
 	</select>
 	<!-- tid로 정보 조회 -->
 	<select id="tidSelect" parameterType="String" resultType="com.spring.ott.vo.PayMentVo">
-		SELECT * FROM PAYMENT WHERE PAYMENT_ID = ${PAYMENT_ID}
+		SELECT * FROM PAYMENT WHERE PAYMENT_ID = #{PAYMENT_ID}
 	</select>
 	
 	<update id="payupdate" parameterType="String">
