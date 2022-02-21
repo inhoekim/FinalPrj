@@ -21,4 +21,5 @@ public interface CommentsMapper {
 	int delPost(int post_id);
 	List<CommentsVo> bestComm();
 	List<CommentsVo> recentComm();
+	List<CommentsVo> selUserComm(String user_id);
 }

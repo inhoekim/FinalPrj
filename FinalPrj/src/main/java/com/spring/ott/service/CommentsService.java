@@ -58,4 +58,7 @@ public class CommentsService {
 	public List<CommentsVo> recentComm(){
 		return mapper.recentComm();
 	}
+	public List<CommentsVo> selUserComm(String user_id){
+		return mapper.selUserComm(user_id);
+	}
 }

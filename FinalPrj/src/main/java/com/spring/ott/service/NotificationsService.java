@@ -34,4 +34,10 @@ public class NotificationsService {
 	public int delPostNoti(int post_id) {
 		return mapper.delPostNoti(post_id);
 	}
+	public int deluserNoti(String user_id) {
+		return mapper.deluserNoti(user_id);
+	}
+	public int delNoid(int notify_id) {
+		return mapper.delNoid(notify_id);
+	}
 }

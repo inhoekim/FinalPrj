@@ -74,7 +74,12 @@
 		select * from board_post where post_id=#{post_id}
 	</select>
 	<select id="userPost" resultType="com.spring.ott.vo.PostVo" parameterType="String">
-		 select title,category_name cname from board_post b,board_category c where user_id=#{user_id} and c.category_id=b.category_id and <![CDATA[ rownum<=5 ]]>
+		  <![CDATA[
+		 		select board.category_id,board.title,board.created_day,board.post_id,
+                (select category_name from board_category cate where cate.category_id=board.category_id)cname,
+				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
+				(select NVL(count(post_id),0) from vote vo where vo.post_id=board.post_id)vocnt
+				from board_post board where rownum<=6 and user_id=#{user_id} order by board.created_day desc]]>
 	</select>
 	<select id="userComment" resultType="com.spring.ott.vo.CommentsVo" parameterType="String">
 		select * from comments where user_id=#{user_id} and <![CDATA[ rownum<=5 ]]>
@@ -90,5 +95,8 @@
 		from board_post b 
 		where category_id = #{category_id} and subcate = 1 order by created_day) a
 		where <![CDATA[ rnum >=1 and rnum <= 3]]>
+	</select>
+	<select id="selUserPost" parameterType="string" resultType="com.spring.ott.vo.PostVo">
+		select * from board_post where user_id=#{user_id} and <![CDATA[ rownum<=6 order by created_day desc ]]>
 	</select>
 </mapper>

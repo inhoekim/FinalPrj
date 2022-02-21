@@ -45,4 +45,7 @@
 	<select id="recentComm" resultType="com.spring.ott.vo.CommentsVo">
 		select content,user_id from comments where <![CDATA[ rownum<=5 order by created_day desc]]>
 	</select>
+	<select id="selUserComm" resultType="com.spring.ott.vo.CommentsVo" parameterType="string">
+		select com.content,post.category_id,com.created_day from board_post post,comments com where post.post_id=com.post_id and com.user_id=#{user_id} and  <![CDATA[ rownum<=6 ]]>
+	</select>
 </mapper>

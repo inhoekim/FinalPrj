@@ -10,35 +10,44 @@
 
 <div class="profile_wrapper">
     <div>
-    <div class="profile_banner">유저: <b>@김인회</b></div>
+    <div class="profile_banner">유저: <b>@${user_id}</b></div>
     </div>
     <div class="profileBox">
         <h4 style="margin-bottom: 12px">최근 작성글</h4>
+        <c:forEach var="post" items="${pList}">
         <div class="profile_boxItem">
             <div>
-                <a class="board_category" href="#">넷플릭스</a>
-                <span>파티찾아요~~~~</span><span style="margin-left: 8px;">[2]</span>
+                <a class="board_category" href="#">${post.cname }</a>
+                <span>${post.title}</span><span style="margin-left: 8px;">${post.comCnt }</span>
             </div>
-            <span style="color: #4040ad8c">2022-02-21 00:07:57</span>
+            <span style="color: #4040ad8c">${post.created_day}</span>
         </div>
-        
-        <div class="profile_boxItem">
-            <div>
-                <a class="board_category" href="#">넷플릭스</a>
-                <span>파티찾아요~~~~</span><span style="margin-left: 8px;">[2]</span>
-            </div>
-            <span style="color: #4040ad8c">2022-02-21 00:07:57</span>
-        </div>        
+        </c:forEach>
     </div>
 
     <div class="profileBox">
         <h4 style="margin-bottom: 12px">최근 작성 댓글</h4>
+        <c:forEach var="comm" items="${cList}">
         <div class="profile_boxItem">
             <div>
-                <a class="board_category" href="#">넷플릭스</a>
-                <span>파티찾아요~~~~</span>
+                <a class="board_category" href="#">
+                <c:if test="${comm.cate==0}">
+                	넷플릭스
+                </c:if>
+                <c:if test="${comm.cate==1}">
+                	왓챠
+                </c:if>
+                <c:if test="${comm.cate==2}">
+                	디즈니
+                </c:if>
+                <c:if test="${comm.cate==3}">
+                	전체공지
+                </c:if>
+                </a>
+                <span>${comm.content }</span>
             </div>
-            <span style="color: #4040ad8c">2022-02-21 00:07:57</span>
+            <span style="color: #4040ad8c">${comm.created_day}</span>
         </div>
+        </c:forEach>
     </div>
 </div>

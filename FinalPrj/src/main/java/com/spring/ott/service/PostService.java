@@ -64,4 +64,7 @@ public class PostService {
 	public 	List<PostVo> recent_notice(int category_id){
 		return mapper.recent_notice(category_id);
 	}
+	public List<PostVo> selUserPost(String user_id){
+		return mapper.selUserPost(user_id);
+	}
 }

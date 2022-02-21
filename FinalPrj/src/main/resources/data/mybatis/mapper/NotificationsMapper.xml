@@ -25,4 +25,10 @@
 	<delete id="delPostNoti" parameterType="int">
 		delete from notifications where post_id=#{post_id} or comment_id IN (select comment_id from comments where post_id=#{post_id})
 	</delete>
+	<delete id="deluserNoti" parameterType="String">
+		delete from notifications where user_id=#{user_id}
+	</delete>
+	<delete id="delNoid" parameterType="int">
+		delete from notifications where notify_id=#{notify_id}
+	</delete>
 </mapper>

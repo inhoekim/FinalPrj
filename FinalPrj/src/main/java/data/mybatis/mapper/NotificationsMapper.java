@@ -13,4 +13,6 @@ public interface NotificationsMapper {
 	int deleteCommNoti(HashMap<String, Object> map);
 	int deleteComm(int comment_id);
 	int delPostNoti(int post_id);
+	int deluserNoti(String user_id);
+	int delNoid(int notify_id);
 }
