@@ -15,4 +15,5 @@ public interface MatchingMapper {
 	List<MatchingVo> memberList(int party_id);
 	List<MemberVo> selectMember(int party_id);
 	MatchingVo selectByPayment(String payment_id);
+	MatchingVo selectByUser(HashMap<String, Object> map);
 }

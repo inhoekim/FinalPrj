@@ -71,6 +71,11 @@ public class MyPartyController {
 			MemberVo leader = userService.selectMember(partyVo.getLeader());
 			OttVo ottVo = ottService.selectOtt(partyVo.getOtt_id());
 			UserVo myVo = userService.selectUser(principal.getName());
+			HashMap<String, Object> map2 = new HashMap<>();
+			map2.put("user_id", principal.getName());
+			map2.put("party_id", partyVo.getParty_id());
+			MatchingVo matchVo = matchingService.selectByUser(map2);
+			model.addAttribute("payment", paymentService.tidSelect(matchVo.getPayment_id())); 
 			List<MemberVo> list = matchingService.selectMember(my_party);		
 			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
 			int fees = CalendarUtil.getFees(remain_day);

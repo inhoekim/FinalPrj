@@ -57,6 +57,8 @@ public class PayMentServiceImpl implements PayMentService{
 		return mapper.AllSelect();
 	}
 	
-
+	public PayMentVo tidSelect(String payment_id) {
+		return mapper.tidSelect(payment_id);
+	}
 	
 }

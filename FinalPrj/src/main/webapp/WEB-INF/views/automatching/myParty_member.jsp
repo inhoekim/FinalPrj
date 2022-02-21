@@ -150,7 +150,7 @@
 	                    <span>결제금액</span>
 	                    <div>
 	                        <span>
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="${price}" />원
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.price}" />원
 							</span>
 	                    </div>
                 	</div>
@@ -249,7 +249,7 @@
 	<input type="hidden" name="party_id" value="${partyVo.party_id}" >
 </form:form>    
     
-    
+</div>   
 <script>
 
 
