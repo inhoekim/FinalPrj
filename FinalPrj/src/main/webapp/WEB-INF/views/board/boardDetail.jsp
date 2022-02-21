@@ -50,10 +50,27 @@
 					</c:choose>
             </div>
         </div>
-
-        <div class="accusation" onclick="logincheck(event)">
-            <div class="accusation_word">신고</div>
-            <i class="fa-solid fa-triangle-exclamation"></i>
+		
+		<div class="otherInteraction">
+			<c:choose>
+			<c:when test="${not empty myProfile && myProfile.user_id eq postVo.user_id}">
+		        <a class="inter_update" href="">
+		            <span class="accusation_word">수정</span>
+		            <i class="fa-solid fa-pencil"></i>
+		        </a>
+		        
+		        <a class="inter_delete" href="${cp}/post/delete?post_id=${postVo.post_id}">
+		            <span class="accusation_word">삭제</span>
+		            <i class="fa-solid fa-trash-can"></i>
+		        </a>
+	        </c:when>
+	        <c:otherwise>        
+		        <div class="accusation" onclick="logincheck(event)">
+		            <div class="accusation_word">신고</div>
+		            <i class="fa-solid fa-triangle-exclamation"></i>
+		        </div>
+	        </c:otherwise>
+	        </c:choose>
         </div>
     </div>
 
