@@ -22,14 +22,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
-
+import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.PostService;
 import com.spring.ott.vo.CategoryVo;
+import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.PostVo;
 
 @Controller
 public class InsertController {
 	@Autowired PostService service;
+	@Autowired CommentsService cService;
+	
 	@GetMapping("/board/insert")
 	public String insertForm(int category, Model m,Principal user_id) {
 		String[] category_str = {"넷플릭스","왓챠", "디즈니", "전체공지"};
@@ -38,6 +41,18 @@ public class InsertController {
 		m.addAttribute("category", category);
 		m.addAttribute("list", list);
 		m.addAttribute("user_id", user_id);
+		
+		List<PostVo> rList=service.recentPost();
+		List<PostVo> bList=service.bestPost();
+		List<CommentsVo> cRList=cService.recentComm();
+		List<CommentsVo> cBList=cService.bestComm();
+		
+		m.addAttribute("bList", bList);
+		m.addAttribute("rList", rList);
+		m.addAttribute("cBList", cBList);
+		m.addAttribute("cRList", cRList);
+		
+		
 		return "board/insert.tiles";
 	}
 	@PostMapping("/board/insert")

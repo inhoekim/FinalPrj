@@ -83,6 +83,19 @@ public class DetailController {
 		model.addAttribute("admin_profile", admin_profile[category]);
 		List<PostVo> notice = service.recent_notice(category);
 		model.addAttribute("notice", notice);
+		
+		
+		List<PostVo> rList=service.recentPost();
+		List<PostVo> bList=service.bestPost();
+		List<CommentsVo> cRList=cService.recentComm();
+		List<CommentsVo> cBList=cService.bestComm();
+		
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
+		
+		
 		return "board/boardDetail.tiles";
 	}
 	

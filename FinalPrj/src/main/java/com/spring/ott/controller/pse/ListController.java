@@ -10,8 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.spring.ott.service.CommentsService;
 import com.spring.ott.service.PostService;
+import com.spring.ott.vo.CommentsVo;
 import com.spring.ott.vo.PostVo;
 import com.util.PageUtil;
 
@@ -20,6 +21,7 @@ import com.util.PageUtil;
 @Controller
 public class ListController {
 	@Autowired PostService service;
+	@Autowired CommentsService cservice;
 	
 	@RequestMapping("/board/list")
 	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
@@ -59,6 +61,17 @@ public class ListController {
 		model.addAttribute("admin_profile", admin_profile[category]);
 		List<PostVo> notice = service.recent_notice(category);
 		model.addAttribute("notice", notice);
+		
+		List<PostVo> rList=service.recentPost();
+		List<PostVo> bList=service.bestPost();
+		List<CommentsVo> cRList=cservice.recentComm();
+		List<CommentsVo> cBList=cservice.bestComm();
+		
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
+		
 		return "board/boardList.tiles";
 	}
 }

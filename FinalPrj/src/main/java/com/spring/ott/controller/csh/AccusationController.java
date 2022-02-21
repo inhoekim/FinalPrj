@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ott.service.AccusationService;
+import com.spring.ott.service.CommentsService;
+import com.spring.ott.service.PostService;
 import com.spring.ott.vo.AccusationVo;
+import com.spring.ott.vo.CommentsVo;
+import com.spring.ott.vo.PostVo;
 import com.util.PageUtil;
 
 @Controller
 public class AccusationController {
 	@Autowired private ServletContext servletContext;
 	@Autowired AccusationService accService;
+	@Autowired PostService service;
+	@Autowired CommentsService cService;
 	
 	@RequestMapping("/board/accusation")
 	public String list(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
@@ -48,6 +54,17 @@ public class AccusationController {
 		model.addAttribute("list", list);
 		model.addAttribute("acc_str", acc_str);
 		model.addAttribute("result_str",result_str);
+		
+		List<PostVo> rList=service.recentPost();
+		List<PostVo> bList=service.bestPost();
+		List<CommentsVo> cRList=cService.recentComm();
+		List<CommentsVo> cBList=cService.bestComm();
+		
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
+		
 		
 		return "board/accusationList.tiles";
 	}
