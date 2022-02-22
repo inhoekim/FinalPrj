@@ -1,5 +1,7 @@
 package com.spring.ott.service;
 
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,5 +30,13 @@ public class WatingRoomService {
 	
 	public WatingRoomVo matchingCheck(String user_id) {
 		return mapper.matchingCheck(user_id);
+	}
+	
+	public int enrollFirst(HashMap<String, Object> map) {
+		return mapper.enrollFirst(map);
+	}
+	
+	public Date earliestDate() {
+		return mapper.earliestDate();
 	}
 }
