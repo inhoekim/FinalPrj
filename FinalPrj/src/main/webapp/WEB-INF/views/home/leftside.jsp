@@ -38,20 +38,20 @@
 		  0 40px 80px rgba(0, 0, 0, 0.05);
 		}
 		
-		.active {
+		#active {
 		  background-color: #6a1b9a;
 		}
 		
-		.active svg {
+		#active svg {
 		  fill: #ffffff;
 		  stroke: #ffffff;
 		}
 		
 		.notify-area {
 		  background-color: #ffffff;
-		   position: fixed;
+		  position: fixed;
 		  border-radius: 0.3rem;
-		  
+		  margin-left:5px;
 		  display: flex;
 		  flex-direction: column;
 		  
@@ -107,13 +107,13 @@
 		
 		
 		.w-btn-indigo {
-		    background-color: aliceblue;
-		    color: #1e6b7b;
+		    background-color: #EAEAEA;
+		    color: #000000;
 		}
 		
 		.w-btn-indigo-outline {
 		    border: 3px solid aliceblue;
-		    color: #1e6b7b;
+		    color: #000000;
 		}
 		
 		.w-btn-indigo-outline:hover {
@@ -157,9 +157,11 @@
                      <i class="fas fa-angle-down toggle" style="color:black"></i>
                  </div>
 
-                 <div class="folder_items">
+                  <div class="folder_items">
                      <div class="folder_item">전체공지</div>
+                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                      <div class="folder_item"><a href="${pageContext.request.contextPath}/board/accusation">신고</a></div>
+                     </sec:authorize>
                  </div>
              </div>
          </div>
@@ -232,7 +234,7 @@
 		let notifyArea = document.querySelector(".notify-area");
 		
 		const ShowDropdown = () => {
-		  notifyButton.classList.add("active");
+		  notifyButton.classList.add("#active");
 		  notifyArea.style.visibility = "visible";
 		  list();
 		}
@@ -272,7 +274,7 @@
 			  });
 		}
 		const HideDropdown = () => {
-		  notifyButton.classList.remove("active");
+		  notifyButton.classList.remove("#active");
 		  notifyArea.style.visibility = "hidden";
 		 
 		}
