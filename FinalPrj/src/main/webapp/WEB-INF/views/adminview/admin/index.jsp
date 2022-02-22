@@ -12,6 +12,7 @@
 		width: 100%; height: 100%;
 		font-size: 23px;
 	}
+
 </style>
 </head>
 <body>
@@ -32,7 +33,7 @@
                                         <div class="col mr-2">
                                             <div id="font" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 파티 매칭 진행중</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> Count : ${cnt0} </div>
                                         </div>
                                         <div class="col-auto">
                                          <i id="icon" class="fa fa-refresh fa-spin fa-fw"></i>  
@@ -50,7 +51,7 @@
                                         <div class="col mr-2">
                                             <div id="font" class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 파티 매칭 완료</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Count : ${cnt1}</div>
                                         </div>
                                         <div class="col-auto">
                                           	 <i id="icon" class="fa-regular fa-paper-plane"></i>
@@ -70,15 +71,9 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div id="font" class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div id="font" class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Count : ${cnt2}</div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -97,7 +92,7 @@
                                         <div class="col mr-2">
                                             <div id="font" class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 오늘의 새로운 회원</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> ${cnt3}명 가입했어요!</div>
                                         </div>
                                         <div class="col-auto">
                                         <i id="icon" class="fa-regular fa-face-smile-wink"></i>
@@ -108,83 +103,25 @@
                         </div>
                     </div>
 
-                    <!-- Content Row -->
+                  
 
-                    <div class="row">
+                    
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" style="width: 100%; height: 500px;">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overvi</h6>
+
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                <div class="card-body" >
+                                    <canvas id="myChart1"></canvas>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
+
 
                     <!-- Content Row -->
                     <div class="row">
@@ -340,5 +277,108 @@
                     </div>
 
 </body>
+<script type="text/javascript">
+<!-- 차트 -->
+$(document).ready(function(){
+		
+		$.ajax({
+			url:"/final/admin/mainch",
+			type :"get",
+			
+			success:function(data){
+				
+				var jsonData = data;
+				var jsonObject = JSON.stringify(jsonData);
+				var jData = JSON.parse(jsonObject);
+						
+				
+				console.log(data);
+				var labelList1 = new Array();
+				var labelList2 = new Array();
+				var labelList3 = new Array();
+				
+				
+				for(var i = 0; i<jData.length; i++) {
+					var d = jData[i];
+					//리스트1 결제총매출
+					console.log(d);
+					labelList3.push(d.Pay1 , d.Pay2 , d.Pay3 , d.Pay4 , d.Pay5 , d.Pay6 , d.Pay7);
+					labelList2.push(d.Pay11 , d.Pay12 , d.Pay13 , d.Pay14 , d.Pay15 , d.Pay16 , d.Pay17);
+					labelList1.push(d.Pay21 , d.Pay22 , d.Pay23 , d.Pay24 , d.Pay25 , d.Pay26 , d.Pay27);
+				}
+				
+		
+				console.log(labelList1);
+				console.log(labelList2);
+				console.log(labelList3);
 
+
+					
+				
+				
+				var ctx1 = document.getElementById('myChart1').getContext('2d');
+				new Chart(ctx1, {
+					      type: 'line',
+						  data: {
+							  labels: ['1월','2월','3월','4월','5월','6월','7월'],
+							  datasets: [{
+							  label: '결제 총횟수',
+			                    type : 'line',         // 'line' type
+			                    fill : true,         // 채우기 없음
+			                    lineTension : 0.2,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
+			                    pointRadius : 0,    // 각 지점에 포인트 주지 않음
+			                    backgroundColor: 'rgb(255, 153, 0, 0.2)',
+			                    borderColor: 'rgb(255, 153, 0)',
+			                    data: labelList1
+						  },{
+							  label: '결제 완료',
+			                    type : 'line',
+			                    fill : true,
+			                    lineTension : 0.2,
+			                    pointRadius : 0,
+			                    backgroundColor: 'rgb(255, 204, 0, 0.2)',
+			                    borderColor: 'rgb(255, 204, 0)',
+			                    data: labelList2
+						  
+					},{
+						  label: '결제 취소',
+		                    type : 'line',
+		                    fill : true,
+		                    lineTension : 0.2,
+		                    pointRadius : 0,
+		                    backgroundColor: 'rgb(155, 184, 0, 0.2)',
+		                    borderColor: 'rgb(155, 184, 0)',
+		                    data: labelList3
+					  
+				}],
+						  },  options: {
+							    //그래프의 제목 옵션
+							    title: {
+							        display: true,
+							        text: '회원가입 차트',
+							        fontSize: 20
+							    },
+							    //그래프의 항목 옵션
+							    legend: {
+							        display: true,
+							        position: 'bottom',
+							    },
+
+							    
+							    scales: {
+							        yAxes: [{
+							            ticks: {
+							                beginAtZero: true
+							            }
+							        }]
+							    }
+							    
+							}
+						  
+				});
+				
+			}
+		})
+});
+</script>
 </html>

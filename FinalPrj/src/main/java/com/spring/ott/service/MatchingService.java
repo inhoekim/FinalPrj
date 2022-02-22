@@ -39,4 +39,12 @@ public class MatchingService {
 	public List<MemberVo> selectMember(int party_id) {
 		return mapper.selectMember(party_id);
 	}
+	
+	public MatchingVo selectByPayment(String payment_id) {
+		return mapper.selectByPayment(payment_id);
+	}
+	
+	public MatchingVo selectByUser(HashMap<String, Object> map) {
+		return mapper.selectByUser(map);
+	}
 }

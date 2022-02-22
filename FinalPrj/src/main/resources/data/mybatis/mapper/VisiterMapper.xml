@@ -57,7 +57,7 @@
 		(SELECT COUNT(*) AGE40  FROM USERS WHERE AGE > 39 AND AGE &lt;  50) AGE40
 	</select>
 
-
+	<!-- 현재날 기준으로 7일까지 회원가입한수 카운트 한듯 -->
 	<select id="DayCount" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
 		SELECT * FROM
 		(SELECT COUNT(*) DAY1  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-6) DAY1,
@@ -68,7 +68,11 @@
 		(SELECT COUNT(*) DAY6  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = TO_DATE(#{visit_date}, 'YYYY/MM/DD')-1) DAY6,
 		(SELECT COUNT(*) DAY7  FROM USERS WHERE to_char(regdate,'YYYY/MM/DD') = #{visit_date}) DAY7
 	</select>
-	
+	<!-- 오늘날 기준으로 회원가입한  -->
+	<select id="NewMemberCount" parameterType="String" resultType="com.spring.ott.vo.VisiterVo">
+		SELECT COUNT(*) CNT3 FROM USERS 
+		WHERE to_char (regdate,'YYYY/MM/DD') = #{visit_date}
+	</select>
 	
 	
 		<!-- 결제 취소 차트전용  PAY1~7 취소 VO -->
@@ -137,5 +141,12 @@
 	</select>
 	
 	<!-- 파티 차트전용 -->
-
+	<select id="CNT1"  resultType="com.spring.ott.vo.VisiterVo">
+		SELECT * FROM
+			(SELECT COUNT(*) CNT0 FROM PARTY WHERE PARTY_STATE = 0),
+			(SELECT COUNT(*) CNT1 FROM PARTY WHERE PARTY_STATE = 1),
+			(SELECT COUNT(*) CNT2 FROM PARTY WHERE PARTY_STATE = 2)
+	</select>
+	
+	
 </mapper>

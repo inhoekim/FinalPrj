@@ -53,4 +53,10 @@ public class VisiterVo {
 	private int Pay25;
 	private int Pay26;
 	private int Pay27;
+	
+	// 메인페이지 파티 카운터 변수
+	private int cnt0;
+	private int cnt1;
+	private int cnt2;
+	private int cnt3;
 }

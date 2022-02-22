@@ -34,5 +34,12 @@
 		order by created_day desc)a <![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
 	
+	<select id="selectOne" resultType="com.spring.ott.vo.AccusationVo" parameterType="int">
+		select * from board_accusation where ACCUSATE_ID = #{accusate_id}
+	</select>
+	
+	<update id="updateOne" parameterType="hashmap">
+		update board_accusation set result = #{result} where accusate_id = #{accusate_id}
+	</update>
 		
 </mapper>

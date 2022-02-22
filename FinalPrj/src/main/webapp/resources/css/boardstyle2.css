@@ -76,6 +76,22 @@ input[type='submit'] {
 	border-radius: 5px;
 }
 
+input[type='number'] {
+  position: relative;
+  border: 1px solid var(--color-light-white);
+  margin: 10px 0;
+  padding: 0 15px;
+  font-size: 12px;
+  margin: 0;
+  border-radius: 4px;
+}
+
+input[type='number']:focus {
+  outline: 1px solid rgb(185, 185, 185);
+  caret-color: rgb(155, 155, 155);
+  font-size: 12px;
+}
+
 input[type='text'] {
   position: relative;
   border: 1px solid var(--color-light-white);
@@ -1491,6 +1507,26 @@ footer {
 .comment .writer_profile{
 	cursor: pointer;
 }	
+
+/* judge Form(정지입력-admin) */
+.judgeBox {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	background-color: white;
+	box-shadow: 0 0 10px 1px grey;
+	border-radius: 6px;
+	padding: 10px;
+	
+}
+
+.judgeBox div {
+	margin: 2px 0;
+}
+
+.black {
+	display: none;
+}
 
 @media screen and (max-width: 900px) {
   #main {

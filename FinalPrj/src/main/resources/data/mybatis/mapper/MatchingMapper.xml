@@ -35,4 +35,16 @@
 		and m.party_id = #{party_id}
 	</select>
 	
+	<update id="updatePayment" parameterType="Hashmap">
+		update matching set payment_id = #{payment_id} where user_id = #{user_id} and party_id = #{party_id}
+	</update>
+	
+	<select id="selectByPayment" parameterType="String" resultType="com.spring.ott.vo.MatchingVo">
+		select * from matching where payment_id = #{payment_id}
+	</select>
+	
+	<select id="selectByUser" parameterType="Hashmap" resultType="com.spring.ott.vo.MatchingVo">
+		select * from matching where user_id = #{user_id} and party_id = #{party_id}
+	</select>
+	
 </mapper>

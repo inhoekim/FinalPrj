@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,9 @@
 <div class="post_detail" style="padding: 20px">
 	<form:form method="post" action="${pageContext.request.contextPath}/board/insert">
 		<select name="subcate">
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<option value="1" selected="selected">공지</option>
+			</sec:authorize>
 			<option value="2" selected="selected">파티찾기</option>
 			<option value="3">자유</option>
 		</select>

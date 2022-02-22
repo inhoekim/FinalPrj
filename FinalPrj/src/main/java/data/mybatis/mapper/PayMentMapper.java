@@ -6,9 +6,10 @@ import java.util.List;
 import com.spring.ott.vo.PayMentVo;
 
 public interface PayMentMapper {
-	int PayMentInsert(PayMentVo vo);
-	public List<PayMentVo> PayList(HashMap<String, Integer>map);
-	public int totalRowCnt();
-	public List<PayMentVo> AllSelect();
-	public int payupdate(String payment_id);
+	boolean PayMentInsert(PayMentVo vo);
+	List<PayMentVo> PayList(HashMap<String, Integer>map);
+	int totalRowCnt();
+	List<PayMentVo> AllSelect();
+	boolean payupdate(String payment_id);
+	PayMentVo tidSelect(String payment_id);
 }

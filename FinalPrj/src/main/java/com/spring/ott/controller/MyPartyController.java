@@ -13,6 +13,7 @@ import com.spring.ott.service.MatchingCheckService;
 import com.spring.ott.service.MatchingService;
 import com.spring.ott.service.OttService;
 import com.spring.ott.service.PartyService;
+import com.spring.ott.service.PayMentService;
 import com.spring.ott.service.SettleService;
 import com.spring.ott.service.UserService;
 import com.spring.ott.util.CalendarUtil;
@@ -30,6 +31,7 @@ public class MyPartyController {
 	@Autowired MatchingService matchingService;
 	@Autowired OttService ottService;
 	@Autowired PartyService partyService;
+	@Autowired PayMentService paymentService;
 	@Autowired SettleService settleService;
 	
 	@GetMapping("/autoMatch/myParty")
@@ -68,6 +70,14 @@ public class MyPartyController {
 			PartyVo partyVo = partyService.selectParty(my_party);
 			MemberVo leader = userService.selectMember(partyVo.getLeader());
 			OttVo ottVo = ottService.selectOtt(partyVo.getOtt_id());
+			UserVo myVo = userService.selectUser(principal.getName());
+			HashMap<String, Object> map2 = new HashMap<>();
+			map2.put("user_id", principal.getName());
+			map2.put("party_id", partyVo.getParty_id());
+			MatchingVo matchVo = matchingService.selectByUser(map2);
+			if(matchVo.getPayment_id() != null) {
+				model.addAttribute("payment", paymentService.tidSelect(matchVo.getPayment_id())); 
+			}
 			List<MemberVo> list = matchingService.selectMember(my_party);		
 			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
 			int fees = CalendarUtil.getFees(remain_day);
@@ -76,7 +86,7 @@ public class MyPartyController {
 			model.addAttribute("leader", leader);
 			model.addAttribute("partyVo", partyVo);
 			model.addAttribute("ottVo", ottVo);
-			model.addAttribute("me", principal.getName());
+			model.addAttribute("me", myVo);
 			model.addAttribute("remain_day", remain_day);
 			model.addAttribute("fees", fees);
 			model.addAttribute("price", price);

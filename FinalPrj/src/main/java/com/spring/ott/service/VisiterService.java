@@ -56,4 +56,12 @@ public class VisiterService {
 	public List<VisiterVo> Pay7final(String payment_date) {
 		return mapper.Pay7final(payment_date);
 	}
+	
+	//메인페이지 파티 카운터 전용
+	public VisiterVo CNT1() {
+		return mapper.CNT1();
+	}
+	public VisiterVo NewMemberCount(String visit_date) {
+		return mapper.NewMemberCount(visit_date);
+	}
 }
