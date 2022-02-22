@@ -37,4 +37,8 @@
 		update party set party_state = #{party_state} where party_id = #{party_id}
 	</update>
 	
+	<select id="checkPaymentState" resultType="int">
+		select count(payment_id) from matching
+	</select>
+
 </mapper>

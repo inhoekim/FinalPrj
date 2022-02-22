@@ -40,4 +40,8 @@ public class PartyService {
 	public int stateUpdate(HashMap<String,Object> map) {
 		return mapper.stateUpdate(map);
 	}
+	
+	public int checkPaymentState() {
+		return mapper.checkPaymentState();
+	}
 }
