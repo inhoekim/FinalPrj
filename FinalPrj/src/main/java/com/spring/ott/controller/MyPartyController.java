@@ -75,7 +75,9 @@ public class MyPartyController {
 			map2.put("user_id", principal.getName());
 			map2.put("party_id", partyVo.getParty_id());
 			MatchingVo matchVo = matchingService.selectByUser(map2);
-			model.addAttribute("payment", paymentService.tidSelect(matchVo.getPayment_id())); 
+			if(matchVo.getPayment_id() != null) {
+				model.addAttribute("payment", paymentService.tidSelect(matchVo.getPayment_id())); 
+			}
 			List<MemberVo> list = matchingService.selectMember(my_party);		
 			int remain_day = CalendarUtil.getDiffDay(partyVo.getExpiration_date());
 			int fees = CalendarUtil.getFees(remain_day);

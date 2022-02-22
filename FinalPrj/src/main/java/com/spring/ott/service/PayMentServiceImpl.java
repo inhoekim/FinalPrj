@@ -38,7 +38,7 @@ public class PayMentServiceImpl implements PayMentService{
 		//Matching테이블에 결제정보 update
 		MatchingVo matchVo =  matchingMapper.selectByPayment(payment_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("payment_id", null);
+		map.put("payment_id", "");
 		map.put("user_id", matchVo.getUser_id());
 		map.put("party_id", matchVo.getParty_id());
 		matchingMapper.updatePayment(map);
