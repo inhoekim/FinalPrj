@@ -67,4 +67,7 @@ public class PostService {
 	public List<PostVo> selUserPost(String user_id){
 		return mapper.selUserPost(user_id);
 	}
+	public List<PostVo> recent_findParty(){
+		return mapper.recent_findParty();
+	}
 }

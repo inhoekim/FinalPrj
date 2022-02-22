@@ -66,7 +66,9 @@ public class ListController {
 		List<PostVo> bList=service.bestPost();
 		List<CommentsVo> cRList=cservice.recentComm();
 		List<CommentsVo> cBList=cservice.bestComm();
+		List<PostVo> rPList = service.recent_findParty();
 		
+		model.addAttribute("rPList", rPList);
 		model.addAttribute("bList", bList);
 		model.addAttribute("rList", rList);
 		model.addAttribute("cBList", cBList);

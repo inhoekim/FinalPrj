@@ -22,11 +22,12 @@ public class HomeController {
 		List<PostVo> bList=service.bestPost();
 		List<CommentsVo> cRList=cservice.recentComm();
 		List<CommentsVo> cBList=cservice.bestComm();
-		
+		List<PostVo> rPList = service.recent_findParty();
 		m.addAttribute("bList", bList);
 		m.addAttribute("rList", rList);
 		m.addAttribute("cBList", cBList);
 		m.addAttribute("cRList", cRList);
+		m.addAttribute("rPList", rPList);
 		
 		return "home/home.tiles";
 	}

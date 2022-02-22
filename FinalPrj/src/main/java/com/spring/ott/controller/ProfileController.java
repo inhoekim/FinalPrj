@@ -15,12 +15,17 @@ import com.spring.ott.vo.PostVo;
 
 @Controller
 public class ProfileController {
+	@Autowired PostService service;
 	@Autowired PostService pservice;
 	@Autowired CommentsService cservice;
 	@GetMapping("/profile/{user_id}")
 	public String profile(@PathVariable("user_id") String user_id,Model m) {
 		List<PostVo> pList=pservice.userPost(user_id);
 		List<CommentsVo> cList=cservice.selUserComm(user_id);
+		List<PostVo> rPList = service.recent_findParty();
+		List<CommentsVo> cRList=cservice.recentComm();
+		m.addAttribute("cRList", cRList);
+		m.addAttribute("rPList", rPList);
 		m.addAttribute("cList", cList);
 		m.addAttribute("pList", pList);
 		m.addAttribute("user_id", user_id);
