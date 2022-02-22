@@ -160,19 +160,79 @@ $(function(){
 
 </head>
 <body>
+
+
+<div class = "joinBox">
+	<form:form method="post" action="${pageContext.request.contextPath }/join" name="uj" onsubmit="return check();">
+		<div>아이디<input type = "text" name="user_id" id="user_id" maxlength="13"></div><br>
+		<div>비밀번호<input type = "password" name="pwd" id="pwd" onchange="check_pw()"></div><br>
+		<div>비밀번호확인<input type = "password" name="pwd2" id="pwd2" onchange="check_pw()"></div><br>
+		<div>이름<input type = "text" name="name" id="name" maxlength="6"></div><br>
+		<div>주민번호<input type = "text" name="jnum1" id="jnum1" maxlength="6"> - <input type="password" name="jnum2" id="jnum2" maxlength="7"></div><br>
+		<div>나이<input type = "text" name="age" id="age" maxlength="2"></div><br>
+		<div>지역
+		<select name="area" id="area">
+			<option value="서울">서울</option>
+			<option value="인천광역시">인천광역시</option>
+			<option value="경기">경기</option>
+			<option value="강원">강원</option>
+			<option value="충북">충북</option>
+			<option value="대전광역시">대전광역시</option>
+			<option value="충남">충남</option>
+			<option value="전북">전북</option>
+			<option value="전남">전남</option>
+			<option value="광주광역시">광주광역시</option>
+			<option value="경북">경북</option>
+			<option value="대구광역시">대구광역시</option>
+			<option value="울산광역시">울산광역시</option>
+			<option value="경남">경남</option>
+			<option value="부산광역시">부산광역시</option>
+			<option value="제주">제주</option>
+			<option value="해외">해외</option>
+		</select>
+		</div>
+		<br>
+		<tr>
+		<th>
+			이메일
+		</th>
+		<td>
+			<p>
+				<input id="email" type="text" name="email" placeholder="이메일 주소를 입력해주세요." required/>
+				<button type="button" id="emailChk" class="doubleChk">인증번호 보내기</button><br/>
+				<input id="email2" type="text" name="email2" placeholder="인증번호 입력" disabled required/>
+				<button type="button" id="emailChk2" class="doubleChk">이메일인증</button>
+				<span class="successEmailChk" style="font-size:0.5em;">이메일 입력후 인증번호 보내기를 해주십시오.</span>
+				<input type="hidden" id="emailDoubleChk"/>
+			</p>
+		</td>
+		</tr>
+		<input type="submit" value="가입">
+	</form:form>
+</div>
+<!-- 
+<div class="joinBox">
 <form:form method="post" action="${pageContext.request.contextPath }/join" name="uj" onsubmit="return check();">
-	아이디 <br>
-	<input type="text" name="user_id" id="user_id" maxlength="13">&nbsp;&nbsp;&nbsp;<span id="idcheck" style="font-size:0.5em;"></span><br>
-	비밀번호 <br>
-	<input type="password" name="pwd" id="pwd" onchange="check_pw()"><span style="font-size:0.5em; color:grey;">&nbsp;&nbsp;&nbsp; 6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </span><br>
-	비밀번호 확인<br>
-	<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
-	이름 <br>
-	<input type="text" name="name" id="name" maxlength="6"><br>
-	주민번호 <br>
-	<input type="text" name="jnum1" id="jnum1" maxlength="6"> - <input type="password" name="jnum2" id="jnum2" maxlength="7"><br>
-	나이 <br>
-	<input type="text" name="age" id="age" maxlength="2"><br>
+	<span style="float: left; height: 40px; width:230px;">
+	아이디
+		<input type="text" name="user_id" id="user_id" maxlength="13" style= "height: 20px;">&nbsp;&nbsp;&nbsp;<span id="idcheck" style="font-size:0.5em;"></span>
+	</span>
+	<br>
+	<span style="float: left; height: 50px; width:200px;">
+		비밀번호
+		<input type="password" name="pwd" id="pwd" onchange="check_pw()">
+			<div style="font-size:0.5em; color:grey;">6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </div>
+		<br>
+	</span>
+	<br>
+	<div style="float: left; width:230px;">
+		비밀번호 확인<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
+	</div>
+	<div style="float: left; width:230px;">
+		이름<input type="text" name="name" id="name" maxlength="6"><br>
+	</div>
+	주민번호<input type="text" name="jnum1" id="jnum1" maxlength="6"> - <input type="password" name="jnum2" id="jnum2" maxlength="7"><br>
+	나이<input type="text" name="age" id="age" maxlength="2"><br>
 	지역 <br>
 	<select name="area" id="area">
 		<option value="서울">서울</option>
@@ -211,7 +271,9 @@ $(function(){
 	</tr>
 	<input type="submit" value="가입">
 </form:form>
+</div>
 </body>
+-->
 <script type="text/javascript">
 
 var code = "";
