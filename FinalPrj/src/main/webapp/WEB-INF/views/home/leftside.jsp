@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  <aside class="leftside">
      <div class="leftside_container">
          <div class="cotainer_title">게시판 Menu</div>
@@ -30,7 +31,9 @@
 
                  <div class="folder_items">
                      <div class="folder_item">전체공지</div>
+                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                      <div class="folder_item"><a href="${pageContext.request.contextPath}/board/accusation">신고</a></div>
+                     </sec:authorize>
                  </div>
              </div>
          </div>
