@@ -82,7 +82,7 @@
     <div class="section_container popular_comment">
         <div class="boundary">인기댓글</div>
 
-                <div class="popular_comments">
+            <div class="popular_comments">
             <div class="comment">
                 <div class="user_speech">
                     <a href="#" class="speech_bubble">
@@ -94,7 +94,7 @@
                     </a>
                 </div>
                 <div class="user_profile">
-                    <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_profile_1.svg"/>
+                    <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cBList[0].profile_src}"/>
                     <span>${cBList[0].user_id}</span>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     </a>
                 </div>
                 <div class="user_profile">
-                    <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_profile_3.svg"/>
+                    <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cBList[1].profile_src}"/>
                     <span>${cBList[1].user_id}</span>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                     </a>
                 </div>
                 <div class="user_profile">
-                    <i class="fas fa-user user_profile_img"></i>
+                     <img class="user_profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cBList[2].profile_src}"/>
                     <span>${cBList[2].user_id}</span>
                 </div>
             </div>

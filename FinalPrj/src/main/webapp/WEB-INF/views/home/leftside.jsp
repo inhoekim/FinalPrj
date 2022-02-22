@@ -174,7 +174,7 @@
 
              <div class="comment">
                  <div class="comment_profile">
-                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_posting_photo.svg"/>
+                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cRList[0].profile_src}"/>
                      <div class="profile_id">${cRList[0].user_id}</div>
                  </div>
                  <div class="comment_content">${cRList[0].content}</div>
@@ -182,7 +182,7 @@
 
              <div class="comment">
                  <div class="comment_profile">
-                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/undraw_posting_photo.svg"/>
+                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cRList[1].profile_src}"/>
                      <div class="profile_id">${cRList[1].user_id}</div>
                  </div>
                  <div class="comment_content">${cRList[1].content}</div>
@@ -190,7 +190,7 @@
 
              <div class="comment">
                  <div class="comment_profile">
-                     <i class="fas fa-user profile_img"></i>
+                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cRList[2].profile_src}"/>
                      <div class="profile_id">${cRList[2].user_id}</div>
                  </div>
                  <div class="comment_content">${cRList[2].content}</div>
@@ -198,7 +198,7 @@
 
              <div class="comment">
                  <div class="comment_profile">
-                     <i class="fas fa-user profile_img"></i>
+                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cRList[3].profile_src}"/>
                      <div class="profile_id">${cRList[3].user_id}</div>
                  </div>
                  <div class="comment_content">${cRList[3].content}</div>
@@ -206,7 +206,7 @@
 
              <div class="comment">
                  <div class="comment_profile">
-                     <i class="fas fa-user profile_img"></i>
+                     <img class="profile_img" src="${pageContext.request.contextPath}/resources/img/profile/${cRList[4].profile_src}"/>
                      <div class="profile_id">${cRList[4].user_id}</div>
                  </div>
                  <div class="comment_content">${cRList[4].content}</div>
