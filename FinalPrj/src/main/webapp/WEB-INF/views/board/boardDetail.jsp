@@ -262,7 +262,7 @@
    		</div>
    	</div>
    	
-   	<form:form method="post" action="${pageContext.request.contextPath }/board/accusation" class="acc_form">   	
+   	<form:form method="post" action="${pageContext.request.contextPath }/board/report" class="acc_form">   	
        	<div>
 	       	<label for="acc_select">신고종류</label>
 	       	<select id="acc_select" class="acc_select" name="why">

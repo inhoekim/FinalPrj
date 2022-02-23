@@ -71,7 +71,7 @@ public class AccusationController {
 		return "board/accusationList.tiles";
 	}
 	
-	@PostMapping("/board/accusation")
+	@PostMapping("/board/report")
 	public String accInsert(AccusationVo vo,Model model,int pageNum, int subcate,int post_id,int category,String field,String keyword) {
 		accService.postAccusation(vo);
 		model.addAttribute("msg", "신고접수를 완료하였습니다.");
