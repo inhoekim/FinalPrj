@@ -37,6 +37,9 @@ public class UserService {
 	public int deleteUser(String user_id) {
 		return mapper.deleteUser(user_id);
 	}
+	public int deleteChk(String user_id, String pwd) {
+		return mapper.deleteChk(user_id, pwd);
+	}
 	public int blackUser(String user_id) {
 		return mapper.blackUser(user_id);
 	}

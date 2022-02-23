@@ -3,9 +3,11 @@ package com.spring.ott.controller.csh;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +21,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.ott.service.CommentsService;
+import com.spring.ott.service.PostService;
 import com.spring.ott.service.UserService;
+import com.spring.ott.vo.CommentsVo;
+import com.spring.ott.vo.PostVo;
 import com.spring.ott.vo.UserVo;
 
 @Controller
@@ -27,15 +33,38 @@ public class UserFindIdController {
 	@Autowired UserService service;
 	@Autowired JavaMailSender javaMailSender;
 	@Autowired PasswordEncoder pwdEncoder;
+	@Autowired PostService pservice;
+	@Autowired CommentsService cservice;
+	@Autowired private ServletContext servletContext;
 	
 	@GetMapping("/findId")
-	public String findIdForm() {
+	public String findIdForm(Model model) {
+		List<PostVo> rList=pservice.recentPost();
+		List<PostVo> bList=pservice.bestPost();
+		List<CommentsVo> cRList=cservice.recentComm();
+		List<CommentsVo> cBList=cservice.bestComm();
+		List<PostVo> rPList = pservice.recent_findParty();	
+		model.addAttribute("rPList", rPList);
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
 		return "home/findID.tiles";
 	}
 	
 	@PostMapping("/findId")
 	public String findId(String name, String email, Model model) {
 		String user_id=service.findId(name, email);
+		List<PostVo> rList=pservice.recentPost();
+		List<PostVo> bList=pservice.bestPost();
+		List<CommentsVo> cRList=cservice.recentComm();
+		List<CommentsVo> cBList=cservice.bestComm();
+		List<PostVo> rPList = pservice.recent_findParty();	
+		model.addAttribute("rPList", rPList);
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
 		
 		try {
 			if(user_id==null) {
@@ -50,14 +79,34 @@ public class UserFindIdController {
 	}
 	
 	@GetMapping("/findPwd")
-	public String findPwdForm() {
+	public String findPwdForm(Model model) {
+		List<PostVo> rList=pservice.recentPost();
+		List<PostVo> bList=pservice.bestPost();
+		List<CommentsVo> cRList=cservice.recentComm();
+		List<CommentsVo> cBList=cservice.bestComm();
+		List<PostVo> rPList = pservice.recent_findParty();	
+		model.addAttribute("rPList", rPList);
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
 		return "home/findID.tiles";
 	}
 	
 	@PostMapping("/findPwd")
-	public ModelAndView pwdMail(HttpServletRequest request, String user_id, String email, HttpServletResponse response_email) throws IOException{
+	public ModelAndView pwdMail(HttpServletRequest request, String user_id, String email, HttpServletResponse response_email,Model model) throws IOException{
 		UserVo vo=service.findPwdChk(user_id, email);
 		ModelAndView mv = new ModelAndView();
+		List<PostVo> rList=pservice.recentPost();
+		List<PostVo> bList=pservice.bestPost();
+		List<CommentsVo> cRList=cservice.recentComm();
+		List<CommentsVo> cBList=cservice.bestComm();
+		List<PostVo> rPList = pservice.recent_findParty();	
+		model.addAttribute("rPList", rPList);
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
 		
 		if(vo!=null) {	//user_id랑 email로 pwd 검색해서 존재하면
 			
