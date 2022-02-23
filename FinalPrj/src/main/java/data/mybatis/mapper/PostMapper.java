@@ -26,4 +26,6 @@ public interface PostMapper {
 	List<PostVo> partyPost();
 	List<PostVo> recent_notice(int category_id);
 	List<PostVo> selUserPost(String user_id);
+	List<PostVo> recent_findParty();
+	
 }

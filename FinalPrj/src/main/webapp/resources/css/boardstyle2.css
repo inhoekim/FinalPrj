@@ -1323,6 +1323,12 @@ footer {
   margin-right: 10px;
 }
 
+.comment_profile .profile_img {
+  width: 25px;
+  height: 25px;
+}
+
+
 .comment .comment_wrapper {
   width: 100%;
 }

@@ -26,4 +26,12 @@
 	<insert id="enroll" parameterType="hashmap">
 		insert into WatingRoom values (SEQ_WATINGROOM.nextval, #{user_id}, #{ott_id} ,sysdate)
 	</insert>
+	
+	<insert id="enrollFirst" parameterType="hashmap">
+		insert into WatingRoom values (SEQ_WATINGROOM.nextval, #{user_id}, #{ott_id} ,#{start_day})
+	</insert>
+	
+	<select id="earliestDate" resultType="date">
+		select start_day from WatingRoom where rownum = 1 order by start_day
+	</select>
 </mapper>

@@ -12,4 +12,5 @@ public interface PartyMapper {
 	PartyVo selectParty(int party_id);
 	int memberUpdate(HashMap<String,Object> map);
 	int stateUpdate(HashMap<String,Object> map);
+	int checkPaymentState();
 }

@@ -46,7 +46,7 @@ public class ResignController {
 		map.put("party_id", party_id);
 		map.put("party_state", 3);
 		if(partyVo.getParty_state() == 0) {
-			erollPartyService.resignPartyLeader(party_id, map);
+			erollPartyService.resignPartyLeader(party_id, partyVo.getOtt_id(), map);
 			model.addAttribute("msg", "파티를 탈퇴하였습니다!");
 			model.addAttribute("url", servletContext.getContextPath() + "/autoMatch/myParty");
 		}else {

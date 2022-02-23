@@ -3,26 +3,26 @@
 <aside class="rightside">
     <div class="rightside_container">
         <div class="cotainer_title">최근 파티매칭 모집글</div>
-
+		
         <div class="cotainer_items">
                 <div class="post">
-                    <a class="board_category" href="#">넷플릭스</a>
-                    <a href="#" class="post_title">파티원 찾아요 넷플릭스 2/3 어쩌구저쩌구</a>
+                    <a class="board_category" href="${pageContext.request.contextPath}/board/list?category=${rPList[0].category_id}">${rPList[0].cname }</a>
+                    <a href="${pageContext.request.contextPath}/board/detail?post_id=${rPList[0].post_id}&category=${rPList[0].category_id}" class="post_title">${rPList[0].title }</a>
                 </div>
 
                 <div class="post">
-                    <a class="board_category" href="#">왓챠</a>
-                    <a href="#" class="post_title">님만 오면 고</a>
+                    <a class="board_category" href="${pageContext.request.contextPath}/board/list?category=${rPList[1].category_id}">${rPList[1].cname }</a>
+                    <a href="${pageContext.request.contextPath}/board/detail?post_id=${rPList[1].post_id}&category=${rPList[1].category_id}" class="post_title">${rPList[1].title }</a>
                 </div>
 
                 <div class="post">
-                    <a class="board_category" href="#">디즈니</a>
-                    <a href="#" class="post_title">2/4 2명 급구합니당</a>
+                    <a class="board_category" href="${pageContext.request.contextPath}/board/list?category=${rPList[2].category_id}">${rPList[2].cname }</a>
+                    <a href="${pageContext.request.contextPath}/board/detail?post_id=${rPList[2].post_id}&category=${rPList[2].category_id}" class="post_title">${rPList[2].title }</a>
                 </div>
 
                 <div class="post">
-                    <a class="board_category" href="#">넷플릭스</a>
-                    <a href="#" class="post_title">어쩌구쩌쩌구</a>
+                    <a class="board_category" href="${pageContext.request.contextPath}/board/list?category=${rPList[3].category_id}">${rPList[3].cname }</a>
+                    <a href="${pageContext.request.contextPath}/board/detail?post_id=${rPList[3].post_id}&category=${rPList[3].category_id}" class="post_title">${rPList[3].title }</a>
                 </div>
         </div>   
     </div>

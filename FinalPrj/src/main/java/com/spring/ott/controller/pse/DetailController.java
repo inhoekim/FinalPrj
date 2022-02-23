@@ -90,7 +90,8 @@ public class DetailController {
 		List<PostVo> bList=service.bestPost();
 		List<CommentsVo> cRList=cService.recentComm();
 		List<CommentsVo> cBList=cService.bestComm();
-		
+		List<PostVo> rPList = service.recent_findParty();
+		model.addAttribute("rPList", rPList);
 		model.addAttribute("bList", bList);
 		model.addAttribute("rList", rList);
 		model.addAttribute("cBList", cBList);
