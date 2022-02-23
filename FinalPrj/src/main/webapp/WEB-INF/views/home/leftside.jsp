@@ -260,9 +260,9 @@ let notifyArea = document.querySelector(".notify-area");
 const ShowDropdown = () => {
   notifyButton.classList.add("#active");
   notifyArea.style.visibility = "visible";
-  list();
+  notify_list();
 }
-function list(){
+function notify_list(){
 	$(".notify-area").empty();
 	
 	 $.ajax({
@@ -324,7 +324,7 @@ function removeNoti(notify_id){
 			"notify_id":notify_id
 		},
 		success:function(data){
-			list();
+			notify_list();
 			notiCnt();
 		}
 	});
@@ -333,7 +333,7 @@ function delAll(){
 	$.ajax({
 		url:'${cp}/notiDel',
 		success:function(data){
-			list();
+			notify_list();
 			notiCnt();
 		}
 	});
