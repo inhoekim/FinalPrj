@@ -154,40 +154,53 @@ function check_pw(){
 	<div style="display: flex; width:100%; margin:15px 0;">
 	<span style="width:100px">아이디</span><input type="text" name="user_id" id="user_id" maxlength="13" style= "height: 25px; margin-right:10px;" value="${vo.user_id }" readonly="readonly">
 	</div>
-	비밀번호 <br>
-	<input type="password" name="pwd" id="pwd" onchange="check_pw()"><span style="font-size:0.5em; color:grey;">&nbsp;&nbsp;&nbsp; 6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </span><br>
-	비밀번호 확인<br>
-	<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
-	이름 <br>
-	<input type="text" name="name" id="name" maxlength="6" value="${vo.name }"><br>
-	주민번호 <br>
-	<input type="text" name="jnum1" id="jnum1" maxlength="6" value="${jnumArray[0] }" readonly="readonly"> - <input type="password" name="jnum2" id="jnum2" maxlength="7" value="${jnumArray[1] }" readonly="readonly"><br>
-	나이 <br>
-	<input type="text" name="age" id="age" maxlength="2" value="${vo.age }"><br>
-	지역 <br>
-	<select name="area" id="area">
-		<option value="서울">서울</option>
-		<option value="인천광역시">인천광역시</option>
-		<option value="경기">경기</option>
-		<option value="강원">강원</option>
-		<option value="충북">충북</option>
-		<option value="대전광역시">대전광역시</option>
-		<option value="충남">충남</option>
-		<option value="전북">전북</option>
-		<option value="전남">전남</option>
-		<option value="광주광역시">광주광역시</option>
-		<option value="경북">경북</option>
-		<option value="대구광역시">대구광역시</option>
-		<option value="울산광역시">울산광역시</option>
-		<option value="경남">경남</option>
-		<option value="부산광역시">부산광역시</option>
-		<option value="제주">제주</option>
-		<option value="해외">해외</option>
-	</select>
-	<br>
-	이메일 <br>
-	<input type="text" name="email" value="${vo.email }" readonly="readonly"><br>
-	<input type="submit" value="가입">
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">비밀번호</span><input type="password" name="pwd" id="pwd" onchange="check_pw()" style= "height: 25px; margin-right:10px"><div style="font-size:0.5em; color:grey;">6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </div>
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+		<span style="width:100px">비밀번호 확인</span><input type="password" name="pwd2" id="pwd2" onchange="check_pw()" style= "height: 25px;"><span id="check" style="font-size:0.5em;"></span>
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">이름</span>
+	<input type="text" name="name" id="name" maxlength="6" value="${vo.name }" style= "height: 25px;">
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">주민번호</span>
+	<input type="text" name="jnum1" id="jnum1" maxlength="6" value="${jnumArray[0] }" style= "height: 25px;" readonly="readonly"> - <input type="password" name="jnum2" id="jnum2" maxlength="7" value="${jnumArray[1] }" style= "height: 25px;" readonly="readonly">
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">나이</span>	<input type="text" name="age" id="age" maxlength="2" value="${vo.age }" style= "height: 25px;"><br>
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">지역</span>
+		<select name="area" id="area">
+			<option value="서울">서울</option>
+			<option value="인천광역시">인천광역시</option>
+			<option value="경기">경기</option>
+			<option value="강원">강원</option>
+			<option value="충북">충북</option>
+			<option value="대전광역시">대전광역시</option>
+			<option value="충남">충남</option>
+			<option value="전북">전북</option>
+			<option value="전남">전남</option>
+			<option value="광주광역시">광주광역시</option>
+			<option value="경북">경북</option>
+			<option value="대구광역시">대구광역시</option>
+			<option value="울산광역시">울산광역시</option>
+			<option value="경남">경남</option>
+			<option value="부산광역시">부산광역시</option>
+			<option value="제주">제주</option>
+			<option value="해외">해외</option>
+		</select>
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">이메일</span>	
+	<input type="text" name="email" value="${vo.email }" style="width:200px; height:25px;" readonly="readonly">
+	</div>
+	<br><br>
+	<div style="text-align:center;">
+	<input type="submit" value="정보수정" style="font-size:20px;width:200px;height: 80px;background: #b2e1cc73;border: 1px solid #d8e3d5;">
+	</div>
 </form:form>
 </div>
 </div>

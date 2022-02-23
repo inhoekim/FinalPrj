@@ -269,7 +269,7 @@ $(function(){
 				<span style="width:100px"></span>
 				<input id="email2" type="text" name="email2" placeholder="인증번호를 입력해주세요." style="width:200px; height:25px;" disabled required/>
 				<button type="button" id="emailChk2" class="doubleChk" style="width:120px;border: 1px solid #d8e3d5; background:#b2e1cc73;" onMouseOver="this.style.backgroundColor='#92daa6';" onMouseOut="this.style.backgroundColor='#b2e1cc73'">이메일인증</button>
-				<div style="font-size:0.5em; color:grey;">이메일 입력 후 버튼을 클릭해주세요.</div>
+				<div class="successEmailChk" style="font-size:0.5em; color:grey;">이메일 입력 후 버튼을 클릭해주세요.</div>
 				<input type="hidden" id="emailDoubleChk"/>
 			</div>
 	<br><br>
@@ -300,7 +300,7 @@ $("#emailChk").click(function(){
 				alert("인증번호 발송이 완료되었습니다.\n입력한 이메일에서 인증번호 확인을 해주십시오.");
         		$("#email2").attr("disabled",false);
         		$("#emailChk2").css("display","inline-block");
-        		$(".successEmailChk").text("인증번호를 입력한 뒤 이메일 인증을 눌러주십시오.");
+        		$(".successEmailChk").text("인증번호를 입력한 뒤 버튼을 눌러주세요.");
         		$(".successEmailChk").css("color","green");
         		code = data;
         	}
@@ -315,7 +315,7 @@ $("#emailChk2").click(function(){
 		$("#emailDoubleChk").val("true");
 		$("#email2").attr("disabled",true);
 	}else{
-		$(".successEmailChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+		$(".successEmailChk").text("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
 		$(".successEmailChk").css("color","red");
 		$("#emailDoubleChk").val("false");
 		$("#email2").attr("autofocus",true);

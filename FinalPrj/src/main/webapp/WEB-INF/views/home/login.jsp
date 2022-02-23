@@ -22,7 +22,7 @@
         	<p> ${ERRORMSG }</p>
         </font>
     </c:if><br>
-<input type="submit" value="로그인"><br>
+<input type="submit" value="로그인" style="width:20px;height: 10px;background: #b2e1cc73;border: 1px solid #d8e3d5;"><br>
 </form:form>
 <a href="${pageContext.request.contextPath }/findId">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>
 </body>
