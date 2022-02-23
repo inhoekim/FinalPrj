@@ -1,7 +1,9 @@
 package com.spring.ott.controller.csh;
 
+import java.util.List;
 import java.util.Random;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -11,8 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.spring.ott.service.CommentsService;
+import com.spring.ott.service.PostService;
 import com.spring.ott.service.UserService;
 import com.spring.ott.vo.AuthoritiesVo;
+import com.spring.ott.vo.CommentsVo;
+import com.spring.ott.vo.PostVo;
 import com.spring.ott.vo.UserVo;
 
 
@@ -20,9 +26,22 @@ import com.spring.ott.vo.UserVo;
 @Controller
 public class UserJoinController {
 	@Autowired UserService service;
+	@Autowired PostService pservice;
+	@Autowired CommentsService cservice;
+	@Autowired private ServletContext servletContext;
 	
 	@GetMapping("/join")
-	public String joinForm() {
+	public String joinForm(Model model) {
+		List<PostVo> rList=pservice.recentPost();
+		List<PostVo> bList=pservice.bestPost();
+		List<CommentsVo> cRList=cservice.recentComm();
+		List<CommentsVo> cBList=cservice.bestComm();
+		List<PostVo> rPList = pservice.recent_findParty();	
+		model.addAttribute("rPList", rPList);
+		model.addAttribute("bList", bList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("cBList", cBList);
+		model.addAttribute("cRList", cRList);
 		return "home/userJoin.tiles";
 	}
 	@PostMapping("/join")
@@ -41,11 +60,13 @@ public class UserJoinController {
 		try {
 			service.insert(uVo);
 			service.insertAuth(aVo);
-			model.addAttribute("code","success");
+			model.addAttribute("msg", "회원가입에 성공하였습니다!");
+			model.addAttribute("url", servletContext.getContextPath() + "/");
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("code","fail");
+			model.addAttribute("msg", "오류로 인해 회원가입이 실패하였습니다!");
+			model.addAttribute("url", servletContext.getContextPath() + "/");
 		}
-		return "csh/result";
+		return "home/alert";
 	}
 }
