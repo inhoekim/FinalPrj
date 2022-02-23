@@ -225,7 +225,7 @@
 	}
 	</script>
      <!-- 채팅 -->
-    
+    	
      <div class="dropdown-area">
         <ul class="notify-area">
           <sec:authorize access="isAnonymous()">
@@ -318,5 +318,6 @@
 				}
 			});
 		}
+		
 </script>
  </aside>
