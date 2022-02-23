@@ -46,11 +46,11 @@ public class UserUpdateController {
 	public String update(UserVo vo, Model model) {
 		try {
 			service.updateUser(vo);
-			model.addAttribute("msg", "회원가입에 성공하였습니다!");
+			model.addAttribute("msg", "정보수정이 완료되었습니다");
 			model.addAttribute("url", servletContext.getContextPath() + "/");
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "오류로 인해 회원가입이 실패하였습니다!");
+			model.addAttribute("msg", "오류가 발생하여 정보수정에 실패하였습니다.");
 			model.addAttribute("url", servletContext.getContextPath() + "/");
 		}
 		return "home/alert";

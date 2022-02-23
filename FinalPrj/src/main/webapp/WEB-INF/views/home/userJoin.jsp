@@ -226,7 +226,7 @@ $(function(){
 	</div>
 	
 	<div style="display: flex; width:100%; margin:15px 0;">
-		<span style="width:100px">비밀번호 확인</span><input type="password" name="pwd2" id="pwd2" onchange="check_pw()" style= "height: 25px;"><span id="check" style="font-size:0.5em;"></span>
+		<span style="width:100px">비밀번호 확인</span><input type="password" name="pwd2" id="pwd2" onchange="check_pw()" style= "height: 25px; margin-right:10px"><span id="check" style="font-size:0.5em;"></span>
 	</div>
 	<div style="display: flex; width:100%; margin:15px 0;">
 	<span style="width:100px">이름</span><input type="text" name="name" id="name" maxlength="6" style= "height: 25px;">
@@ -268,7 +268,7 @@ $(function(){
 		<div style="display: flex; width:100%; margin:15px 0;">
 				<span style="width:100px"></span>
 				<input id="email2" type="text" name="email2" placeholder="인증번호를 입력해주세요." style="width:200px; height:25px;" disabled required/>
-				<button type="button" id="emailChk2" class="doubleChk" style="width:120px;border: 1px solid #d8e3d5; background:#b2e1cc73;" onMouseOver="this.style.backgroundColor='#92daa6';" onMouseOut="this.style.backgroundColor='#b2e1cc73'">이메일인증</button>
+				<button type="button" id="emailChk2" class="doubleChk" style="width:120px;border: 1px solid #d8e3d5; background:#b2e1cc73; margin-right:10px" onMouseOver="this.style.backgroundColor='#92daa6';" onMouseOut="this.style.backgroundColor='#b2e1cc73'">이메일인증</button>
 				<div class="successEmailChk" style="font-size:0.5em; color:grey;">이메일 입력 후 버튼을 클릭해주세요.</div>
 				<input type="hidden" id="emailDoubleChk"/>
 			</div>

@@ -17,6 +17,7 @@ public interface UserMapper {
 	int insertAuth(AuthoritiesVo vo);
 	int updateUser(UserVo vo);
 	int deleteUser(String user_id);
+	int deleteChk(@Param("user_id") String user_id, @Param("pwd") String pwd);
 	int blackUser(String user_id);
 	int unBlackUser(String user_id);
 	String findId(@Param("name") String name,@Param("email") String email);

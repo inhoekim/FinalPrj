@@ -33,6 +33,9 @@
      <update id="deleteUser" parameterType="String">
      	update users set enabled=0 where user_id=#{user_id}
      </update>
+     <select id="deleteChk" parameterType="String" resultType="int">
+		select age from users where user_id=#{user_id} and pwd=#{pwd}
+	</select>
      <update id="blackUser" parameterType="String">
      	update users set black_enabled=0 where user_id=#{user_id}
      </update>

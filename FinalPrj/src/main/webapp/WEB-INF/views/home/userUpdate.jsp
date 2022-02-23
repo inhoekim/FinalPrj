@@ -158,7 +158,7 @@ function check_pw(){
 	<span style="width:100px">비밀번호</span><input type="password" name="pwd" id="pwd" onchange="check_pw()" style= "height: 25px; margin-right:10px"><div style="font-size:0.5em; color:grey;">6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </div>
 	</div>
 	<div style="display: flex; width:100%; margin:15px 0;">
-		<span style="width:100px">비밀번호 확인</span><input type="password" name="pwd2" id="pwd2" onchange="check_pw()" style= "height: 25px;"><span id="check" style="font-size:0.5em;"></span>
+		<span style="width:100px">비밀번호 확인</span><input type="password" name="pwd2" id="pwd2" onchange="check_pw()" style= "height: 25px; margin-right:10px"><span id="check" style="font-size:0.5em;"></span>
 	</div>
 	<div style="display: flex; width:100%; margin:15px 0;">
 	<span style="width:100px">이름</span>
@@ -200,7 +200,8 @@ function check_pw(){
 	<br><br>
 	<div style="text-align:center;">
 	<input type="submit" value="정보수정" style="font-size:20px;width:200px;height: 80px;background: #b2e1cc73;border: 1px solid #d8e3d5;">
-	</div>
+	</div><br>
+	<a style="color:#5d5e5e73;font-weight:600;font-size:13px;float:right;" href="${pageContext.request.contextPath }/deleteUser">회원탈퇴</a>
 </form:form>
 </div>
 </div>
