@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.ChatMapper">
+	<select id="member" parameterType="string" resultType="com.spring.ott.chat.vo.ChatMembersVo">
+		select * from chat_members where user_id=#{user_id}
+	</select>
+	
+	<!-- ★ -->
+	<select id="list" resultType="com.spring.ott.chat.vo.ChatMembersVo">
+		select * from chat_members where user_id != 'admin' order by user_id 
+	</select>
+	<!-- 방이 있는지 체크 -->
+	<select id="roomcheck" parameterType="hashmap" resultType="com.spring.ott.chat.vo.ChatRoomjoinVo">
+		select * from chat_roomjoin where crid in(select crid from chat_roomjoin where user_id=#{user_id}) and user_id=#{cbbuid}
+	</select>
+	
+	<select id="roomjoin" parameterType="hashmap" resultType="com.spring.ott.chat.vo.ChatRoomjoinVo">
+		select * from chat_members cm, chat_roomjoin cr where cm.user_id=cr.user_id and cr.crid in
+		(select crid from chat_roomjoin where user_id=#{user_id} and crid=#{crid})and cm.user_id not in #{user_id} order by crid
+	</select>
+	
+	<select id="chat_message_recently" parameterType="string" resultType="com.spring.ott.chat.vo.ChatMessageVo">
+		select rownum,msgid,msgmessage,to_char(msgtime,'YYYY-MM-DD') msgshottime,user_id,crid from chat_message where crid=#{crid} and not msgmessage is null and rownum=1 order by msgid desc
+	</select>
+	
+	<select id="count" parameterType="string" resultType="hashmap">
+		select count(*) cnt, crid from chat_members cm, chat_roomjoin cr where cm.user_id=cr.user_id and cr.crid=#{crid} group by crid order by crid
+	</select>
+	
+	<!-- 최신 대화한 방 정렬 -->
+	<select id="chat_rank" resultType="string" parameterType="string">
+		select crid from (select rank() over(PARTITION BY crid ORDER BY msgid desc) rnum, msgid, crid from chat_message 
+		where crid in(select crid from chat_message where user_id=#{user_id}))aa where aa.rnum=1 order by aa.msgid desc
+	</select>
+	
+	<!-- 안읽은 메세지 숫자 체크 -->
+	<select id="chat_msg_notread" parameterType="hashmap" resultType="int">
+		<![CDATA[
+			select count(msgmessage) from chat_message where not user_id=#{user_id} and 
+			crid=#{crid} and msgtime > 
+			(select joincontime from chat_roomjoin where 
+			user_id=#{user_id} and crid=#{crid})
+		]]>
+	</select>
+	
+	<!-- 방이 있는지 체크 
+	<select id="roomcheck" parameterType="hashmap" resultType="com.spring.ott.chat.vo.ChatRoomjoinVo">
+		select * from chat_roomjoin where crid in(select crid from chat_roomjoin where user_id=#{user_id}) and user_id=#{cbbuid}
+	</select>
+	-->
+	
+	<!-- 방이 없을경우 방생성 -->
+	<!-- 방금 생성한 시퀀스 번호 가져오기(방번호) -->
+	<insert id="chat_room_insert">
+		insert into chat_room values(seq_chat_room.nextval)
+	</insert>
+	<select id="room_seq" resultType="int">
+		select seq_chat_room.currval as crid from dual
+	</select>
+	<insert id="chat_roomjoin_insert" parameterType="hashmap">
+		insert into chat_roomjoin values(seq_chat_roomjoin.nextval,null,#{user_id},#{crid})
+	</insert>
+	<!-- 방생성시 시스템메세지 발송, 친구초대시 시스템메세지 발송 -->
+	<insert id="chat_message_system" parameterType="com.spring.ott.chat.vo.ChatMessageVo">
+		insert into chat_message values(seq_chat_message.nextval,null,sysdate,#{msgsysmsg},#{user_id},#{crid})
+	</insert>
+	
+	<!-- 채팅 메세지 기능 -->
+	<!-- 채팅 메세지 저장 -->
+	<insert id="chat_message_insert" parameterType="com.spring.ott.chat.vo.ChatMessageVo">
+		insert into chat_message values(seq_chat_message.nextval,#{msgmessage},sysdate,null,#{user_id},#{crid})
+	</insert>
+	<!-- 채팅 메세지 불러오기 -->
+	<select id="chat_message_list" parameterType="int" resultType="com.spring.ott.chat.vo.ChatMessageVo">
+		select msgid, msgmessage,to_char(msgtime,'PM FMHH:MI:SS') msgshottime, msgsysmsg, cs.user_id, crid, cm.profile_id,cm.name from chat_message cs inner join chat_members cm on cs.user_id=cm.user_id where crid=#{crid} order by msgid
+	</select>
+	
+	<!--  
+	<delete id="delete" parameterType="hashmap">
+		delete from chat_buddy where cbbuid=#{cbbuid} and user_id=#{user_id}
+	</delete>
+	-->
+	
+	<!-- 방 아예 나가는 경우 기능 -->
+	<!-- 방나갈경우 채팅방메세지 테이블 id Unknown으로 변경 -->
+	<update id="chat_exit" parameterType="hashmap">
+		update chat_message set user_id='unknown' where user_id=#{user_id} and crid=#{crid}
+	</update>
+	<!-- 방나갈경우 채팅방연결 테이블 id Unknown으로 변경  -->
+	<update id="chat_exit_join" parameterType="hashmap">
+		update chat_roomjoin set user_id='unknown' where user_id=#{user_id} and crid=#{crid}
+	</update>
+	
+	<!-- 채팅방 종료시 마지막접속시간 업데이트 -->
+	<update id="chat_close" parameterType="hashmap">
+		update chat_roomjoin set joincontime=sysdate where user_id=#{user_id} and crid=#{crid}
+	</update>
+</mapper>

@@ -216,6 +216,15 @@
 
          </div>
      </div>
+     
+     <!-- 채팅 -->
+     <input type="button" value="채팅" onclick="openchat()">
+	<script>
+	function openchat(){
+	    var popup = window.open('${pageContext.request.contextPath }/chat_main', '채팅팝업', 'width=400px,height=700px,scrollbars=no,location=no');
+	}
+	</script>
+     <!-- 채팅 -->
     
      <div class="dropdown-area">
         <ul class="notify-area">
