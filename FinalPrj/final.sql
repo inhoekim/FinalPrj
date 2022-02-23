@@ -370,13 +370,6 @@ insert into profileimg values(9,'9','9');
 insert into profileimg values(10,'10','10');
 insert into profileimg values(11,'11','11');
 insert into profileimg values(12,'12','12');
-insert into profileimg values(4,'4','4');
-
-insert into users values('test1','1234','name1','123456789',1,'서울','test1@mail.com',sysdate,9,'1','1');
-insert into users values('test2','1234','name2','223456789',2,'부산','test2@mail.com',sysdate,10,'1','1');
-insert into users values('test3','1234','name3','323456789',3,'제주','test3@mail.com',sysdate,11,'1','1');
-insert into users values('admin','1234','admin','023456789',29,'한국','admin@mail.com',sysdate,12,'1','1');
-insert into users values('test','!12341234','장민수','940213-1234567',29,'서울','jms213@naver.com',sysdate,4,'1','1');
 
 insert into chat_members values(1, 'test1', 'name1', 1, 9, '1');
 insert into chat_members values(2, 'test2', 'name2', 2, 10, '1');
