@@ -5,15 +5,13 @@
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 <style>
 		.dropdown-area {
-		  display: flex;
-		  flex-direction: column;
-		  position: fixed;
-		  top:82%;
-		  right:5%;
-		  z-index: 9;
 		}
 		
 		.notify-button {
+		  position: fixed;
+		  top:90%;
+		  right: 5%;
+		  z-index: 10;
 		  background-color: #ffffff;
 		  width: 3.5rem;
 		  height: 3.5rem;
@@ -22,12 +20,8 @@
 		  align-items: center;
 		  justify-content: center;
 		  
-		  align-self: flex-end;
-		  
 		  cursor: pointer;
-		  
 		  transition: all 0.2s ease;
-		  
 		  box-shadow:
 		  0 1.1px 2.2px rgba(0, 0, 0, 0.014),
 		  0 2.7px 5.3px rgba(0, 0, 0, 0.02),
@@ -47,6 +41,10 @@
 		}
 		
 		.notify-area {
+		  position: absolute;
+    	  transform: translate(-60%, -80%);
+          width: 300px;
+          margin-right: 20px;
 		  background-color: #ffffff;
 		  border-radius: 0.3rem;
 		  margin-left:5px;
@@ -222,16 +220,14 @@
      <!-- 채팅 -->
     	
      <div class="dropdown-area">
-        <ul class="notify-area">
-          <sec:authorize access="isAnonymous()">
-          	<li>로그인이 필요합니다.</li>
-          </sec:authorize>
-          <sec:authorize access="isAuthenticated()">
-      		
-          </sec:authorize>
-       
-        </ul>
         <div class="notify-button">
+	          <ul class="notify-area">
+	          <sec:authorize access="isAnonymous()">
+	          	<li>로그인이 필요합니다.</li>
+	          </sec:authorize>
+	          <sec:authorize access="isAuthenticated()">
+	          </sec:authorize>
+	          </ul>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
           <div class="notify-cnt"></div>
         </div>
