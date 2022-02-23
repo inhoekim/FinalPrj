@@ -37,7 +37,7 @@
 		<input type="text" name="email" style="margin-bottom: 10px;height: 20px">	
 	</div>
 	<div> ${resultMsg} </div><br>
-	<input type="submit" value="비밀번호 찾기" style="width:100px;width: 100px;background: #b2e1cc73;border: 1px solid #d8e3d5;">
+	<input type="submit" value="비밀번호 찾기" style="width: 100px;background: #b2e1cc73;border: 1px solid #d8e3d5;">
 </div>
 </form:form>
 </div>
