@@ -3,6 +3,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +26,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
+
+
 <body style="min-height: 1000px">
 	<header id="header">
 		<tiles:insertAttribute name="logo"/>
@@ -71,6 +75,8 @@
 	    </div>
 	 </div>
     </div>
+ 
+    
 </body>
 <script>
  	$(function(){
@@ -87,4 +93,5 @@
  		}
  	});
 </script>
+
 </html>
