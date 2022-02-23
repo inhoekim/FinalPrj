@@ -46,7 +46,9 @@ public class InsertController {
 		List<PostVo> bList=service.bestPost();
 		List<CommentsVo> cRList=cService.recentComm();
 		List<CommentsVo> cBList=cService.bestComm();
+		List<PostVo> rPList = service.recent_findParty();
 		
+		m.addAttribute("rPList", rPList);
 		m.addAttribute("bList", bList);
 		m.addAttribute("rList", rList);
 		m.addAttribute("cBList", cBList);
