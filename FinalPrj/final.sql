@@ -293,3 +293,95 @@ insert into BOARD_CATEGORY values(2,'디즈니');
 insert into BOARD_CATEGORY values(3,'전체공지');
 
 commit;
+
+
+-- 채팅회원
+CREATE TABLE CHAT_MEMBERS
+(
+	-- 아이디num 시퀀스
+	user_id_num number(10) NOT NULL,
+	-- 아이디
+	user_id VARCHAR2(20) NOT NULL,
+	-- 이름
+	name VARCHAR2(20),
+	-- 나이
+	age number(5),
+	-- 프로필 사진 이미지파일 이름 (FK)
+	profile_id number(10),
+	-- 유저 상태(0:탈퇴 / 1:정상)
+	enabled char(1) DEFAULT 1 NOT NULL,
+	PRIMARY KEY (user_id_num),
+	CONSTRAINT FK_POST_USERID FOREIGN KEY(user_id) REFERENCES USERS(user_id),
+	CONSTRAINT FK_USERS_PROFILE FOREIGN KEY(profile_id) REFERENCES PROFILEIMG(profile_id)
+);
+
+-- insert into chat_members values(SEQ_CHAT_MEMBERS.nextval,'test','이름',20,1,'0');
+
+
+-- 채팅메세지
+CREATE TABLE CHAT_MESSAGE
+(
+	-- 메세지아이디 시퀀스
+	MSGID NUMBER(10) NOT NULL,
+	-- 메세지내용
+	MSGMESSAGE VARCHAR2(1000),
+	-- 메세지시간
+	MSGTIME DATE,
+    	-- 시스템메세지
+   	MSGSYSMSG VARCHAR2(1000),
+	-- 아이디
+	user_id VARCHAR2(100) NOT NULL,
+	-- 채팅방아이디
+	CRID NUMBER(4) NOT NULL,
+	PRIMARY KEY (MSGID)
+);
+
+
+-- 채팅방
+CREATE TABLE CHAT_ROOM
+(
+	-- 채팅방아이디 시퀀스
+	CRID NUMBER(10) NOT NULL,
+	PRIMARY KEY (CRID)
+);
+
+
+-- 채팅방연결
+CREATE TABLE CHAT_ROOMJOIN
+(
+	-- 연결아이디 시퀀스
+	JOINID NUMBER(10) NOT NULL,
+	-- 마지막접속시간
+	JOINCONTIME DATE,
+	-- 아이디
+	user_id VARCHAR2(100) NOT NULL,
+	-- 채팅방아이디
+	CRID NUMBER(4) NOT NULL,
+	PRIMARY KEY (JOINID)
+);
+
+CREATE SEQUENCE SEQ_CHAT_MEMBERS ;
+CREATE SEQUENCE SEQ_CHAT_MESSAGE ;
+CREATE SEQUENCE SEQ_CHAT_ROOMJOIN ;
+CREATE SEQUENCE SEQ_CHAT_ROOM ;
+
+-- 채팅초기데이터
+insert into profileimg values(9,'9','9');
+insert into profileimg values(10,'10','10');
+insert into profileimg values(11,'11','11');
+insert into profileimg values(12,'12','12');
+insert into profileimg values(4,'4','4');
+
+insert into users values('test1','1234','name1','123456789',1,'서울','test1@mail.com',sysdate,9,'1','1');
+insert into users values('test2','1234','name2','223456789',2,'부산','test2@mail.com',sysdate,10,'1','1');
+insert into users values('test3','1234','name3','323456789',3,'제주','test3@mail.com',sysdate,11,'1','1');
+insert into users values('admin','1234','admin','023456789',29,'한국','admin@mail.com',sysdate,12,'1','1');
+insert into users values('test','!12341234','장민수','940213-1234567',29,'서울','jms213@naver.com',sysdate,4,'1','1');
+
+insert into chat_members values(1, 'test1', 'name1', 1, 9, '1');
+insert into chat_members values(2, 'test2', 'name2', 2, 10, '1');
+insert into chat_members values(3, 'test3', 'name3', 3, 11, '1');
+insert into chat_members values(4, 'admin', 'admin', 29, 12, '1');
+insert into chat_members values(5, 'test', '장민수', 29, 4, '1');
+
+commit;
