@@ -1,15 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="content">
     <div class="matching_container">
         <div class="box statistics_box">
             <h3 class="box_title">최근 일주일 매칭 현황</h3>
             <div class="numboxs">
-                <div class="numbox box1">1</div>
-                <div class="numbox box2">2</div>
-                <div class="numbox box3">3</div>
-                <div class="numbox box4">4</div>
+	            	 <div class="numbox">
+	            	 	<div class="box_wrapper box1">
+		            	 	<c:forEach begin="0" end="1">
+		            	 	<c:forEach var="i" begin="0" end="9">
+		            	 		<div class="box1">${i}</div>
+		            	 	</c:forEach>
+		            	 	</c:forEach>
+	            	 	</div>
+	            	 </div>
+	            	
+	            	 <div class="numbox">
+	            	 	<div class="box_wrapper box2">
+		            	 	<c:forEach begin="0" end="1">
+		            	 	<c:forEach var="i" begin="0" end="9">
+		            	 		<div class="box2">${i}</div>
+		            	 	</c:forEach>
+		            	 	</c:forEach>
+	            	 	</div>
+	            	 </div> 
+	            	 
+	            	 <div class="numbox">
+	            	 	<div class="box_wrapper box3">
+		            	 	<c:forEach begin="0" end="1">
+		            	 	<c:forEach var="i" begin="0" end="9">
+		            	 		<div class="box3">${i}</div>
+		            	 	</c:forEach>
+		            	 	</c:forEach>
+	            	 	</div>
+	            	 </div>
+	            	 
+	            	 <div class="numbox">
+	            	 	<div class="box_wrapper box4">
+			            	 <c:forEach	 begin="0" end="1">
+			            	 	<c:forEach var="i" begin="0" end="9" step="1">
+			            	 		<div class="box4">${i}</div>
+			            	 	</c:forEach>
+			            	</c:forEach> 	
+		            	</div>
+	            	</div>           	             	            	                
                 <span>명</span>
             </div>
         </div>
@@ -154,6 +190,44 @@
 		if("${msg}" != ""){
 			alert("${msg}");
 		}
+		// 일주일 매칭 애니메이션 만들기
+		let weekMatchingNum = 4 * ${weekNum};
+		let weekMatchingNum_str = ("000" + String(weekMatchingNum)).slice(-4);
+		let num1 = parseInt(weekMatchingNum_str.charAt(0));
+		let num2 = parseInt(weekMatchingNum_str.charAt(1));
+		let num3 = parseInt(weekMatchingNum_str.charAt(2));
+		let num4 = parseInt(weekMatchingNum_str.charAt(3));
+		
+		for(let i = 9; i >= num1; i--) {
+			$(".box_wrapper.box1").prepend("<div class='box1'>"+ i +"</div>");
+		}
+		
+		for(let i = 9; i >= num2; i--) {
+			$(".box_wrapper.box2").prepend("<div class='box2'>"+ i +"</div>");
+		}
+		
+		for(let i = 9; i >= num3; i--) {
+			$(".box_wrapper.box3").prepend("<div class='box3'>"+ i +"</div>");
+		}
+		
+		for(let i = 9; i >= num4; i--) {
+			$(".box_wrapper.box4").prepend("<div class='box4'>"+ i +"</div>");
+		}
+		$(".box_wrapper.box1").css("top", ((num1-9)*20)-400 + "px");
+		$(".box_wrapper.box2").css("top", ((num2-9)*20)-400 + "px");
+		$(".box_wrapper.box3").css("top", ((num3-9)*20)-400 + "px");
+		$(".box_wrapper.box4").css("top", ((num4-9)*20)-400 + "px");
+		
+		$(".box_wrapper.box1").animate({top: 0}, 2500);
+		setTimeout(function(){
+			$(".box_wrapper.box2").animate({top: 0}, 2500);
+		},80);
+		setTimeout(function(){
+			$(".box_wrapper.box3").animate({top: 0}, 2500);
+		},160);
+		setTimeout(function(){
+			$(".box_wrapper.box4").animate({top: 0}, 2500);
+		},240);			
 	});
 </script>
 

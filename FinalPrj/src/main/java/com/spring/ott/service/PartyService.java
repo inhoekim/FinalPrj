@@ -44,4 +44,8 @@ public class PartyService {
 	public int checkPaymentState() {
 		return mapper.checkPaymentState();
 	}
+	
+	public int weekMatching() {
+		return mapper.weekMatching();
+	}
 }

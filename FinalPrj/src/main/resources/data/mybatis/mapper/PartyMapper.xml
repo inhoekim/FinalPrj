@@ -40,5 +40,9 @@
 	<select id="checkPaymentState" resultType="int">
 		select count(payment_id) from matching
 	</select>
+	
+	<select id="weekMatching" resultType="int">
+		select count(*) from party where PARTY_STATE = 1 and start_day >= TO_CHAR(sysdate-7,'YYYYMMDD')
+	</select>
 
 </mapper>

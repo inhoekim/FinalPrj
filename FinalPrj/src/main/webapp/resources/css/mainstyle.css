@@ -408,6 +408,12 @@ footer {
   border: 1px solid var(--color-light-grey);
   border-radius: 3px;
   line-height: 20px;
+  overflow: hidden;
+  
+}
+
+.box_wrapper {
+	position: relative;
 }
 
 .box_title.complete {

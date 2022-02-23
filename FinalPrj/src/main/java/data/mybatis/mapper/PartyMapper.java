@@ -13,4 +13,5 @@ public interface PartyMapper {
 	int memberUpdate(HashMap<String,Object> map);
 	int stateUpdate(HashMap<String,Object> map);
 	int checkPaymentState();
+	int weekMatching();
 }
