@@ -4,7 +4,22 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 <style>
-		.dropdown-area {
+		.notify-cnt {
+		    background-color: #ffb6c1;
+		    border-radius: 50%;
+		    width: 20px;
+		    height: 20px;
+		    display: flex;
+		    justify-content: center;
+		    align-content: center;
+		    font-weight: 800;
+		    font-family: 'Montserrat', sans-serif;
+		    font-size: 15px;
+		    font-weight: bold;
+		    color: #ff0000;
+		    position: absolute;
+		    top: -0.1rem;
+		    right: -0.3rem;
 		}
 		
 		.notify-button {
