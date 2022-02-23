@@ -15,7 +15,8 @@
 		   position: fixed;
 		  width: 3.5rem;
 		  height: 3.5rem;
-		
+			top:90%;
+			 right:5%;
 		  border-radius: 3.5rem;
 		  
 		  display: flex;
@@ -54,7 +55,8 @@
 		  margin-left:5px;
 		  display: flex;
 		  flex-direction: column;
-		  
+		  top:62%;
+			right:5%;
 		  margin-bottom: 0.5rem;
 		  
 		  box-shadow:
