@@ -15,4 +15,5 @@ public interface NotificationsMapper {
 	int delPostNoti(int post_id);
 	int deluserNoti(String user_id);
 	int delNoid(int notify_id);
+	int cnt(String user_id);
 }

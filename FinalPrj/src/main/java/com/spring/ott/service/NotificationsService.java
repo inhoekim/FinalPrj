@@ -40,4 +40,7 @@ public class NotificationsService {
 	public int delNoid(int notify_id) {
 		return mapper.delNoid(notify_id);
 	}
+	public int cnt(String user_id) {
+		return mapper.cnt(user_id);
+	}
 }

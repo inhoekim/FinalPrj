@@ -43,5 +43,11 @@ public class NotificationController {
 	public void delnoti(int notify_id) {
 		nservice.delNoid(notify_id);
 	}
+	@RequestMapping(value ="/noti/count",method = RequestMethod.GET)
+	@ResponseBody
+	public int count(Principal prin) {
+		String user_id=prin.getName();
+		return nservice.cnt(user_id);
+	}
 	
 }
