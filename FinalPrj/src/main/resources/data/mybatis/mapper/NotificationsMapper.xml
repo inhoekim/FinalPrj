@@ -32,6 +32,6 @@
 		delete from notifications where notify_id=#{notify_id}
 	</delete>
 	<select id="cnt" resultType="int" parameterType="string">
-		select NVL(count(user_id),0)cnt from notifications where user_id=#{user_id} GROUP BY user_id;
+		select NVL(count(user_id),0)cnt from notifications where user_id=#{user_id}
 	</select>
 </mapper>
