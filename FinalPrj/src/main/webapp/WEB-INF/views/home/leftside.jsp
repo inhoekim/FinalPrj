@@ -57,7 +57,7 @@
 		
 		.notify-area {
 		  position: absolute;
-    	  transform: translate(-60%, -80%);
+    	  transform: translate(-60%, -50%);
           width: 300px;
           margin-right: 20px;
 		  background-color: #ffffff;
@@ -104,7 +104,7 @@
 		    position: relative;
 		    border: none;
 		    display: inline-block;
-		    padding: 15px 30px;
+		    padding: 3px 10px;
 		    border-radius: 15px;
 		    font-family: "paybooc-Light", sans-serif;
 		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -112,6 +112,7 @@
 		    font-weight: 600;
 		    text-align:center;
 		    transition: 0.25s;
+		    font-size: 12px;
 		}
 		
 		
@@ -244,107 +245,111 @@
 	          </sec:authorize>
 	          </ul>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          
+          <sec:authorize access="isAuthenticated()">
           <div class="notify-cnt"></div>
+          </sec:authorize>   
         </div>
       </div>
-      <script type="text/javascript">
-    	let notifyButton = document.querySelector(".notify-button");
-		let notifyArea = document.querySelector(".notify-area");
-		
-		const ShowDropdown = () => {
-		  notifyButton.classList.add("#active");
-		  notifyArea.style.visibility = "visible";
-		  list();
-		}
-		function list(){
-			$(".notify-area").empty();
-			
-			 $.ajax({
-					url:"${cp}/notiShow",
-					dataType:'json',
-					success:function(data){
-						console.log(data);
-						if(data.list=='login'){
-							$(".notify-area").html("<li>로그인이 필요합니다.</li>");
-							return;
-						}
-						if(data.list=='good'){
-							$(".notify-area").html("<li>알림이 없습니다.</li>");
-						}else{
-						$(".notify-area").append("<li><button class='w-btn w-btn-indigo' onclick='delAll();'>전체삭제</button></li>");
-						$(data.list).each(function(i,d){
-							let notify_id=d.notify_id;
-							let sender_id=d.sender_id;
-							let notify_type=d.notify_type;
-							let type="";
-							if(notify_type==1){
-								type=" 회원님 글에 댓글을 작성했습니다."
-							}
-							if(notify_type==2){
-								type=" 회원님 댓글에 댓글을 작성했습니다."
-							}
-							if(notify_type==3){
-								type=" 회원 글 및 댓글에 좋아요를 눌렀습니다."
-							}
-							let html="<li>"+sender_id+"님이"+type+" <button class='w-btn w-btn-indigo' onclick='removeNoti("+ notify_id +")' >삭제</button><li>"
-							$(".notify-area").append(html);
-							
-							});
-							
-						}
-						
-					}
-			  });
-		}
-		const HideDropdown = () => {
-		  notifyButton.classList.remove("#active");
-		  notifyArea.style.visibility = "hidden";
-		 
-		}
-		
-		function ToggleNotifyDropdown (event) {
-		  var isInside = notifyButton.contains(event.target) || notifyArea.contains(event.target);
-		  
-		  return isInside ? ShowDropdown() : HideDropdown();
-		}
-		
-		document.addEventListener("click", ToggleNotifyDropdown);
-		
-		function removeNoti(notify_id){
-			console.log(notify_id);
-			$.ajax({
-				url:'${cp}/noti/delnoti',
-				data:{
-					"notify_id":notify_id
-				},
-				success:function(data){
-					list();
-					notiCnt();
+</aside>      
+      
+<script type="text/javascript">
+let notifyButton = document.querySelector(".notify-button");
+let notifyArea = document.querySelector(".notify-area");
+
+const ShowDropdown = () => {
+  notifyButton.classList.add("#active");
+  notifyArea.style.visibility = "visible";
+  list();
+}
+function list(){
+	$(".notify-area").empty();
+	
+	 $.ajax({
+			url:"${cp}/notiShow",
+			dataType:'json',
+			success:function(data){
+				console.log(data);
+				if(data.list=='login'){
+					$(".notify-area").html("<li>로그인이 필요합니다.</li>");
+					return;
 				}
-			});
-		}
-		function delAll(){
-			$.ajax({
-				url:'${cp}/notiDel',
-				success:function(data){
-					list();
-					notiCnt();
-				}
-			});
-		}
-		function notiCnt(){
-			$(".notify-cnt").empty();
-			$.ajax({
-				url:'${cp}/noti/count',
-				dataType:'json',
-				success:function(data){
-						$(".notify-cnt").html(data.noticount);
+				if(data.list=='good'){
+					$(".notify-area").html("<li>알림이 없습니다.</li>");
+				}else{
+				$(".notify-area").append("<li style='text-align: center'><button class='w-btn w-btn-indigo' onclick='delAll();'>전체삭제</button></li>");
+				$(data.list).each(function(i,d){
+					let notify_id=d.notify_id;
+					let sender_id=d.sender_id;
+					let notify_type=d.notify_type;
+					let type="";
+					if(notify_type==1){
+						type=" 회원님 글에 댓글을 작성했습니다."
 					}
-				});
+					if(notify_type==2){
+						type=" 회원님 댓글에 댓글을 작성했습니다."
+					}
+					if(notify_type==3){
+						type=" 회원 글 및 댓글에 좋아요를 눌렀습니다."
+					}
+					let html="<li>"+sender_id+"님이"+type+" <button class='w-btn w-btn-indigo' onclick='removeNoti("+ notify_id +")' >삭제</button><li>"
+					$(".notify-area").append(html);
+					
+					});
+					
+				}
+				
 			}
-		$(document).ready(function(){
+	  });
+}
+const HideDropdown = () => {
+  notifyButton.classList.remove("#active");
+  notifyArea.style.visibility = "hidden";
+ 
+}
+
+function ToggleNotifyDropdown (event) {
+  var isInside = notifyButton.contains(event.target) || notifyArea.contains(event.target);
+  
+  return isInside ? ShowDropdown() : HideDropdown();
+}
+
+document.addEventListener("click", ToggleNotifyDropdown);
+
+function removeNoti(notify_id){
+	console.log(notify_id);
+	$.ajax({
+		url:'${cp}/noti/delnoti',
+		data:{
+			"notify_id":notify_id
+		},
+		success:function(data){
+			list();
 			notiCnt();
+		}
+	});
+}
+function delAll(){
+	$.ajax({
+		url:'${cp}/notiDel',
+		success:function(data){
+			list();
+			notiCnt();
+		}
+	});
+}
+function notiCnt(){
+	$(".notify-cnt").empty();
+	$.ajax({
+		url:'${cp}/noti/count',
+		dataType:'json',
+		success:function(data){
+				$(".notify-cnt").html(data.noticount);
+			}
 		});
-		
+	}
+$(document).ready(function(){
+	notiCnt();
+});
+
 </script>
- </aside>
