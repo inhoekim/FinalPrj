@@ -148,8 +148,10 @@ $(function(){
 			success:function(data){
 				if(data.using==true){
 					$("#idcheck").html("사용 중인 아이디입니다.");
+					$("#idcheck").css("color","red");
 				}else{
 					$("#idcheck").html("사용 가능한 아이디입니다.");
+					$("#idcheck").css("color","blue");
 				}
 			}
 		})
@@ -161,10 +163,11 @@ $(function(){
 </head>
 <body>
 
-
+<!-- 
 <div class = "joinBox">
 	<form:form method="post" action="${pageContext.request.contextPath }/join" name="uj" onsubmit="return check();">
-		<div>아이디<input type = "text" name="user_id" id="user_id" maxlength="13"></div><br>
+		<div style="display: flex; justify-content: space-between;margin: 10px 0;width:230px;">
+		아이디<input type = "text" name="user_id" id="user_id" maxlength="13"  style="margin-bottom: 10px;height: 20px"></div>
 		<div>비밀번호<input type = "password" name="pwd" id="pwd" onchange="check_pw()"></div><br>
 		<div>비밀번호확인<input type = "password" name="pwd2" id="pwd2" onchange="check_pw()"></div><br>
 		<div>이름<input type = "text" name="name" id="name" maxlength="6"></div><br>
@@ -210,30 +213,32 @@ $(function(){
 		<input type="submit" value="가입">
 	</form:form>
 </div>
-<!-- 
+-->
+<div style="display: flex; flex-direction: column; justify-content: center;height: 100%">
 <div class="joinBox">
 <form:form method="post" action="${pageContext.request.contextPath }/join" name="uj" onsubmit="return check();">
-	<span style="float: left; height: 40px; width:230px;">
-	아이디
-		<input type="text" name="user_id" id="user_id" maxlength="13" style= "height: 20px;">&nbsp;&nbsp;&nbsp;<span id="idcheck" style="font-size:0.5em;"></span>
-	</span>
-	<br>
-	<span style="float: left; height: 50px; width:200px;">
-		비밀번호
-		<input type="password" name="pwd" id="pwd" onchange="check_pw()">
-			<div style="font-size:0.5em; color:grey;">6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </div>
-		<br>
-	</span>
-	<br>
-	<div style="float: left; width:230px;">
-		비밀번호 확인<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">아이디</span><input type="text" name="user_id" id="user_id" maxlength="13" style= "height: 25px; margin-right:10px;"><div id="idcheck" style="font-size:0.5em;"></div>
 	</div>
-	<div style="float: left; width:230px;">
-		이름<input type="text" name="name" id="name" maxlength="6"><br>
+	
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">비밀번호</span><input type="password" name="pwd" id="pwd" onchange="check_pw()" style= "height: 25px; margin-right:10px"><div style="font-size:0.5em; color:grey;">6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </div>
 	</div>
-	주민번호<input type="text" name="jnum1" id="jnum1" maxlength="6"> - <input type="password" name="jnum2" id="jnum2" maxlength="7"><br>
-	나이<input type="text" name="age" id="age" maxlength="2"><br>
-	지역 <br>
+	
+	<div style="display: flex; width:100%; margin:15px 0;">
+		<span style="width:100px">비밀번호 확인</span><input type="password" name="pwd2" id="pwd2" onchange="check_pw()" style= "height: 25px;"><span id="check" style="font-size:0.5em;"></span>
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">이름</span><input type="text" name="name" id="name" maxlength="6" style= "height: 25px;">
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">주민번호</span><input type="text" name="jnum1" id="jnum1" maxlength="6" style= "height: 25px;"> - <input type="password" name="jnum2" id="jnum2" maxlength="7" style= "height: 25px;">
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">나이</span><input type="text" name="age" id="age" maxlength="2" style= "height: 25px;">
+	</div>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">지역</span>
 	<select name="area" id="area">
 		<option value="서울">서울</option>
 		<option value="인천광역시">인천광역시</option>
@@ -253,27 +258,29 @@ $(function(){
 		<option value="제주">제주</option>
 		<option value="해외">해외</option>
 	</select>
-	<br>
-	<tr>
-		<th>
-			이메일
-		</th>
-		<td>
-			<p>
-				<input id="email" type="text" name="email" placeholder="이메일 주소를 입력해주세요." required/>
-				<button type="button" id="emailChk" class="doubleChk">인증번호 보내기</button><br/>
-				<input id="email2" type="text" name="email2" placeholder="인증번호 입력" disabled required/>
-				<button type="button" id="emailChk2" class="doubleChk">이메일인증</button>
-				<span class="successEmailChk" style="font-size:0.5em;">이메일 입력후 인증번호 보내기를 해주십시오.</span>
+	</div>
+		
+		<div style="display: flex; width:100%; margin:15px 0;">
+				<span style="width:100px">이메일</span>		
+				<input id="email" type="text" name="email" placeholder="이메일 주소를 입력해주세요." style="width:200px; height:25px;" required/>
+				<button type="button" id="emailChk" class="doubleChk" style="width:120px;border: 1px solid #d8e3d5; background:#b2e1cc73;"  onMouseOver="this.style.backgroundColor='#92daa6';" onMouseOut="this.style.backgroundColor='#b2e1cc73'">인증번호 보내기</button><br/>
+		</div>
+		<div style="display: flex; width:100%; margin:15px 0;">
+				<span style="width:100px"></span>
+				<input id="email2" type="text" name="email2" placeholder="인증번호를 입력해주세요." style="width:200px; height:25px;" disabled required/>
+				<button type="button" id="emailChk2" class="doubleChk" style="width:120px;border: 1px solid #d8e3d5; background:#b2e1cc73;" onMouseOver="this.style.backgroundColor='#92daa6';" onMouseOut="this.style.backgroundColor='#b2e1cc73'">이메일인증</button>
+				<div style="font-size:0.5em; color:grey;">이메일 입력 후 버튼을 클릭해주세요.</div>
 				<input type="hidden" id="emailDoubleChk"/>
-			</p>
-		</td>
-	</tr>
-	<input type="submit" value="가입">
+			</div>
+	<br><br>
+	<div style="text-align:center;">
+	<input type="submit" value="회원가입" style="font-size:20px;width:200px;height: 80px;background: #b2e1cc73;border: 1px solid #d8e3d5;">
+	</div>
 </form:form>
 </div>
+</div>
 </body>
--->
+
 <script type="text/javascript">
 
 var code = "";

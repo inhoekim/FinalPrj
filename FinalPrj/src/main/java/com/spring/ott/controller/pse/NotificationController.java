@@ -20,9 +20,14 @@ public class NotificationController {
 	@RequestMapping(value ="/notiShow",method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> notiShow(Principal prin) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		if(prin==null) {
+			
+			map.put("list", "login");
+			return map;
+		}
 		String user_id=prin.getName();
 		System.out.println(user_id);
-		HashMap<String, Object> map=new HashMap<String, Object>();
 		List<NotificationsVo> list=nservice.selectAll(user_id);
 		if(list.size()==0) {
 			map.put("list", "good");
@@ -45,9 +50,19 @@ public class NotificationController {
 	}
 	@RequestMapping(value ="/noti/count",method = RequestMethod.GET)
 	@ResponseBody
-	public int count(Principal prin) {
+	public HashMap<String, Object> count(Principal prin) {
+		HashMap<String, Object> map =new HashMap<String, Object>();
+		if(prin==null) {
+			System.out.println("눌임");
+			map.put("noticount", 0);
+			return map;
+		}else {
 		String user_id=prin.getName();
-		return nservice.cnt(user_id);
+		
+		int n=nservice.cnt(user_id);
+		map.put("noticount", n);
+		return map;
+		}
 	}
 	
 }

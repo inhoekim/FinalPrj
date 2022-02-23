@@ -73,6 +73,11 @@ function check(){
 		document.uj.name.focus();
 		return false;
 	}
+	if(document.uj.name.value.length<2 || document.uj.name.value.length > 6){ 
+		alert("이름은 2~6글자 사이로 입력해주세요")
+		document.uj.name.focus();
+		return false;
+	}
 	if(document.uj.jnum1.value == "" || document.uj.jnum1.value.length < 0){ 
 		alert("주민번호 앞자리를 입력해주세요")
 		document.uj.jnum1.focus();
@@ -143,16 +148,18 @@ function check_pw(){
 <c:set var="jnum" value="${vo.jnum }"/>
 <c:set var="jnumArray" value="${fn:split(jnum,'-') }"/>
 
-
+<div style="display: flex; flex-direction: column; justify-content: center;height: 100%">
+<div class="joinBox">
 <form:form method="post" action="${pageContext.request.contextPath }/updateUser" name="uj" onsubmit="return check();">
-	아이디 <br>
-	<input type="text" name="user_id" id="user_id" maxlength="13" value="${vo.user_id }" readonly="readonly"><br>
+	<div style="display: flex; width:100%; margin:15px 0;">
+	<span style="width:100px">아이디</span><input type="text" name="user_id" id="user_id" maxlength="13" style= "height: 25px; margin-right:10px;" value="${vo.user_id }" readonly="readonly">
+	</div>
 	비밀번호 <br>
 	<input type="password" name="pwd" id="pwd" onchange="check_pw()"><span style="font-size:0.5em; color:grey;">&nbsp;&nbsp;&nbsp; 6글자 이상, 16글자 이하 & 특수문자(!,@,#,$,%)를 포함해주세요 </span><br>
 	비밀번호 확인<br>
 	<input type="password" name="pwd2" id="pwd2" onchange="check_pw()">&nbsp;&nbsp;<span id="check" style="font-size:0.5em;"></span><br>
 	이름 <br>
-	<input type="text" name="name" id="name" minlength="2" maxlength="6" value="${vo.name }"><br>
+	<input type="text" name="name" id="name" maxlength="6" value="${vo.name }"><br>
 	주민번호 <br>
 	<input type="text" name="jnum1" id="jnum1" maxlength="6" value="${jnumArray[0] }" readonly="readonly"> - <input type="password" name="jnum2" id="jnum2" maxlength="7" value="${jnumArray[1] }" readonly="readonly"><br>
 	나이 <br>
@@ -182,5 +189,7 @@ function check_pw(){
 	<input type="text" name="email" value="${vo.email }" readonly="readonly"><br>
 	<input type="submit" value="가입">
 </form:form>
+</div>
+</div>
 </body>
 </html>

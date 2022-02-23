@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 <style>
 		.dropdown-area {
@@ -220,7 +221,7 @@
 	}
 	</script>
      <!-- 채팅 -->
-    
+    	
      <div class="dropdown-area">
         <ul class="notify-area">
           <sec:authorize access="isAnonymous()">
@@ -233,7 +234,7 @@
         </ul>
         <div class="notify-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-          <div class="notify-cnt">3</div>
+          <div class="notify-cnt"></div>
         </div>
       </div>
       <script type="text/javascript">
@@ -252,6 +253,11 @@
 					url:"${cp}/notiShow",
 					dataType:'json',
 					success:function(data){
+						console.log(data);
+						if(data.list=='login'){
+							$(".notify-area").html("<li>로그인이 필요합니다.</li>");
+							return;
+						}
 						if(data.list=='good'){
 							$(".notify-area").html("<li>알림이 없습니다.</li>");
 						}else{
@@ -303,6 +309,7 @@
 				},
 				success:function(data){
 					list();
+					notiCnt();
 				}
 			});
 		}
@@ -311,8 +318,23 @@
 				url:'${cp}/notiDel',
 				success:function(data){
 					list();
+					notiCnt();
 				}
 			});
 		}
+		function notiCnt(){
+			$(".notify-cnt").empty();
+			$.ajax({
+				url:'${cp}/noti/count',
+				dataType:'json',
+				success:function(data){
+						$(".notify-cnt").html(data.noticount);
+					}
+				});
+			}
+		$(document).ready(function(){
+			notiCnt();
+		});
+		
 </script>
  </aside>

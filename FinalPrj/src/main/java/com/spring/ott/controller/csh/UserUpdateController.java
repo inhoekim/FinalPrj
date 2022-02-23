@@ -19,7 +19,7 @@ public class UserUpdateController {
 	public String updateForm(Principal principal,Model model) {
 		UserVo vo=service.selectUser(principal.getName());
 		model.addAttribute("vo",vo);
-		return "csh/userUpdate";
+		return "home/userUpdate.tiles";
 	}
 	
 	@PostMapping("/updateUser")
