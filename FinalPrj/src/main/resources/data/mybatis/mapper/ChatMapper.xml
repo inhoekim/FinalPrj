@@ -4,12 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.ChatMapper">
 	<select id="member" parameterType="string" resultType="com.spring.ott.chat.vo.ChatMembersVo">
-		select * from chat_members where user_id=#{user_id}
+		select * from users u join profileimg p
+		on u.profile_id = p.profile_id
+		where user_id = #{user_id}
 	</select>
 	
 	<!-- ★ -->
 	<select id="list" resultType="com.spring.ott.chat.vo.ChatMembersVo">
-		select * from chat_members where user_id != 'admin' order by user_id 
+		select * from users u join profileimg p
+		on u.profile_id = p.profile_id
+		where user_id != 'admin' order by user_id
 	</select>
 	<!-- 방이 있는지 체크 -->
 	<select id="roomcheck" parameterType="hashmap" resultType="com.spring.ott.chat.vo.ChatRoomjoinVo">
@@ -17,7 +21,7 @@
 	</select>
 	
 	<select id="roomjoin" parameterType="hashmap" resultType="com.spring.ott.chat.vo.ChatRoomjoinVo">
-		select * from chat_members cm, chat_roomjoin cr where cm.user_id=cr.user_id and cr.crid in
+		select * from users cm, chat_roomjoin cr where cm.user_id=cr.user_id and cr.crid in
 		(select crid from chat_roomjoin where user_id=#{user_id} and crid=#{crid})and cm.user_id not in #{user_id} order by crid
 	</select>
 	
@@ -26,7 +30,7 @@
 	</select>
 	
 	<select id="count" parameterType="string" resultType="hashmap">
-		select count(*) cnt, crid from chat_members cm, chat_roomjoin cr where cm.user_id=cr.user_id and cr.crid=#{crid} group by crid order by crid
+		select count(*) cnt, crid from users cm, chat_roomjoin cr where cm.user_id=cr.user_id and cr.crid=#{crid} group by crid order by crid
 	</select>
 	
 	<!-- 최신 대화한 방 정렬 -->
@@ -74,7 +78,14 @@
 	</insert>
 	<!-- 채팅 메세지 불러오기 -->
 	<select id="chat_message_list" parameterType="int" resultType="com.spring.ott.chat.vo.ChatMessageVo">
-		select msgid, msgmessage,to_char(msgtime,'PM FMHH:MI:SS') msgshottime, msgsysmsg, cs.user_id, crid, cm.profile_id,cm.name from chat_message cs inner join chat_members cm on cs.user_id=cm.user_id where crid=#{crid} order by msgid
+		select aa.*,p.org_name from (
+		select msgid, msgmessage,to_char(msgtime,'PM FMHH:MI:SS') msgshottime, msgsysmsg, cs.user_id, crid, cm.profile_id,cm.name 
+		from chat_message cs inner join users cm 
+		on cs.user_id=cm.user_id 
+		where crid=#{crid} 
+		order by msgid
+		) aa join profileimg p
+		on aa.profile_id = p.profile_id
 	</select>
 	
 	<!--  

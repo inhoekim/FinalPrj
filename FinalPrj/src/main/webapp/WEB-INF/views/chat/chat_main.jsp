@@ -180,7 +180,7 @@
 			<img src="${pageContext.request.contextPath }/resources/img/1.png" class="memimg">
 		</c:when>
 		<c:otherwise>
-			<img src="${pageContext.request.contextPath }/resources/img/profile/${vo.profile_id}.png" class="memimg">
+			<img src="${pageContext.request.contextPath }/resources/img/profile/${vo.org_name}" class="memimg">
  		</c:otherwise>
 	 </c:choose>
    		<div class="buddy_text">
@@ -200,7 +200,7 @@
 					<img src="${pageContext.request.contextPath }/resources/img/1.jpg" class="memimg">
 				</c:when>
 				<c:otherwise>
-					<img src="${pageContext.request.contextPath }/resources/img/profile/${vo.profile_id}.png" class="memimg">
+					<img src="${pageContext.request.contextPath }/resources/img/profile/${vo.org_name}" class="memimg">
  				</c:otherwise>
 			 </c:choose>
    			<div class="buddy_text">
@@ -407,11 +407,32 @@
 							htmlname+=","+d.name;
 						}
 						//이미지 속성넣기
-						if(d.profile_id==null){
+						if(d.profile_id==1){
 							//대체 이미지
-							d.profile_id="noimage2.jpg";
+							d.profile_id="man1-64.png";
+						} else if(d.profile_id==2){
+							//대체 이미지
+							d.profile_id="man2-64.png";
+						} else if(d.profile_id==3){
+							//대체 이미지
+							d.profile_id="man3-64.png";
+						} else if(d.profile_id==4){
+							//대체 이미지
+							d.profile_id="man4-64.png";
+						} else if(d.profile_id==5){
+							//대체 이미지
+							d.profile_id="woman1-64.png";
+						} else if(d.profile_id==6){
+							//대체 이미지
+							d.profile_id="woman2-64.png";
+						} else if(d.profile_id==7){
+							//대체 이미지
+							d.profile_id="woman3-64.png";
+						} else if(d.profile_id==8){
+							//대체 이미지
+							d.profile_id="woman4-64.png";
 						}
-						$(".profile_"+crid+"_"+i).attr("src","${pageContext.request.contextPath }/resources/img/profile/"+d.profile_id+".png");
+						$(".profile_"+crid+"_"+i).attr("src","${pageContext.request.contextPath }/resources/img/profile/"+d.profile_id);
 					}
 				});
 				htmlname+="</p>"
