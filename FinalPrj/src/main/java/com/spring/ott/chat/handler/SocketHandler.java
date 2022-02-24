@@ -38,7 +38,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		int n=0;
 		//채팅방 메세지 보내기(db저장)
 		if(msgmessage!=null && msgsysmsg==null ) {
-			ChatMessageVo vo=new ChatMessageVo(0, msgmessage, null, null , user_id, crid, null, null, 0);
+			ChatMessageVo vo=new ChatMessageVo(0, msgmessage, null, null , user_id, crid, null, null, 0,null);
 			n=service.chat_message_insert(vo);
 		}
 		if(n==0) {

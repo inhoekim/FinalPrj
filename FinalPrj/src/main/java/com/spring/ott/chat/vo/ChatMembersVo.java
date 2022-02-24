@@ -30,8 +30,10 @@ public class ChatMembersVo {
 	private String name;
 	// 나이
 	private int age;
-	// 프로필 사진 이미지파일 이름 (FK)
+	// 프로필 사진 이미지파일 이름 시퀀스(FK)
 	private int profile_id;
 	// 유저 상태(0:탈퇴 / 1:정상)
 	private char enabled;
+	// 원본사진이름
+	private String org_name;
 }

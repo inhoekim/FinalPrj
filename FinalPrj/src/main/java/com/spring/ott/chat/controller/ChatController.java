@@ -152,10 +152,10 @@ public class ChatController {
 			
 			//방생성시 시스템 메세지 발송
 			//본인입장
-			ChatMessageVo sysvo1=new ChatMessageVo(0, null, null, name+"님이 입장하셨습니다.", user_id, crid, null, null, 0);
+			ChatMessageVo sysvo1=new ChatMessageVo(0, null, null, name+"님이 입장하셨습니다.", user_id, crid, null, null, 0,null);
 			//친구입장
 			ChatMembersVo cmvo=service.member(cbbuid);
-			ChatMessageVo sysvo2=new ChatMessageVo(0, null, null, cmvo.getName()+"님이 입장하셨습니다.", cbbuid, crid, null, null, 0);
+			ChatMessageVo sysvo2=new ChatMessageVo(0, null, null, cmvo.getName()+"님이 입장하셨습니다.", cbbuid, crid, null, null, 0,null);
 			int sysmsg1=service.chat_message_system(sysvo1);
 			int sysmsg2=service.chat_message_system(sysvo2);
 			if(sysmsg1==0 || sysmsg2==0) {
@@ -169,12 +169,16 @@ public class ChatController {
 			mv.addObject("profile_id", profile_id);//본인 프로필 전송
 			mv.addObject("name",name);//본인 이름 전송
 			mv.addObject("crid",crid);//방번호 전송
+			ChatMembersVo vo=service.member(user_id);
+			mv.addObject("org_name", vo.getOrg_name()); // 원본파일이름
 		}else if(check==false) {
 			//기존에 있던 방 열기
 			mv.addObject("user_id",user_id);//본인아이디 전송
 			mv.addObject("profile_id", profile_id);//본인 프로필 전송
 			mv.addObject("name",name);//본인 이름 전송
 			mv.addObject("crid",crid);//방번호 전송
+			ChatMembersVo vo=service.member(user_id);
+			mv.addObject("org_name", vo.getOrg_name()); // 원본파일이름
 		}
 		return mv;
 	}
@@ -186,6 +190,8 @@ public class ChatController {
 		mv.addObject("profile_id", profile_id);//본인 프로필 전송
 		mv.addObject("name",name);//본인 이름 전송
 		mv.addObject("crid",crid);//방번호 전송
+		ChatMembersVo vo=service.member(user_id);
+		mv.addObject("org_name", vo.getOrg_name()); // 원본파일이름
 		return mv;
 	}
 	
@@ -194,6 +200,7 @@ public class ChatController {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		int crid1=Integer.parseInt(crid);
 		List<ChatMessageVo> list=service.chat_message_list(crid1);
+		System.out.println("messagelist " + list);
 		map.put("list", list);
 		return map;
 	}
@@ -201,10 +208,12 @@ public class ChatController {
 	@RequestMapping(value="/chat_exit", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> chat_exit(String crid, String user_id,String name){
 		HashMap<String, Object> map=new HashMap<String, Object>();
+		System.out.println("crid = " + crid);
 		int crid1=Integer.parseInt(crid);
+		System.out.println("crid1 = " + crid1);
 		//시스템 메세지 보내기
 		String msgsysmsg=name+"님이 나가셨습니다.";
-		ChatMessageVo msgvo=new ChatMessageVo(0, null, null,msgsysmsg, user_id, crid1, null, null, 0);
+		ChatMessageVo msgvo=new ChatMessageVo(0, null, null,msgsysmsg, user_id, crid1, null, null, 0,null);
 		int n=service.chat_message_system(msgvo);
 		//채팅메세지 테이블에서 아이디 unknown으로 변경
 		HashMap<String, Object> exitmap=new HashMap<String, Object>();

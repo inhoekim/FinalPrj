@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
 <style>
 /*header*/
 #header {
@@ -187,10 +188,10 @@
 <div id="header">
 	<c:choose>
 		<c:when test="${profile_id eq '' }">
-			<img src="${pageContext.request.contextPath }/resources/img/profile/${profile_id }.png" class="myprofile">
+			<img src="${pageContext.request.contextPath }/resources/img/chat/noimage2.png" class="myprofile">
 		</c:when>
 		<c:otherwise>
-			<img src="${pageContext.request.contextPath }/resources/img/profile/${profile_id }.png" class="myprofile">
+			<img src="${pageContext.request.contextPath }/resources/img/profile/${org_name }" class="myprofile">
  		</c:otherwise>
 	 </c:choose>
 	<p class="myname">${name }</p>
@@ -204,6 +205,7 @@
 	<input type="hidden" id="crid" value=${crid }>
 	<input type="hidden" id="profile_id" value=${profile_id }>
 	<input type="hidden" id="name" value=${name }>
+	<input type="hidden" id="org_name" value=${org_name }>
 	<!-- //////////////////////////////// -->
 </div>
 <div id="content">
@@ -223,11 +225,11 @@ var crid=$("#crid").val();
 var user_id=$("#user_id").val();
 var profile_id=$("#profile_id").val();
 var name=$("#name").val();
-
+var org_name=$("#org_name").val();
 //소켓 연결
 var ws;
 function wsOpen(){
-	ws = new WebSocket("ws://localhost:9090/ott/chatting");
+	ws = new WebSocket("ws://" + location.host + "${pageContext.request.contextPath }/chatting");
 	console.log(ws);
 	//소켓 연결후 ajax로 채팅 리스트 불러오기
 	$.ajax({
@@ -241,6 +243,7 @@ function wsOpen(){
 				let msgshottime=d.msgshottime;
 				let name=d.name;
 				let profile_id=d.profile_id;
+				let org_name=d.org_name;
 				let msgsysmsg=d.msgsysmsg;
 				if(profile_id==null){
 					//대체 이미지
@@ -256,7 +259,7 @@ function wsOpen(){
 					$("#messagearea").append(html);
 				}else if(msgmessage!=null && msgsysmsg==null){
 					let html="<div class='youmsgdiv'>"+
-					"<img src='${pageContext.request.contextPath }/resources/img/profile/"+profile_id+".png' class='youprofile'>"+
+					"<img src='${pageContext.request.contextPath }/resources/img/profile/"+org_name+"' class='youprofile'>"+
 					"<p class='youname'>"+name+"</p>"+
 					"<div class='youmsgbox'>"+
 					"<p class='youmsg'>"+msgmessage+"</p>"+
@@ -310,6 +313,8 @@ ws.onmessage = function(data) {
 			let msgmessage=d.msgmessage;
 			let name=d.name;
 			let profile_id=d.profile_id;
+			//let org_name=d.org_name;
+			console.log(org_name);
 			let msgsysmsg=d.msgsysmsg;
 			if(profile_id==""){
 				//대체 이미지
@@ -325,7 +330,7 @@ ws.onmessage = function(data) {
 				$("#contentarea").append(html);	
 			}else if(msgmessage!=null && msgsysmsg==null){
 				let html="<div class='youmsgdiv'>"+
-				"<img src='${pageContext.request.contextPath }/resources/img/profile/"+profile_id+"' class='youprofile'>"+
+				"<img src='${pageContext.request.contextPath }/resources/img/profile/"+org_name+"' class='youprofile'>"+
 				"<p class='youname'>"+name+"</p>"+
 				"<div class='youmsgbox'>"+
 				"<p class='youmsg'>"+msgmessage+"</p>"+
@@ -399,10 +404,11 @@ $("#menu2").on('click',function(){
 	var url='${pageContext.request.contextPath }/chat_add?user_id='+user_id+'&crid='+crid+'&name='+name+'&profile_id='+profile_id;
 	$("#chat_room_main").load(url);
 });
+
 //방 나가기
 $("#menu3").on('click',function(){
 	$.ajax({
-		type:'post',
+		type:'get',
 		data:{'crid':crid,"user_id":user_id,"name":name},
 		url:'${pageContext.request.contextPath }/chat_exit',
 		dataType:'json',

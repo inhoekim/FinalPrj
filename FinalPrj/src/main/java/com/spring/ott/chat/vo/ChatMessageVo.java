@@ -20,4 +20,6 @@ public class ChatMessageVo {
 	private String msgshottime;//ex.오후 1:02
 	private String name;
 	private int profile_id;
+	// 원본사진이름
+	private String org_name;
 }
