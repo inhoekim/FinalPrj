@@ -40,15 +40,15 @@
 		select ref from comments where comment_id=#{comment_id}
 	</select>
 	<select id="bestComm" resultType="com.spring.ott.vo.CommentsVo">
-		select com.user_id,com.content,com.created_day,
+		select a.* from(select com.user_id,com.content,com.created_day,
 		(select count(comment_id) from vote where vote.comment_id = com.comment_id)cvoCnt,
 		(select p.src_name from users u, profileimg p where u.profile_id = p.profile_id and com.user_id = u.user_id)profile_src		
-		 from comments com where <![CDATA[ rownum<=3 order by cvocnt desc ]]>
+		 from comments com order by cvocnt desc)a <![CDATA[ where rownum<=3]]>
 	</select>
 	<select id="recentComm" resultType="com.spring.ott.vo.CommentsVo">
-		select com.content, com.user_id,
+		 select a.* from (select com.content, com.user_id,rownum,com.created_day,
 		(select p.src_name from users u, profileimg p where u.profile_id = p.profile_id and com.user_id = u.user_id)profile_src
-		from comments com where <![CDATA[ rownum<=5 order by created_day desc]]>
+		from comments com order by created_day desc)a <![CDATA[ where rownum<=5]]>
 	</select>
 	<select id="selUserComm" resultType="com.spring.ott.vo.CommentsVo" parameterType="string">
 		select com.content,post.category_id,com.created_day from board_post post,comments com where post.post_id=com.post_id and com.user_id=#{user_id} and  <![CDATA[ rownum<=6 ]]>

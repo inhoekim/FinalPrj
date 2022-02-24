@@ -48,18 +48,18 @@
 	</select>
 	<select id="recentPost" resultType="com.spring.ott.vo.PostVo">
 		 <![CDATA[
-		 		select board.category_id,board.title,board.created_day,board.post_id,
+		 		 select a.* from(  select board.category_id,board.title,board.created_day,board.post_id,
                 (select category_name from board_category cate where cate.category_id=board.category_id)cname,
 				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
 				(select NVL(count(post_id),0) from vote vo where vo.post_id=board.post_id)vocnt
-				from board_post board where rownum<=10 order by board.created_day desc]]>
+				from board_post board  order by board.created_day desc)a where rownum<=10]]>
 	</select>
 	<select id="bestPost" resultType="com.spring.ott.vo.PostVo">
 		 <![CDATA[
-		 		select board.category_id,board.title,board.created_day,board.post_id,
+		 		 select a.* from(   select board.category_id,board.title,board.created_day,board.post_id,
 				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
 				(select NVL(count(post_id),0) from vote vo where vo.post_id=board.post_id)vocnt
-				from board_post board where rownum<=10 order by vocnt desc]]>
+				from board_post board order by vocnt desc)a where rownum<=10]]>
 	</select>
 	<delete id="delete" parameterType="int">
 		delete from board_post where post_id=#{post_id}
@@ -75,11 +75,11 @@
 	</select>
 	<select id="userPost" resultType="com.spring.ott.vo.PostVo" parameterType="String">
 		  <![CDATA[
-		 		select board.category_id,board.title,board.created_day,board.post_id,
+		 		  select a.* from(select board.category_id,board.title,board.created_day,board.post_id,
                 (select category_name from board_category cate where cate.category_id=board.category_id)cname,
 				(select NVL(count(*),0) from comments com where com.post_id=board.post_id)comcnt,
 				(select NVL(count(post_id),0) from vote vo where vo.post_id=board.post_id)vocnt
-				from board_post board where rownum<=6 and user_id=#{user_id} order by board.created_day desc]]>
+				from board_post board where user_id=#{user_id} order by board.created_day desc)a where rownum<=6]]>
 	</select>
 	<select id="userComment" resultType="com.spring.ott.vo.CommentsVo" parameterType="String">
 		select * from comments where user_id=#{user_id} and <![CDATA[ rownum<=5 ]]>
