@@ -101,10 +101,10 @@
 	</select>
 	
 	<select id="recent_findParty" resultType="com.spring.ott.vo.PostVo">
-		select * from (select b.*, (select NVL(count(b.post_id),0) from vote v where v.post_id=b.post_id)voCnt,
-		(select category_name from board_category c where c.category_id= b.category_id)cname, rownum rnum 
-		from board_post b where subcate = 2 order by created_day) a
-		where <![CDATA[ rnum >=1 and rnum <= 4]]>
+		select a.* from (select b.*, (select NVL(count(b.post_id),0) from vote v where v.post_id=b.post_id)voCnt,
+		(select category_name from board_category c where c.category_id= b.category_id)cname
+		from board_post b where subcate = 2 order by created_day desc) a
+		where rownum <![CDATA[ <=4]]>
 	</select>
 	
 	
