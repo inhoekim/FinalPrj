@@ -171,8 +171,8 @@
                     <div class="fees"></div>
                 </div>
                 <div class="total_cost">
-                    <span>총 이용료</span>
-                    <span>원</span>
+                    <span>예상 총 이용료</span>
+                    <span>5,240원</span>
                 </div>
                 <form:form method="get">
                     <input id="ott" type="hidden" name="ott_id" value="">

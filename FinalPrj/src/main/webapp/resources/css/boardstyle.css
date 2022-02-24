@@ -618,6 +618,10 @@ p {
 }
 
 .rightside_container .cotainer_title {
+	min-width: 300px;
+}
+
+.rightside_container .cotainer_title {
   border-radius: var(--size-border-radius) var(--size-border-radius) 0 0;
   background-color: var(--color-light-green);
   font-weight: var(--weight-semi-bold);

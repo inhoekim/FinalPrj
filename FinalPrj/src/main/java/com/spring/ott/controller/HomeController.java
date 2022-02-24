@@ -23,6 +23,8 @@ public class HomeController {
 		List<CommentsVo> cRList=cservice.recentComm();
 		List<CommentsVo> cBList=cservice.bestComm();
 		List<PostVo> rPList = service.recent_findParty();
+		System.out.println(cRList);
+		System.out.println(cBList);
 		m.addAttribute("bList", bList);
 		m.addAttribute("rList", rList);
 		m.addAttribute("cBList", cBList);
