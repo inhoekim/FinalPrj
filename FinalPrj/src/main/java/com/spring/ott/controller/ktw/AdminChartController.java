@@ -101,7 +101,6 @@ public class AdminChartController {
 		
 
 		String json = gson.toJson(jArray);
-		System.out.println(json.toString());
 		
 		return json;
 	}

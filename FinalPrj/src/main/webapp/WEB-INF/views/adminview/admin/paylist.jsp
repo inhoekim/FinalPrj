@@ -13,7 +13,7 @@
 
 	}
 	#myChart1{
-		width: 100%; height: 100%;
+		width: 1600px; height: 100%;
 	}
 	#dataTable{
 		margin-bottom: 100px;
@@ -75,7 +75,15 @@ $(document).ready(function(){
 				var labelList1 = new Array();
 				var labelList2 = new Array();
 				var labelList3 = new Array();
+				var labelList4 = new Array();
 				
+				let today = new Date();  
+				
+				for (var i=7; i>0; i--){
+					let day = ( today.getFullYear()+"-"+(today.getMonth()+1)+'-'+((today.getDate()+1)-i));
+					console.log(day);
+					labelList4.push(day);
+				}
 				
 				for(var i = 0; i<jData.length; i++) {
 					var d = jData[i];
@@ -99,15 +107,15 @@ $(document).ready(function(){
 				new Chart(ctx1, {
 					      type: 'line',
 						  data: {
-							  labels: ['1월','2월','3월','4월','5월','6월','7월'],
+							  labels: labelList4,
 							  datasets: [{
 							  label: '결제 총횟수',
 			                    type : 'line',         // 'line' type
 			                    fill : true,         // 채우기 없음
 			                    lineTension : 0.2,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
 			                    pointRadius : 0,    // 각 지점에 포인트 주지 않음
-			                    backgroundColor: 'rgb(255, 153, 0, 0.2)',
-			                    borderColor: 'rgb(255, 153, 0)',
+			                    backgroundColor: 'rgb( 133 , 135 , 150 , 0.3)',
+			                    borderColor: 	 'rgb( 133 , 135 , 150 , 0.8)',
 			                    data: labelList1
 						  },{
 							  label: '결제 완료',
@@ -115,8 +123,8 @@ $(document).ready(function(){
 			                    fill : true,
 			                    lineTension : 0.2,
 			                    pointRadius : 0,
-			                    backgroundColor: 'rgb(255, 204, 0, 0.2)',
-			                    borderColor: 'rgb(255, 204, 0)',
+			                    backgroundColor: 'rgb( 170 , 128 , 255 , 0.3)',
+			                    borderColor:	 'rgb( 170 , 128 , 255 , 0.8)',
 			                    data: labelList2
 						  
 					},{
@@ -125,12 +133,13 @@ $(document).ready(function(){
 		                    fill : true,
 		                    lineTension : 0.2,
 		                    pointRadius : 0,
-		                    backgroundColor: 'rgb(155, 184, 0, 0.2)',
-		                    borderColor: 'rgb(155, 184, 0)',
+		                    backgroundColor: 'rgb( 231 , 74 , 59 , 0.3)',
+		                    borderColor: 	 'rgb( 231 , 74 , 59 , 0.8)',
 		                    data: labelList3
 					  
 				}],
 						  },  options: {
+							  responsive: false,
 							    //그래프의 제목 옵션
 							    title: {
 							        display: true,
