@@ -252,7 +252,7 @@
 <script>
 
 function checkAuth(event) {
-	if ("${authority}" != null) {
+	if ("${authority}" != "false") {
 		alert("안전한 매칭 시스템을 위해서 결제취소 진행 후 탈퇴가 가능합니다!");
 		event.preventDefault();
 	}
