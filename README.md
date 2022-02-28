@@ -21,9 +21,9 @@
 
 ## :bulb: 구현기능 소개
 
-|:camera:반응형디자인 | :pencil2: |
-|--------------------|--------------|
-|  ![반응형](https://user-images.githubusercontent.com/90288195/155933503-a662a51b-c2c6-4037-bfc5-da8ae751cf2d.gif)|    
-![ezgif-2-be0c2e003e](https://user-images.githubusercontent.com/90288195/155934242-99f45fb6-b6c6-4ecd-b6a9-431b8e89fc9d.gif)
+|:camera:반응형디자인 | :clipboard: 게시판보기(분류 및 검색) |
+|--------------------|------------------|
+|  ![반응형](https://user-images.githubusercontent.com/90288195/155933503-a662a51b-c2c6-4037-bfc5-da8ae751cf2d.gif)| ![ezgif-2-be0c2e003e](https://user-images.githubusercontent.com/90288195/155934242-99f45fb6-b6c6-4ecd-b6a9-431b8e89fc9d.gif) |
+
  
 
