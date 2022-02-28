@@ -1,4 +1,4 @@
-# :door: 프로젝트 소개 (OTT Plus)
+## :door: 프로젝트 소개 (OTT Plus)
 
 <br>
 <div align=center>
@@ -18,3 +18,10 @@
 - OTT 파티를 찾고자하는 유저들을 위해 기본적인 커뮤니티 기능을 지원합니다
 
 - 자동파티매칭 기능을 지원하여 유저들간의 파티 매칭과 관리를 용이하게 해줍니다
+
+## :bulb: 구현기능 소개
+
+|:camera:반응형디자인 |  
+|--------------------|
+|  ![반응형](https://user-images.githubusercontent.com/90288195/155933503-a662a51b-c2c6-4037-bfc5-da8ae751cf2d.gif)|     
+
