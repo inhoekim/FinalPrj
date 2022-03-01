@@ -39,6 +39,7 @@
 |--------------------------|-------------------------|
 |![MyParty_멤버](https://user-images.githubusercontent.com/90288195/156124259-1f88eca4-fcea-44e4-9077-67ec20d286ff.gif)|![MyParty_파티장](https://user-images.githubusercontent.com/90288195/156124277-0faf9824-f94c-4b5b-b3a3-86c924362097.gif)|
 
+<
 ## :black_nib: 프로젝트 총괄 자료집
 
 [프로젝트자료집(OTTPlus).pdf](https://github.com/inhoekim/FinalPrj/files/8160078/OttPlus_.pdf) (파일첨부)
