@@ -33,7 +33,12 @@
 
 |:womans_hat:파티신청(파티원등록)|:crown:파티신청(파티장등록)|
 |-------------------------------|-------------------------|
-|||
+|![매칭등록](https://user-images.githubusercontent.com/90288195/156111787-4f6af344-bc43-4eef-a2e0-85ec6928c858.gif)|![파티장_생성](https://user-images.githubusercontent.com/90288195/156122368-777efd5e-3fb8-47c4-a450-caecf38d4f4e.gif)|
+
+|:unlock:MyParty(파티원)|:closed_lock_with_key:MyParty(파티장)|
+|--------------------------|-------------------------|
+|![MyParty_멤버](https://user-images.githubusercontent.com/90288195/156124259-1f88eca4-fcea-44e4-9077-67ec20d286ff.gif)|![MyParty_파티장](https://user-images.githubusercontent.com/90288195/156124277-0faf9824-f94c-4b5b-b3a3-86c924362097.gif)|
+
 
  
 
