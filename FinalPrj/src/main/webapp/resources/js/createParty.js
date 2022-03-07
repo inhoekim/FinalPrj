@@ -59,7 +59,7 @@ function change_result(){
 
 function last_confirm(event){
     let id_regexr = /^[a-z]+[a-z0-9]{5,30}$/;
-    let pwd_regexr = /[a-z0-9]{8,20}$/;
+    let pwd_regexr = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
 
     let bank_box = $(".banks_box .box.active")[0];
     let share_id = $("#share_id").val();
@@ -82,6 +82,7 @@ function last_confirm(event){
         event.preventDefault();
         $("#share_pwd").val("");
         $("#share_pwd").focus();
+        $("#share_pwd").prop("placeholder", "올바르지 않은 형식의 비밀번호 입니다!");
         animate_shake("#share_pwd",2);
     }
 }

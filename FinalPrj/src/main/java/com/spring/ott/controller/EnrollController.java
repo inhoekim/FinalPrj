@@ -42,8 +42,9 @@ public class EnrollController {
 				return "home/alert";
 			}
 			else {
-				model.addAttribute("msg", "이미 고객님의 파티매칭이 진행중입니다!");
-				return "automatching/matching.tiles";
+				model.addAttribute("msg", "이미 고객님의 파티매칭이 진행중입니다! My파티 페이지로 이동합니다");
+				model.addAttribute("url", servletContext.getContextPath() + "/autoMatch/myParty");
+				return "home/alert";
 			}
 		}
 		else {
