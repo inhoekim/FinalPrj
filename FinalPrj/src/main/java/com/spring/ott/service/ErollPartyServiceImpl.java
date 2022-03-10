@@ -53,6 +53,7 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 		settleMapper.cancleSettle(party_id);
 	
 		//party Member들 다시 WatingRoom으로 보내기(WatingRoom에서 가장 우선순위 부여)
+
 		//우선순위를 부여를 위한 가장 이른 날짜 가져오기
 		Calendar cal = Calendar.getInstance();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -62,12 +63,11 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 		}
 		cal.setTime(earliest_Date);
 		cal.add(Calendar.DATE, -1);
-		
+
 		//멤버리스트 가져오기
 		List<MatchingVo> memberList = matchingMapper.memberList(party_id);
 		//party Member들 watingRoom에 enrollFirst
 		for(MatchingVo vo : memberList) {
-			System.out.println(vo);
 			//적절한 파티를 찾아서 재등록
 			PartyVo myParty = partyMapper.getMyParty(ott_id);
 			if(myParty != null) {

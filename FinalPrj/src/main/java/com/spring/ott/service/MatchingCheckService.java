@@ -18,12 +18,13 @@ public class MatchingCheckService {
 	@Autowired PartyMapper partyMapper;
 	@Autowired MatchingMapper matchingMapper;
 	@Autowired WatingRoomMapper watingRoomMapper;
+	@Autowired RedisWatingRoomService redisWatingRoomService;
 	
 	public HashMap<Integer,Object> matchingCheck(String user_id) {
 		HashMap<Integer,Object> map = new HashMap<Integer, Object>();
 		PartyVo partyVo = partyMapper.matchingCheck(user_id);
 		MatchingVo matchingVo = matchingMapper.matchingCheck(user_id);
-		WatingRoomVo watingRoomVo = watingRoomMapper.matchingCheck(user_id);
+		int ott_id = redisWatingRoomService.checkUser(user_id);
 		if(partyVo != null) {
 			map.put(1, partyVo);
 			return map;
@@ -32,7 +33,10 @@ public class MatchingCheckService {
 			map.put(2, matchingVo);
 			return map;
 		}
-		if(watingRoomVo != null) {
+		if(ott_id != -1) {
+			WatingRoomVo watingRoomVo = new WatingRoomVo();
+			watingRoomVo.setUser_id(user_id);
+			watingRoomVo.setOtt_id(ott_id);
 			map.put(3, watingRoomVo);
 			return map;
 		}

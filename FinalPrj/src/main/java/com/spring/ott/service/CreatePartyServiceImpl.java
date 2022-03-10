@@ -25,6 +25,7 @@ public class CreatePartyServiceImpl implements CreatePartyService{
 	@Autowired OttMapper ottMapper; 
 	@Autowired WatingRoomMapper wrMapper;
 	@Autowired MatchingMapper matchingMapper;
+	@Autowired RedisWatingRoomService redisWatingRoomService;
 	
 	@Override
 	@Transactional
@@ -37,16 +38,17 @@ public class CreatePartyServiceImpl implements CreatePartyService{
 		settleVo.setParty_id(PartyVo.getParty_id());
 		settleMapper.insert(settleVo);
 		//watingTable 인원 가져오기
-		List<WatingRoomVo> wr_list = wrMapper.getWatingRow(PartyVo.getOtt_id());
-		wr_list.forEach(wrVo -> {
+		//List<WatingRoomVo> wr_list = wrMapper.getWatingRow(PartyVo.getOtt_id());
+		List<String> wr_list = redisWatingRoomService.getWatingUser(PartyVo.getOtt_id());
+		wr_list.forEach(userId -> {
 			//watingTable에서 MatchingTable로 이동
-			String watingUser = wrVo.getUser_id();
 			HashMap<String,Object> map = new HashMap<>();
 			map.put("party_id", PartyVo.getParty_id());
-			map.put("user_id", watingUser);
+			map.put("user_id", userId);
 			matchingMapper.insert(map);
 			//watingTable에서 삭제
-			wrMapper.deleteRow(watingUser);
+			//wrMapper.deleteRow(watingUser);
+			redisWatingRoomService.popWatingUser(wr_list.size(), PartyVo.getOtt_id());
 		});
 		//party의 member_num 칼럼 Update
 		HashMap<String,Object> map = new HashMap<>();

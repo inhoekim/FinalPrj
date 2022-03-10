@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.spring.ott.service.ErollPartyService;
 import com.spring.ott.service.MatchingCheckService;
 import com.spring.ott.service.PartyService;
+import com.spring.ott.service.RedisWatingRoomService;
 import com.spring.ott.service.WatingRoomService;
 import com.spring.ott.vo.PartyVo;
 
@@ -25,6 +26,7 @@ public class EnrollController {
 	@Autowired WatingRoomService watingService;
 	@Autowired ErollPartyService enrollPartyService;
 	@Autowired private ServletContext servletContext;
+	@Autowired RedisWatingRoomService redisWatingRoomService;
 	
 	@GetMapping("/autoMatch/matching/enroll")
 	public String enroll(Principal principal, int ott_id, Model model) {
@@ -52,10 +54,13 @@ public class EnrollController {
 			PartyVo myParty = partyService.getMyParty(ott_id);
 			//Wating 테이블에 등록
 			if(myParty == null) {
+				/*
 				HashMap<String, Object> map = new HashMap<>();
 				map.put("user_id", principal.getName());
 				map.put("ott_id", ott_id);
 				watingService.enroll(map);
+				*/
+				redisWatingRoomService.addWatingUser(principal.getName(), ott_id);
 			//해당 Party에 바로추가
 			}else {
 				HashMap<String, Object> map = new HashMap<>();
