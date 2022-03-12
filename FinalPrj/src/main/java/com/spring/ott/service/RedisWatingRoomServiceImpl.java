@@ -14,7 +14,7 @@ public class RedisWatingRoomServiceImpl implements RedisWatingRoomService{
 	@Transactional
 	public boolean addWatingUser(String userId, int ott_id) {
 		stringRedisTemplate.opsForValue().set("user:" + userId, Integer.toString(ott_id));
-		stringRedisTemplate.opsForList().leftPush("watingRoom" + ott_id, userId);
+		stringRedisTemplate.opsForList().rightPush("watingRoom" + ott_id, userId);
 		return true;
 	}
 	
@@ -36,7 +36,9 @@ public class RedisWatingRoomServiceImpl implements RedisWatingRoomService{
 	}
 	
 	public List<String> getWatingUser(int ott_id) {
+		System.out.println("watingRoom" + ott_id);
 		List<String> users = stringRedisTemplate.opsForList().range("watingRoom" + ott_id, 0, 2);
+		System.out.println("users size: " + users.size());
 		return users;
 	}
 	

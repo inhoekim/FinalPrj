@@ -25,6 +25,7 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 	@Autowired PartyMapper partyMapper;
 	@Autowired SettleMapper settleMapper;
 	@Autowired WatingRoomMapper wrMapper;
+	@Autowired RedisWatingRoomService redisWatingRoomService;
 	
 	@Override
 	@Transactional
@@ -51,9 +52,10 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 		partyMapper.stateUpdate(map);
 		//settle state 칼럼 업데이트
 		settleMapper.cancleSettle(party_id);
-	
+		
 		//party Member들 다시 WatingRoom으로 보내기(WatingRoom에서 가장 우선순위 부여)
-
+		
+		/*
 		//우선순위를 부여를 위한 가장 이른 날짜 가져오기
 		Calendar cal = Calendar.getInstance();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,7 +65,7 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 		}
 		cal.setTime(earliest_Date);
 		cal.add(Calendar.DATE, -1);
-
+		*/
 		//멤버리스트 가져오기
 		List<MatchingVo> memberList = matchingMapper.memberList(party_id);
 		//party Member들 watingRoom에 enrollFirst
@@ -84,11 +86,14 @@ public class ErollPartyServiceImpl implements ErollPartyService{
 				}
 			// 적절한 파티가 없을 시 WatingRoom에 재등록(우선순위 부여)
 			}else {
+				/*
 				HashMap<String, Object> map2 = new HashMap<String, Object>();
 				map2.put("user_id", vo.getUser_id());
 				map2.put("ott_id", ott_id);
 				map2.put("start_day", df.format(cal.getTime()));
 				wrMapper.enrollFirst(map2);
+				*/
+				redisWatingRoomService.addWatingUser(vo.getUser_id(), ott_id);
 			}
 		}
 		//이후 Matching테이블에서 멤버삭제

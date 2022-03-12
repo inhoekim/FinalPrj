@@ -1,5 +1,6 @@
 package com.spring.ott.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import data.mybatis.mapper.PartyMapper;
 import data.mybatis.mapper.SettleMapper;
 import data.mybatis.mapper.WatingRoomMapper;
 
+
 @Service
 public class CreatePartyServiceImpl implements CreatePartyService{
 	@Autowired PartyMapper partyMapper;
@@ -26,35 +28,64 @@ public class CreatePartyServiceImpl implements CreatePartyService{
 	@Autowired WatingRoomMapper wrMapper;
 	@Autowired MatchingMapper matchingMapper;
 	@Autowired RedisWatingRoomService redisWatingRoomService;
-	
+		
 	@Override
 	@Transactional
-	public boolean createParty(PartyVo PartyVo, SettleVo settleVo){
+	public boolean createPartyOracle(PartyVo partyVo, SettleVo settleVo, int mem_num, List<HashMap<String,Object>> mapList){
 		//파티테이블 row 등록
-		partyMapper.insertParty(PartyVo);
-		OttVo ottVo = ottMapper.selectOtt(PartyVo.getOtt_id());
+		partyMapper.insertParty(partyVo);
+		OttVo ottVo = ottMapper.selectOtt(partyVo.getOtt_id());
 		//정산테이블 row 등록
 		settleVo.setPrice((ottVo.getMonth_price() / 4) * 3);
-		settleVo.setParty_id(PartyVo.getParty_id());
+		settleVo.setParty_id(partyVo.getParty_id());
 		settleMapper.insert(settleVo);
-		//watingTable 인원 가져오기
-		//List<WatingRoomVo> wr_list = wrMapper.getWatingRow(PartyVo.getOtt_id());
-		List<String> wr_list = redisWatingRoomService.getWatingUser(PartyVo.getOtt_id());
-		wr_list.forEach(userId -> {
-			//watingTable에서 MatchingTable로 이동
-			HashMap<String,Object> map = new HashMap<>();
-			map.put("party_id", PartyVo.getParty_id());
-			map.put("user_id", userId);
+
+		//watingTable에서 MatchingTable로 이동
+		mapList.forEach(map -> {
+			map.put("party_id", partyVo.getParty_id());
 			matchingMapper.insert(map);
-			//watingTable에서 삭제
-			//wrMapper.deleteRow(watingUser);
-			redisWatingRoomService.popWatingUser(wr_list.size(), PartyVo.getOtt_id());
-		});
+		});		
 		//party의 member_num 칼럼 Update
 		HashMap<String,Object> map = new HashMap<>();
-		map.put("party_id", PartyVo.getParty_id());
-		map.put("input_num", wr_list.size());
+		map.put("party_id", partyVo.getParty_id());
+		map.put("input_num", mem_num);
 		partyMapper.memberUpdate(map);
 		return true;
 	}
+	
+	@Override
+	@Transactional
+	public List<HashMap<String,Object>> createPartyRedis(PartyVo partyVo, List<String> wr_list) {
+		List<HashMap<String,Object>> maplist = new ArrayList<HashMap<String,Object>>();
+		wr_list.forEach(userId -> {
+			//watingTable 유저 꺼내오기
+			HashMap<String,Object> map = new HashMap<>();
+			
+			map.put("user_id", userId);
+			maplist.add(map);
+			//watingTable에서 삭제
+			//wrMapper.deleteRow(watingUser);
+			redisWatingRoomService.popWatingUser(wr_list.size(), partyVo.getOtt_id());
+			redisWatingRoomService.removeWatingUser(userId, partyVo.getOtt_id());
+		});
+		return maplist;
+	}
 }
+
+@Service
+class CreatePartyServiceStarterImpl implements CreatePartyServiceStarter{
+	@Autowired CreatePartyService createPartyService;
+	@Autowired RedisWatingRoomService redisWatingRoomService;
+	
+	@Override
+	public boolean createParty(PartyVo partyVo, SettleVo settleVo) {
+		//watingTable 인원 가져오기
+		//List<WatingRoomVo> wr_list = wrMapper.getWatingRow(PartyVo.getOtt_id());
+		List<String> wr_list = redisWatingRoomService.getWatingUser(partyVo.getOtt_id());
+		List<HashMap<String,Object>> mapList = createPartyService.createPartyRedis(partyVo, wr_list);
+		createPartyService.createPartyOracle(partyVo, settleVo, wr_list.size(), mapList);
+		return true;
+	}
+	
+}
+
