@@ -4,7 +4,7 @@
 <div align=center>
   
   ![대문사진2](https://user-images.githubusercontent.com/90288195/155922225-e4ad04c6-e03f-4c3a-9c8a-930b785f5607.png) <br>&nbsp;<br>
-  <img src="https://img.shields.io/badge/Java-v11-007396?&logo=java&logoColor=white&style=flat/"> &nbsp;
+  <img src="https://img.shields.io/badge/Java-v8-007396?&logo=java&logoColor=white&style=flat/"> &nbsp;
   <img src="https://img.shields.io/badge/Spring-v5.2.19-6DB33F?&logo=spring&logoColor=6DB33F&style=flat"> &nbsp;
   <img src="https://img.shields.io/badge/Oracle-v11g-F80000?&logo=ORACLE&logoColor=red&style=flat"> &nbsp;
   <img src="https://img.shields.io/badge/redis-v3.0.504-0769AD?&logo=jQuery&logoColor=DC382D&style=flat"> &nbsp;
