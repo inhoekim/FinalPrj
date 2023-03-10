@@ -42,8 +42,3 @@
 
 <br>
 
-## :black_nib: 프로젝트 총괄 자료집
-
-[프로젝트자료집(OTTPlus).pdf](https://github.com/inhoekim/FinalPrj/files/8160078/OttPlus_.pdf) (파일첨부)
-
-
